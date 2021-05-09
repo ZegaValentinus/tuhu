@@ -1,0 +1,14 @@
+{
+  "touhouvq": {
+    "type": {
+      "melee": "Arme de corps-à-corps",
+      "ranged": "Arme à distance"
+    },
+    "itemText": {
+      "weaponTypeText": "Type d'Arme",
+      "damageText": "Dégâts de l'Arme",
+      "rangedText": "Portée de l'Arme",
+      "rangeThrowingText": "Portée de Lancer"
+    }
+  }
+}

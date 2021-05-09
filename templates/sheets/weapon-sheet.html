@@ -1,0 +1,40 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nom"/></h1>
+    </header>
+    <div>
+      <table>
+        <tr>
+          <th>{{localize config.textData.weaponTypeText}}</th>
+          <th>{{localize config.textData.damageText}}</th>
+          <th>{{localize config.textData.rangedText}}</th>
+          <th>{{localize config.textData.rangeThrowingText}}</th>
+        </tr>
+        <tr>
+          <td>
+            <select name="data.weaponType">
+              {{#select data.weaponType}}
+                {{#each config.weaponTypes as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+                {{/each}}
+              {{/select}}
+            </select>
+          </td>
+          <td>
+            <input name="data.damage" type="text" value="{{data.damage}}" placeholder="Dégâts" data-dtype="Number"/>
+          </td>
+          <td>
+            <input name="data.range" type="text" value="{{data.range}}" placeholder="Portée" data-dtype="Number"/>
+          </td>
+          <td>
+            <input name="data.rangeThrowing" type="text" value="{{data.rangeThrowing}}" placeholder="Portée (Lancer)" data-dtype="Number"/>
+          </td>
+        </tr>
+      </table>
+      <textarea name="data.description">{{data.description}}</textarea>
+    </div>
+</form>
+<script>
+    console.log(data);
+</script>

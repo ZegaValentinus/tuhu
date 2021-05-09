@@ -1,0 +1,29 @@
+{
+  "Actor":{},
+  "Item":{
+    "types":[
+      "weapon",
+      "spellcard"
+    ],
+    "templates":{
+      "itemDescription":{
+        "description":"hello there !"
+      },
+      "itemPerk":{
+        "perk":""
+      }
+    },
+    "weapon":{
+      "templates":[
+        "itemDescription"
+      ],
+      "damage":0,
+      "range":0,
+      "rangeThrowing":0,
+      "weaponType":"melee"
+    },
+    "spellcard":{
+      "spellcardType":0
+    }
+  }
+}

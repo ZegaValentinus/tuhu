@@ -1,0 +1,29 @@
+{
+  "name": "touhouvq",
+  "title": "Touhou: Venturesome Quest!",
+  "description": "A system for playing Touhou: Venturesome Quest!, the touhou tabletop roleplay game that can be played in the Foundry Virtual Tabletop environment.",
+  "version": 1.0,
+  "author": "Benjamin Prieur",
+  "minimumCoreVersion": "0.8.2",
+  "compatibleCoreVersion": "0.8.2",
+  "url": "https://gitlab.com/BenjaminPrieur/touhouvq-foundryvttgamesystem",
+  "esmodules": [
+    "touhouvq.js"
+  ],
+  "styles": [
+    "touhouvq.css"
+  ],
+  "packs": [
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "attributes.hp",
+  "initiative": "1d10"
+}
