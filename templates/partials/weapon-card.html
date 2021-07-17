@@ -1,0 +1,18 @@
+{{#if inSheet}}
+<div data-type="item" class="weapon-card item reveal-rollable" data-item-id={{_id}}>
+    <div class="weapon-info weapon-name">
+        <p class="weapon-name-name">{{name}}</p>
+        {{#if inSheet}}
+            <div class="weapon-name-body">
+                {{data.damage}}
+            </div>
+        {{/if}}
+    </div>
+</div>
+{{else}}
+<div data-type="item" class="weapon-card" data-item-id={{_id}}>
+    <div class="weapon-info weapon-name">
+        <p class="weapon-name-name">{{name}}</p>
+    </div>
+</div>
+{{/if}}

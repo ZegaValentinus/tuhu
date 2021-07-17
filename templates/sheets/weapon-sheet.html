@@ -3,7 +3,7 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nom"/></h1>
     </header>
-    <div>
+    <div class="sheet-items">
       <table>
         <tr>
           <th>{{localize config.textData.weaponTypeText}}</th>
@@ -16,22 +16,24 @@
             <select name="data.weaponType">
               {{#select data.data.weaponType}}
                 {{#each config.weaponTypes as |name type|}}
-                <option value="{{type}}">{{localize name}}</option>
+                  <option value="{{type}}">{{localize name}}</option>
                 {{/each}}
               {{/select}}
             </select>
           </td>
           <td>
-            <input name="data.damage" type="text" value="{{data.data.damage}}" placeholder="Dégâts" data-dtype="Number"/>
+            <input class="damage" name="data.damage" type="text" value="{{data.data.damage}}" placeholder="Dégâts"/>
           </td>
           <td>
-            <input name="data.range" type="text" value="{{data.data.range}}" placeholder="Portée" data-dtype="Number"/>
+            <input class="range" name="data.range" type="text" value="{{data.data.range}}" placeholder="Portée"/>
           </td>
           <td>
-            <input name="data.rangeThrowing" type="text" value="{{data.data.rangeThrowing}}" placeholder="Portée (Lancer)" data-dtype="Number"/>
+            <input class="rangeThrowing" name="data.rangeThrowing" type="text" value="{{data.data.rangeThrowing}}" placeholder="Portée (Lancer)"/>
           </td>
         </tr>
       </table>
-      <textarea name="data.description">{{data.data.description}}</textarea>
+    </div>
+    <div class="sheet-description">
+      {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>

@@ -1,0 +1,844 @@
+@import url('https://fonts.googleapis.com/css2?family=Kreon&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carme&display=swap');
+
+/*--------------
+---ITEM SHEET---
+--------------*/
+.flex {
+  display: flex;
+}
+.f-row-center {
+  flex-direction: row;
+  justify-content: center;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.center {
+  text-align: center !important;
+}
+.bold {
+  font-weight: bold;
+}
+.red {
+  color: rgb(173, 1, 1) !important;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mr-10 {
+  margin-right: 10px !important;
+}
+.touhouvq.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.touhouvq.sheet.item .sheet-items {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.touhouvq.sheet.item .sheet-items table tbody {
+  text-align: center;
+}
+.touhouvq.sheet.item .sheet-items table tbody tr td input.damage {
+  max-width: 89%;
+}
+.touhouvq.sheet.item .sheet-items table tbody tr td input.range {
+  max-width: 70%;
+}
+.touhouvq.sheet.item .sheet-items table tbody tr td input.throwingRange {
+  max-width: 70%;
+}
+.touhouvq.sheet.item .sheet-description {
+  height: 120px;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-bottom: 16px;
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus {
+  box-shadow: unset !important;
+}
+.tvq-char-stat-bloc-intelligence #context-menu, .tvq-char-stat-bloc-resilience #context-menu, .tvq-char-stat-bloc-discipline #context-menu, .tvq-char-stat-bloc-perception #context-menu {
+  width: 144px !important;
+}
+.touhouvq.sheet.item .sheet-description .editor {
+  height: 120px;
+}
+.tchat-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tchat-info img {
+  width: 104px;
+  height: 200px;
+}
+.tvq-body-parts {
+  width: 47%;
+}
+.tvq-body-parts p {
+  margin: 2.5px 0 !important;
+  font-size: 13.5px;
+  font-family: 'Kreon', serif !important;
+}
+.tvq-body-parts p.body-race {
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 4px 0 !important;
+}
+.tvq-body-parts p.crit {
+  font-weight: bold;
+  color: red;
+}
+.tvq-body-parts p.armor {
+  font-weight: bold;
+  color: blue;
+}
+.tvq-button-traitroll:hover {
+  text-shadow: 0 0 8px #009dff45 !important;
+}
+.tvq-button-bodyloc:hover {
+  text-shadow: 0 0 8px #009dff45 !important;
+}
+.touhouvq.sheet.item .sheet-description .editor .editor-content {
+  height: 100%;
+  overflow-y: auto;
+  word-break: break-word;
+  line-height: 11px;
+}
+.tvq-perk-first-bloc {
+  position: relative;
+}
+.tvq-side-bloc-height {
+  height: 86px !important;
+}
+.tvq-side-bloc-height-1 {
+  height: 122px !important;
+}
+.tvq-side-bloc-height-2 {
+  height: 64px !important;
+}
+.tvq-upperside {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.tvq-upperside-1 {
+  width: 30% !important;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+}
+.tvq-upperside-2 {
+  width: 70% !important;
+}
+.tvq-upperside-person {
+  width: 6% !important;
+  margin: 0 -16px 0 0;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.fa-male {
+  height: 27px;
+  font-size: 31px;
+  padding: 2px 5px;
+  opacity: 0.8;
+}
+.tvq-button-traitroll {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px groove #f0f0e0;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+}
+.tvq-button-bodyloc {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px groove #f0f0e0;
+  width: 26px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+}
+.tvq-button-traitroll .fa-dice-d20 {
+  width: 34px;
+  height: 34px;
+  margin-right: 0 !important;
+  font-size: 30px;
+  padding: 3px 5px 5px 4px !important;
+}
+.tvq-button-traitroll #context-menu {
+  width: 220px !important;
+}
+.tvq-button-traitroll .context-item .fa-dice-d20 {
+  font-size: 14px !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+input[type="checkbox"].tvq-deathsave:checked {
+  filter: brightness(84%) hue-rotate(143deg) saturate(102%) !important;
+}
+#power {
+  height: 98px !important;
+}
+#distinctive {
+  height: 38px !important;
+}
+#story, #personality, #power, #distinctive {
+  resize: none !important;
+  width: 100% !important;
+  min-height: unset !important;
+  padding: 0 !important;
+  background: unset !important;
+  border: unset !important;
+  border-radius: 3px !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+  font-family: 'Carme', sans-serif !important;
+}
+.tvq-perk-first-bloc-p {
+  margin: 0 0 0 10px !important;
+  text-align: left !important;
+  font-size: 10px !important;
+  height: 10px !important;
+  font-weight: bold;
+  font-family: 'Kreon', serif !important;
+}
+.tvq-sheet-button {
+  padding: 0;
+  font-size: 12px;
+  width: 228px;
+  margin-left: 10px;
+  line-height: 25px;
+  font-family: 'Carme', sans-serif !important;
+  letter-spacing: -0.4px;
+}
+.tvq-sheet-button:hover {
+  box-shadow: 0 0 5px rgba(129, 164, 204, 0.7) !important;
+  cursor: pointer;
+}
+.tvq-input-skill-content-name {
+  padding: 0 0 0 3px !important;
+  font-size: 10px !important;
+  height: 15px !important;
+  font-family: 'Carme', sans-serif !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(0,0,0,0.18) !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+  letter-spacing: -0.2px !important;
+}
+section.weapon-list {
+  height: 230px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: wrap !important;
+}
+.weapon-name-body {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100% !important;
+  font-size: 10.5px !important;
+  letter-spacing: -0.5px !important;
+}
+.weapon-name-name {
+  width: 100%;
+}
+.tvq-strength-color {
+  color: #d80e0e !important;
+}
+.tvq-agility-color {
+  color: #34a534 !important;
+}
+.tvq-endurance-color {
+  color: #B47DD8 !important;
+}
+.tvq-discipline-color {
+  color: #2020D8 !important;
+}
+.tvq-perception-color {
+  color: #2E4F1F !important;
+}
+.tvq-magic-color {
+  color: #C1AD13 !important;
+}
+.tvq-intellect-color {
+  color: #8F20D8 !important;
+}
+.weapon-info p:not(.weapon-attack-damage) {
+  line-height: 11px;
+  margin: 1px 0 0 0 !important;
+  font-size: 11px !important;
+  letter-spacing: -0.5px !important;
+}
+.tvq-char-sheet-body-bar3 .tvq-equipment {
+  border: none !important;
+}
+.weapon-info a {
+  font-size: 13px !important;
+}
+.weapon-card:nth-child(2n) {
+  background-color: rgba(0,0,0,0.06) !important;
+}
+.tvq-knowledge-forp {
+  width: 76px;
+  margin: 2px 16px -1px 0;
+  text-align: right;
+  height: 16px !important;
+}
+.tvq-knowledge-forcheckbox {
+  height: 16px !important;
+  margin: 1px 0 -1px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tvq-knowledge:nth-child(2n) {
+  background-color: rgba(0,0,0,0.06);
+}
+.tvq-side-bloc-bloc {
+  margin: 3px 0px 2px 10px;
+  width: 106px;
+}
+.tvq-side-bloc-bloc-def {
+  margin: 3px 0px 2px 0px;
+  width: 72px;
+}
+.tvq-side-bloc-fatigue {
+  margin: 0 4px 0 0;
+  width: 111px;
+  text-align: center;
+}
+.tvq-side-bloc-yens {
+  margin: 0 0 0 4px;
+  width: 111px;
+  text-align: center;
+}
+.tvq-side-bloc-casual {
+  margin: 0 0 3px 0;
+  width: 111px;
+  text-align: center;
+}
+.tvq-side-bloc-full {
+  margin: 0 0 3px 0;
+  width: 100%;
+  text-align: center;
+}
+.tvq-side-bloc-casual-half {
+  margin: 0 0 3px 0;
+  width: 50%;
+  text-align: center;
+}
+.tvq-side-bloc-casual-half-1 {
+  margin: 0 3px 0 0;
+  width: 44.5%;
+  text-align: center;
+}
+.tvq-side-bloc-casual-half-2 {
+  margin: 0 0 0 0;
+  width: 53%;
+  text-align: center;
+}
+.tvq-side-bloc-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.tvq-side-bloc-2-half {
+  width: 111px;
+  margin: 0 0 3px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.tvq-char-sheet-body {
+  display: flex;
+  flex-direction: row;
+}
+.tvq-char-sheet-body-bar1 {
+  width: 115px;
+  margin-top: 8px;
+}
+.tvq-char-sheet-body-bar2 {
+  width: 176px;
+  margin-top: 8px;
+}
+.tvq-char-sheet-body-bar3 {
+  width: 242px;
+  margin-top: 8px;
+  padding: 0 0 0 3px;
+}
+.tvq-full-bloc-knowledge {
+  height: 119px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.a-item {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  margin-top: 2px;
+}
+.tvq-perk-body {
+  display: flex;
+  flex-direction: row;
+}
+.fa-dice-d20 {
+  margin-right: 2px !important;
+}
+.weapon-attack-damage {
+  margin: -1px 0 0 0 !important;
+  font-size: 12px !important;
+}
+.tvq-inside-body {
+  display: flex;
+  flex-direction: row;
+}
+.tvq-equipment {
+  height: 250px;
+}
+.tvq-side-bloc-content-p {
+  font-family: 'Carme', sans-serif;
+  font-size: 11px;
+  margin: 2px;
+  line-height: 12px;
+  text-align: left;
+  letter-spacing: -0.3px;
+}
+.tvq-custom-hr {
+  margin: 2px 0;
+}
+.tvq-side-bloc {
+  margin: 3px 10px;
+}
+.tvq-side-bloc-p {
+  color: #494842;
+  font-size: 13px;
+  margin: 3px 0 0 3px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+.tvq-full-bloc-p {
+  color: #494842;
+  font-size: 15px;
+  margin: 3px 0 4px 5px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+.tvq-side-bloc-p-defense {
+  color: #494842;
+  font-size: 13px;
+  margin: 2px 0 0 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+}
+.tvq-side-bloc-p-gensokyo {
+  color: #494842;
+  font-size: 12px;
+  margin: 2px 0 0 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+}
+.tvq-char-infos {
+  display: flex;
+  margin-top: 80px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.bloc-hp {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  max-width: 30%;
+  font-size: 17px !important;
+}
+.bloc-hp input {
+  border: none;
+}
+.bloc-p-hp {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 5%;
+  flex: 0 0 5%;
+  max-width: 5%;
+  font-size: 18px;
+}
+.bloc-cw {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 46%;
+  flex: 0 0 46%;
+  max-width: 46%;
+  font-size: 18px;
+}
+.bloc-cw input {
+  border: none;
+}
+li.context-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tvq-p {
+  font-size: 12px;
+  margin: 0;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+.tvq-red {
+  color: red;
+  font-weight: bold;
+}
+.tvq-green {
+  color: #34a534;
+  font-weight: bold;
+}
+.tvq-pink {
+  color: #B47DD8;
+  font-weight: bold;
+}
+.tvq-blue {
+  color: #2020D8;
+  font-weight: bold;
+}
+.tvq-darkgreen {
+  color: #2E4F1F;
+  font-weight: bold;
+}
+.tvq-yellow {
+  color: #C1AD13;
+  font-weight: bold;
+}
+.tvq-purple {
+  color: #8F20D8;
+  font-weight: bold;
+}
+.tvq-p-side {
+  font-size: 14px;
+  margin: 4px 0 0 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+}
+.tvq-cw {
+  color: red !important;
+  width: 65% !important;
+}
+.tvq-slash-p {
+  margin: 14px 0 0 0;
+  font-size: 22px;
+}
+h3.thv-h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  margin: 0;
+}
+.tvq-hr {
+  width: 72%;
+}
+.tvq-deathsave {
+  margin: 0 0 6px 0 !important;
+}
+.tvq-border {
+  border: 2px groove #eeede0;
+  border-radius: 4px;
+}
+.tvq-perk-content {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+#context-menu {
+  min-width: 118px !important;
+}
+.tvq-button-traitroll #context-menu li.context-item {
+  line-height: 14px !important;
+  font-size: 13px !important;
+}
+.tvq-input {
+  height: 22px !important;
+  font-size: 14px !important;
+  font-family: 'Kreon', serif !important;
+  border-bottom: solid 1px !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+}
+.tvq-input-fatigue, .tvq-input-yens {
+  height: 22px !important;
+  font-size: 14px !important;
+  font-family: 'Kreon', serif !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+}
+.tvq-char-sheet-body-bar2 .tvq-perk-line {
+  right: 0;
+  top: 0;
+}
+.tvq-char-sheet-body-bar2 .tvq-perk-line .fas {
+  font-size: 12px !important;
+  margin-right: 6px !important;
+}
+.tvq-char-sheet-body-bar2 .tvq-custom-hr {
+  margin: 1px 0 !important;
+}
+.tvq-char-sheet-body-bar2 .tvq-side-bloc-p {
+  font-size: 12px;
+  margin: 1px 0 0 3px;
+}
+.tvq-input-skill-name {
+  padding: 1px 0 1px 3px !important;
+  letter-spacing: -0.2px;
+  font-size: 10.5px !important;
+  height: 16px !important;
+  font-family: 'Carme', sans-serif !important;
+  text-align: left !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+}
+.tvq-perk-line {
+  position: absolute;
+  right: 3px;
+  top: 2px;
+  opacity: 0.75;
+}
+
+.tvq-perk-line .fas {
+  font-size: 13px !important;
+  margin-right: 4px !important;
+}
+.tvq-input-bar1 {
+  height: 22px !important;
+  font-size: 16px !important;
+  font-family: 'Kreon', serif !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+}
+.tvq-side-bloc-bar1 {
+  color: #494842;
+  font-size: 16px;
+  margin: -1px 0 0 3px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+.tvq-input-name {
+  width: 180px !important;
+}
+.tvq-input-race {
+  width: 138px !important;
+}
+.tvq-input-sexe {
+  width: 75px !important;
+}
+.tvq-input-size {
+  width: 60px !important;
+}
+.tvq-input-age {
+  width: 70px !important;
+}
+.tvq-input-weight {
+  width: 70px !important;
+}
+.tvq-input-eyes {
+  width: 118px !important;
+}
+.tvq-input-hairs {
+  width: 112px !important;
+}
+.tvq-side-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3px 0;
+  align-items: center;
+}
+.tvq-char-stat {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tvq-char-stat-input {
+  height: 24px !important;
+  text-align: center !important;
+  font-size: 22px !important;
+  margin: 5px 0 0 0 !important;
+  font-family: 'Josefin Sans', sans-serif !important;
+  border: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100% !important;
+}
+.tvq-char-stat-bloc {
+  width: 14%;
+}
+.tvq-char-stat-content p {
+  text-align: center;
+  font-family: 'Kreon', serif !important;
+  font-size: 13px;
+  margin: 2px;
+}
+.tvq-actor-img {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.tvq-actor-img img {
+  width: 66% !important;
+}
+.tvq-top-banner img {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 556px;
+  border-radius: 0;
+  z-index: 1;
+}
+.character-name {
+  width: 98%;
+  border-bottom: 0 !important;
+  text-align: center;
+  font-family: 'Kreon', serif !important;
+  font-size: 21px !important;
+  margin-left: 1% !important;
+  margin-right: 1% !important;
+  margin-bottom: 3px !important;
+}
+.sheet-body {
+  display: flex;
+}
+.bar12 {
+  width: 70%;
+}
+.body-line {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.barFirst {
+  width: 30%;
+}
+.barSecond {
+  width: 70%;
+}
+.barFirst2 {
+  width: 32%;
+}
+.barSecond2 {
+  width: 68%;
+}
+h1 {
+  text-align: center;
+}
+.actor-img {
+  width: 256px;
+}
+.wealth {
+  text-align: center;
+}
+.tvq-char-infos-div {
+  z-index: 999;
+  margin: 8px 4px 0 4px!important;
+}
+.tvq-knowledge {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+.tvq-knowledge-checkbox {
+  flex: 0 0 17px !important;
+  margin: 0 !important;
+  width: 0px !important;
+  height: 13px !important;
+  flex: 0 0 16px;
+  justify-content: center;
+}
+.tvq-knowledge p {
+  margin: 0 10px 0 0 !important;
+  font-size: 11px !important;
+}
+
+/* Weapon Card */
+.weapon-card {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  align-content: stretch;
+}
+.weapon-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+  width: 100% !important;
+  border: none !important;
+  flex-wrap: wrap;
+}
+.weapon-name {
+  width: 70%;
+}
+.weapon-stats {
+  width: 30%;
+  flex-direction: column;
+}
+.weapon-effects {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+img {
+  border: none;
+  border-radius: 5px;
+}
+
+/* bar3 */
+.stat-block {
+  text-align: center;
+  text-align-last: center;
+  align-items: center;
+}
+select {
+  font-size: 1em;
+}
+input {
+  border: none;
+  margin-bottom: 0.25em;
+  width: 100%;
+}

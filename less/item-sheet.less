@@ -1,0 +1,41 @@
+.touhouvq.sheet.item {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-items {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    table tbody {
+      text-align: center;
+      tr td input.damage {
+        max-width: 89%;
+        }
+        tr td input.range {
+          max-width: 50%;
+        }
+        tr td input.throwingRange {
+          max-width: 50%;
+        }
+      }
+    }
+  .sheet-description {
+    height: 120px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    .editor {
+      height: 120px;
+      .tox .tox-editor-container .tox-sidebar-wrap .tox-edit-area iframe #document html body {
+        line-height: 10px;
+      }
+      .editor-content {
+          height: 100%;
+          overflow-y: auto;
+          word-break: break-word;
+          line-height: 11px;
+      }
+    }
+  }
+}

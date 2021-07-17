@@ -1,0 +1,66 @@
+<section>
+
+    <div class="tvq-top-banner">
+        <img src="systems/touhouvq/assets/img/top_banner.png"/>
+    </div>
+
+    <div class="flex tvq-char-infos">
+        <div class="tvq-char-infos-div">
+            <select name="data.races"  class="tvq-input tvq-input-race" type="text" value="{{data.races}}">
+                {{#select data.data.races}}
+                    {{#each config.raceListing as |name race|}}
+                        <option value="{{race}}">{{localize name}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+            <p class="tvq-p">Race</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-sexe" type="text" name="char_race" value="Féminin">
+            <p class="tvq-p">Sexe</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-size" type="text" name="player_name" value="1m72">
+            <p class="tvq-p">Taille</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-age" type="text" name="char_race" value="2 ans">
+            <p class="tvq-p">Age</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-weight" type="text" name="char_race" value="69kg">
+            <p class="tvq-p">Poids</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-eyes" type="text" name="char_race" value="Rouge Tomate">
+            <p class="tvq-p">Couleur des yeux</p>
+        </div>
+        <div class="tvq-char-infos-div">
+            <input class="tvq-input tvq-input-hairs" type="text" name="char_race" value="Bruns">
+            <p class="tvq-p">Couleur des cheveux</p>
+        </div>
+        <div class="tvq-upperside-person">
+            <a class="tvq-button-bodyloc" data-race-value="{{data.data.races}}">
+                <i class="fas fa-male"></i>
+            </a>
+        </div>
+        <div class="tvq-side-bloc-2">
+            <div class="tvq-side-bloc-bloc-def tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p-defense">Défense</p>
+                    <hr class="tvq-custom-hr">
+                    <input class="tvq-char-stat-input" type="text" value="4">
+                </div>
+            </div>
+            <div class="tvq-side-bloc-bloc tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p-gensokyo">Puiss. de Gensokyo</p>
+                    <hr class="tvq-custom-hr">
+                    <input class="tvq-char-stat-input" type="text" value="4">
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</section>
+  

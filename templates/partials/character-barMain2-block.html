@@ -1,0 +1,59 @@
+<section>
+  
+    <div class="tvq-sidebar-2">
+
+        <div class="tvq-upperside">
+            <div class="tvq-upperside-1">
+                <a class="tvq-button-traitroll" data-strength-value="{{data.data.stats.strength}}" data-agility-value="{{data.data.stats.agility}}" data-resilience-value="{{data.data.stats.resilience}}" data-discipline-value="{{data.data.stats.discipline}}" data-perception-value="{{data.data.stats.perception}}" data-magic-value="{{data.data.stats.magic}}" data-intelligence-value="{{data.data.stats.intelligence}}" data-trait-value="TRUE" data-fatigue-value="{{data.data.fatigue.value}}">
+                    <i class="fas fa-dice-d20"></i>
+                </a>
+            </div>
+            <div class="tvq-upperside-2">
+                <p class="tvq-p-side">Sauvegarde contre la mort</p>
+
+                <div class="tvq-side-div">
+                    <input class="tvq-deathsave" type="checkbox" id="{{data.data.deathSaves.value1}}" name="data.deathSaves.value1">
+                    <input class="tvq-deathsave" type="checkbox" id="{{data.data.deathSaves.value2}}" name="data.deathSaves.value2">
+                    <input class="tvq-deathsave" type="checkbox" id="{{data.data.deathSaves.value3}}" name="data.deathSaves.value3">
+                </div>
+            </div>
+        </div>
+
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height">
+                <p class="tvq-side-bloc-p">Histoire, Famille & Passé</p>
+                <hr class="tvq-custom-hr">
+                <textarea id="story" class="tvq-side-bloc-content-p" name="data.charInfo.story" rows="5" cols="33">{{data.data.charInfo.story}}</textarea>
+            </div>
+        </div>
+
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height">
+                <p class="tvq-side-bloc-p">Personnalité</p>
+                <hr class="tvq-custom-hr">
+                <textarea id="personality" class="tvq-side-bloc-content-p" name="data.charInfo.personality" rows="5" cols="33">{{data.data.charInfo.personality}}</textarea>
+            </div>
+        </div>
+
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-1">
+                <p class="tvq-side-bloc-p">Pouvoir</p>
+                <hr class="tvq-custom-hr">
+                <textarea id="power" class="tvq-side-bloc-content-p" name="data.charInfo.power" rows="5" cols="33">{{data.data.charInfo.power}}</textarea>
+            </div>
+        </div>
+
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-2">
+                <p class="tvq-side-bloc-p">Signe Distinctif</p>
+                <hr class="tvq-custom-hr">
+                <textarea id="distinctive" class="tvq-side-bloc-content-p" name="data.charInfo.distinctive" rows="5" cols="33">{{data.data.charInfo.distinctive}}</textarea>
+            </div>
+        </div>
+
+        <button class="tvq-sheet-button" type="button">Passer à la seconde fiche de personnage</button>
+    
+    </div>
+  
+</section>
+  

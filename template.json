@@ -1,8 +1,94 @@
 {
-  "Actor":{},
+  "Actor":{
+    "races":{
+      "human":"Human",
+      "youkai":"Youkai",
+      "ghost":"Ghost",
+      "vampire":"Vampire",
+      "fairy":"Fairy",
+      "crowtengu":"Crow Tengu",
+      "whitewolftengu":"White wolf tengu",
+      "greattengu":"Great tengu",
+      "lunarrabbit":"Lunar rabbit",
+      "oni":"Oni",
+      "amanojaku":"Amanojaku",
+      "inchling":"Inchling",
+      "kappa":"Kappa",
+      "halfyoukai":"Half-Youkai",
+      "celestial":"Celestial",
+      "hermit":"Hermit",
+      "shinigami":"Shinigami",
+      "arahitogami":"Arahitogami",
+      "tsukumogami":"Tsukumogami",
+      "earthrabbit":"Earth Rabbit",
+      "bakedanuki":"Bake-danuki",
+      "yamabiko":"Yamabiko"
+    },
+    "templates":{
+      "commonStats":{
+        "stats":{
+          "strength":0,
+          "agility":0,
+          "resilience":0,
+          "discipline":0,
+          "perception":0,
+          "magic":0,
+          "intelligence":0
+        },
+        "health":{
+          "value":0,
+          "max":0
+        },
+        "magic":{
+          "value":0,
+          "max":0
+        },
+        "critWounds":{
+          "value":0
+        },
+        "fatigue":{
+          "value":0
+        },
+        "defense":{
+          "value":0
+        },
+        "gensokyoPower":{
+          "value":0
+        },
+        "fate":{
+          "value":0,
+          "max":0
+        },
+        "yen":{
+          "value":0
+        }
+      },
+      "deathSaves":{
+        "value1":0,
+        "value2":0,
+        "value3":0
+      },
+      "levelBased":{
+        "level":0,
+        "currentXP":0,
+        "totalXP":0
+      },
+      "charInfos":{
+        "story":"",
+        "personality":"",
+        "power":"",
+        "distinctive":""
+      }
+    }
+  },
   "Item":{
     "types":[
       "weapon",
+      "tool",
+      "armor",
+      "object",
+      "talent",
+      "skill",
       "spellcard"
     ],
     "templates":{
@@ -21,6 +107,31 @@
       "range":0,
       "rangeThrowing":0,
       "weaponType":"melee"
+    },
+    "tool":{
+      "templates":[
+        "itemDescription"
+      ]
+    },
+    "armor":{
+      "templates":[
+        "itemDescription"
+      ]
+    },
+    "object":{
+      "templates":[
+        "itemDescription"
+      ]
+    },
+    "talent":{
+      "templates":[
+        "itemDescription"
+      ]
+    },
+    "skill":{
+      "templates":[
+        "itemDescription"
+      ]
     },
     "spellcard":{
       "spellcardType":0

@@ -1,0 +1,510 @@
+<section>
+
+    <div class="tvq-char-stat">
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-strength tvq-border" data-action-value="{{data.data.stats.strength}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-strength-color">Force</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.strength" value="{{data.data.stats.strength}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-agility tvq-border" data-action-value="{{data.data.stats.agility}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-agility-color">Agilité</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.agility" value="{{data.data.stats.agility}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-resilience tvq-border" data-action-value="{{data.data.stats.resilience}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-endurance-color">Endurance</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.resilience" value="{{data.data.stats.resilience}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-discipline tvq-border" data-action-value="{{data.data.stats.discipline}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-discipline-color">Discipline</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.discipline" value="{{data.data.stats.discipline}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-perception tvq-border" data-action-value="{{data.data.stats.perception}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-perception-color">Perception</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.perception" value="{{data.data.stats.perception}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-magic tvq-border" data-action-value="{{data.data.stats.magic}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-magic-color">Magie</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.magic" value="{{data.data.stats.magic}}">
+            </div>
+        </div>
+
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-intelligence tvq-border" data-action-value="{{data.data.stats.intelligence}}" data-fatigue-value="{{data.data.fatigue.value}}">
+            <div class="tvq-char-stat-content">
+                <p class="tvq-intellect-color">Intelligence</p>
+                <input class="tvq-char-stat-input" type="text" name="data.stats.intelligence" value="{{data.data.stats.intelligence}}">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tvq-char-sheet-body">
+
+        <div class="tvq-char-sheet-body-bar1">
+
+            <div class="tvq-side-bloc-casual tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p">Points de vie</p>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-inside-body">
+                        <input class="tvq-input-bar1" type="number" name="data.health.value" value="{{data.data.health.value}}">
+                        <p class="tvq-side-bloc-bar1">/</p>
+                        <input class="tvq-input-bar1 bold" type="number" name="data.health.max" value="{{data.data.health.max}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tvq-side-bloc-casual tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p red">Blessures critiques</p>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-inside-body">
+                        <input class="tvq-input-bar1 bold red" type="number" name="data.critWound.value" value="{{data.data.critWound.value}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tvq-side-bloc-casual tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p">Points de magie</p>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-inside-body">
+                        <input class="tvq-input-bar1" type="number" name="data.magic.value" value="{{data.data.magic.value}}">
+                        <p class="tvq-side-bloc-bar1">/</p>
+                        <input class="tvq-input-bar1 bold" type="number" name="data.magic.max" value="{{data.data.magic.max}}">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tvq-side-bloc-2-half">
+                <div class="tvq-side-bloc-casual-half-1 tvq-border">
+                    <div class="tvq-side-bloc-content">
+                        <p class="tvq-side-bloc-p">Fatigue</p>
+                        <hr class="tvq-custom-hr">
+                        <input class="tvq-input-fatigue" type="number" name="data.fatigue.value" value="{{data.data.fatigue.value}}">
+                    </div>
+                </div>
+                <div class="tvq-side-bloc-casual-half-2 tvq-border">
+                    <div class="tvq-side-bloc-content">
+                        <p class="tvq-side-bloc-p">Yens</p>
+                        <hr class="tvq-custom-hr">
+                        <input class="tvq-input-yens" type="number" name="data.yen.value" value="{{data.data.yen.value}}">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tvq-side-bloc-casual tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p">Points de destin</p>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-inside-body">
+                        <input class="tvq-input-bar1" type="number" name="data.fate.value" value="{{data.data.fate.value}}">
+                        <p class="tvq-side-bloc-bar1">/</p>
+                        <input class="tvq-input-bar1 bold" type="number" name="data.fate.max" value="{{data.data.fate.max}}">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tvq-side-bloc-casual tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p m-0 center bold">Niveau</p>
+                    <hr class="tvq-custom-hr">
+                    <input class="tvq-input-yens" type="number" name="data.levelBased.level" value="{{data.data.levelBased.level}}">
+                </div>
+            </div>
+
+            <div class="tvq-side-bloc-2-half">
+                <div class="tvq-side-bloc-casual-half tvq-border">
+                    <div class="tvq-side-bloc-content">
+                        <p class="tvq-side-bloc-p center">XP</p>
+                        <hr class="tvq-custom-hr">
+                        <input class="tvq-input-fatigue" type="number" name="data.levelBased.currentXP" value="{{data.data.levelBased.currentXP}}">
+                    </div>
+                </div>
+                <div class="tvq-side-bloc-casual-half tvq-border">
+                    <div class="tvq-side-bloc-content">
+                        <p class="tvq-side-bloc-p">XP Tota.</p>
+                        <hr class="tvq-custom-hr">
+                        <input class="tvq-input-yens" type="number" name="data.levelBased.totalXP" value="{{data.data.levelBased.totalXP}}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tvq-char-sheet-body-bar2">
+
+            <div class="tvq-side-bloc-full tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <div class="tvq-perk-content">
+                        <p class="tvq-side-bloc-p">Talent starter</p>
+                        <div class="tvq-perk-line">
+                            <a class="item-delete">
+                                <i class="fas fa-info"></i>
+                            </a>
+                            <a class="item-delete">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-perk-body">
+                        <input class="tvq-input-skill-name" type="text" name="char_perk_start" value="Objet Vivant">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tvq-side-bloc-full tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <div class="tvq-perk-content">
+                        <p class="tvq-side-bloc-p">Compétence de race</p>
+                        <div class="tvq-perk-line">
+                            <a class="item-delete">
+                                <i class="fas fa-dice-d20"></i>
+                            </a>
+                            <a class="item-delete">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-perk-body">
+                        <input class="tvq-input-skill-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tvq-side-bloc-full tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-side-bloc-p">Talents et Spellcards</p>
+                    <hr class="tvq-custom-hr">
+                    <div class="tvq-perk-info-content">
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Spellcard</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Talent</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Spellcard</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Spellcard</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                        <div class="tvq-perk-first-bloc">
+                            <p class="tvq-perk-first-bloc-p">Last Word</p>
+                            <div class="tvq-perk-line">
+                                <a class="item-delete">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="item-delete">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                            <input class="tvq-input-skill-content-name" type="text" name="char_skill_race" value="Reconnaissance Tsukumogami etc">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tvq-char-sheet-body-bar3">
+
+            <div class="tvq-side-bloc-full tvq-border">
+                <div class="tvq-side-bloc-full tvq-border tvq-equipment">
+                    <div class="tvq-side-bloc-content">
+                        <p class="tvq-side-bloc-p">Equipement</p>
+                        <hr class="tvq-custom-hr">
+
+                        <section class="weapon-list">
+                            {{#each weapons as |weapon id|}}
+                                {{> "systems/touhouvq/templates/partials/weapon-card.html" weapon inSheet=true}}
+                            {{/each}}
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tvq-side-bloc-full tvq-border">
+                <div class="tvq-side-bloc-content">
+                    <p class="tvq-full-bloc-p">Connaissances</p>
+
+                        <div class="tvq-full-bloc-knowledge">
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Nature</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Humains</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Youkai</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Magie</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Marché Noir</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Monde Exté.</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Médecine</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Forge</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Alchimie</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Marchandage</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Cuisine</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Mythes & Lég.</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                            <div class="tvq-knowledge">
+                                <div class="tvq-knowledge-forp">
+                                    <p>Divinités</p>
+                                </div>
+                                <div class="tvq-knowledge-forcheckbox">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+  
+</section>
+  
