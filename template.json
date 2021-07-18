@@ -93,9 +93,7 @@
     ],
     "templates":{
       "itemDescription":{
-        "description":""
-      },
-      "itemPerk":{
+        "description":"",
         "perk":""
       }
     },
@@ -103,6 +101,7 @@
       "templates":[
         "itemDescription"
       ],
+      "rarity":0,
       "damage":0,
       "range":0,
       "rangeThrowing":0,

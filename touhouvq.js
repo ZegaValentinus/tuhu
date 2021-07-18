@@ -12,7 +12,8 @@ async function preloadHandlebarsTemplates() {
     "systems/touhouvq/templates/partials/character-barFirst-block.html",
     "systems/touhouvq/templates/partials/character-barSecond-block.html",
     "systems/touhouvq/templates/partials/character-barMain1-block.html",
-    "systems/touhouvq/templates/partials/character-barMain2-block.html"
+    "systems/touhouvq/templates/partials/character-barMain2-block.html",
+    "templates/dice/roll.html"
   ];
 
   return loadTemplates(templatePaths);
@@ -31,6 +32,10 @@ Hooks.once("init", function() {
   Actors.registerSheet("touhouvq", characterSheet, { makeDefault: true });
 
   preloadHandlebarsTemplates();
+
+  Handlebars.registerHelper('ifSuperiorOrEquals', function(arg1, arg2, options) {
+    return (arg1 >= arg2) ? options.fn(this) : options.inverse(this);
+  });
 });
 
 Hooks.on("renderChatLog", (add, html, data) => CharacterData.addChatListeners(html));

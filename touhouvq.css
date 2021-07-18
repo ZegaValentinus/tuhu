@@ -55,10 +55,17 @@
   max-width: 70%;
 }
 .touhouvq.sheet.item .sheet-description {
-  height: 120px;
-  border: 1px solid;
+  height: 82px;
+  border: unset;
   border-radius: 5px;
-  margin-bottom: 16px;
+  background-color: rgba(0,0,0,0.06);
+  margin-top: 5px;
+}
+.touhouvq.sheet.item .sheet-perk {
+  height: 66px;
+  border: unset;
+  border-radius: 5px;
+  margin-top: 18px;
 }
 input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus {
   box-shadow: unset !important;
@@ -66,8 +73,8 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 .tvq-char-stat-bloc-intelligence #context-menu, .tvq-char-stat-bloc-resilience #context-menu, .tvq-char-stat-bloc-discipline #context-menu, .tvq-char-stat-bloc-perception #context-menu {
   width: 144px !important;
 }
-.touhouvq.sheet.item .sheet-description .editor {
-  height: 120px;
+.touhouvq.sheet.item .sheet-description .editor, .touhouvq.sheet.item .sheet-perk .editor {
+  height: 84px;
 }
 .tchat-info {
   display: flex;
@@ -79,26 +86,57 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   height: 200px;
 }
 .tvq-body-parts {
-  width: 47%;
+  width: 50%;
+  position: relative;
+}
+.tvq-body-parts img {
+  position: absolute;
+  width: 96px !important;
+  height: 38px !important;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .tvq-body-parts p {
-  margin: 2.5px 0 !important;
+  margin: 2.2px 0 !important;
   font-size: 13.5px;
   font-family: 'Kreon', serif !important;
 }
 .tvq-body-parts p.body-race {
-  font-family: "Signika", sans-serif !important;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: 'Carme', sans-serif !important;
+  font-size: 15px;
+  font-weight: normal;
   margin: 4px 0 !important;
 }
-.tvq-body-parts p.crit {
+.tvq-body-parts p.body-roll {
+  font-family: 'Kreon', serif !important;
+  font-size: 20px;
   font-weight: bold;
+  margin: 4px 0 0 0 !important;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.tvq-body-parts .bold {
+  font-weight: bold;
+  font-size: 13.3px;
+  font-family: 'Carme', sans-serif !important;
+  margin: 3px 0 !important;
+  text-transform: uppercase;
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+.tvq-body-parts p.crit-no-bold {
   color: red;
 }
-.tvq-body-parts p.armor {
-  font-weight: bold;
+.tvq-body-parts p.armor-no-bold {
   color: blue;
+}
+.tvq-body-parts p.crit, .body-roll.crit {
+  color: red !important;
+  font-weight: bold !important;
+}
+.tvq-body-parts p.armor, .body-roll.armor {
+  color: blue !important;
+  font-weight: bold !important;
 }
 .tvq-button-traitroll:hover {
   text-shadow: 0 0 8px #009dff45 !important;
@@ -106,7 +144,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 .tvq-button-bodyloc:hover {
   text-shadow: 0 0 8px #009dff45 !important;
 }
-.touhouvq.sheet.item .sheet-description .editor .editor-content {
+.touhouvq.sheet.item .sheet-description .editor .editor-content, .touhouvq.sheet.item .sheet-perk .editor .editor-content {
   height: 100%;
   overflow-y: auto;
   word-break: break-word;
@@ -146,6 +184,11 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.tvq-upperside-person #context-menu {
+  top: calc(100% + 0px);
+  bottom: unset !important;
+  width: 174px !important;
 }
 .fa-male {
   height: 27px;
@@ -793,6 +836,12 @@ h1 {
   margin: 0 10px 0 0 !important;
   font-size: 11px !important;
 }
+.tvq-deathcheck-roll {
+  cursor: pointer;
+}
+.tvq-deathcheck-roll:hover {
+  text-shadow: 0 0 8px #ff000045 !important;
+}
 
 /* Weapon Card */
 .weapon-card {
@@ -841,4 +890,153 @@ input {
   border: none;
   margin-bottom: 0.25em;
   width: 100%;
+}
+
+/* weapon sheet */
+.tvq-weaponsheet-main {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+.tvq-weaponsheet-div1 {
+  width: 31% !important;
+}
+
+.tvq-weaponsheet-div1-img {
+  width: 178px !important;
+  height: 178px !important;
+  border: 1px solid #7a7971 !important;
+  box-shadow: 0 0 6px 1px #434343 !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tvq-weaponsheet-div1-img img {
+  margin: auto !important;
+}
+
+.tvq-weaponsheet-div1-rarity {
+  padding: 8px 1px 0 1px;
+}
+
+.tvq-weaponsheet-div2 {
+  width: 66% !important;
+}
+
+.tvq-weaponsheet-div2-intro h1 {
+  border-bottom: 2px solid #888888 !important;
+}
+
+.tvq-weaponsheet-div2-intro input {
+  font-size: 22px;
+  height: 29px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+  border: unset;
+}
+
+.tvq-weaponsheet-div2-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.tvq-weaponsheet-text {
+  font-size: 12px;
+  margin: 0 0 8px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+
+.tvq-weaponsheet-text-rarity {
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+  font-family: 'Kreon', serif !important;
+}
+
+.tvq-weaponsheet-text-rarity .uncommon {
+  color: #2b80e8;
+}
+
+.tvq-weaponsheet-text-rarity .rare {
+  color: #A621FF;
+}
+
+.tvq-weaponsheet-text-rarity .singular {
+  color: #ff8d00;
+}
+
+.tvq-weaponsheet-text-rarity .unique {
+  color: #FF1A4E;
+  font-weight: 800;
+}
+
+.tox-toolbar__group button {
+  height: 22px !important;
+}
+
+.tox-toolbar__group button[aria-label="Insert/edit image"], .tox-toolbar__group button[aria-label="Table"], .tox-toolbar__group button[aria-label="Insert/edit link"] {
+  display: none !important;
+}
+
+.sheet-description a.editor-edit, .sheet-perk a.editor-edit {
+  top: 2px;
+  right: 2px;
+}
+
+.sheet-description body.tinymce p, .sheet-perk body.tinymce p {
+  font-size: 13px !important;
+  line-height: 13px !important;
+}
+
+.sheet-description div[role="application"], .sheet-perk div[role="application"] {
+  height: 80px !important;
+}
+
+.sheet-description .editor div.editor-content p {
+  font-size: 14px !important;
+  line-height: 14px !important;
+  padding: 0 4px !important;
+  letter-spacing: -0.4px;
+}
+
+.sheet-items select, .sheet-items .tvq-weaponsheet-div2-info input {
+  font-size: 13px !important;
+  height: 23px !important;
+}
+
+.tvq-weaponsheet-div2-info-1 {
+  width: 180px !important;
+  padding: 0 5px 0 0 !important;
+}
+
+.tvq-weaponsheet-div2-info-2 {
+  border-left: 1px solid grey !important;
+  width: 146px !important;
+  padding: 0 0 0 18px !important;
+}
+
+.tvq-weaponsheet-div2-info-2-1 input, .tvq-weaponsheet-div2-info-2-2 input {
+  text-align: center;
+}
+
+.tvq-weaponsheet-div2-info-1-2 {
+  width: 142px;
+}
+
+.tvq-weaponsheet-div2-info-1-2 input {
+  text-align: center !important;
+}
+
+.sheet-perk textarea {
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  resize: none;
+  letter-spacing: -0.4px !important;
+  border: unset !important;
 }

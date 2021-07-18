@@ -3,7 +3,7 @@ export default class touhouvqItemSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 600,
-      height: 340,
+      height: 400,
       classes: ["touhouvq", "sheet", "item"]
     })
   }

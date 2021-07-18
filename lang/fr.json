@@ -31,14 +31,18 @@
     "itemText": {
       "weaponTypeText": "Type d'Arme",
       "damageText": "Dégâts",
-      "rangedText": "Portée",
-      "rangeThrowingText": "Portée de Lancer"
+      "rangedText": "Portée (mètres)",
+      "rangeThrowingText": "Portée de Lancer (mètres)",
+      "rarityText": "Rareté",
+      "descText": "Description",
+      "perkText": "Talent"
     },
     "sheet": {
       "edit": "Éditer",
       "delete": "Supprimer",
       "attack": "Attaquer",
       "show": "Montrer",
+      "damageLocalisation" : "Localisation des dégâts",
       "rollStrength": "Jet de Force",
       "rollAgility": "Jet d'Agilité",
       "rollResilience": "Jet d'Endurance",
@@ -61,6 +65,18 @@
       "rollCharisma": "Jet de Charisme ( <p class='tvq-darkgreen'>PER</p> + <p class='tvq-purple'>INT</p> )",
       "rollDanmaku": "Jet de Danmaku ( <p class='tvq-yellow'>MAG</p> + <p class='tvq-purple'>INT</p> )",
       "rollDeath": "Jet de Sauvegarde contre la mort ( <p class='tvq-red'>FOR</p> + <p class='tvq-pink'>END</p> )"
+    },
+    "generalRarity": {
+      "rarity1": "Classique",
+      "rarity2": "Inhabituel",
+      "rarity3": "Rare",
+      "rarity4": "Singulier",
+      "rarity5": "Unique",
+      "rarity6": "Youkai"
+    },
+    "deathCheck": {
+      "success": "Réussite !",
+      "failure": "Échec..."
     }
   }
 }

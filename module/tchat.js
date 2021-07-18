@@ -148,8 +148,6 @@ export async function BodyLoc(bodyData) {
 
     let actor = game.actors.get(actorActual.id);
 
-    console.log(actor);
-
     const messageData = {
         speaker: ChatMessage.getSpeaker(),
         content: html,

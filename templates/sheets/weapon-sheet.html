@@ -1,18 +1,44 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+  <!--
     <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nom"/></h1>
     </header>
-    <div class="sheet-items">
-      <table>
-        <tr>
-          <th>{{localize config.textData.weaponTypeText}}</th>
-          <th>{{localize config.textData.damageText}}</th>
-          <th>{{localize config.textData.rangedText}}</th>
-          <th>{{localize config.textData.rangeThrowingText}}</th>
-        </tr>
-        <tr>
-          <td>
+  -->
+
+  <div class="tvq-weaponsheet-main sheet-items">
+
+    <div class="tvq-weaponsheet-div1">
+
+      <div class="tvq-weaponsheet-div1-img">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+      </div>
+
+      <div class="tvq-weaponsheet-div1-rarity">
+        <div class="tvq-weaponsheet-text-rarity">{{localize config.textData.weaponRarityText}}</div>
+        <select name="data.rarity">
+          {{#select data.data.weaponType}}
+            {{#each config.rarityTypes as |name type|}}
+              {{#if @last}}
+              <!-- afficher youkaitype only if gamemaster -->
+              {{else}}
+                <option value="{{type}}">{{localize name}}</option>
+              {{/if}}
+            {{/each}}
+          {{/select}}
+        </select>
+      </div>
+
+    </div>
+  
+    <div class="tvq-weaponsheet-div2">
+
+      <div class="tvq-weaponsheet-div2-intro">
+        <h1><input name="name" type="text" value="{{item.name}}"/></h1>
+      </div>
+
+      <div class="tvq-weaponsheet-div2-info">
+
+        <div class="tvq-weaponsheet-div2-info-1">
+          <div class="tvq-weaponsheet-div2-info-1-1">
             <select name="data.weaponType">
               {{#select data.data.weaponType}}
                 {{#each config.weaponTypes as |name type|}}
@@ -20,20 +46,46 @@
                 {{/each}}
               {{/select}}
             </select>
-          </td>
-          <td>
-            <input class="damage" name="data.damage" type="text" value="{{data.data.damage}}" placeholder="Dégâts"/>
-          </td>
-          <td>
-            <input class="range" name="data.range" type="text" value="{{data.data.range}}" placeholder="Portée"/>
-          </td>
-          <td>
-            <input class="rangeThrowing" name="data.rangeThrowing" type="text" value="{{data.data.rangeThrowing}}" placeholder="Portée (Lancer)"/>
-          </td>
-        </tr>
-      </table>
+            <div class="tvq-weaponsheet-text">{{localize config.textData.weaponTypeText}}</div>
+          </div>
+          <div class="tvq-weaponsheet-div2-info-1-2">
+            <input class="damage" name="data.damage" type="text" value="{{data.data.damage}}" placeholder="data.damage"/>
+            <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+          </div>
+        </div>
+
+        <div class="tvq-weaponsheet-div2-info-2">
+          <div class="tvq-weaponsheet-div2-info-2-1">
+            <input class="range" name="data.range" type="text" value="{{data.data.range}}" placeholder="data.range"/>
+            <div class="tvq-weaponsheet-text">{{localize config.textData.rangedText}}</div>
+          </div>
+          <div class="tvq-weaponsheet-div2-info-2-2">
+            <input class="rangeThrowing" name="data.rangeThrowing" type="text" value="{{data.data.rangeThrowing}}" placeholder="data.rangeThrowing"/>
+            <div class="tvq-weaponsheet-text">{{localize config.textData.rangeThrowingText}}</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tvq-weaponsheet-div2-desc">
+
+        <div class="sheet-description">
+          {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.descText}}</div>
+
+      </div>
+      <div class="tvq-weaponsheet-div2-perk">
+
+        <div class="sheet-perk">
+          <textarea name="data.perk" rows="4" cols="33">{{data.data.perk}}</textarea>
+        </div>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.perkText}}</div>
+
+      </div>
+
     </div>
-    <div class="sheet-description">
-      {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
+
+  </div>
+
 </form>

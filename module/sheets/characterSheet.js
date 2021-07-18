@@ -14,7 +14,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.damageLocalisation"),
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
-        const raceNum = event.currentTarget.closest(".tvq-button-bodyloc").dataset.raceValue;
+        const raceNum = element.data("race-value");
         const actorData = this.actor;
     
         Dice.LocCheck({
@@ -596,6 +596,7 @@ export default class characterSheet extends ActorSheet {
       html.find(".item-edit").click(this._onItemEdit.bind(this));
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".tvq-button-bodyloc").click(this._onBodyLoc.bind(this));
+      html.find(".tvq-deathcheck-roll").click(this._onDeathCheck.bind(this));
   
       new ContextMenu(html, ".weapon-card", this.itemContextMenu);
 
@@ -609,7 +610,7 @@ export default class characterSheet extends ActorSheet {
 
       new ContextMenu(html, ".tvq-button-traitroll", this.traitRollsContextMenu);
 
-      new ContextMenu(html, ".tvq-upperside-person", this.damageLocContextMenu);
+      new ContextMenu(html, ".tvq-button-bodyloc", this.damageLocContextMenu);
 
       //Owner-only listeners
       if (this.actor.owner) {
@@ -618,6 +619,15 @@ export default class characterSheet extends ActorSheet {
   
       super.activateListeners(html);
     }
+  }
+
+  _onDeathCheck(event) {
+    event.preventDefault();
+    let actorData = this.actor;
+
+    Dice.DeathCheck({
+      actorData: actorData
+    })
   }
 
   _onBodyLoc(event) {
