@@ -64,9 +64,47 @@
         }
       },
       "deathSaves":{
-        "value1":0,
-        "value2":0,
-        "value3":0
+        "value1":false,
+        "value2":false,
+        "value3":false
+      },
+      "knowledge":{
+        "nature1":false,
+        "nature2":false,
+        "nature3":false,
+        "humans1":false,
+        "humans2":false,
+        "humans3":false,
+        "youkai1":false,
+        "youkai2":false,
+        "youkai3":false,
+        "magic1":false,
+        "magic2":false,
+        "magic3":false,
+        "blackmarket1":false,
+        "blackmarket2":false,
+        "blackmarket3":false,
+        "outsideworld1":false,
+        "outsideworld2":false,
+        "outsideworld3":false,
+        "medicine1":false,
+        "medicine2":false,
+        "medicine3":false,
+        "forge1":false,
+        "forge2":false,
+        "forge3":false,
+        "haggling1":false,
+        "haggling2":false,
+        "haggling3":false,
+        "cooking1":false,
+        "cooking2":false,
+        "cooking3":false,
+        "myths1":false,
+        "myths2":false,
+        "myths3":false,
+        "deities1":false,
+        "deities2":false,
+        "deities3":false
       },
       "levelBased":{
         "level":0,
@@ -84,7 +122,6 @@
   "Item":{
     "types":[
       "weapon",
-      "tool",
       "armor",
       "object",
       "talent",
@@ -107,33 +144,39 @@
       "rangeThrowing":0,
       "weaponType":"melee"
     },
-    "tool":{
-      "templates":[
-        "itemDescription"
-      ]
-    },
     "armor":{
       "templates":[
         "itemDescription"
-      ]
+      ],
+      "rarity":0,
+      "value":0,
+      "effect":""
     },
     "object":{
       "templates":[
         "itemDescription"
-      ]
+      ],
+      "rarity":0,
+      "effect":""
     },
     "talent":{
       "templates":[
         "itemDescription"
-      ]
+      ],
+      "effect":""
     },
     "skill":{
       "templates":[
         "itemDescription"
-      ]
+      ],
+      "effect":""
     },
     "spellcard":{
-      "spellcardType":0
+      "spellcardType":"Spellcard",
+            "templates":[
+        "itemDescription"
+      ],
+      "effect":""
     }
   }
 }

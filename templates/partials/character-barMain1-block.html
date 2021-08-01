@@ -352,9 +352,9 @@
                         <p class="tvq-side-bloc-p">Equipement</p>
                         <hr class="tvq-custom-hr">
 
-                        <section class="weapon-list">
-                            {{#each weapons as |weapon id|}}
-                                {{> "systems/touhouvq/templates/partials/weapon-card.html" weapon inSheet=true}}
+                        <section class="item-list">
+                            {{#each items as |item id|}}
+                                {{> "systems/touhouvq/templates/partials/item-card.html" item inSheet=true}}
                             {{/each}}
                         </section>
 
@@ -365,136 +365,125 @@
             <div class="tvq-side-bloc-full tvq-border">
                 <div class="tvq-side-bloc-content">
                     <p class="tvq-full-bloc-p">Connaissances</p>
-
                         <div class="tvq-full-bloc-knowledge">
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Nature</p>
+                                    <p>{{localize "touhouvq.knowledgeText.nature"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.nature1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.nature1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.nature2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.nature2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.nature3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.nature3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Humains</p>
+                                    <p>{{localize "touhouvq.knowledgeText.humans"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.human1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.human1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.human2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.human2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.human3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.human3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Youkai</p>
+                                    <p>{{localize "touhouvq.knowledgeText.youkai"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.youkai1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.youkai1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.youkai2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.youkai2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.youkai3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.youkai3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Magie</p>
+                                    <p>{{localize "touhouvq.knowledgeText.magic"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.magic1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.magic1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.magic2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.magic2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.magic3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.magic3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Marché Noir</p>
+                                    <p>{{localize "touhouvq.knowledgeText.blackmarket"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.blackmarket1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.blackmarket1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.blackmarket2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.blackmarket2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.blackmarket3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.blackmarket3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Monde Exté.</p>
+                                    <p>{{localize "touhouvq.knowledgeText.outsideworld"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.outsideworld1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.outsideworld1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.outsideworld2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.outsideworld2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.outsideworld3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.outsideworld3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Médecine</p>
+                                    <p>{{localize "touhouvq.knowledgeText.medicine"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.medicine1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.medicine1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.medicine2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.medicine2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.medicine3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.medicine3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Forge</p>
+                                    <p>{{localize "touhouvq.knowledgeText.forge"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.forge1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.forge1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.forge2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.forge2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.forge3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.forge3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Alchimie</p>
+                                    <p>{{localize "touhouvq.knowledgeText.haggling"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.haggling1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.haggling1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.haggling2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.haggling2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.haggling3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.haggling3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Marchandage</p>
+                                    <p>{{localize "touhouvq.knowledgeText.cooking"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.cooking1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.cooking1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.cooking2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.cooking2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.cooking3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.cooking3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Cuisine</p>
+                                    <p>{{localize "touhouvq.knowledgeText.myths"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.myths1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.myths1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.myths2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.myths2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.myths3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.myths3}} />
                                 </div>
                             </div>
                             <div class="tvq-knowledge">
                                 <div class="tvq-knowledge-forp">
-                                    <p>Mythes & Lég.</p>
+                                    <p>{{localize "touhouvq.knowledgeText.deities"}}</p>
                                 </div>
                                 <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
-                                </div>
-                            </div>
-                            <div class="tvq-knowledge">
-                                <div class="tvq-knowledge-forp">
-                                    <p>Divinités</p>
-                                </div>
-                                <div class="tvq-knowledge-forcheckbox">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-1" name="knowledge-1-1">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-2" name="knowledge-1-2">
-                                    <input class="tvq-knowledge-checkbox" type="checkbox" id="knowledge-1-3" name="knowledge-1-3">
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.deities1" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.deities1}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.deities2" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.deities2}} />
+                                    <input class="tvq-knowledge-checkbox" type="checkbox" name="data.knowledge.deities3" data-dtype="Boolean" title="Mark Done" {{checked data.data.knowledge.deities3}} />
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ export function TaskCheck({
     /* Ici fait les calculs */
     let statRollFormula = "@damageValue";
     let traitRollFormula = "@damageValue";
-
+    
     let rollFormula = isTraitRoll == "true" ? traitRollFormula : statRollFormula;
     if (isTraitRoll == "true") {
         rollFormula -= fatiguePoints*d8;
@@ -16,7 +16,6 @@ export function TaskCheck({
     }
     let rollData = {
         actionValue: actionValue
-        /*item.data.data.damage*/
     };
 
     let messageData = {
@@ -25,11 +24,14 @@ export function TaskCheck({
     new Roll(rollFormula, rollData).roll().toMessage(messageData);
 }
 
-export function StatCheck({
+export async function StatCheck({
     actionValue = null,
-    fatiguePoints = null } = {}) {
+    fatiguePoints = 0,
+    statType = null,
+    actorData = null } = {}) {
     
     let d8 = "d8";
+    let d6 = "d6";
     let d4 = "d4";
     let d20 = "d20";
     
@@ -39,6 +41,8 @@ export function StatCheck({
 
     let rollResult;
 
+    const messageTemplate = "systems/touhouvq/templates/chat/stat-check-" + statType + ".html";
+
     if (numDivision % 2 == 0) {
         rollResult = d20 + ` + ` + rollVar + d8;
     } else {
@@ -47,26 +51,129 @@ export function StatCheck({
 
     if (numDivision % 2 == 0) {
         if (fatiguePoints != 0) {
-            rollResult = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d8;
+
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4;
+            let rollResult = new Roll(rollResult1, actorData).roll();
+
+            let rolls = [d20];
+
+            for (let a = 0; a < rollVar; a++) {
+                rolls.push(d8);
+            }
+
+            rolls.push(d6);
+
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                actionValue: actionValue,
+                fatiguePoints: fatiguePoints,
+                rolls: rolls
+            }
+        
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+        
+            rollResult.toMessage(messageData2);
+
         } else {
-            rollResult = d20 + ` + ` + rollVar + d8;
+
+            const rollResult1 = d20 + ` + ` + rollVar + d8;
+            let rollResult = new Roll(rollResult1, actorData).roll();
+
+            let rolls = [d20];
+
+            for (let a = 0; a < rollVar; a++) {
+                rolls.push(d8);
+            }
+
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                actionValue: actionValue,
+                fatiguePoints: fatiguePoints,
+                rolls: rolls
+            }
+        
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+        
+            rollResult.toMessage(messageData2);
+
         }
     } else {
         if (fatiguePoints != 0) {
-            rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d8;
+
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4;
+            let rollResult = new Roll(rollResult1, actorData).roll();
+
+            let rolls = [d20];
+
+            for (let a = 0; a < rollVar; a++) {
+                rolls.push(d8);
+            }
+
+            rolls.push(d4);
+
+            rolls.push(d6);
+
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                actionValue: actionValue,
+                fatiguePoints: fatiguePoints,
+                rolls: rolls
+            }
+        
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+        
+            rollResult.toMessage(messageData2);
+
         } else {
-            rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+            let rollResult = new Roll(rollResult1, actorData).roll();
+
+            let rolls = [d20];
+
+            for (let a = 0; a < rollVar; a++) {
+                rolls.push(d8);
+            }
+
+            rolls.push(d4);
+
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                actionValue: actionValue,
+                fatiguePoints: fatiguePoints,
+                rolls: rolls
+            }
+        
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+        
+            rollResult.toMessage(messageData2);
+
         }
     }
-
-    let rollData = {
-        actionValue: actionValue
-    };
-
-    let messageData = {
-      speaker: ChatMessage.getSpeaker()
-    }
-    new Roll(rollResult, rollData).roll().toMessage(messageData);
 }
 
 export async function LocCheck(locData) {
@@ -283,7 +390,7 @@ export async function LocCheck(locData) {
     messageClass.create(messageData);
 }
 
-export function TraitCheck({
+export async function TraitCheck({
     StrengthStats = null,
     AgilityStats = null,
     ResilienceStats = null,
@@ -292,13 +399,13 @@ export function TraitCheck({
     MagicStats = null,
     IntelligenceStats = null,
     traitType = null,
-    fatiguePoints = null } = {}) {
+    fatiguePoints = null,
+    actorData = null } = {}) {
     
     let d4 = "d4";
+    let d6 = "d6";
     let d20 = "d20";
-
-    let rollResult;
-
+    
     let stat1;
     let stat2;
 
@@ -365,18 +472,68 @@ export function TraitCheck({
 
     numDivision -= 1;
 
-    rollResult = d20 + ` + ` + numDivision + d4;
+    const messageTemplate = "systems/touhouvq/templates/chat/task-check-" + traitType + ".html";
 
-    let rollData = {
-        stat1: stat1,
-        stat2: stat2,
-        traitType: traitType
-    };
+    if (fatiguePoints == null || fatiguePoints == 0) {
+        const rollResult1 = d20 + ` + ` + numDivision + d4;
+        let rollResult = new Roll(rollResult1, actorData).roll();
 
-    let messageData = {
-        speaker: ChatMessage.getSpeaker()
+        let rolls = [d20];
+
+        for (let a = 0; a < numDivision; a++) {
+            rolls.push(d4);
+        }
+
+        let messageData = {
+            speaker: ChatMessage.getSpeaker(),
+            rollResult: rollResult,
+            traitType: traitType,
+            stat2: stat2,
+            stat1: stat1,
+            numDivision: numDivision,
+            rolls: rolls
+        }
+
+        let htmlContent = await renderTemplate(messageTemplate, messageData);
+
+        let messageData2 = {
+            speaker: ChatMessage.getSpeaker(),
+            content: htmlContent
+        }
+
+        rollResult.toMessage(messageData2);
+    } else {
+        const rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6;
+        let rollResult = new Roll(rollResult1, actorData).roll();
+
+        let rolls = [d20];
+
+        for (let a = 0; a < numDivision; a++) {
+            rolls.push(d4);
+        }
+
+        rolls.push(d6);
+
+        let messageData = {
+            speaker: ChatMessage.getSpeaker(),
+            rollResult: rollResult,
+            fatiguePoints: fatiguePoints,
+            traitType: traitType,
+            stat2: stat2,
+            stat1: stat1,
+            numDivision: numDivision,
+            rolls: rolls
+        }
+        
+        let htmlContent = await renderTemplate(messageTemplate, messageData);
+
+        let messageData2 = {
+            speaker: ChatMessage.getSpeaker(),
+            content: htmlContent
+        }
+
+        rollResult.toMessage(messageData2);
     }
-    new Roll(rollResult, rollData).roll().toMessage(messageData);
 }
 
 export async function DeathCheck(actorData) {
@@ -391,4 +548,67 @@ export async function DeathCheck(actorData) {
     }
 
     rollResult.toMessage(messageData);
+}
+
+export async function weaponAttack({
+    rollData = null,
+    actorData = null} = {}) {
+
+    const messageTemplate = "systems/touhouvq/templates/partials/weapon-chat.html";
+
+    let rarity1 = false;
+    let rarity2 = false;
+    let rarity3 = false;
+    let rarity4 = false;
+    let rarity5 = false;
+    let rarity6 = false;
+
+    if (rollData.rarityValue == "rarity1") {
+        rarity1 = true;
+    }
+    
+    if (rollData.rarityValue == "rarity2") {
+        rarity2 = true;
+    }
+    
+    if (rollData.rarityValue == "rarity3") {
+        rarity3 = true;
+    }
+    
+    if (rollData.rarityValue == "rarity4") {
+        rarity4 = true;
+    }
+    
+    if (rollData.rarityValue == "rarity5") {
+        rarity5 = true;
+    }
+    
+    if (rollData.rarityValue == "rarity6") {
+        rarity6 = true;
+    }
+
+    const damage = rollData.damageValue;
+
+    let rollResult = new Roll(damage, actorData).roll();
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        rollData: rollData,
+        rollResult: rollResult,
+        rarity1: rarity1,
+        rarity2: rarity2,
+        rarity3: rarity3,
+        rarity4: rarity4,
+        rarity5: rarity5,
+        rarity6: rarity6
+    }
+
+    let htmlContent = await renderTemplate(messageTemplate, messageData);
+
+    let messageData2 = {
+        speaker: ChatMessage.getSpeaker(),
+        content: htmlContent
+    }
+
+    rollResult.toMessage(messageData2);
 }

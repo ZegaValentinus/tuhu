@@ -1,0 +1,59 @@
+<div class="dice-roll">
+    <!--<div class="dice-flavor">Hello there !</div>-->
+    <div class="dice-result">
+        <div class="dice-formula tvq-dice-formula tvq-agility-color">
+            {{localize "touhouvq.sheet.rollAgility"}}
+        </div>
+        <div class="dice-tooltip">
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{rollResult.formula}}</span>
+                        {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
+                            <p class="tvq-criticalsuccess-display">
+                                {{localize "touhouvq.critical.critsuccess"}}
+                            </p>
+                        {{else}}
+                            {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
+                                <p class="tvq-criticalfailure-display">
+                                    {{localize "touhouvq.critical.critfailure"}}
+                                </p>
+                            {{/ifEquals}}
+                        {{/ifEquals}}
+                        <span class="part-total">{{rollResult.total}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                    {{#each rollResult.dice as |object key|}}
+                        {{#each this.results}}
+                            {{#ifSuperiorOrEquals this.result object.faces}}
+                                <li class="roll max die d{{object.faces}}">{{this.result}}</li>
+                            {{else}}
+                                {{#ifEquals this.result 1}}
+                                    <li class="roll min die d{{object.faces}}">{{this.result}}</li>
+                                {{else}}
+                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                {{/ifEquals}}
+                            {{/ifSuperiorOrEquals}}
+                        {{/each}}
+                    {{/each}}
+                    </ol>
+                </div>
+            </section>
+        </div>
+        <div class="tvq-dice-result">
+            {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
+                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_2.png">
+                <h4 class="tvq-taskcheck-resulttotal tvq-criticalsuccess">{{rollResult.total}}</h4>
+            {{else}}
+                {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_2.png">
+                    <h4 class="tvq-taskcheck-resulttotal tvq-criticalfailure">{{rollResult.total}}</h4>
+                {{else}}
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_2.png">
+                    <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
+                {{/ifEquals}}
+            {{/ifEquals}}
+        </div>
+    </div>
+</div>
+    

@@ -31,13 +31,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "1";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -49,13 +51,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "2";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -67,13 +71,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "3";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -85,13 +91,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "4";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -103,13 +111,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "5";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -121,13 +131,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const actualStat = element.data("action-value");
-        const isTrait = element.data("trait-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "6";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          isTraitRoll: isTrait,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -140,10 +152,14 @@ export default class characterSheet extends ActorSheet {
       callback: element => {
         const actualStat = element.data("action-value");
         const actualFatigue = element.data("fatigue-value");
+        const statType = "7";
+        let actorData = this.actor;
 
         Dice.StatCheck({
           actionValue: actualStat,
-          fatiguePoints: actualFatigue
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData
         })
       }
     }
@@ -163,6 +179,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "1";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -173,7 +190,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -552,8 +570,14 @@ export default class characterSheet extends ActorSheet {
       callback: element => {
         const itemID = element.data("itemId");
         const item = this.actor.getOwnedItem(itemID);
-    
-        item.roll();
+
+        if(item.data.type === "weapon") {
+          item.roll();
+        } else {
+          Tchat.itemShow({
+            itemData: item
+          });
+        }
       }
     },
     {
@@ -562,15 +586,23 @@ export default class characterSheet extends ActorSheet {
       callback: element => {
         const itemID = element.data("itemId");
         const item = this.actor.getOwnedItem(itemID);
-        let rollFormula = "@damageValue";
+        let actorData = this.actor;
         let rollData = {
-          damageValue: item.data.data.damage
+          damageValue: item.data.data.damage,
+          rarityValue: item.data.data.rarity,
+          rangeValue: item.data.data.range,
+          rangeThrowingValue: item.data.data.rangeThrowing,
+          weaponTypeValue: item.data.data.weaponType,
+          descValue: item.data.data.description,
+          perkValue: item.data.data.perk,
+          itemName: item.data.name,
+          itemImg: item.data.img
         };
-    
-        let messageData = {
-          speaker: ChatMessage.getSpeaker()
-        }
-        new Roll(rollFormula, rollData).roll().toMessage(messageData);
+
+        Dice.weaponAttack({
+          rollData: rollData,
+          actorData: actorData
+        });
 
         /* Dice.TaskCheck({
           actionValue: item.data.data.damage
@@ -580,6 +612,9 @@ export default class characterSheet extends ActorSheet {
         Pour se faire : utilise les data-attributes
         https://www.youtube.com/watch?v=RwbzucCs4Dw&ab_channel=C%C3%A9dricHauteville
         9:43 */
+      },
+      condition: element => {
+        return element.data("itemType") === "weapon";
       }
     }
   ];
@@ -598,7 +633,7 @@ export default class characterSheet extends ActorSheet {
       html.find(".tvq-button-bodyloc").click(this._onBodyLoc.bind(this));
       html.find(".tvq-deathcheck-roll").click(this._onDeathCheck.bind(this));
   
-      new ContextMenu(html, ".weapon-card", this.itemContextMenu);
+      new ContextMenu(html, ".item-card", this.itemContextMenu);
 
       new ContextMenu(html, ".tvq-char-stat-bloc-strength", this.statStrengthContextMenu);
       new ContextMenu(html, ".tvq-char-stat-bloc-agility", this.statAgilityContextMenu);
@@ -662,5 +697,14 @@ export default class characterSheet extends ActorSheet {
     let element = event.currentTarget;
     let itemId = element.closest(".weapon-card").dataset.itemId;
     return this.actor.deleteOwnedItem(itemId);
+  }
+
+  async _onDropItem(event, data) {
+    event.preventDefault();
+    if(this.actor.items.size >= 14) {
+      ui.notifications.warn(game.i18n.localize("touhouvq.notifications.tooMuchItems"));
+      return false;
+    }
+    return super._onDropItem(event, data);
   }
 }

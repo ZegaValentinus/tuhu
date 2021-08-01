@@ -37,6 +37,14 @@
       "descText": "Description",
       "perkText": "Talent"
     },
+    "notifications": {
+      "tooMuchItems": "Attention! Ce personnage porte trop d'objets."
+    },
+    "critical": {
+      "critsuccess": "Réussite critique",
+      "critfailure": "Échec critique",
+      "critdamage": "Dégâts critiques"
+    },
     "sheet": {
       "edit": "Éditer",
       "delete": "Supprimer",
@@ -51,20 +59,34 @@
       "rollMagic": "Jet de Magie",
       "rollIntelligence": "Jet d'Intelligence",
       "rollResistance": "Jet de Résistance ( <p class='tvq-red'>FOR</p> + <p class='tvq-pink'>END</p> )",
-      "rollMelee": "Jet de Corp-à-Corps ( <p class='tvq-red'>FOR</p> + <p class='tvq-blue'>DIS</p> )",
+      "rollResistance1": "Jet de Résistance",
+      "rollMelee": "Jet de Corps-à-Corps ( <p class='tvq-red'>FOR</p> + <p class='tvq-blue'>DIS</p> )",
+      "rollMelee1": "Jet de Corps-à-Corps",
       "rollIntimidation": "Jet d'Intimidation ( <p class='tvq-red'>FOR</p> + <p class='tvq-darkgreen'>PER</p> )",
+      "rollIntimidation1": "Jet d'Intimidation",
       "rollThrow": "Jet de Lancé ( <p class='tvq-green'>AGI</p> + <p class='tvq-red'>FOR</p> )",
+      "rollThrow1": "Jet de Lancé",
       "rollStealth": "Jet de Discrétion ( <p class='tvq-green'>AGI</p> + <p class='tvq-blue'>DIS</p> )",
+      "rollStealth1": "Jet de Discrétion",
       "rollPrecision": "Jet de Précision ( <p class='tvq-green'>AGI</p> + <p class='tvq-darkgreen'>PER</p> )",
+      "rollPrecision1": "Jet de Précision",
       "rollSleightHand": "Jet de Passe-Passe ( <p class='tvq-green'>AGI</p> + <p class='tvq-purple'>INT</p> )",
+      "rollSleightHand1": "Jet de Passe-Passe",
       "rollMental": "Jet de Force Mentale ( <p class='tvq-pink'>END</p> + <p class='tvq-darkgreen'>PER</p> )",
+      "rollMental1": "Jet de Force Mentale",
       "rollMastery": "Jet de Maîtrise ( <p class='tvq-pink'>END</p> + <p class='tvq-yellow'>MAG</p> )",
+      "rollMastery1": "Jet de Maîtrise",
       "rollInvestigation": "Jet d'Investigation ( <p class='tvq-blue'>DIS</p> + <p class='tvq-darkgreen'>PER</p> )",
+      "rollInvestigation1": "Jet d'Investigation",
       "rollFaith": "Jet de Foi ( <p class='tvq-blue'>DIS</p> + <p class='tvq-yellow'>MAG</p> )",
+      "rollFaith1": "Jet de Foi",
       "rollTechnology": "Jet de Technologie ( <p class='tvq-blue'>DIS</p> + <p class='tvq-purple'>INT</p> )",
+      "rollTechnology1": "Jet de Technologie",
       "rollCharisma": "Jet de Charisme ( <p class='tvq-darkgreen'>PER</p> + <p class='tvq-purple'>INT</p> )",
+      "rollCharisma1": "Jet de Charisme",
       "rollDanmaku": "Jet de Danmaku ( <p class='tvq-yellow'>MAG</p> + <p class='tvq-purple'>INT</p> )",
-      "rollDeath": "Jet de Sauvegarde contre la mort ( <p class='tvq-red'>FOR</p> + <p class='tvq-pink'>END</p> )"
+      "rollDanmaku1": "Jet de Danmaku",
+      "rollDeath": "Jet de Sauvegarde contre la mort"
     },
     "generalRarity": {
       "rarity1": "Classique",
@@ -74,9 +96,23 @@
       "rarity5": "Unique",
       "rarity6": "Youkai"
     },
+    "knowledgeText": {
+      "nature": "Nature",
+      "humans": "Humains",
+      "youkai": "Youkai",
+      "magic": "Magie",
+      "blackmarket": "Marché Noir",
+      "outsideworld": "Monde Exté.",
+      "medicine": "Médecine",
+      "forge": "Forge",
+      "haggling": "Marchandage",
+      "cooking": "Cuisine",
+      "myths": "Mythes & Lég.",
+      "deities": "Divinités"
+    },
     "deathCheck": {
-      "success": "Réussite !",
-      "failure": "Échec..."
+      "success": "Réussite",
+      "failure": "Échec"
     }
   }
 }

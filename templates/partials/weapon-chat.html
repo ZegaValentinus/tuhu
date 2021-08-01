@@ -1,4 +1,116 @@
-<div data-type="item" class="weapon-card item reveal-rollable" data-item-id={{_id}} data-owner-id="{{owner}}">
-    {{> "systems/touhouvq/templates/partials/weapon-card.html"}}
-    <!-- ici, ajouter boutons vols de dé, relance de dé, etc -->
+<div class="dice-roll">
+    <div class="dice-result">
+        <img class="tvq-weaponcheck-img" src="{{rollData.itemImg}}">
+        {{#if rarity1}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        {{#if rarity2}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        {{#if rarity3}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        {{#if rarity4}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        {{#if rarity5}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        {{#if rarity6}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
+                {{rollData.itemName}}
+            </div>
+        {{/if}}
+        <div class="tvq-values-dices">
+            {{#if rollData.perkValue}}
+
+                <div class="tvq-dicetotalfull">
+
+                    <div class="tvq-flex-weapon">
+                        <div class="tvq-flex-weapon-1">
+                            <img src="systems/touhouvq/assets/img/swords.png">
+                            <p class="{{critTotal rollResult.dice}}">
+                                {{rollResult.total}}
+                            </p>
+                        </div>
+                        <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
+                            <img src="systems/touhouvq/assets/img/blooddrop.png">
+                            <p class="{{critTotal rollResult.dice}} marginleft1">
+                                {{whichCrit rollResult.dice}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tvq-weaponperk">
+                        <p>
+                            {{rollData.perkValue}}
+                        </p>
+                    </div>
+                    
+                </div>
+            {{else}}
+                <div class="tvq-dicetotalfull">
+
+                    <div class="tvq-flex-weapon">
+
+                        <div class="tvq-flex-weapon-1">
+                            <img src="systems/touhouvq/assets/img/swords.png">
+                            <p class="{{critTotal rollResult.dice}}">
+                                {{rollResult.total}}
+                            </p>
+                        </div>
+
+                        <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
+                            <img class="tvq-weapon2-imgcritdice" src="../icons/svg/{{whichCritDice rollResult.dice}}-grey.svg">
+                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
+                            <p class="{{critTotal rollResult.dice}} marginleft1 ">
+                                {{whichCrit rollResult.dice}}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            {{/if}}
+        </div>
+        <div class="dice-tooltip">
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{rollResult.formula}}</span>
+                            <p class="tvq-criticalfailure-display">
+                                {{critString rollResult.dice}}
+                            </p>
+                        <span class="part-total">{{rollResult.total}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        {{#each rollResult.dice as |object key|}}
+                            {{#each this.results}}
+                                {{#ifEquals object.faces 4}}
+                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                {{else}}
+                                    {{#ifSuperiorOrEquals this.result object.faces}}
+                                        <li class="roll max die d{{object.faces}}">{{this.result}}</li>
+                                    {{else}}
+                                        <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                    {{/ifSuperiorOrEquals}}
+                                {{/ifEquals}}
+                            {{/each}}
+                        {{/each}}
+                    </ol>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
+    

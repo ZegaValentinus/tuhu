@@ -1,0 +1,57 @@
+<div class="dice-roll">
+    <div class="dice-result">
+        <img class="tvq-weaponcheck-img" src="{{data.img}}">
+        {{#if (eq data.data.rarity "rarity1")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{data.name}}
+            </div>
+        {{/if}}
+        {{#if (eq data.data.rarity "rarity2")}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
+                {{data.name}}
+            </div>
+        {{/if}}
+        {{#if (eq data.data.rarity "rarity3")}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
+                {{data.name}}
+            </div>
+        {{/if}}
+        {{#if (eq data.data.rarity "rarity4")}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
+                {{data.name}}
+            </div>
+        {{/if}}
+        {{#if (eq data.data.rarity "rarity5")}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
+                {{data.name}}
+            </div>
+        {{/if}}
+        {{#if (eq data.data.rarity "rarity6")}}
+            <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
+                {{data.name}}
+            </div>
+        {{/if}}
+        <div class="tvq-weaponperk-show">
+            <p>{{data.data.description}}</p>
+        </div>
+        {{#if data.data.perk}}
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">
+                            </span>
+                        </header>
+                        <ol class="dice-rolls">
+                            <li>
+                                <div class="tvq-weaponperk-show">
+                                    <p>{{data.data.perk}}</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        {{/if}}
+    </div>
+</div>

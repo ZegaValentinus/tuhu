@@ -148,11 +148,30 @@ export async function BodyLoc(bodyData) {
 
     let actor = game.actors.get(actorActual.id);
 
+    /* hasPlayerOwner */
+
     const messageData = {
         speaker: ChatMessage.getSpeaker(),
         content: html,
         user: game.user.id,
-        whisper: game.users.filter(user => actor.hasPerm(user, "OWNER"))
+        whisper: [game.user.id]
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
+}
+
+export async function itemShow({
+    itemData = null } = {}) {
+
+    const messageTemplate = "systems/touhouvq/templates/partials/object-card.html";
+    const html = await renderTemplate(messageTemplate, itemData);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: html,
+        rarity: itemData.rarity
     }
 
     const messageClass = getDocumentClass("ChatMessage");

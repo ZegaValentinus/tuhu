@@ -1,6 +1,13 @@
-{{> "templates/dice/roll.html"}}
 {{#ifSuperiorOrEquals total 10}}
-    <h2>{{localize "touhouvq.deathCheck.success"}}</h2>
+    <h2 class="tvq-deathsave-rp-life">{{localize "touhouvq.deathCheck.success"}}</h2>
+    <img class="tvq-deathsave-dicelife" src="systems/touhouvq/assets/img/d20success1.png">
+    <img class="tvq-deathsave-life" src="systems/touhouvq/assets/img/life.png">
+    <h2 class="tvq-deathsave-total">{{total}}</h2>
+    <h2 class="tvq-deathsave-formula">{{formula}}</h2>
 {{else}}
-    <h2>{{localize "touhouvq.deathCheck.failure"}}</h2>
+    <h2 class="tvq-deathsave-rp-death">{{localize "touhouvq.deathCheck.failure"}}</h2>
+    <img class="tvq-deathsave-dicedeath" src="systems/touhouvq/assets/img/d20fumble1.png">
+    <img class="tvq-deathsave-death" src="systems/touhouvq/assets/img/death.png">
+    <h2 class="tvq-deathsave-total">{{total}}</h2>
+    <h2 class="tvq-deathsave-formula">{{formula}}</h2>
 {{/ifSuperiorOrEquals}}
