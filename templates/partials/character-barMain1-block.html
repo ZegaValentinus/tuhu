@@ -74,7 +74,7 @@
                     <p class="tvq-side-bloc-p red">Blessures critiques</p>
                     <hr class="tvq-custom-hr">
                     <div class="tvq-inside-body">
-                        <input class="tvq-input-bar1 bold red" type="number" name="data.critWound.value" value="{{data.data.critWound.value}}">
+                        <input class="tvq-input-bar1 bold red" type="number" name="data.critWounds.value" value="{{data.data.critWounds.value}}">
                     </div>
                 </div>
             </div>
@@ -110,7 +110,14 @@
     
             <div class="tvq-side-bloc-casual tvq-border">
                 <div class="tvq-side-bloc-content">
-                    <p class="tvq-side-bloc-p">Points de destin</p>
+
+                    <div class="custom_input">
+                        <input class="tvq-checkboxSuper" type="checkbox" name="data.superFate.value" data-dtype="Boolean" title="Mark Done" {{checked data.data.superFate.value}}/>
+                        <span>
+                            <p class="tvq-side-bloc-p">Points de destin</p>
+                        </span>
+                    </div>
+
                     <hr class="tvq-custom-hr">
                     <div class="tvq-inside-body">
                         <input class="tvq-input-bar1" type="number" name="data.fate.value" value="{{data.data.fate.value}}">

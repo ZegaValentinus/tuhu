@@ -1,0 +1,40 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{#if ( eq charInfo "story" )}}
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-2">
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Histoire, Famille & Passé</p>
+                </div>
+                <hr class="tvq-custom-hr">
+                {{editor content=data.charInfos.story target='data.charInfos.story' button=true owner=true editable=true}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if ( eq charInfo "personality" )}}
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-2">
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Personnalité</p>
+                </div>
+                <hr class="tvq-custom-hr">
+                {{editor content=data.charInfos.personality target='data.charInfos.personality' button=true owner=true editable=true}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if ( eq charInfo "power" )}}
+        <div class="tvq-side-bloc tvq-border">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-2">
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Pouvoir</p>
+                </div>
+                <hr class="tvq-custom-hr">
+                {{editor content=data.charInfos.power target='data.charInfos.power' button=true owner=true editable=true}}
+            </div>
+        </div>
+    {{/if}}
+
+</form>
+  

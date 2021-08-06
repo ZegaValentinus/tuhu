@@ -240,7 +240,7 @@ input[type="checkbox"].tvq-deathsave:checked {
   height: 98px !important;
 }
 #distinctive {
-  height: 38px !important;
+  height: 68px !important;
 }
 #story, #personality, #power, #distinctive {
   resize: none !important;
@@ -1091,6 +1091,30 @@ h1 {
 .marginleft1 {
   margin-left: 1px !important;
 }
+.tvq-checkboxSuper {
+  flex: 0 0 20px;
+  width: 100% !important;
+  height: 21px !important;
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.custom_input {
+  background: transparent;
+  width: 100%;
+  height: 20px;
+  display: inline-block;
+  margin: 0 !important;
+  position: relative;
+  font-size: inherit;
+  color: inherit;
+}
+.tvq-checkboxSuper:checked + span p {
+  font-weight: bold !important;
+  color: rgb(255, 153, 0) !important;
+}
 
 /* Cards */
 .weapon-card, .item-card {
@@ -1158,6 +1182,51 @@ img {
   opacity: 45% !important;
   left: 50%;
   transform: translateX(-50%);
+}
+.tvq-charinfos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.charInfos {
+  padding: 2px 4px 0 4px;
+}
+.charInfos i {
+  font-size: 16px;
+}
+.tvq-charInfos-div {
+  height: 62px;
+  overflow: hidden;
+  margin-top: -1px;
+}
+.tvq-charInfos-div p {
+  min-height: unset !important;
+  padding: 0 !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  font-size: 11px;
+  margin: 2px;
+  line-height: 12px;
+  text-align: left;
+  letter-spacing: -0.3px;
+}
+.tvq-side-bloc-height-2 {
+  height: 230px !important;
+}
+.tvq-side-bloc-height-1 {
+  height: 92px !important;
+}
+.tvq-side-bloc-height-3 {
+  height: 94px !important;
+}
+.tvq-side-bloc-height-2 .editor {
+  height: 204px !important;
+}
+.tvq-side-bloc-height-2 .editor .editor-content p span {
+  font-size: 14px !important;
+}
+.tvq-side-bloc-height .tvq-charInfos-div span {
+  font-size: 11.5px !important;
 }
 
 /* bar3 */

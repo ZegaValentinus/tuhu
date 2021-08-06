@@ -6,8 +6,8 @@
 
     <div class="flex tvq-char-infos">
         <div class="tvq-char-infos-div">
-            <select name="data.races"  class="tvq-input tvq-input-race" type="text" value="{{data.races}}">
-                {{#select data.data.races}}
+            <select name="data.race"  class="tvq-input tvq-input-race">
+                {{#select data.data.race}}
                     {{#each config.raceListing as |name race|}}
                         <option value="{{race}}">{{localize name}}</option>
                     {{/each}}
@@ -40,7 +40,7 @@
             <p class="tvq-p">Couleur des cheveux</p>
         </div>
         <div class="tvq-upperside-person">
-            <a class="tvq-button-bodyloc" data-race-value="{{data.data.races}}">
+            <a class="tvq-button-bodyloc">
                 <i class="fas fa-male"></i>
             </a>
         </div>

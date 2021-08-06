@@ -1,0 +1,2 @@
+{"name":"Balai Volant","type":"object","img":"FlyingBroom.png","data":{"rarity":"rarity1","effect":""},"effects":[],"folder":null,"sort":0,"permission":{"default":0,"YpB3IPp7k7qvlJ4J":3},"flags":{"core":{"sourceId":"Item.ccmXYLKNqb455Odz"}},"_id":"D9dpsjRwS58ckMpt"}
+{"name":"Effrayant Grimoire Scellé","type":"object","img":"ScarySealedGrimoire.png","data":{"rarity":"rarity1","effect":""},"effects":[],"folder":null,"sort":0,"permission":{"default":0,"YpB3IPp7k7qvlJ4J":3},"flags":{"core":{"sourceId":"Item.JcwxhrtUYnvkesux"}},"_id":"jqvZ54plUoCk5N4n"}

@@ -1,5 +1,7 @@
 import * as Dice from "../dice.js";
 import * as Tchat from "../tchat.js";
+import {CharInfosSheet} from "./character-informations-sheet.js";
+import {SecondSheet} from "./second-sheet.js";
 
 export default class characterSheet extends ActorSheet {
   static get defaultOptions() {
@@ -14,7 +16,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.damageLocalisation"),
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
-        const raceNum = element.data("race-value");
+        const raceNum = this.actor.data.data.race;
         const actorData = this.actor;
     
         Dice.LocCheck({
@@ -623,6 +625,8 @@ export default class characterSheet extends ActorSheet {
     const data = super.getData();
     data.config = CONFIG.touhouvq;
     data.weapons = data.items.filter(function (item) { return item.type == "weapon"});
+    console.log(this.actor);
+    console.log(data);
     return data;
   }
 
@@ -632,6 +636,9 @@ export default class characterSheet extends ActorSheet {
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".tvq-button-bodyloc").click(this._onBodyLoc.bind(this));
       html.find(".tvq-deathcheck-roll").click(this._onDeathCheck.bind(this));
+
+      html.find('.mini-button').click(this._onMiniButtonClick.bind(this));
+      html.find('.sheet2-button').click(this._onSheet2ButtonClick.bind(this));
   
       new ContextMenu(html, ".item-card", this.itemContextMenu);
 
@@ -667,11 +674,10 @@ export default class characterSheet extends ActorSheet {
 
   _onBodyLoc(event) {
     event.preventDefault();
-    const raceNum = event.currentTarget.closest(".tvq-button-bodyloc").dataset.raceValue;
     let actorData = this.actor;
 
     Tchat.BodyLoc({
-      raceNum: raceNum,
+      raceNum: this.actor.data.data.race,
       actorData: actorData
     })
   }
@@ -706,5 +712,21 @@ export default class characterSheet extends ActorSheet {
       return false;
     }
     return super._onDropItem(event, data);
+  }
+
+  _onMiniButtonClick(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    const charInfo = element.dataset.charInfos;
+    const charInfoSheet = new CharInfosSheet(this.actor, charInfo);
+
+    charInfoSheet.render(true);
+  }
+
+  _onSheet2ButtonClick(event) {
+    event.preventDefault();
+    const laSecondSheet = new SecondSheet(this.actor);
+
+    laSecondSheet.render(true);
   }
 }

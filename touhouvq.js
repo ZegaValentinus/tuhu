@@ -45,9 +45,11 @@ Hooks.once("init", function() {
   Handlebars.registerHelper('critString', function(dice) {
     let returnString = '';
     dice.forEach( die => {
-      if( 4 !== die.faces && die.results[0].result === die.faces ) {
-        returnString = game.i18n.localize('touhouvq.critical.critdamage');
-      }
+      die.results.forEach( result => {
+        if( 4 !== die.faces && result.result === die.faces ) {
+          returnString = game.i18n.localize('touhouvq.critical.critdamage');
+        }
+      });
     });
     return returnString;
   });
@@ -55,9 +57,11 @@ Hooks.once("init", function() {
   Handlebars.registerHelper('critTotal', function(dice) {
     let returnString = '';
     dice.forEach( die => {
-      if( 4 !== die.faces && die.results[0].result === die.faces ) {
-        returnString = 'tvq-criticaltotal';
-      }
+      die.results.forEach( result => {
+        if( 4 !== die.faces && result.result === die.faces ) {
+          returnString = 'tvq-criticaltotal';
+        }
+      });
     });
     return returnString;
   });
@@ -65,9 +69,11 @@ Hooks.once("init", function() {
   Handlebars.registerHelper('critRoll', function(dice) {
     let returnString = 'display: none';
     dice.forEach( die => {
-      if( 4 !== die.faces && die.results[0].result === die.faces ) {
-        returnString = 'display: block';
-      }
+      die.results.forEach( result => {
+        if( 4 !== die.faces && result.result === die.faces ) {
+          returnString = 'display: block';
+        }
+      });
     });
     return returnString;
   });
@@ -76,33 +82,55 @@ Hooks.once("init", function() {
     let critFord6 = Math.floor(Math.random() * 4)+1;
     let critFord8 = Math.floor(Math.random() * 6)+1;
     let critFord10 = Math.floor(Math.random() * 8)+1;
-    let returnString = critFord6;
+    let returnString = '';
+    let maxima = 6;
     dice.forEach( die => {
-      if( 4 !== die.faces && die.results[0].result === die.faces ) {
-        if( die.faces === 8 ) {
-          returnString = critFord8;
-        } else {
-          if( die.faces === 10 ) {
-            returnString = critFord10;
+      die.results.forEach( result => {
+        if( 4 !== die.faces && result.result === die.faces ) {
+
+          if(maxima < die.faces) {
+            maxima = die.faces;
+          }
+  
+          if( maxima === 8 ) {
+            returnString = critFord8;
+          } else {
+            if( maxima === 10 ) {
+              returnString = critFord10;
+            } else {
+              returnString = critFord6;
+            }
           }
         }
-      }
+      });
     });
     return returnString;
   });
 
   Handlebars.registerHelper('whichCritDice', function(dice) {
-    let returnString = "d4";
+    let returnString = "";
+    let maxima = 6;
     dice.forEach( die => {
-      if( 4 !== die.faces && die.results[0].result === die.faces ) {
-        if( die.faces === 8 ) {
-          returnString = "d6";
-        } else {
-          if( die.faces === 10 ) {
-            returnString = "d8";
+      die.results.forEach( result => {
+        if( 4 !== die.faces && result.result === die.faces ) {
+
+          /* result.result = valeur du dé qui a crit */
+
+          if(maxima < die.faces) {
+            maxima = die.faces;
+          }
+  
+          if( maxima === 8 ) {
+            returnString = "d6";
+          } else {
+            if( maxima === 10 ) {
+              returnString = "d8";
+            } else {
+              returnString = "d4";
+            }
           }
         }
-      }
+      });
     });
     return returnString;
   });

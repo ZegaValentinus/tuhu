@@ -146,8 +146,6 @@ export async function BodyLoc(bodyData) {
 
     const actorActual = bodyData.actorData;
 
-    let actor = game.actors.get(actorActual.id);
-
     /* hasPlayerOwner */
 
     const messageData = {

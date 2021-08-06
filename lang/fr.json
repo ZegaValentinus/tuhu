@@ -113,6 +113,10 @@
     "deathCheck": {
       "success": "Réussite",
       "failure": "Échec"
+    },
+    "sheettext": {
+      "edit": "éditer",
+      "secondsheet": "Passer à la seconde fiche de personnage"
     }
   }
 }

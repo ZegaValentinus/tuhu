@@ -14,7 +14,55 @@
     "touhouvq.css"
   ],
   "packs": [
-    
+    {
+      "name":"itemObjects",
+      "label":"Objects of Touhou: Venturesome Quest!",
+      "path":"./packs/objects.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemWeapons",
+      "label":"Weapons of Touhou: Venturesome Quest!",
+      "path":"./packs/weapons.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemArmors",
+      "label":"Armors of Touhou: Venturesome Quest!",
+      "path":"./packs/armors.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemSkills",
+      "label":"Skills of Touhou: Venturesome Quest!",
+      "path":"./packs/skills.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemTalents",
+      "label":"Talents of Touhou: Venturesome Quest!",
+      "path":"./packs/talents.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemSpellcards",
+      "label":"Spellcards of Touhou: Venturesome Quest!",
+      "path":"./packs/spellcards.db",
+      "entity":"Item",
+      "private":true
+    },
+    {
+      "name":"itemEnemies",
+      "label":"Enemies of Touhou: Venturesome Quest!",
+      "path":"./packs/enemies.db",
+      "entity":"Actor",
+      "private":true
+    }
   ],
   "languages": [
     {

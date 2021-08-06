@@ -12,7 +12,6 @@
                 <div class="tvq-deathcheck-roll">
                     <p class="tvq-p-side">Sauvegarde contre la mort</p>
                 </div>
-
                 <div class="tvq-side-div">
                     <input class="tvq-deathsave" type="checkbox" name="data.deathSaves.value1" data-dtype="Boolean" title="Mark Done" {{checked data.data.deathSaves.value1}} />
                     <input class="tvq-deathsave" type="checkbox" name="data.deathSaves.value2" data-dtype="Boolean" title="Mark Done" {{checked data.data.deathSaves.value2}} />
@@ -23,37 +22,58 @@
 
         <div class="tvq-side-bloc tvq-border">
             <div class="tvq-side-bloc-content tvq-side-bloc-height">
-                <p class="tvq-side-bloc-p">Histoire, Famille & Passé</p>
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Histoire, Famille & Passé</p>
+                    <a class="mini-button charInfos" data-action="edit" data-char-infos="story" title="{{localize 'touhouvq.sheettext.edit'}}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                </div>
                 <hr class="tvq-custom-hr">
-                <textarea id="story" class="tvq-side-bloc-content-p" name="data.charInfo.story" rows="5" cols="33">{{data.data.charInfo.story}}</textarea>
+                <div class="tvq-charInfos-div">
+                    {{{data.data.charInfos.story}}}
+                </div>
             </div>
         </div>
 
         <div class="tvq-side-bloc tvq-border">
             <div class="tvq-side-bloc-content tvq-side-bloc-height">
-                <p class="tvq-side-bloc-p">Personnalité</p>
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Personnalité</p>
+                    <a class="mini-button charInfos" data-action="edit" data-char-infos="personality" title="{{localize 'touhouvq.sheettext.edit'}}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                </div>
                 <hr class="tvq-custom-hr">
-                <textarea id="personality" class="tvq-side-bloc-content-p" name="data.charInfo.personality" rows="5" cols="33">{{data.data.charInfo.personality}}</textarea>
+                <div class="tvq-charInfos-div">
+                    {{{data.data.charInfos.personality}}}
+                </div>
             </div>
         </div>
 
         <div class="tvq-side-bloc tvq-border">
             <div class="tvq-side-bloc-content tvq-side-bloc-height-1">
-                <p class="tvq-side-bloc-p">Pouvoir</p>
+                <div class="tvq-charinfos">
+                    <p class="tvq-side-bloc-p">Pouvoir</p>
+                    <a class="mini-button charInfos" data-action="edit" data-char-infos="power" title="{{localize 'touhouvq.sheettext.edit'}}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                </div>
                 <hr class="tvq-custom-hr">
-                <textarea id="power" class="tvq-side-bloc-content-p" name="data.charInfo.power" rows="5" cols="33">{{data.data.charInfo.power}}</textarea>
+                <div class="tvq-charInfos-div">
+                    {{{data.data.charInfos.power}}}
+                </div>
             </div>
         </div>
 
         <div class="tvq-side-bloc tvq-border">
-            <div class="tvq-side-bloc-content tvq-side-bloc-height-2">
+            <div class="tvq-side-bloc-content tvq-side-bloc-height-3">
                 <p class="tvq-side-bloc-p">Signe Distinctif</p>
                 <hr class="tvq-custom-hr">
-                <textarea id="distinctive" class="tvq-side-bloc-content-p" name="data.charInfo.distinctive" rows="5" cols="33">{{data.data.charInfo.distinctive}}</textarea>
+                <textarea id="distinctive" class="tvq-side-bloc-content-p" name="data.charInfos.distinctive" rows="5" cols="33">{{data.data.charInfos.distinctive}}</textarea>
             </div>
         </div>
 
-        <button class="tvq-sheet-button" type="button">Passer à la seconde fiche de personnage</button>
+        <button class="tvq-sheet-button sheet2-button" type="button">{{localize 'touhouvq.sheettext.secondsheet'}}</button>
     
     </div>
   
