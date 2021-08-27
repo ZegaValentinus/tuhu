@@ -1,0 +1,12 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  <div class="tvq-weaponsheet-main sheet-items">
+  
+    {{#each actor.effects as |effect id|}}
+      <p>{{effect.label}}</p><br>
+    {{/each}}
+
+  </div>
+
+</form>
+{{log this}}

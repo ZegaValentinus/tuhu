@@ -7,6 +7,10 @@
 /*--------------
 ---ITEM SHEET---
 --------------*/
+/* NO RESIZE */
+.window-resizable-handle {
+  display: none !important;
+}
 .flex {
   display: flex;
 }
@@ -25,6 +29,51 @@
 }
 .red {
   color: rgb(173, 1, 1) !important;
+}
+.status-effect {
+  color: #741b47 !important;
+  text-shadow: 0 0 6px rgb(0 0 0 / 95%);
+  font-weight: bold;
+}
+.magic-points {
+  color: #daa430 !important;
+}
+.stat-strength {
+  color: #d80e0e !important;
+}
+.stat-agility {
+  color: #34a534 !important;
+}
+.stat-endurance {
+  color: #B47DD8 !important;
+}
+.stat-discipline {
+  color: #2020D8 !important;
+}
+.stat-perception {
+  color: #2E4F1F !important;
+}
+.stat-magic {
+  color: #c1ad00 !important;
+}
+.stat-intellect {
+  color: #8F20D8 !important;
+}
+.trait {
+  color: #015fec !important;
+}
+.round {
+  font-style: italic !important;
+}
+.critwounds {
+  color: #cc4125 !important;
+}
+.difficulty {
+  color: #666666 !important;
+}
+.action {
+  color: #8cbc08 !important;
+  font-weight: bold !important;
 }
 .m-0 {
   margin: 0 !important;
@@ -78,8 +127,33 @@
 input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus {
   box-shadow: unset !important;
 }
+.tvq-options {
+  width: 16%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  padding-top: 138px;
+  opacity: 50%;
+}
+.open-debugg {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+.cog-button {
+  margin: 0;
+  position: absolute;
+  font-size: 12px;
+  top: 0;
+  left: 0;
+}
 .tvq-char-stat-bloc-intelligence #context-menu, .tvq-char-stat-bloc-resilience #context-menu, .tvq-char-stat-bloc-discipline #context-menu, .tvq-char-stat-bloc-perception #context-menu {
-  width: 144px !important;
+  width: 166px !important;
 }
 .touhouvq.sheet.item .sheet-description .editor, .touhouvq.sheet.item .sheet-perk .editor, .touhouvq.sheet.item .sheet-perk-2 .editor {
   height: 84px;
@@ -160,6 +234,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 }
 .tvq-perk-first-bloc {
   position: relative;
+  width: 100%;
 }
 .tvq-side-bloc-height {
   height: 86px !important;
@@ -257,9 +332,9 @@ input[type="checkbox"].tvq-deathsave:checked {
   font-family: 'Carme', sans-serif !important;
 }
 .tvq-perk-first-bloc-p {
-  margin: 0 0 0 10px !important;
+  margin: 0 0 -2px 4px !important;
   text-align: left !important;
-  font-size: 10px !important;
+  font-size: 10.5px !important;
   height: 10px !important;
   font-weight: bold;
   font-family: 'Kreon', serif !important;
@@ -331,6 +406,12 @@ section.item-list {
 .tvq-intellect-color {
   color: #8F20D8 !important;
 }
+.tvq-knowledge-color {
+  color: #015fec !important;
+  background: unset !important;
+  border: unset !important;
+  box-shadow: unset !important;
+}
 .weapon-info p:not(.weapon-attack-damage), .item-info p:not(.weapon-attack-damage) {
   line-height: 11px;
   margin: 1px 0 0 0 !important;
@@ -361,6 +442,20 @@ section.item-list {
 }
 .tvq-knowledge:nth-child(2n) {
   background-color: rgba(0,0,0,0.06);
+}
+.tvq-side-bloc-2-tier {
+  width: 111px;
+  margin: 0 0 -2px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.tvq-side-bloc-tier {
+  color: #494842;
+  font-size: 12px;
+  margin: 1px 0 0 1px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
 }
 .tvq-side-bloc-bloc {
   margin: 3px 0px 2px 10px;
@@ -404,6 +499,12 @@ section.item-list {
   margin: 0 0 0 0;
   width: 53%;
   text-align: center;
+}
+.tvq-side-bloc-casual-tier {
+  text-align: center;
+  margin: 0;
+  width: 33%;
+  height: 46px;
 }
 .tvq-side-bloc-2 {
   display: flex;
@@ -473,7 +574,7 @@ section.item-list {
   letter-spacing: -0.3px;
 }
 .tvq-custom-hr {
-  margin: 2px 0;
+  margin: 2px 0 1px 0;
 }
 .tvq-side-bloc {
   margin: 3px 10px;
@@ -644,6 +745,20 @@ h3.thv-h3 {
   background: rgba(0,0,0,0) !important;
   z-index: 99;
 }
+.tvq-input-mons {
+  width: 100% !important;
+  padding: 0 1px !important;
+  height: 17px !important;
+  font-size: 11.5px !important;
+  font-family: 'Kreon', serif !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+}
 .tvq-char-sheet-body-bar2 .tvq-perk-line {
   right: 0;
   top: 0;
@@ -653,17 +768,17 @@ h3.thv-h3 {
   margin-right: 6px !important;
 }
 .tvq-char-sheet-body-bar2 .tvq-custom-hr {
-  margin: 1px 0 !important;
+  margin: 1px 0 0 0 !important;
 }
 .tvq-char-sheet-body-bar2 .tvq-side-bloc-p {
   font-size: 12px;
   margin: 1px 0 0 3px;
 }
 .tvq-input-skill-name {
-  padding: 1px 0 1px 3px !important;
+  padding: 0 0 0 3px !important;
   letter-spacing: -0.2px;
   font-size: 10.5px !important;
-  height: 16px !important;
+  height: 14px !important;
   font-family: 'Carme', sans-serif !important;
   text-align: left !important;
   border-bottom: 0 !important;
@@ -768,11 +883,21 @@ h3.thv-h3 {
   width: 100% !important;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  height: 157px;
+}
+.tvq-actorimg {
+  width: 84%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 .tvq-actor-img img {
-  width: 66% !important;
+  width: 154px;
+  border-radius: 5px;
+  height: 154px;
+  object-fit: contain;
 }
 .tvq-top-banner img {
   position: absolute;
@@ -942,6 +1067,22 @@ h1 {
   -webkit-mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99));
   mask: radial-gradient(circle farthest-side,#0000 50%,#000);
 }
+.tvq-taskcheck-img-knowledge {
+  width: auto;
+  height: 74px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  -webkit-mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99));
+  mask: radial-gradient(circle farthest-side,#0000 50%,#000);
+}
+.tvq-taskcheck-img-danmaku {
+  top: -6px;
+  position: absolute !important;
+  width: auto !important;
+  opacity: 100% !important;
+  left: 0 !important;
+  transform: unset !important;
+}
 .tvq-dice-formula {
   border: unset !important;
   padding: 2px 0;
@@ -1002,21 +1143,22 @@ h1 {
   object-fit: cover;
 }
 .tvq-rarity2 {
-  color: #3c78d8;
+  color: #003b99;
 }
 .tvq-rarity3 {
-  color: #9900ff;
+  color: #5b0097;
 }
 .tvq-rarity4 {
-  color: #ff9900;
+  color: #d69301;
+  box-shadow: 0px 6px 6px -4px rgb(230 153 6 / 31%) !important;
 }
 .tvq-rarity5 {
-  color: #ff1a4e;
-  font-weight: bold;
+  color: #db0033;
+  box-shadow: 0px 6px 6px -4px rgb(230 6 6 / 31%) !important;
 }
 .tvq-rarity6 {
-  color: #a0297e;
-  font-weight: bold;
+  color: #0f5a00;
+  box-shadow: 0px 6px 6px -4px rgb(11 103 1 / 45%) !important;
 }
 .tvq-values-dices {
   display: flex;
@@ -1041,8 +1183,8 @@ h1 {
 }
 .tvq-values-dices .tvq-flex-weapon-1 img {
   position: absolute !important;
-  width: 40px !important;
-  opacity: 55% !important;
+  width: 40px;
+  opacity: 55%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1115,6 +1257,34 @@ h1 {
   font-weight: bold !important;
   color: rgb(255, 153, 0) !important;
 }
+.tvq-input-talent-content-name {
+  text-overflow: ellipsis !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  padding: 0 0 0 3px !important;
+  font-size: 10px !important;
+  height: 14px !important;
+  font-family: 'Carme', sans-serif !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(0,0,0,0.18) !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(0,0,0,0) !important;
+  z-index: 99;
+  letter-spacing: -0.2px !important;
+  margin: 4px 0 0 0;
+}
+.tvq-weaponsheet-text-margin {
+  margin-top: 2px !important;
+}
+.tvq-startertalent-perk-class {
+  font-size: 12px !important;
+  margin: -0.5px 0 -1px 2px !important;
+  letter-spacing: -0.1px !important;
+}
 
 /* Cards */
 .weapon-card, .item-card {
@@ -1124,6 +1294,13 @@ h1 {
   align-items: stretch;
   align-content: stretch;
   min-height: 26px;
+}
+.perk-card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  align-content: stretch;
 }
 .weapon-info, .item-info {
   display: flex;
@@ -1167,6 +1344,20 @@ img {
   text-shadow: #efefef 0px 0 8px;
   font-family: 'Carme', sans-serif !important;
 }
+.tvq-weaponperk-show-talent p {
+  text-align: left;
+  font-weight: 500;
+  font-family: 'Kreon', serif !important;
+  font-size: 13px;
+  letter-spacing: 0px;
+  line-height: 14px;
+  z-index: 8;
+  position: relative;
+  color: black;
+  width: 100%;
+  margin-top: 0;
+  text-shadow: #efefef 0px 0 8px;
+}
 .tvq-weapon2-imgdice {
   position: absolute !important;
   width: 31px !important;
@@ -1187,6 +1378,7 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 .charInfos {
   padding: 2px 4px 0 4px;
@@ -1194,20 +1386,32 @@ img {
 .charInfos i {
   font-size: 16px;
 }
+.tvq-charInfos-div-2 {
+  height: 67px;
+  overflow: hidden;
+  margin-top: -1px;
+}
 .tvq-charInfos-div {
   height: 62px;
   overflow: hidden;
   margin-top: -1px;
 }
-.tvq-charInfos-div p {
+.tvq-charInfos-div p, .tvq-charInfos-div-2 p {
+  font-family: 'Carme', sans-serif !important;
   min-height: unset !important;
   padding: 0 !important;
   -moz-user-select: text !important;
   -ms-user-select: text !important;
-  font-size: 11px;
+  font-size: 11px !important;
   margin: 2px;
-  line-height: 12px;
+  line-height: 11px !important;
   text-align: left;
+  letter-spacing: -0.3px;
+}
+.tvq-charInfos-div p span, .tvq-charInfos-div-2 p span {
+  font-family: 'Carme', sans-serif !important;
+  font-size: 11px !important;
+  line-height: 11px !important;
   letter-spacing: -0.3px;
 }
 .tvq-side-bloc-height-2 {
@@ -1218,6 +1422,7 @@ img {
 }
 .tvq-side-bloc-height-3 {
   height: 94px !important;
+  position: relative;
 }
 .tvq-side-bloc-height-2 .editor {
   height: 204px !important;
@@ -1225,8 +1430,432 @@ img {
 .tvq-side-bloc-height-2 .editor .editor-content p span {
   font-size: 14px !important;
 }
-.tvq-side-bloc-height .tvq-charInfos-div span {
-  font-size: 11.5px !important;
+.tvq-side-bloc-height .tvq-charInfos-div span, .tvq-side-bloc-height .tvq-charInfos-div-2 span {
+  font-size: 11px !important;
+}
+.charInfos-1 {
+  padding: 2px 4px 0 4px;
+  margin: 0 0 0 36px;
+  position: absolute;
+  top: 1px;
+  right: 26px;
+}
+.charInfos-2 {
+  padding: 0px 4px 0 4px;
+  margin: 0 0 0 36px;
+  position: absolute;
+  top: 0px;
+  right: 1px;
+}
+.charInfos-1 .fa-eye, .charInfos-2 .fa-eye {
+  font-size: 16px;
+}
+.tvq-side-bloc .fas {
+  opacity: 0.8;
+}
+.tvq-charInfosShow-title {
+  color: #494842;
+  font-size: 17px;
+  margin: 3px 0 4px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+}
+.tvq-charInfosShow-text, .tvq-charInfosShow-text p, .tvq-charInfosShow-text p span {
+  font-family: 'Carme', sans-serif !important;
+  font-size: 12px !important;
+  line-height: 12.5px !important;
+}
+.tvq-damagediv {
+  font-family: "Signika", sans-serif !important;
+  font-size: 13px !important;
+  line-height: 2px !important;
+  resize: none;
+  letter-spacing: -0.76px !important;
+  border: unset !important;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.tvq-spellcard-attack {
+  margin: 24px auto 0 50%;
+  width: 66%;
+  position: relative;
+  transform: translateX(-50%);
+  line-height: 24px;
+  cursor: pointer;
+}
+.tvq-swords {
+  width: 24px;
+  margin-bottom: -13px;
+  margin-left: -4px;
+  opacity: 0.7;
+}
+.tvq-weaponsheet-text-1 {
+  margin: 0 0 -4px 0;
+  font-size: 12px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+.tvq-effectsbanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.tvq-spelleffect {
+  width: 20%;
+  padding: 1px 3px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.tvq-spelleffect:last-child {
+  width: 20%;
+  padding: 1px 3px;
+  border-right: unset !important;
+}
+.tvq-spelleffect-1 {
+  font-size: 12px;
+  margin: 0 0 6px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+  line-height: 11px;
+  padding: 4px 1px;
+}
+.tvq-spelleffect-2 {
+  font-size: 14px;
+  margin: 0 0 1px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+  line-height: 13px;
+  color: #741b47 !important;
+  font-weight: bold;
+}
+
+/* spellcard card */
+.spellcard-sheet-body input {
+  background: unset !important;
+  border: unset !important;
+  height: auto !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.tvq-spellcard-card-name {
+  font-size: 15.5px !important;
+  line-height: 16.5px;
+  margin: 5px 0 10px 0 !important;
+  font-family: 'Kreon', serif !important;
+  text-align: center !important;
+}
+.tvq-spellcard-card-sign {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(177 115 1 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+}
+.tvq-spellcard-card-unsealing {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(88 2 183 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+}
+.tvq-spellcard-card-thought {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(0 97 134 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+}
+.tvq-spellcard-card-unleash {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(181 0 159 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+.tvq-spellcard-card-soulrattle {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(0 64 181 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+.tvq-spellcard-card-dreamsigh {
+  font-family: "Signika", sans-serif !important;
+  text-transform: uppercase !important;
+  color: rgb(0 160 65 / 80%) !important;
+  text-align: center !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+.tvq-spellcard-card-desc {
+  line-height: 12px !important;
+}
+.tvq-spellcardcolor-sign {
+  color: rgb(177 115 1 / 80%) !important;
+}
+.tvq-spellcardcolor-unsealing {
+  color: rgb(88 2 183 / 80%) !important;
+}
+.tvq-spellcardcolor-thought {
+  color: rgb(0 97 134 / 80%) !important;
+}
+.tvq-spellcardcolor-unleash {
+  color: rgb(181 0 159 / 80%) !important;
+}
+.tvq-spellcardcolor-soulrattle {
+  color: rgb(0 64 181 / 80%) !important;
+}
+.tvq-spellcardcolor-dreamsigh {
+  color: rgb(0 160 65 / 80%) !important;
+}
+.tvq-spellcard-card-thought-rollStrength, .tvq-spellcard-card-dreamsigh-rollStrength {
+  color: #d80e0e !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollAgility, .tvq-spellcard-card-dreamsigh-rollAgility {
+  color: #34a534 !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollResilience, .tvq-spellcard-card-dreamsigh-rollResilience {
+  color: #B47DD8 !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollDiscipline, .tvq-spellcard-card-dreamsigh-rollDiscipline {
+  color: #2020D8 !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollPerception, .tvq-spellcard-card-dreamsigh-rollPerception {
+  color: #2E4F1F !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollMagic, .tvq-spellcard-card-dreamsigh-rollMagic {
+  color: #ad9900 !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+.tvq-spellcard-card-thought-rollIntelligence, .tvq-spellcard-card-dreamsigh-rollIntelligence {
+  color: #8F20D8 !important;
+  font-size: 15px !important;
+  margin-top: -9px;
+  opacity: 0.8;
+}
+
+/* second-sheet */
+.second-sheet section {
+  padding: 0 !important;
+}
+.second-sheet section::-webkit-scrollbar {
+  display: none;
+}
+.tvq-paths-img {
+  border-radius: unset !important;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2 !important;
+}
+.tvq-paths-main {
+  position: relative;
+  overflow: hidden;
+  height: 657px;
+}
+.tvq-paths-intro {
+  height: 93px;
+}
+.tvq-paths-checkbox {
+  z-index: 4 !important;
+  position: relative;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+}
+.y10 {
+  position: absolute;
+  top: 579px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y20 {
+  position: absolute;
+  top: 521px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y30 {
+  position: absolute;
+  top: 463px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y40 {
+  position: absolute;
+  top: 406px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y50 {
+  position: absolute;
+  top: 347px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y60 {
+  position: absolute;
+  top: 290px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y70 {
+  position: absolute;
+  top: 232px;
+  left: 116px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y80 {
+  position: absolute;
+  top: 174px;
+  left: 92px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y90 {
+  position: absolute;
+  top: 113px;
+  left: 72px;
+  filter: brightness(161%) hue-rotate( -15deg ) saturate(100%) !important;
+}
+.y100 {
+  position: absolute;
+  top: 56px;
+  left: 148px;
+  width: 37px !important;
+  height: 37px !important;
+  filter: brightness(308%) hue-rotate( 242deg ) saturate(100%) !important;
+}
+.y110 {
+  position: absolute;
+  top: 12px;
+  left: 63px;
+  width: 38px !important;
+  height: 38px !important;
+  filter: brightness(308%) hue-rotate( 242deg ) saturate(100%) !important;
+}
+.s10 {
+  position: absolute;
+  top: 579px;
+  left: 513px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s20 {
+  position: absolute;
+  top: 521px;
+  left: 416px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s30 {
+  position: absolute;
+  top: 439px;
+  left: 416px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s40 {
+  position: absolute;
+  top: 405px;
+  left: 512px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s50 {
+  position: absolute;
+  top: 372px;
+  left: 444px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s60 {
+  position: absolute;
+  top: 339px;
+  left: 382px;
+  filter: brightness(96%) hue-rotate( 47deg ) saturate(77%) !important;
+}
+.s70 {
+  position: absolute;
+  top: 265px;
+  left: 444px;
+  filter: brightness(100%) hue-rotate( 144deg ) saturate(100%) !important;
+}
+.s80 {
+  position: absolute;
+  top: 229px;
+  left: 524px;
+  filter: brightness(100%) hue-rotate( 144deg ) saturate(100%) !important;
+}
+.s90 {
+  position: absolute;
+  top: 165px;
+  left: 439px;
+  filter: brightness(100%) hue-rotate( 144deg ) saturate(100%) !important;
+}
+.s100 {
+  position: absolute;
+  top: 91px;
+  left: 479px;
+  filter: brightness(100%) hue-rotate( 144deg ) saturate(100%) !important;
+}
+.s110 {
+  position: absolute;
+  top: 12px;
+  left: 584px;
+  width: 38px !important;
+  height: 38px !important;
+  filter: brightness(100%) hue-rotate( 144deg ) saturate(100%) !important;
+}
+.tvq-paths-intro {
+  display: flex !important;
+  flex-direction: row !important;
+  height: 72px;
+  margin-bottom: 12px;
+}
+.tvq-paths-intro-1, .tvq-paths-intro-2 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tvq-paths-intro-1 p, .tvq-paths-intro-2 p {
+  font-size: 17px;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+}
+.tvq-paths-intro-1 input, .tvq-paths-intro-2 input {
+  width: 50px !important;
+  margin: 0 auto !important;
+}
+.tvq-paths-div {
+  border: 2px groove #eeede0 !important;
+  border-radius: 4px;
+  padding: 2px 0 0 0 !important;
+  width: 54px !important;
+  margin: 0 auto;
+}
+.chosenStat-margin {
+  margin-top: -14px !important;
+  margin-bottom: -15px !important;
 }
 
 /* bar3 */
@@ -1243,6 +1872,626 @@ input {
   margin-bottom: 0.25em;
   width: 100%;
 }
+.tvq-perk-info-content {
+  height: 312px !important;
+}
+
+/* sign */
+.tvq-spelleffect {
+  position: relative;
+}
+.tvq-spelleffect-40 {
+  padding: 30px 1px 1px 1px !important;
+  width: 70px !important;
+  z-index: 4 !important;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 1px 0 !important;
+  font-family: 'Kreon', serif !important;
+  text-align: center !important;
+  line-height: 13px !important;
+  color: #741b47 !important;
+  position: absolute !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+  top: 0 !important;
+}
+.tvq-effectsbanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.05);
+  height: 66px;
+}
+
+/* sign1 */
+.spell-sign-0 #context-menu {
+  width: 300px;
+  height: 68px;
+}
+.spell-sign-0 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-sign-0 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-sign-0 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* sign2 */
+.spell-sign-1 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -69px;
+}
+.spell-sign-1 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-sign-1 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-sign-1 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* sign3 */
+.spell-sign-2 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -69px;
+}
+.spell-sign-2 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-sign-2 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-sign-2 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* sign4 */
+.spell-sign-3 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -145px;
+}
+.spell-sign-3 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-sign-3 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-sign-3 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* sign5 */
+.spell-sign-4 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -220px;
+}
+.spell-sign-4 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-sign-4 #context-menu .context-item {
+  width: 298px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-sign-4 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* unsealing */
+.tvq-unsealingText .context-item {
+  line-height: 15px !important;
+  padding: 5px 8px !important;
+  font-size: 12px !important;
+}
+.tvq-unsealingText .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+.tvq-weaponsheet-text-4 {
+  margin: 5px 0 -4px 0;
+}
+.tvq-effectsbanner-unsealing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.tvq-spelleffect-30 {
+  font-size: 12px;
+  margin: 0 0 6px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+  line-height: 11px;
+}
+
+/* thought */
+.tvq-spelleffect-4 {
+  position: relative;
+}
+.tvq-spelleffect-3 {
+  height: 100% !important;
+  padding: 30px 1px 1px 1px !important;
+  width: 100% !important;
+  z-index: 4 !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: black !important;
+  margin: 0 0 1px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+  line-height: 13px;
+  color: #741b47 !important;
+  position: absolute !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+  top: 0 !important;
+}
+.tvq-effectsbanner-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.05);
+  height: 70px;
+}
+.tvq-spelleffect-4 {
+  width: 25%;
+  padding: 1px 2px 1px 2px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.tvq-spelleffect-3 {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: black !important;
+  margin: 0 0 1px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: center;
+  line-height: 13px;
+}
+/* thought 1 */
+.tvq-thoughtText-1 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: 0;
+}
+.tvq-thoughtText-1 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.tvq-thoughtText-1 #context-menu .context-item {
+  width: 298px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-thoughtText-1 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* thought 2 */
+.tvq-thoughtText-2 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -12px;
+}
+.tvq-thoughtText-2 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.tvq-thoughtText-2 #context-menu .context-item {
+  width: 298px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-thoughtText-2 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* thought 3 */
+.tvq-thoughtText-3 #context-menu {
+  width: 313px;
+  height: 96px;
+  margin-left: -120px;
+}
+.tvq-thoughtText-3 #context-menu .context-items {
+  width: 311px;
+  height: 94px;
+}
+.tvq-thoughtText-3 #context-menu .context-item {
+  width: 311px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-thoughtText-3 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* thought 4 */
+.tvq-thoughtText-4 #context-menu {
+  width: 313px;
+  height: 96px;
+  margin-left: -215px;
+}
+.tvq-thoughtText-4 #context-menu .context-items {
+  width: 311px;
+  height: 94px;
+}
+.tvq-thoughtText-4 #context-menu .context-item {
+  width: 311px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-thoughtText-4 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* unleash */
+.tvq-spelleffect-7 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.05);
+}
+.tvq-spelleffect-10 {
+  padding: 5px;
+  z-index: 4 !important;
+  height: 64px;
+  position: relative;
+}
+.tvq-spelleffect-20 {
+  width: 100% !important;
+  padding: 37px 5px 5px 5px !important;
+  z-index: 4 !important;
+  font-size: 14px !important;
+  margin: 0 0 1px 0 !important;
+  font-family: 'Kreon', serif !important;
+  text-align: center !important;
+  line-height: 13px !important;
+  color: #741b47 !important;
+  font-weight: bold !important;
+  position: absolute !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+  top: 0 !important;
+}
+/* unleash1 */
+.spell-unleash-0 #context-menu {
+  width: 300px;
+  height: 68px;
+}
+.spell-unleash-0 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-unleash-0 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-unleash-0 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* unleash2 */
+.spell-unleash-1 #context-menu {
+  width: 300px;
+  height: 68px;
+}
+.spell-unleash-1 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-unleash-1 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-unleash-1 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* unleash3 */
+.spell-unleash-2 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -100px;
+}
+.spell-unleash-2 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-unleash-2 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-unleash-2 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* unleash4 */
+.spell-unleash-3 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -200px;
+}
+.spell-unleash-3 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.spell-unleash-3 #context-menu .context-item {
+  width: 298px;
+  height: 66px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.spell-unleash-3 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* soulrattle */
+.tvq-soulrattleText .context-item {
+  line-height: 15px !important;
+  padding: 5px 8px !important;
+  font-size: 12px !important;
+}
+.tvq-soulrattleText .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+
+/* dreamsigh */
+.tvq-spelleffect-11 {
+  width: 25%;
+  padding: 5px;
+  z-index: 4 !important;
+  height: 64px;
+  position: relative;
+}
+.tvq-spelleffect-21 {
+  padding: 37px 1px 1px 1px !important;
+  width: 100% !important;
+  z-index: 4 !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  margin: 0 0 1px 0 !important;
+  font-family: 'Kreon', serif !important;
+  text-align: center !important;
+  line-height: 10px !important;
+  position: absolute !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+  top: 0 !important;
+}
+.tvq-effectsbanner-10 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.05);
+  height: 70px;
+}
+/* dreamsigh 1 */
+.tvq-dreamsighText-1 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: 0;
+}
+.tvq-dreamsighText-1 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.tvq-dreamsighText-1 #context-menu .context-item {
+  width: 298px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-dreamsighText-1 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* dreamsigh 2 */
+.tvq-dreamsighText-2 #context-menu {
+  width: 300px;
+  height: 68px;
+  margin-left: -12px;
+}
+.tvq-dreamsighText-2 #context-menu .context-items {
+  width: 298px;
+  height: 66px;
+}
+.tvq-dreamsighText-2 #context-menu .context-item {
+  width: 298px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-dreamsighText-2 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* dreamsigh 3 */
+.tvq-dreamsighText-3 #context-menu {
+  width: 313px;
+  height: 96px;
+  margin-left: -120px;
+}
+.tvq-dreamsighText-3 #context-menu .context-items {
+  width: 311px;
+  height: 94px;
+}
+.tvq-dreamsighText-3 #context-menu .context-item {
+  width: 311px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-dreamsighText-3 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
+/* dreamsigh 4 */
+.tvq-dreamsighText-4 #context-menu {
+  width: 313px;
+  height: 96px;
+  margin-left: -215px;
+}
+.tvq-dreamsighText-4 #context-menu .context-items {
+  width: 311px;
+  height: 94px;
+}
+.tvq-dreamsighText-4 #context-menu .context-item {
+  width: 311px;
+  height: 6px;
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
+  flex-direction: row !important;
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+}
+.tvq-dreamsighText-4 .context-item:hover {
+  color: inherit !important;
+  text-shadow: unset !important;
+}
 
 /* weapon sheet */
 .tvq-weaponsheet-main {
@@ -1256,6 +2505,7 @@ input {
 }
 
 .tvq-weaponsheet-div1-img {
+  border-radius: 6px !important;
   width: 178px !important;
   height: 178px !important;
   border: 1px solid #7a7971 !important;
@@ -1263,6 +2513,66 @@ input {
   position: relative !important;
   display: flex !important;
   justify-content: center !important;
+}
+
+.tvq-weaponsheet-div2-img {
+  border-radius: 6px !important;
+  width: 178px !important;
+  height: 178px !important;
+  border: 1px solid #7a7971 !important;
+  box-shadow: 0 0 6px 1px #434343 !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tvq-weaponsheet-div3-img {
+  border-radius: 6px !important;
+  width: 178px !important;
+  height: 178px !important;
+  border: 1px solid #7a7971 !important;
+  box-shadow: 0 0 6px 1px #434343 !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tvq-weaponsheet-div4-img {
+  border-radius: 6px !important;
+  width: 178px !important;
+  height: 178px !important;
+  border: 1px solid #e2ae0494 !important;
+  box-shadow: 0 0 8px 2px #dba9026b !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tvq-weaponsheet-div5-img {
+  border-radius: 6px !important;
+  width: 178px !important;
+  height: 178px !important;
+  border: 2px solid #ca012f7d !important;
+  box-shadow: 0 0 10px 2px #ff356496 !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tvq-weaponsheet-div6-img {
+  border-radius: 6px !important;
+  width: 178px !important;
+  height: 178px !important;
+  border: 3px solid #1F8F0D !important;
+  box-shadow: 0 0 10px 2px #247418d0 !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+select.tvq-select-rarity:focus {
+  box-shadow: unset;
+  outline: none;
 }
 
 .tvq-weaponsheet-div1-img img {
@@ -1289,6 +2599,14 @@ input {
   border: unset;
 }
 
+.tvq-weaponsheet-div3-intro input {
+  font-size: 18px;
+  height: 29px;
+  font-family: 'Kreon', serif !important;
+  text-align: left !important;
+  border: unset !important;
+}
+
 .tvq-weaponsheet-div2-info {
   display: flex;
   flex-direction: row;
@@ -1299,6 +2617,20 @@ input {
 .tvq-weaponsheet-text {
   font-size: 12px;
   margin: 0 0 8px 0;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+
+.tvq-weaponsheet-text-2 {
+  font-size: 12px;
+  margin: 0 0 8px 65px;
+  font-family: 'Kreon', serif !important;
+  text-align: left;
+}
+
+.tvq-weaponsheet-text-3 {
+  font-size: 12px;
+  margin: 0 0 22px 141px;
   font-family: 'Kreon', serif !important;
   text-align: left;
 }
@@ -1345,8 +2677,39 @@ input {
   line-height: 13px !important;
 }
 
-.sheet-description div[role="application"], .sheet-perk div[role="application"] {
+.sheet-description .tvq-side-bloc-content div[role="application"], .sheet-description .sheet-perk div[role="application"] {
   height: 80px !important;
+}
+
+.div-height {
+  height: 206px !important;
+  margin-top: 18px !important;
+}
+
+.div-height .sheet-perk {
+  padding: 5px !important;
+  background-color: rgba(5, 5, 5, 0.07) !important;
+  height: 206px !important;
+  margin-top: 0 !important;
+  border-radius: 4px !important;
+}
+
+.div-height .sheet-perk .editor{
+  height: 206px !important;
+  margin-top: 0 !important;
+}
+
+.div-height .sheet-perk div[role="application"] {
+  height: 204px !important;
+  margin-top: 0 !important;
+}
+
+.div-height .sheet-perk .editor .editor-content {
+  padding: 0px 4px !important;
+}
+
+.div-height .sheet-perk .editor .editor-content p {
+  line-height: 13px;
 }
 
 .sheet-description .editor div.editor-content p {
@@ -1356,7 +2719,7 @@ input {
   letter-spacing: -0.4px;
 }
 
-.sheet-items select, .sheet-items .tvq-weaponsheet-div2-info input {
+.sheet-items select:not(.tvq-select-rarity), .sheet-items .tvq-weaponsheet-div2-info input {
   font-size: 13px !important;
   height: 23px !important;
 }
@@ -1372,12 +2735,22 @@ input {
   padding: 0 0 0 18px !important;
 }
 
+.tvq-weaponsheet-div2-info-3 {
+  width: 100% !important;
+  padding: 0 2px 0 0 !important;
+  text-align: center;
+}
+
 .tvq-weaponsheet-div2-info-2-1 input, .tvq-weaponsheet-div2-info-2-2 input {
   text-align: center;
 }
 
 .tvq-weaponsheet-div2-info-1-2 {
   width: 142px;
+}
+
+.tvq-weaponsheet-div2-info-1-3 {
+  width: 100%;
 }
 
 .tvq-weaponsheet-div2-info-1-2 input {
@@ -1400,4 +2773,141 @@ input {
   resize: none;
   letter-spacing: -0.4px !important;
   border: unset !important;
+}
+
+.tvq-select-rarity {
+  width: 120px;
+  margin: 0 16%;
+  font-size: 14px !important;
+  height: 27px !important;
+}
+
+.tvq-rarity-common {
+  color: black !important;
+}
+
+.tvq-rarity-uncommon {
+  color: #3c78d8 !important;
+}
+
+.tvq-rarity-rare {
+  color: #9900ff !important;
+}
+
+.tvq-rarity-singular {
+  color: #da8300 !important;
+}
+
+.tvq-rarity-unique {
+  color: #ff1a4e !important;
+  font-weight: bold !important;
+}
+
+.tvq-rarity-unique-2 {
+  color: #ff1a4e !important;
+}
+
+.tvq-rarity-youkai {
+  background: #840CBF !important;
+  background: -webkit-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  background: -moz-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  background: linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: bold !important;
+}
+
+.tvq-rarity-youkai-2 {
+  background: #840CBF !important;
+  background: -webkit-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  background: -moz-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  background: linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.dice-flavor {
+  text-align: right;
+  font-size: 13px;
+  font-family: 'Kreon', serif !important;
+}
+
+.dice-flavor p {
+  margin: 3px 0 !important;
+  opacity: 0.6;
+}
+
+/* talents & raceskill */
+.tvq-fortalent-half-1 {
+  width: 58%;
+}
+.tvq-fortalent-half-2 {
+  width: 42%;
+}
+.tvq-statannounce, .tvq-statannounce-2 {
+  font-size: 14.5px !important;
+  letter-spacing: -0.2px !important;
+  line-height: 15px !important;
+  font-family: 'Kreon', serif !important;
+  z-index: 8 !important;
+  position: relative !important;
+  color: black;
+  text-align: center !important;
+  width: 100% !important;
+  margin-top: 6px !important;
+  text-shadow: #efefef 0px 0 8px !important;
+}
+.tvq-statannounce {
+  font-weight: 500 !important;
+}
+.tvq-statannounce-2 {
+  font-weight: 800 !important;
+}
+.tvq-taskcheck-img-raceskill {
+  opacity: 50% !important;
+  top: -10px !important;
+  width: auto !important;
+  left: 0 !important;
+  transform: unset !important;
+}
+.tvq-raceskill-total {
+  margin: 12px 0 0 0;
+  text-align: center;
+  font-family: 'Domine', serif !important;
+  font-weight: 600;
+  font-size: 26px;
+  z-index: 8;
+  position: relative;
+  color: black;
+  text-align: center;
+  width: 100%;
+  text-shadow: #efefef 0px 0 8px;
+}
+.tvq-hide {
+  display: none !important;
+}
+
+/* knowledge */
+.tvq-knowledge-main {
+  text-align: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.knowledge-title {
+  width: 64%;
+  font-family: 'Kreon', serif !important;
+  font-size: 19px !important;
+}
+.tvq-knowledge-bloc1 {
+  width: 26%;
+  margin-right: 27px;
+  margin-top: 10px;
+  height: 40px;
+}
+.tvq-knowledge-bloc1 .tvq-input-race {
+  width: 110px !important;
+}
+.tvq-knowledge-bloc2 button {
+  width: 72%;
+  margin: 1% 0;
 }

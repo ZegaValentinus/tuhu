@@ -1,0 +1,32 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  <div class="tvq-weaponsheet-main sheet-items tvq-knowledge-main">
+
+    <p class="knowledge-title">Jet de Connaissances sur :</p>
+
+    <div class="tvq-knowledge-bloc1">
+      <select name="actor.data.knowledgePick" class="tvq-input tvq-input-race" id="select-knowledge">
+        <option value="nature">{{localize "touhouvq.knowledgeText.nature"}}</option>
+        <option value="humans">{{localize "touhouvq.knowledgeText.humans"}}</option>
+        <option value="youkai">{{localize "touhouvq.knowledgeText.youkai"}}</option>
+        <option value="magic">{{localize "touhouvq.knowledgeText.magic"}}</option>
+        <option value="blackmarket">{{localize "touhouvq.knowledgeText.blackmarket"}}</option>
+        <option value="outsideworld">{{localize "touhouvq.knowledgeText.outsideworld"}}</option>
+        <option value="medicine">{{localize "touhouvq.knowledgeText.medicine"}}</option>
+        <option value="forge">{{localize "touhouvq.knowledgeText.forge"}}</option>
+        <option value="haggling">{{localize "touhouvq.knowledgeText.haggling"}}</option>
+        <option value="cooking">{{localize "touhouvq.knowledgeText.cooking"}}</option>
+        <option value="myths">{{localize "touhouvq.knowledgeText.myths"}}</option>
+        <option value="deities">{{localize "touhouvq.knowledgeText.deities"}}</option>
+      </select>
+    </div>
+
+    <div class="tvq-knowledge-bloc2">
+      <button type="button" class="knowledge-button-1" data-action-value="{{actualStat}}" data-fatigue-value="{{actualFatigue}}">{{localize "touhouvq.sheet.rollKnowledge1"}}</button>
+      <button type="button" class="knowledge-button-2" data-action-value="{{actualStat}}" data-fatigue-value="{{actualFatigue}}">{{localize "touhouvq.sheet.rollKnowledge2"}}</button>
+      <button type="button" class="knowledge-button-3" data-action-value="{{actualStat}}" data-fatigue-value="{{actualFatigue}}">{{localize "touhouvq.sheet.rollKnowledge3"}}</button>
+    </div>
+
+  </div>
+
+</form>

@@ -1,0 +1,344 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  <div class="tvq-weaponsheet-main sheet-items spellcard-sheet-body">
+
+    <div class="tvq-weaponsheet-div1">
+
+      <div class="tvq-weaponsheet-div1-img">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+      </div>
+
+      <button type="button" class="tvq-spellcard-attack" data-item-id={{this.data._id}} data-item-type={{this.data.type}}>
+        <img class="tvq-swords" src="systems/touhouvq/assets/img/swords.svg">{{localize config.textData.attack}}
+      </button>
+
+    </div>
+  
+    <div class="tvq-weaponsheet-div2">
+
+      <div class="tvq-weaponsheet-div3-intro">
+        <h1><input name="name" type="text" value="{{item.name}}"/></h1>
+      </div>
+
+      <div class="tvq-weaponsheet-div2-info-3">
+
+        <div class="tvq-weaponsheet-div2-info-1-1">
+          <select name="data.spellcardType">
+            {{#select data.data.spellcardType}}
+              {{#each config.spellcardTypes as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
+          <div class="tvq-weaponsheet-text-2">{{localize config.textData.spellcardTypeText}}</div>
+        </div>
+
+        {{#if (eq data.data.spellcardType "sign")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+                {{#if (eq "strength" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.strength}}</p>
+                {{/if}}
+                {{#if (eq "agility" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.agility}}</p>
+                {{/if}}
+                {{#if (eq "resilience" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.resilience}}</p>
+                {{/if}}
+                {{#if (eq "discipline" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.discipline}}</p>
+                {{/if}}
+                {{#if (eq "perception" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.perception}}</p>
+                {{/if}}
+                {{#if (eq "magic" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.magic}}</p>
+                {{/if}}
+                {{#if (eq "intelligence" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageSign.intelligence}}</p>
+                {{/if}}
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+        
+        {{#if (eq data.data.spellcardType "unsealing")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+
+                <p>{{localize config.spellcardDamageUnsealing.unsealing}}</p>
+
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (eq data.data.spellcardType "thought")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+                <p>{{localize config.spellcardDamageThought.alea}}</p>
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (eq data.data.spellcardType "sign")}}
+          <div class="tvq-weaponsheet-div2-info-1-1 chosenStat-margin">
+            <select name="data.chosenStat">
+              {{#select data.data.chosenStat}}
+                {{#each config.stats as |name stat|}}
+                  <option value="{{stat}}">{{localize name}}</option>
+                {{/each}}
+              {{/select}}
+            </select>
+            <div class="tvq-weaponsheet-text-3">{{localize config.textData.chosenStat}}</div>
+          </div>
+        {{/if}}
+
+        {{#if (eq data.data.spellcardType "unleash")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+                {{#if (eq "strength" this.data.data.chosenStat)}}
+                  <p name="data.damage" value="{{localize config.spellcardDamageUnleash.strength}}">{{localize config.spellcardDamageUnleash.strength}}</p>
+                {{/if}}
+                {{#if (eq "agility" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.agility}}</p>
+                {{/if}}
+                {{#if (eq "resilience" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.resilience}}</p>
+                {{/if}}
+                {{#if (eq "discipline" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.discipline}}</p>
+                {{/if}}
+                {{#if (eq "perception" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.perception}}</p>
+                {{/if}}
+                {{#if (eq "magic" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.magic}}</p>
+                {{/if}}
+                {{#if (eq "intelligence" this.data.data.chosenStat)}}
+                  <p>{{localize config.spellcardDamageUnleash.intelligence}}</p>
+                {{/if}}
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+      
+        {{#if (eq data.data.spellcardType "soulrattle")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+                <p>{{localize config.spellcardDamageSoulrattle.soulrattle}}</p>
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (eq data.data.spellcardType "dreamsigh")}}
+          <div class="tvq-weaponsheet-div2-info-3">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <div class="tvq-damagediv">
+                <p>{{localize config.spellcardDamageDreamsigh.alea}}</p>
+              </div>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.damageText}}</div>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (eq data.data.spellcardType "unleash")}}
+          <div class="tvq-weaponsheet-div2-info-1-1 chosenStat-margin">
+            <select name="data.chosenStat">
+              {{#select data.data.chosenStat}}
+                {{#each config.stats as |name stat|}}
+                  <option value="{{stat}}">{{localize name}}</option>
+                {{/each}}
+              {{/select}}
+            </select>
+            <div class="tvq-weaponsheet-text-3">{{localize config.textData.chosenStat}}</div>
+          </div>
+        {{/if}}
+
+      </div>
+
+      {{#if (eq data.data.spellcardType "sign")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner">
+
+              <div class="tvq-spelleffect spell-sign-0">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.sign1}}</p>
+                <p class="tvq-spelleffect-40">{{localize config.spellcardTextData.effectSign1}}</p>
+              </div>
+
+              <div class="tvq-spelleffect spell-sign-1">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.sign2}}</p>
+                <p class="tvq-spelleffect-40">{{localize config.spellcardTextData.effectSign2}}</p>
+              </div>
+
+              <div class="tvq-spelleffect spell-sign-2">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.sign3}}</p>
+                <p class="tvq-spelleffect-40">{{localize config.spellcardTextData.effectSign3}}</p>
+              </div>
+
+              <div class="tvq-spelleffect spell-sign-3">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.sign4}}</p>
+                <p class="tvq-spelleffect-40">{{localize config.spellcardTextData.effectSign4}}</p>
+              </div>
+
+              <div class="tvq-spelleffect spell-sign-4">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.sign5}}</p>
+                <p class="tvq-spelleffect-40">{{localize config.spellcardTextData.effectSign5}}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1">{{localize config.textData.effect}}</div>
+
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.spellcardType "unsealing")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner-unsealing">
+
+              <p class="tvq-spelleffect-30 tvq-unsealingText">{{localize config.spellcardTextUnsealing.unsealing1}}</p>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1 tvq-weaponsheet-text-4">{{localize config.textData.effect}}</div>
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.spellcardType "thought")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner-1">
+
+              <div class="tvq-spelleffect-4 tvq-thoughtText-1">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.thought1}}</p>
+                <p class="tvq-spelleffect-3">{{localize config.spellcardTextData.effectThought1}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-4 tvq-thoughtText-2">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.thought2}}</p>
+                <p class="tvq-spelleffect-3">{{localize config.spellcardTextData.effectThought2}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-4 tvq-thoughtText-3">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.thought3}}</p>
+                <p class="tvq-spelleffect-3">{{localize config.spellcardTextData.effectThought3}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-4 tvq-thoughtText-4">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.thought4}}</p>
+                <p class="tvq-spelleffect-3">{{localize config.spellcardTextData.effectThought4}}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1 tvq-weaponsheet-text-4">{{localize config.textData.effect}}</div>
+
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.spellcardType "unleash")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner tvq-spelleffect-7">
+
+              <div class="tvq-spelleffect-10 spell-unleash-0">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.unleash1}}</p>
+                <p class="tvq-spelleffect-20">{{localize config.spellcardTextData.effectUnleash1}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-10 spell-unleash-1">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.unleash2}}</p>
+                <p class="tvq-spelleffect-20">{{localize config.spellcardTextData.effectUnleash2}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-10 spell-unleash-2">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.unleash3}}</p>
+                <p class="tvq-spelleffect-20">{{localize config.spellcardTextData.effectUnleash3}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-10 spell-unleash-3">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.unleash4}}</p>
+                <p class="tvq-spelleffect-20">{{localize config.spellcardTextData.effectUnleash4}}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1">{{localize config.textData.effect}}</div>
+
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.spellcardType "soulrattle")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner">
+
+              <p class="tvq-spelleffect-1 tvq-soulrattleText">{{localize config.spellcardTextSoulrattle.soulrattle1}}</p>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1 tvq-weaponsheet-text-4">{{localize config.textData.effect}}</div>
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.spellcardType "dreamsigh")}}
+        <div class="tvq-weaponsheet-div2-desc">
+          <div class="sheet-perk">
+            <div class="tvq-effectsbanner-10">
+
+              <div class="tvq-spelleffect-11 tvq-dreamsighText-1">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.dreamsigh1}}</p>
+                <p class="tvq-spelleffect-21">{{localize config.spellcardTextData.effectDreamsigh1}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-11 tvq-dreamsighText-2">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.dreamsigh2}}</p>
+                <p class="tvq-spelleffect-21">{{localize config.spellcardTextData.effectDreamsigh2}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-11 tvq-dreamsighText-3">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.dreamsigh3}}</p>
+                <p class="tvq-spelleffect-21">{{localize config.spellcardTextData.effectDreamsigh3}}</p>
+              </div>
+
+              <div class="tvq-spelleffect-11 tvq-dreamsighText-4">
+                <p class="tvq-spelleffect-1">{{localize config.spellcardTextData.dreamsigh4}}</p>
+                <p class="tvq-spelleffect-21">{{localize config.spellcardTextData.effectDreamsigh4}}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="tvq-weaponsheet-text-1 tvq-weaponsheet-text-4">{{localize config.textData.effect}}</div>
+
+        </div>
+      {{/if}}
+
+
+      <div class="tvq-weaponsheet-div2-desc">
+        <div class="sheet-perk">
+          <textarea name="data.description" rows="4" cols="33" spellcheck="false">{{data.data.description}}</textarea>
+        </div>
+        <div class="tvq-weaponsheet-text-1">{{localize config.textData.descText}}</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

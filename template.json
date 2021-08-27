@@ -13,6 +13,7 @@
         "magic":0,
         "intelligence":0
       },
+      "knowledgePick":"1",
       "health":{
         "value":0,
         "max":0
@@ -37,12 +38,40 @@
         "value":0,
         "max":0
       },
+      "mon":{
+        "value":0
+      },
       "yen":{
+        "value":0
+      },
+      "ryo":{
         "value":0
       },
       "paths":{
         "youkaivalue":0,
-        "suspiciousvalue":0
+        "suspiciousvalue":0,
+        "y10":false,
+        "y20":false,
+        "y30":false,
+        "y40":false,
+        "y50":false,
+        "y60":false,
+        "y70":false,
+        "y80":false,
+        "y90":false,
+        "y100":false,
+        "y110":false,
+        "s10":false,
+        "s20":false,
+        "s30":false,
+        "s40":false,
+        "s50":false,
+        "s60":false,
+        "s70":false,
+        "s80":false,
+        "s90":false,
+        "s100":false,
+        "s110":false
       },
       "deathSaves":{
         "value1":false,
@@ -95,7 +124,15 @@
         "currentXP":0,
         "totalXP":0
       },
+      "talentStarterDesc":"",
+      "raceSkillDesc":"",
       "charInfos":{
+        "size":"",
+        "gender":"",
+        "age":"",
+        "weight":"",
+        "eyeColor":"",
+        "hairColor":"",
         "story":"",
         "personality":"",
         "power":"",
@@ -110,7 +147,6 @@
       "armor",
       "object",
       "talent",
-      "skill",
       "spellcard"
     ],
     "templates":{
@@ -123,7 +159,7 @@
       "templates":[
         "itemDescription"
       ],
-      "rarity":0,
+      "rarity":"common",
       "damage":0,
       "range":0,
       "rangeThrowing":0,
@@ -133,7 +169,7 @@
       "templates":[
         "itemDescription"
       ],
-      "rarity":0,
+      "rarity":"common",
       "value":0,
       "effect":""
     },
@@ -141,27 +177,24 @@
       "templates":[
         "itemDescription"
       ],
-      "rarity":0,
+      "rarity":"common",
       "effect":""
     },
     "talent":{
-      "templates":[
-        "itemDescription"
-      ],
-      "effect":""
+      "effect":"",
+      "XPCost":"",
+      "requiredLevel":0
     },
     "skill":{
-      "templates":[
-        "itemDescription"
-      ],
       "effect":""
     },
     "spellcard":{
-      "spellcardType":"Spellcard",
-            "templates":[
+      "spellcardType":"sign",
+      "effect":"",
+      "chosenStat":"strength",
+      "templates":[
         "itemDescription"
-      ],
-      "effect":""
+      ]
     }
   }
 }

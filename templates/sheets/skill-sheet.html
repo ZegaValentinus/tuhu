@@ -1,0 +1,31 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  <div class="tvq-weaponsheet-main sheet-items">
+
+    <div class="tvq-weaponsheet-div1">
+
+      <div class="tvq-weaponsheet-div1-img">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+      </div>
+
+    </div>
+  
+    <div class="tvq-weaponsheet-div2">
+
+      <div class="tvq-weaponsheet-div3-intro">
+        <h1><input name="name" type="text" value="{{item.name}}"/></h1>
+      </div>
+
+      <div class="tvq-weaponsheet-div2-perk">
+        <div class="sheet-perk-2">
+          <textarea name="data.perk" rows="3" cols="33" spellcheck="false">{{data.data.perk}}</textarea>
+        </div>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.perkText}}</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

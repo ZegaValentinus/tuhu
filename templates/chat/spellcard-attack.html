@@ -1,0 +1,150 @@
+<div class="dice-roll">
+    <!--<div class="dice-flavor">Hello there !</div>-->
+    <div class="dice-result">
+        <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-{{type}}">
+
+            <p>{{name}}</p>
+
+            {{#if (eq type "sign")}}
+                <p class="tvq-spellcard-card-sign">{{localize 'touhouvq.spellcardtype.type1'}}  -  {{localize 'touhouvq.spellcardtype.sign'}}</p>
+            {{/if}}
+
+            {{#if (eq type "unsealing")}}
+                <p class="tvq-spellcard-card-unsealing">{{localize 'touhouvq.spellcardtype.type1'}}  -  {{localize 'touhouvq.spellcardtype.unsealing'}}</p>
+            {{/if}}
+
+            {{#if (eq type "thought")}}
+                <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.spellcardtype.type1'}}  -  {{localize 'touhouvq.spellcardtype.thought'}}</p>
+                {{#if (eq chosenstat "strength")}}
+                    <p class="tvq-spellcard-card-thought-rollStrength">{{localize 'touhouvq.sheet.rollStrength'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "agility")}}
+                    <p class="tvq-spellcard-card-thought-rollAgility">{{localize 'touhouvq.sheet.rollAgility'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "resilience")}}
+                    <p class="tvq-spellcard-card-thought-rollResilience">{{localize 'touhouvq.sheet.rollResilience'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "discipline")}}
+                    <p class="tvq-spellcard-card-thought-rollDiscipline">{{localize 'touhouvq.sheet.rollDiscipline'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "perception")}}
+                    <p class="tvq-spellcard-card-thought-rollPerception">{{localize 'touhouvq.sheet.rollPerception'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "magic")}}
+                    <p class="tvq-spellcard-card-thought-rollMagic">{{localize 'touhouvq.sheet.rollMagic'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "intelligence")}}
+                    <p class="tvq-spellcard-card-thought-rollIntelligence">{{localize 'touhouvq.sheet.rollIntelligence'}}</p>
+                {{/if}}
+            {{/if}}
+
+            {{#if (eq type "unleash")}}
+                <p class="tvq-spellcard-card-unleash">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.unleash1'}}</p>
+            {{/if}}
+
+            {{#if (eq type "soulrattle")}}
+                <p class="tvq-spellcard-card-soulrattle">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.soulrattle1'}}</p>
+            {{/if}}
+
+            {{#if (eq type "dreamsigh")}}
+                <p class="tvq-spellcard-card-dreamsigh">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.dreamsigh1'}}</p>
+                {{#if (eq chosenstat "strength")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollStrength">{{localize 'touhouvq.sheet.rollStrength'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "agility")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollAgility">{{localize 'touhouvq.sheet.rollAgility'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "resilience")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollResilience">{{localize 'touhouvq.sheet.rollResilience'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "discipline")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollDiscipline">{{localize 'touhouvq.sheet.rollDiscipline'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "perception")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollPerception">{{localize 'touhouvq.sheet.rollPerception'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "magic")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollMagic">{{localize 'touhouvq.sheet.rollMagic'}}</p>
+                {{/if}}
+                {{#if (eq chosenstat "intelligence")}}
+                    <p class="tvq-spellcard-card-dreamsigh-rollIntelligence">{{localize 'touhouvq.sheet.rollIntelligence'}}</p>
+                {{/if}}
+            {{/if}}
+
+        </div>
+
+        <div class="tvq-values-dices">
+            {{#if (eq CanItCrit true)}}
+                {{#if (eq rollResult.dice.[0].faces rollResult.dice.[0].total)}}
+                    <div class="tvq-dicetotalfull">
+
+                        <div class="tvq-flex-weapon">
+                            <div class="tvq-flex-weapon-1">
+                                <div>
+                                    <img class="tvq-taskcheck-img-danmaku" src="systems/touhouvq/assets/img/danmaku.png">
+                                </div>
+                                <p class="{{critTotal rollResult.dice}}">
+                                    {{rollResult.total}}
+                                </p>
+                            </div>
+                            <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
+                                <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
+                                <p class="{{critTotal rollResult.dice}} marginleft1">
+                                    {{whichCrit rollResult.dice}}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                {{/if}}
+            {{/if}}
+        </div>
+
+        <div class="dice-tooltip">
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{rollResult.formula}}</span>
+                        <p class="tvq-criticalfailure-display">
+                            {{critString rollResult.dice}}
+                        </p>
+                        <span class="part-total">{{rollResult.total}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        {{#if (eq CanItCrit true)}}
+                            {{#each rollResult.dice as |object key|}}
+                                {{#each this.results}}
+                                    {{#ifSuperiorOrEquals this.result object.faces}}
+                                        <li class="roll max die d{{object.faces}}">{{this.result}}</li>
+                                    {{else}}
+                                        <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                    {{/ifSuperiorOrEquals}}
+                                {{/each}}
+                            {{/each}}
+                        {{else}}
+                            {{#each rollResult.dice as |object key|}}
+                                {{#each this.results}}
+                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                {{/each}}
+                            {{/each}}
+                        {{/if}}
+                    </ol>
+                </div>
+            </section>
+        </div>
+        {{#if (eq CanItCrit true)}}
+            {{#if (eq rollResult.dice.[0].faces rollResult.dice.[0].total)}}
+            {{else}}
+                <div class="tvq-dice-result">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.png">
+                    <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
+                </div>
+            {{/if}}
+            {{else}}
+                <div class="tvq-dice-result">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.png">
+                    <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
+                </div>
+        {{/if}}
+    </div>
+</div>

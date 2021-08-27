@@ -4,6 +4,19 @@
       "melee": "Arme de corps-à-corps",
       "ranged": "Arme à distance"
     },
+    "spellcardtype": {
+      "sign": "Signe de l'Âme",
+      "unsealing": "Pouvoir Descellé",
+      "thought": "Pensée Signature",
+      "unleash": "Last Word: Libération de la Puissance",
+      "soulrattle": "Last Word: Râle de l'Âme",
+      "dreamsigh": "Last Word: Rêve d'un Soupir",
+      "unleash1": "Libération de la Puissance",
+      "soulrattle1": "Râle de l'Âme",
+      "dreamsigh1": "Rêve d'un Soupir",
+      "type1": "Spellcard",
+      "type2": "Last Word"
+    },
     "race": {
       "human":"Humain",
       "youkai":"Youkai",
@@ -25,17 +38,19 @@
       "arahitogami":"Arahitogami",
       "tsukumogami":"Tsukumogami",
       "earthrabbit":"Lapin de la Terre",
-      "bakedanuki":"Bake-danuki",
       "yamabiko":"Yamabiko"
     },
     "itemText": {
       "weaponTypeText": "Type d'Arme",
+      "spellcardTypeText": "Type de Spellcard",
       "damageText": "Dégâts",
       "rangedText": "Portée (mètres)",
       "rangeThrowingText": "Portée de Lancer (mètres)",
       "rarityText": "Rareté",
       "descText": "Description",
-      "perkText": "Talent"
+      "perkText": "Talent",
+      "chosenStat": "Statistique de la Spellcard",
+      "effect": "Effets"
     },
     "notifications": {
       "tooMuchItems": "Attention! Ce personnage porte trop d'objets."
@@ -50,6 +65,28 @@
       "delete": "Supprimer",
       "attack": "Attaquer",
       "show": "Montrer",
+      "healthPoints": "Points de vie",
+      "criticalWounds":"Blessures critiques",
+      "magicPoints":"Points de magie",
+      "fatiguePoints":"Fatigue",
+      "mons":"Mon",
+      "yens":"Yen",
+      "ryos":"Ryō",
+      "fatePoints":"Points de destin",
+      "level":"Niveau",
+      "xp":"XP",
+      "totalxp":"XP Tota.",
+      "XPCostText":"Coût en Expérience",
+      "LVRequiredText":"Niveau Requis",
+      "race":"Race",
+      "gender":"Sexe",
+      "size":"Taille",
+      "age":"Age",
+      "weight":"Poids",
+      "eyecolor":"Couleur des yeux",
+      "haircolor":"Couleur des cheveux",
+      "defense":"Défense",
+      "gensokyopower":"Puiss. de Gensokyo",
       "damageLocalisation" : "Localisation des dégâts",
       "rollStrength": "Jet de Force",
       "rollAgility": "Jet d'Agilité",
@@ -86,15 +123,19 @@
       "rollCharisma1": "Jet de Charisme",
       "rollDanmaku": "Jet de Danmaku ( <p class='tvq-yellow'>MAG</p> + <p class='tvq-purple'>INT</p> )",
       "rollDanmaku1": "Jet de Danmaku",
-      "rollDeath": "Jet de Sauvegarde contre la mort"
+      "rollDeath": "Jet de Sauvegarde contre la mort",
+      "rollKnowledge": "Jet de Connaissances",
+      "rollKnowledge1": "Jet de Connaissances Normal",
+      "rollKnowledge2": "Jet de Connaissances Avancé",
+      "rollKnowledge3": "Jet de Connaissances Expert"
     },
     "generalRarity": {
-      "rarity1": "Classique",
-      "rarity2": "Inhabituel",
-      "rarity3": "Rare",
-      "rarity4": "Singulier",
-      "rarity5": "Unique",
-      "rarity6": "Youkai"
+      "common": "Classique",
+      "uncommon": "Inhabituel",
+      "rare": "Rare",
+      "singular": "Singulier",
+      "unique": "Unique",
+      "youkai": "Youkai"
     },
     "knowledgeText": {
       "nature": "Nature",
@@ -115,8 +156,221 @@
       "failure": "Échec"
     },
     "sheettext": {
-      "edit": "éditer",
-      "secondsheet": "Passer à la seconde fiche de personnage"
+      "secondsheet": "Passer à la seconde fiche de personnage",
+      "story": "Histoire, Famille & Passé",
+      "personality": "Personnalité",
+      "power": "Pouvoir",
+      "distinctive": "Signe Distinctif",
+      "youkaiPoints": "Aura Youkai",
+      "suspiciousPoints": "Suspicion",
+      "deathSaveText":"Sauvegarde contre la mort",
+      "equipment":"Équipement",
+      "startertalent":"Talent Starter",
+      "raceskill":"Compétence de Race",
+      "talentsandspellcards":"Talents et Spellcards"
+    },
+    "stats": {
+      "strength":"Force",
+      "agility":"Agilité",
+      "resilience": "Endurance",
+      "discipline": "Discipline",
+      "perception": "Perception",
+      "magic": "Magie",
+      "intelligence": "Intelligence"
+    },
+    "spellcards": {
+      "talent":"Talent",
+      "skill":"Compétence",
+      "spellcard":"Spellcard"
+    },
+    "spellcardsText": {
+      "sign1":"Votre personnage peut appliquer <font class='status-effect'>Peau Dure</font> sur <font class='bold'>une créature de son choix</font> pendant ses deux prochaines <font class='bold action'>actions</font>.",
+      "sign2":"Votre personnage peut appliquer <font class='status-effect'>Puit de Magie</font> sur <font class='bold'>une autre créature</font> jusqu’à la fin de sa prochaine <font class='bold action'>action</font>.",
+      "sign3":"Votre personnage peut appliquer <font class='status-effect'>Aveuglé(e)</font> sur <font class='bold'>une autre créature</font> jusqu’à la fin de sa prochaine <font class='bold action'>action</font>.",
+      "sign4":"Votre personnage peut appliquer <font class='status-effect'>Étourdi(e)</font> sur <font class='bold'>une autre créature</font> jusqu'à la fin de sa prochaine <font class='bold action'>action</font>.",
+      "sign5":"Votre personnage peut appliquer <font class='status-effect'>Entravé(e)</font> sur <font class='bold'>une autre créature</font> jusqu’à la fin de sa prochaine <font class='bold action'>action</font>.",
+      "unleash1":"Votre personnage peut appliquer <font class='status-effect'>Puit de Magie</font> sur <font class='bold'>une créature de son choix</font> au cours de ses trois prochaines <font class='bold action'>actions</font>.",
+      "unleash2":"Votre personnage peut appliquer <font class='status-effect'>Barrière de Mage</font> sur <font class='bold'>une créature de son choix</font> au cours de ses trois prochaines <font class='bold action'>actions</font>.",
+      "unleash3":"Votre personnage peut appliquer <font class='status-effect'>Réduit(e) au Silence</font> sur <font class='bold'>une créature de son choix</font> au cours de ses deux prochaines <font class='bold action'>actions</font>.",
+      "unleash4":"Votre personnage peut appliquer <font class='status-effect'>Paralysé(e)</font> sur <font class='bold'>une créature de son choix</font> au cours de ses deux prochaines <font class='bold action'>actions</font>."
+    },
+    "spellcardDamageSign": {
+      "strength":"1d6 + [Force] / 10",
+      "agility":"1d6 + [Agilité] / 10",
+      "resilience": "1d6 + [Endurance] / 10",
+      "discipline": "1d6 + [Discipline] / 10",
+      "perception": "1d6 + [Perception] / 10",
+      "magic": "1d6 + [Magie] / 10",
+      "intelligence": "1d6 + [Intelligence] / 10"
+    },
+    "spellcardDamageUnleash": {
+      "strength":"1d10 + [Force] / 10",
+      "agility":"1d10 + [Agilité] / 10",
+      "resilience": "1d10  +[Endurance] / 10",
+      "discipline": "1d10 + [Discipline] / 10",
+      "perception": "1d10 + [Perception]/10",
+      "magic": "1d10 + [Magie] / 10",
+      "intelligence": "1d10 + [Intelligence] / 10"
+    },
+    "spellcardDamageUnsealing": {
+      "unsealing":"1d4 + [Degrés de Réussite du jet de Danmaku]"
+    },
+    "spellcardDamageSoulrattle": {
+      "soulrattle":"1 + [Degrés de Réussite du jet de Danmaku] x 2"
+    },
+    "spellcardDamageThought": {
+      "alea":"[Degrés de Réussite d’un Jet d’une Statistique Aléatoire] + 1"
+    },
+    "spellcardDamageDreamsigh": {
+      "alea":"[Degrés de Réussite d’un Jet d’une Statistique Aléatoire] + 1d4"
+    },
+    "spellcardTextUnsealing": {
+      "unsealing1":"Votre personnage utilise son pouvoir comme il le souhaite (et si la situation le permet). A part le coût de l’utilisation de cette spellcard, utiliser son pouvoir grâce à cette spellcard ne coûte pas de point de magie. Les effets négatifs, si l’utilisation du pouvoir en a déclanché, seront centrés sur l’adversaire. ",
+      "unsealing2":"Les effets de l’utilisation direct de ce pouvoir ne peut en aucun cas infliger des dégâts à l’adversaire. Attention : Les utilisations indirectes du pouvoir (causer une chute de pierres par exemple) peuvent entraîner des points de dégâts, et ainsi, la mort."
+    },
+    "spellcardTextSoulrattle": {
+      "soulrattle1":"Votre personnage utilise son pouvoir comme il le souhaite (et si la situation le permet). A part le coût de l’utilisation de cette spellcard, utiliser son pouvoir grâce à cette spellcard ne coûte pas de point de magie. Les effets négatifs, si l’utilisation du pouvoir en a déclanché, seront centrés sur l’adversaire. ",
+      "soulrattle2":"Les effets de l’utilisation direct de ce pouvoir ne peut en aucun cas infliger des dégâts à l’adversaire. Attention : Les utilisations indirectes du pouvoir (causer une chute de pierres par exemple) peuvent entraîner des points de dégâts, et ainsi, la mort."
+    },
+    "spellcardTextThought": {
+      "thought1":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 2 mètres.",
+      "thought2":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 4 mètres.",
+      "thought3":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 7 mètres, ou tout simplement se téléporter à moins d’un mètre de distance d’une créature alliée, qui se trouve dans son champ de vision",
+      "thought4":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 12 mètres, ou tout simplement se téléporter à moins d’un mètre de distance d’une créature, qui se trouve dans son champ de vision."
+    },
+    "spellcardTextDreamsigh": {
+      "dreamsigh1":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 3 mètres.",
+      "dreamsigh2":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 7 mètres.",
+      "dreamsigh3":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 14 mètres, ou tout simplement se téléporter à moins d’un mètre de distance d’une créature alliée, qui se trouve dans son champ de vision",
+      "dreamsigh4":"Votre personnage peut se déplacer extrêmement rapidement / se téléporter jusqu'à 18 mètres, ou tout simplement se téléporter à moins d’un mètre de distance d’une créature, qui se trouve dans son champ de vision."
+    },
+    "spellcardTextData": {
+      "sign1":"0 degrés de réussite ou + :",
+      "sign2":"2 degrés de réussite ou + :",
+      "sign3":"4 degrés de réussite ou + :",
+      "sign4":"6 degrés de réussite ou + :",
+      "sign5":"8 degrés de réussite ou + :",
+      "effectSign1":"Peau Dure",
+      "effectSign2":"Puit de Magie",
+      "effectSign3":"Aveuglé(e)",
+      "effectSign4":"Étourdi(e)",
+      "effectSign5":"Entravé(e)",
+      "thought1":"0 degrés de réussite ou + :",
+      "thought2":"2 degrés de réussite ou + :",
+      "thought3":"4 degrés de réussite ou + :",
+      "thought4":"6 degrés de réussite ou + :",
+      "effectThought1":"Téléportation : 2 mètres ou moins",
+      "effectThought2":"Téléportation : 4 mètres ou moins",
+      "effectThought3":"Téléportation : 7 mètres ou moins, ou à un allié",
+      "effectThought4":"Téléportation : 12 mètres ou moins, ou à une créature",
+      "unleash1":"3 degrés d'échec ou - :",
+      "unleash2":"2 degrés de réussite ou + :",
+      "unleash3":"5 degrés de réussite ou + :",
+      "unleash4":"8 degrés de réussite ou + :",
+      "effectUnleash1":"Puit de Magie",
+      "effectUnleash2":"Barrière de Mage",
+      "effectUnleash3":"Réduit(e) au Silence",
+      "effectUnleash4":"Paralysé(e)",
+      "dreamsigh1":"4 degrés d'échec ou - :",
+      "dreamsigh2":"2 degrés de réussite ou + :",
+      "dreamsigh3":"4 degrés de réussite ou + :",
+      "dreamsigh4":"8 degrés de réussite ou + :",
+      "effectDreamsigh1":"Téléportation : 3 mètres ou moins",
+      "effectDreamsigh2":"Téléportation : 7 mètres ou moins",
+      "effectDreamsigh3":"Téléportation : 14 mètres ou moins, ou à un allié",
+      "effectDreamsigh4":"Téléportation : 18 mètres ou moins, ou à une créature"
+    },
+    "startertalent": {
+      "human":"Trompe-La-Mort",
+      "youkai":"Fléau des Humains",
+      "ghost":"Intangibilité",
+      "vampire":"Né du Mal",
+      "fairy":"Esprit Enfantin",
+      "crowtengu":"Electron Libre",
+      "whitewolftengu":"Guerrier Farouche",
+      "greattengu":"Oeil de Tenma",
+      "lunarrabbit":"En Mission",
+      "oni":"Bon Vivant",
+      "amanojaku":"Nature Démoniaque",
+      "inchling":"Petits Petons",
+      "kappa":"Nécessaire de Survie",
+      "halfyoukai":"Moitié Youkai",
+      "celestial":"Frappe du Paradis",
+      "hermit":"Discipline d’une Vie",
+      "shinigami":"Devoir Permanent",
+      "arahitogami":"Obligations de la Foi",
+      "tsukumogami":"Objet Vivant",
+      "earthrabbit":"Dans les Hautes Herbes",
+      "yamabiko":"WiP"
+    },
+    "raceskill": {
+      "human":"Débrouillardise",
+      "youkai":"Libération du Pouvoir",
+      "ghost":"Posture du Défunt",
+      "vampire":"Régénération Sauvage",
+      "fairy":"Manifestation de la Nature",
+      "crowtengu":"Esquive Fantastique",
+      "whitewolftengu":"Esquive Fantastique",
+      "greattengu":"Esquive Fantastique",
+      "lunarrabbit":"Peloton Entraîné",
+      "oni":"Démonstration de Puissance",
+      "amanojaku":"Provocation Hostile",
+      "inchling":"Résistance Minuscule",
+      "kappa":"Bidouilles et Astuces",
+      "halfyoukai":"Résistance Semi-Humaine",
+      "celestial":"Bienveillance des Cieux",
+      "hermit":"Arts des Ermites",
+      "shinigami":"Anéantir",
+      "arahitogami":"Loi des Dieux",
+      "tsukumogami":"Reconnaissance Tsukumogami",
+      "earthrabbit":"Gambader",
+      "yamabiko":"WiP"
+    },
+    "startertalentDesc": {
+      "human":"Votre personnage bénéficie de l’effet de point de destin amélioré sur une utilisation de point de destin, une fois par scénario. Votre personnage, sauf exception, ne sait ni voler, ni utiliser la magie.",
+      "youkai":"Jet de Charisme + 1d4 (si effectué envers un Humain), Jet de d’Intimidation + 1d4 (si effectué envers un Humain), Jet de Résistance + 1d4.",
+      "ghost":"En plus d’être immunisé au saignement, aux poisons et aux radiations, votre personnage peut traverser les murs et autres obstacles. Lorsqu’il le fera, il sera muet, sourd et aveugle, et le restera pendant quelques secondes après. Utiliser trop souvent ce talent peut fatiguer.",
+      "vampire":"Votre personnage craint l’exposition directe avec l’eau mouvante, l’ail, ou les rayons du soleil, mais est insensible au manque d'oxygène et à la vieillesse. En buvant du sang, votre personnage peut regagner jusqu’à 1d10 points de vie.",
+      "fairy":"Votre personnage est considéré comme ayant le bonus Charisme Irréel envers tout jet ou toute interaction avec un enfant. Jet de Force Mentale + 2d4 lorsque votre personnage doit résister à la peur.",
+      "crowtengu":"Votre personnage est capable de voler extrêmement vite, et n’est quasiment jamais fatigué de voler.",
+      "whitewolftengu":"Votre personnage possède un bonus permanent sur ses jets de Corps-à-Corps, de Charisme et de Force Mentale d’autant de point(s) de vie perdu(s) actuel(s).",
+      "greattengu":"A chaque fois que vous effectuerez un jet de dés, vous pouvez choisir un ou plusieurs dés (hors d20) et ne pas le ou les lancer. Ces dés seront gardés, et peuvent être conférés, plus tard, aux alliés de votre choix, qui utiliseront ce ou ces dés pour leur jet. Seul un allié vu par votre personnage peut bénéficier de dé bonus. Un maximum de 3 dés peuvent être gardés.",
+      "lunarrabbit":"Votre personnage débute avec l’une de ces deux possibilités : [Pas de pouvoir de Youkai, mais un pouvoir d’Humain, un Fusil Springfield M1903 et un chargeur, et +4 en Perception], [Un pouvoir de Youkai]. Votre personnage est également capable de détecter, et/ou communiquer avec d’autres lapins lunaires, plus ou moins proches.",
+      "oni":"Votre personnage gagne un défaut. Votre personnage possède un bonus d’1d8 sur tous ses jets opposés. A chaque fois que votre personnage subira une ou plusieurs suspicion(s), 1d4+1 suspicions supplémentaires seront obtenues.",
+      "amanojaku":"Votre personnage n’a besoin d’aucune structure particulière pour être capable de se reposer. De plus, en échange d’un point de magie ou d’un point de destin, votre personnage peut forcer une créature, alliée ou ennemie, qui se trouve sous un effet de statut, à relancer des dés, de votre choix, d’un jet que la créature vient d’effectuer.",
+      "inchling":"Tous les jets d’Investigation, de Passe-Passe et de Foi de tous les personnages alliés situés à moins de [Statistique de Force] mètre(s) de votre personnage obtiennent un bonus de ([Points de Magie Possédés par votre Personnage]d4)-2.",
+      "kappa":"Votre personnage possède un sac de provisions et d’équipements, contenant une ration de survie, une carte de Gensokyo, et un compte-rendu d’inventaire Kappa. Jets de Technologie +1d4.",
+      "halfyoukai":"A chaque fois que votre personnage sera attaqué, et que l’attaquant visera un point en particulier de votre corps, votre personnage gagnera à ce moment-là, jusqu’au début de sa prochaine action peau dure. Votre personnage peut être soigné au-delà de ses points de vie maximum, jusqu’à +[Statistique de Magie]/10 (arrondi à l’inférieur) point(s) de vie.",
+      "celestial":"A chaque fois que votre personnage portera une attaque de mêlée réussie contre une entité, cette dernière sera réduite au silence si elle échoue à un jet de Résistance {Difficile:24}.",
+      "hermit":"Votre personnage gagne 2 points de Magie maximum supplémentaires. Votre personnage confère automatiquement un bonus d’1d4 à tous les jets de Discipline des personnages alliés, situé à moins de [Statistique de Magie] mètre(s) tant que votre personnage possède tous ses points de vie.",
+      "shinigami":"A chaque fois que votre personnage infligera des dégâts à la mêlée, et/ou avec une arme, alors la créature subissant les dégâts subit également 1 blessure critique.",
+      "arahitogami":"A chaque fois que votre personnage utilisera un point de magie, un allié ne possédant pas tous ses points de magie, situé à moins de 15 mètres de votre personnage, choisi aléatoirement, gagne un point de magie.",
+      "tsukumogami":"Votre personnage peut être soigné sans besoin de matériel médical avec la réussite d’un jet de Technologie {Ardu:20} (disponible une fois par jour). Si votre personnage doit se soigner, il doit utiliser du matériel médical. Votre personnage est capable de se retransformer en l’objet qu’il est à sa guise, cependant, dans cet état, il est immobile.",
+      "earthrabbit":"Votre personnage confère le talent Vigilance à toute créature alliée située à moins de 15 mètres, dont lui-même. En combat, au début d’une action, votre personnage peut gratuitement et instantanément se déplacer de [Statistique d’Agilité]/10 (arrondi à l’inférieur) mètre(s).",
+      "yamabiko":"WiP"
+    },
+    "raceskillDesc": {
+      "human":"Si votre personnage est en combat, alors, au début de chacune de vos <font class='action'>actions</font>, vous pouvez augmenter aléatoirement de 1d4 point(s) une de vos statistiques (sauf <font class='stat-magic'>Magie</font>). L’effet s'estompe à la fin du combat. Cette compétence est gratuite, et s’utilise instantanément.",
+      "youkai":"Cette compétence est gratuite. En combat, effectuez un <font class='stat-strength'>jet de Force</font>, <font class='stat-discipline'>de Discipline</font>, ou <font class='stat-intelligence'>d’Intelligence</font> <font class='difficulty'>{Ardu:20}</font>. S’il réussit, votre personnage récupère <font class='magic-points'>1 point de magie</font>. Hors combat, sacrifiez 6 de vos points de vie pour récupérer <font class='magic-points'>1 point de magie</font>.",
+      "ghost":"Votre personnage renforce l’intégrité physique de son corps. En plus de perdre 1d4 <font class='critwounds'>blessure(s) critique(s)</font>, effectuez un <font class='trait'>jet de Maîtrise</font>, ou <font class='trait'>de Passe-Passe</font> <font class='difficulty'>{Difficile:24}</font>. Puis, jusqu’à la fin de sa prochaine <font class='action'>action</font>, tous les dégâts que votre personnage subira seront réduits de 1+[<font class='trait'>Degrés de Réussite</font>].",
+      "vampire":"Votre personnage est capable de se soigner lui-même de 2d6+2 points de vie si ses points de vie sont inférieurs à [<font class='stat-magic'>statistique de Magie</font>]. Pour ce faire, un <font class='stat-strength'>jet de Force</font> <font class='stat-difficulty'>{Ardu:20}</font> doit être réussi. Si le jet échoue, le <font class='magic-points'>point de magie</font> n’est pas dépensé.",
+      "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Si le jet est une réussite, tous les alliés de votre personnage situés à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendront, durant les prochaines 1d4 <font class='actions'>action(s)</font> (ou 6 prochaines secondes) un bonus sur leurs <font class='trait'>jet(s) de caractéristiques</font> égal à +2d4. Chaque point de fatigue que possède votre personnage retire 1d4 à ce bonus.",
+      "crowtengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
+      "whitewolftengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
+      "greattengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
+      "lunarrabbit":"Cette compétence s’utilise instantanément. Jusqu’à la fin de sa prochaine <font class='action'>action</font>, (ou 4 prochaines secondes), votre personnage gagne un bonus sur ses <font class='trait'>jets de Discrétion</font> et <font class='trait'>d’Investigation</font> de ([<font class='stat-discipline'>statistique de Discipline</font>]/10)d4 <font class='round'>(arrondi à l’inf)</font>, ainsi qu’un bonus sur tous les dégâts qu’il inflige, de ([<font class='trait'>statistique de Discipline</font>]/10)-1 (arrondi à l’inf).",
+      "oni":"Effectuez un <font class='stat-strength'>jet de Force</font>. Votre personnage tape alors du pied ou du poing sur le sol, un mur, ou une quelconque surface, la faisant trembler. Toute créature se trouvant à moins de 1+[<font class='stat-strength'>degrés de réussite du jet de Force</font>] mètre(s) est déstabilisée, réduisant à 10 sa <font class='stat-endurance'>statistique d’Endurance</font>.",
+      "amanojaku":"Votre personnage tente de provoquer une créature. Cette dernière doit réussir un <font class='trait'>jet de Force Mentale</font> <font class='difficulty'>{Normal:18}</font> pour éviter d’être <font class='status-effect'>provoquée</font> par votre personnage. Si elle échoue, elle doit effectuer un <font class='stat-discipline'>jet de Discipline</font> <font class='difficulty'>{Facile:14}</font> pour éviter d’être <font class='status-effect'>apeurée</font> au lieu d’être <font class='status-effect'>provoquée</font>.",
+      "inchling":"Durant ses prochaines ([<font class='stat-perception'>statistique de Perception</font>]/10) <font class='action'>action(s)</font> <font class='round'>(arrondi à l’inférieur)</font> (ou, hors-combats, les 6 prochaines secondes), les <font class='stat-endurance'>statistiques d’Endurance</font> et <font class='stat-discipline'>de Discipline</font> de votre personnage deviennent égales à sa <font class='stat-agility'>statistique d’Agilité</font> ou sa <font class='stat-intelligence'>statistique d’Intelligence</font>.",
+      "kappa":"Cette compétence s’utilise instantanément et permet, au choix : De relancer la localisation des dégâts lorsque votre personnage en subit, de relancer un <font class='trait'>jet de Passe-Passe</font>, ou de conférer l’attribut “Affaibli” ou “Déchirant” à l’un des dés de l’un de vos jets de dégâts.",
+      "halfyoukai":"Votre personnage peut sacrifier 1d4 point(s) de vie afin de se conférer l’effet de statut <font class='status-effect'>inarrêtable</font> jusqu’au début de sa prochaine <font class='action'>action</font>.",
+      "celestial":"Votre personnage effectue un <font class='trait'>jet de Maîtrise</font>, ou un <font class='trait'>jet de Charisme</font> <font class='difficulty'>{Difficile:24}</font>. Alors, votre personnage soigne une créature de son choix de 1d6+[<font class='trait'>Degrés de Réussite</font>], et fait disparaître 1 <font class='critwounds'>blessure critique</font> de la créature si le précédent jet est une réussite.",
+      "hermit":"Cette compétence s’utilise instantanément, et juste après avoir échoué à un jet de Statistique, ou <font class='trait'>de Caractéristique</font>. Votre personnage effectue un <font class='trait'>jet de Foi</font> <font class='difficulty'>{Ardu:20}</font>. Si le jet est une réussite, votre personnage peut instantanément relancer le jet de Statistique ou <font class='trait'>de Caractéristique</font> échoué précédemment. Cette compétence ne s’utilise au maximum qu’une fois par tour.",
+      "shinigami":"Lorsque cette compétence est activée, pendant ses futures [<font class='stat-strength'>statistique de Force</font>] <font class='action'>action(s)</font>, toutes les parties de votre corps sont transformées en points faibles, de plus, durant le même laps de temps, une des statistiques de votre personnage, de votre choix, sera augmentée d’1d10+2.",
+      "arahitogami":"Effectuez un <font class='trait'>jet de Foi</font> <font class='difficulty'>{Ardu:20}</font>. Si le jet est une réussite, toutes les parties du corps de votre personnage sont transformés en points renforcés durant ses prochaines [<font class='stat-magic'>statistique de Magie</font>]/10 <font class='round'>(arrondi à l’inf.)</font> <font class='action'>action(s)</font>. Si le jet est un échec, une seule partie du corps, choisie aléatoirement, est renforcée.",
+      "tsukumogami":"Cette compétence s’utilise instantanément, et peut être utilisée quand bon vous semble. Si votre personnage est sous l’effet d’un <font class='status-effect'>effet de statut</font>, alors vous pouvez utiliser cette compétence pour prolonger la durée de cet effet d’1d4 actions, ou de supprimer cet <font class='status-effect'>effet de statut</font> afin de soigner votre personnage d’1d4+1 points de vie.",
+      "earthrabbit":"Lorsqu’une créature située à moins de 10 mètres de votre personnage effectue un jet de statistique ou <font class='trait'>de caractéristique</font>, une fois le résultat obtenu, vous pouvez voler un des dés de ce jet (hors d20). Si la créature est un ennemi, elle effectue un <font class='stat-discipline'>jet de Discipline</font>. Si le jet échoue, le dé est volé et gardé, et pourra être utilisé uniquement au cours de votre prochaine <font class='action'>action</font>, après quoi, il sera perdu.",
+      "yamabiko":"WiP"
     }
   }
 }

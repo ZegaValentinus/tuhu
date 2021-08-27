@@ -11,32 +11,32 @@
     <div class="dice-roll">
         <div class="dice-result">
             <img class="tvq-weaponcheck-img" src="{{img}}">
-            {{#if (eq data.rarity "rarity1")}}
+            {{#if (eq data.rarity "common")}}
                 <div class="dice-formula tvq-dice-formula-weapon">
                     {{name}}
                 </div>
             {{/if}}
-            {{#if (eq data.rarity "rarity2")}}
+            {{#if (eq data.rarity "uncommon")}}
                 <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
                     {{name}}
                 </div>
             {{/if}}
-            {{#if (eq data.rarity "rarity3")}}
+            {{#if (eq data.rarity "rare")}}
                 <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
                     {{name}}
                 </div>
             {{/if}}
-            {{#if (eq data.rarity "rarity4")}}
+            {{#if (eq data.rarity "singular")}}
                 <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
                     {{name}}
                 </div>
             {{/if}}
-            {{#if (eq data.rarity "rarity5")}}
+            {{#if (eq data.rarity "unique")}}
                 <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
                     {{name}}
                 </div>
             {{/if}}
-            {{#if (eq data.rarity "rarity6")}}
+            {{#if (eq data.rarity "youkai")}}
                 <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
                     {{name}}
                 </div>

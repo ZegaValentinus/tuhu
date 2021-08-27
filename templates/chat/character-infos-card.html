@@ -1,0 +1,64 @@
+<div class="dice-roll">
+    <div class="dice-result">
+        {{#if (eq info "story")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{actor.data.name}}
+            </div>
+
+            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+
+            <div class="tvq-charInfosShow-title">
+                {{localize "touhouvq.sheettext.story"}}
+            </div>
+            
+            <div class="tvq-charInfosShow-text">
+                {{{actor.data.data.charInfos.story}}}
+            </div>
+        {{/if}}
+        {{#if (eq info "personality")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{actor.data.name}}
+            </div>
+
+            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+
+            <div class="tvq-charInfosShow-title">
+                {{localize "touhouvq.sheettext.personality"}}
+            </div>
+            
+            <div class="tvq-charInfosShow-text">
+                {{{actor.data.data.charInfos.personality}}}
+            </div>
+        {{/if}}
+        {{#if (eq info "power")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{actor.data.name}}
+            </div>
+
+            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+
+            <div class="tvq-charInfosShow-title">
+                {{localize "touhouvq.sheettext.power"}}
+            </div>
+            
+            <div class="tvq-charInfosShow-text">
+                {{{actor.data.data.charInfos.power}}}
+            </div>
+        {{/if}}
+        {{#if (eq info "distinctive")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{actor.data.name}}
+            </div>
+
+            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+
+            <div class="tvq-charInfosShow-title">
+                {{localize "touhouvq.sheettext.distinctive"}}
+            </div>
+            
+            <div class="tvq-charInfosShow-text">
+                {{{actor.data.data.charInfos.distinctive}}}
+            </div>
+        {{/if}}
+    </div>
+</div>

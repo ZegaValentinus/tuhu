@@ -1,7 +1,11 @@
 import * as Dice from "../dice.js";
 import * as Tchat from "../tchat.js";
 import {CharInfosSheet} from "./character-informations-sheet.js";
+import {TalentsSheet} from "./character-talent-sheet.js";
+import {RaceskillsSheet} from "./character-raceskill-sheet.js";
 import {SecondSheet} from "./second-sheet.js";
+import {ActiveEffectsDebugg} from "./debugg-sheet.js";
+import {KnowledgePicking} from "./knowledge-picking-sheet.js";
 
 export default class characterSheet extends ActorSheet {
   static get defaultOptions() {
@@ -163,6 +167,20 @@ export default class characterSheet extends ActorSheet {
           statType: statType,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.rollKnowledge"),
+      icon: '<i class="item-roll fas fa-book-open"></i>',
+      callback: element => {
+        const actualStat = element.data("action-value");
+        const actualFatigue = element.data("fatigue-value");
+        let actorData = this.actor;
+        let knowledgeText = game.i18n.localize("touhouvq.sheet.rollKnowledge");
+
+        const pickingKnowledge = new KnowledgePicking(actorData, actualStat, actualFatigue, knowledgeText);
+    
+        pickingKnowledge.render(true);
       }
     }
   ]
@@ -547,7 +565,7 @@ export default class characterSheet extends ActorSheet {
           traitType: traitType
         })
       }
-    }
+    },
   ]
 
   itemContextMenu = [
@@ -621,12 +639,69 @@ export default class characterSheet extends ActorSheet {
     }
   ];
 
+  spellcardsContextMenu = [
+    {
+      name: game.i18n.localize("touhouvq.sheet.edit"),
+      icon: '<i class="fas fa-pen"></i>',
+      callback: element => {
+        const item = this.actor.getOwnedItem(element.data("item-id"));
+        item.sheet.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.delete"),
+      icon: '<i class="fas fa-trash"></i>',
+      callback: element => {
+        this.actor.deleteOwnedItem(element.data("item-id"));
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.show"),
+      icon: '<i class="item-roll fas fa-eye"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+
+        if(item.data.type === "weapon") {
+          item.roll();
+        } else {
+          Tchat.itemShow({
+            itemData: item
+          });
+        }
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.attack"),
+      icon: '<i class="item-roll fas fa-dice-d20"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+        let actorData = this.actor;
+        let rollData = {
+          damageValue: item,
+          itemName: item.data.name,
+          itemImg: item.data.img
+        };
+
+        Dice.spellcardAttack({
+          rollData: rollData,
+          actorData: actorData
+        });
+      },
+      condition: element => {
+        return element.data("itemType") === "spellcard";
+      }
+    }
+  ];
+
   getData() {
     const data = super.getData();
     data.config = CONFIG.touhouvq;
-    data.weapons = data.items.filter(function (item) { return item.type == "weapon"});
-    console.log(this.actor);
-    console.log(data);
+
+    data.equipables = data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
+    data.perks = data.items.filter(item => [ "talent", "spellcard" ].includes(item.type) );
+
     return data;
   }
 
@@ -639,8 +714,18 @@ export default class characterSheet extends ActorSheet {
 
       html.find('.mini-button').click(this._onMiniButtonClick.bind(this));
       html.find('.sheet2-button').click(this._onSheet2ButtonClick.bind(this));
+
+      html.find('.mini-button-infosShow').click(this._onButtonInfosShowClick.bind(this));
+
+      html.find('.open-debugg').click(this._onButtonDebugg.bind(this));
+
+      html.find('.info-starter').click(this._onTalentInfo.bind(this));
+      html.find('.edit-starter').click(this._onTalentEdit.bind(this));
+      html.find('.edit-raceskill').click(this._onRaceskillEdit.bind(this));
+      html.find('.roll-raceskill').click(this._onRaceskillRoll.bind(this));
   
       new ContextMenu(html, ".item-card", this.itemContextMenu);
+      new ContextMenu(html, ".perk-card", this.spellcardsContextMenu);
 
       new ContextMenu(html, ".tvq-char-stat-bloc-strength", this.statStrengthContextMenu);
       new ContextMenu(html, ".tvq-char-stat-bloc-agility", this.statAgilityContextMenu);
@@ -728,5 +813,90 @@ export default class characterSheet extends ActorSheet {
     const laSecondSheet = new SecondSheet(this.actor);
 
     laSecondSheet.render(true);
+  }
+
+  _onButtonInfosShowClick(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    const story = element.dataset.charInfos;
+
+    Tchat.charInfosShow({
+      info: story,
+      actor: this.actor
+    });
+  }
+
+  _onTalentInfo(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    let compname = game.i18n.localize("touhouvq.startertalent."+race);
+    let compdesc = game.i18n.localize("touhouvq.startertalentDesc."+race);
+    const actor = this.actor;
+    
+    let data = {
+      race: race,
+      compdesc: compdesc,
+      compname: compname
+    };
+
+    Tchat.talentInfo({
+      actor: actor,
+      data: data
+    });
+  }
+
+  _onTalentEdit(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    let compname = game.i18n.localize("touhouvq.startertalent."+race);
+    const actor = this.actor;
+    const talentSkillType = "startertalent";
+    
+    const talentSheet = new TalentsSheet(actor, race, compname, talentSkillType);
+
+    talentSheet.render(true);
+  }
+
+  _onRaceskillEdit(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    let compname = game.i18n.localize("touhouvq.raceskill."+race);
+    const actor = this.actor;
+    const talentSkillType = "raceskill";
+    
+    const raceskillSheet = new RaceskillsSheet(actor, race, compname, talentSkillType);
+
+    raceskillSheet.render(true);
+  }
+
+  _onRaceskillRoll(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    const actor = this.actor;
+    let compname = game.i18n.localize("touhouvq.raceskill."+race);
+    let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    
+    let data = {
+      race: race,
+      compname: compname,
+      compdesc, compdesc
+    };
+
+    Tchat.raceRoll({
+      actor: actor,
+      data: data
+    });
+  }
+
+  _onButtonDebugg(event) {
+    event.preventDefault();
+    /*let myActiveEffects = new ActiveEffect({name:"Débrouillardise"},this.actor);*/
+    const leDebugg = new ActiveEffectsDebugg(this.actor);
+
+    leDebugg.render(true);
   }
 }

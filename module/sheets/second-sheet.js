@@ -15,10 +15,10 @@ export class SecondSheet extends FormApplication {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["touhouvq", "sheet", "character"],
+      classes: ["touhouvq", "sheet", "character", "second-sheet"],
       template: 'systems/touhouvq/templates/sheets/character-second-sheet.html',
-      width: 600,
-      height: 820
+      width: 638,
+      height: 771
     });
   }
 

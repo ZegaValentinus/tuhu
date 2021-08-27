@@ -1,6 +1,12 @@
 <div class="dice-roll">
     <div class="dice-result">
         <img class="tvq-weaponcheck-img" src="{{data.img}}">
+        {{#if (eq data.type "talent")}}
+            <div class="dice-formula tvq-dice-formula-weapon">
+                {{data.name}}
+            </div>
+            <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.perkText'}}</p>
+        {{/if}}
         {{#if (eq data.data.rarity "rarity1")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{data.name}}
@@ -31,10 +37,72 @@
                 {{data.name}}
             </div>
         {{/if}}
+
+        {{#if (eq data.data.spellcardType "sign")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-sign">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.sign'}}</p>
+            </div>
+        {{/if}}
+        {{#if (eq data.data.spellcardType "unsealing")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-unsealing">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.unsealing'}}</p>
+            </div>
+        {{/if}}
+        {{#if (eq data.data.spellcardType "thought")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-thought">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.thought'}}</p>
+            </div>
+        {{/if}}
+        {{#if (eq data.data.spellcardType "unleash")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-unleash">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.unleash1'}}</p>
+            </div>
+        {{/if}}
+        {{#if (eq data.data.spellcardType "soulrattle")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-soulrattle">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.soulrattle1'}}</p>
+            </div>
+        {{/if}}
+        {{#if (eq data.data.spellcardType "dreamsigh")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-name">{{data.name}}</p>
+                <p class="tvq-spellcard-card-dreamsigh">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.dreamsigh1'}}</p>
+            </div>
+        {{/if}}
+
         <div class="tvq-weaponperk-show">
-            <p>{{data.data.description}}</p>
+            <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
         </div>
-        {{#if data.data.perk}}
+
+
+        {{#if (eq data.type "weapon")}}
+            {{#if data.data.perk}}
+                <div class="dice-tooltip">
+                    <section class="tooltip-part">
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                </span>
+                            </header>
+                            <ol class="dice-rolls">
+                                <li>
+                                    <div class="tvq-weaponperk-show">
+                                        <p>{{data.data.perk}}</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+            {{/if}}
+        {{/if}}
+
+        {{#if (eq data.type "talent")}}
             <div class="dice-tooltip">
                 <section class="tooltip-part">
                     <div class="dice">
@@ -44,8 +112,15 @@
                         </header>
                         <ol class="dice-rolls">
                             <li>
-                                <div class="tvq-weaponperk-show">
-                                    <p>{{data.data.perk}}</p>
+                                <div class="tvq-weaponperk-show-talent">
+                                    <p class="tvq-spellcard-card-desc">{{{data.data.effect}}}</p>
+                                </div>
+                                <hr class="tvq-largehr">
+                                <div class="tvq-weaponperk-show-talent">
+                                    <p>Niveau requis : {{data.data.requiredLevel}}</p>
+                                </div>
+                                <div class="tvq-weaponperk-show-talent">
+                                    <p>Coût en expérience : {{data.data.XPCost}}</p>
                                 </div>
                             </li>
                         </ol>
@@ -53,5 +128,6 @@
                 </section>
             </div>
         {{/if}}
+
     </div>
 </div>

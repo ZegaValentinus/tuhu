@@ -1,5 +1,5 @@
 import { touhouvq } from "./module/config.js";
-/* import * as Chat from "./module/chat.js"; */
+ import * as Tchat from "./module/tchat.js";
 import touhouvqItemSheet from "./module/sheets/touhouvqItemSheet.js";
 import touhouvqItem from "./module/touhouvqItem.js";
 import characterSheet from "./module/sheets/characterSheet.js";
@@ -7,6 +7,7 @@ import characterSheet from "./module/sheets/characterSheet.js";
 async function preloadHandlebarsTemplates() {
   const templatePaths = [
     "systems/touhouvq/templates/partials/item-card.html",
+    "systems/touhouvq/templates/partials/talent-skill-spellcard-card.html",
     "systems/touhouvq/templates/partials/weapon-card.html",
     "systems/touhouvq/templates/partials/tchat-card.html",
     "systems/touhouvq/templates/partials/weapon-chat.html",
@@ -93,11 +94,14 @@ Hooks.once("init", function() {
           }
   
           if( maxima === 8 ) {
+            //console.log("Launch a d6");
             returnString = critFord8;
           } else {
             if( maxima === 10 ) {
+              //console.log("Launch a d8");
               returnString = critFord10;
             } else {
+              //console.log("Launch a d4");
               returnString = critFord6;
             }
           }
@@ -132,9 +136,50 @@ Hooks.once("init", function() {
         }
       });
     });
+    console.log(dice);
     return returnString;
   });
 
 });
 
-/* Hooks.on("renderChatLog", (add, html, data) => CharacterData.addChatListeners(html)); */
+Hooks.on("renderChatLog", (app, html, data) => {
+  html.on("click",".tvq-usehuman",_onUseHuman);
+});
+
+Hooks.on("renderChatMessage", (app, html, data) => {
+  if(!app._roll){return;}
+  if(!app._roll.options.isRaceSkill) {return;}
+  const actor = game.actors.get(app._roll.options.actorId);
+
+  if(!actor.isOwner) {
+    const myButton = html.find('.tvq-usehuman')[0];
+
+    if(myButton) {
+      myButton.classList.add("tvq-hide");
+    }
+  }
+});
+
+Hooks.once('ready', async function () {
+
+  //display welcome message if needed
+  /*
+  if (!game.user.getFlag("touhouvq", "welcomeMessageShown")) {
+    Tchat.welcomeMessage();
+  }
+  */
+
+});
+
+async function _onUseHuman(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const actorID = event.currentTarget.dataset.actorId;
+  const actor = game.actors.get(actorID);
+
+  if(actor.isOwner) {
+    //console.log(actor);
+  }
+
+  //console.log(actor);
+}

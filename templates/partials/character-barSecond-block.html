@@ -13,31 +13,31 @@
                     {{/each}}
                 {{/select}}
             </select>
-            <p class="tvq-p">Race</p>
+            <p class="tvq-p">{{localize 'touhouvq.sheet.race'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-sexe" type="text" name="char_race" value="Féminin">
-            <p class="tvq-p">Sexe</p>
+            <input class="tvq-input tvq-input-sexe" type="text" name="data.charInfos.gender" value="{{data.data.charInfos.gender}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.gender'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-size" type="text" name="player_name" value="1m72">
-            <p class="tvq-p">Taille</p>
+            <input class="tvq-input tvq-input-size" type="text" name="data.charInfos.size" value="{{data.data.charInfos.size}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.size'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-age" type="text" name="char_race" value="2 ans">
-            <p class="tvq-p">Age</p>
+            <input class="tvq-input tvq-input-age" type="text" name="data.charInfos.age" value="{{data.data.charInfos.age}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.age'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-weight" type="text" name="char_race" value="69kg">
-            <p class="tvq-p">Poids</p>
+            <input class="tvq-input tvq-input-weight" type="text" name="data.charInfos.weight" value="{{data.data.charInfos.weight}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.weight'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-eyes" type="text" name="char_race" value="Rouge Tomate">
-            <p class="tvq-p">Couleur des yeux</p>
+            <input class="tvq-input tvq-input-eyes" type="text" name="data.charInfos.eyecolor" value="{{data.data.charInfos.eyecolor}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.eyecolor'}}</p>
         </div>
         <div class="tvq-char-infos-div">
-            <input class="tvq-input tvq-input-hairs" type="text" name="char_race" value="Bruns">
-            <p class="tvq-p">Couleur des cheveux</p>
+            <input class="tvq-input tvq-input-hairs" type="text" name="data.charInfos.haircolor" value="{{data.data.charInfos.haircolor}}">
+            <p class="tvq-p">{{localize 'touhouvq.sheet.haircolor'}}</p>
         </div>
         <div class="tvq-upperside-person">
             <a class="tvq-button-bodyloc">
@@ -47,14 +47,14 @@
         <div class="tvq-side-bloc-2">
             <div class="tvq-side-bloc-bloc-def tvq-border">
                 <div class="tvq-side-bloc-content">
-                    <p class="tvq-side-bloc-p-defense">Défense</p>
+                    <p class="tvq-side-bloc-p-defense">{{localize 'touhouvq.sheet.defense'}}</p>
                     <hr class="tvq-custom-hr">
                     <input class="tvq-char-stat-input" type="text" value="4">
                 </div>
             </div>
             <div class="tvq-side-bloc-bloc tvq-border">
                 <div class="tvq-side-bloc-content">
-                    <p class="tvq-side-bloc-p-gensokyo">Puiss. de Gensokyo</p>
+                    <p class="tvq-side-bloc-p-gensokyo">{{localize 'touhouvq.sheet.gensokyopower'}}</p>
                     <hr class="tvq-custom-hr">
                     <input class="tvq-char-stat-input" type="text" value="4">
                 </div>

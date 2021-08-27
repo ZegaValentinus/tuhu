@@ -1,5 +1,46 @@
 <form class="{{cssClass}}" autocomplete="off">
-  
-    {{log this}}
-  
+
+    <div class="tvq-paths-intro">
+        <div class="tvq-paths-intro-1">
+            <p>{{localize "touhouvq.sheettext.youkaiPoints"}}</p>
+            <div class="tvq-paths-div">
+                <input class="tvq-char-stat-input" type="number" name="data.data.paths.youkaivalue" value="{{data.data.paths.youkaivalue}}">
+            </div>
+        </div>
+        <div class="tvq-paths-intro-2">
+            <p>{{localize "touhouvq.sheettext.suspiciousPoints"}}</p>
+            <div class="tvq-paths-div">
+                <input class="tvq-char-stat-input" type="number" name="data.data.paths.suspiciousvalue" value="{{data.data.paths.suspiciousvalue}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="tvq-paths-main">
+        <img class="tvq-paths-img" src="systems/touhouvq/assets/img/paths.jpg">
+
+        <input class="tvq-paths-checkbox y10" type="checkbox" name="data.data.paths.y10" data-dtype="Boolean" {{checked data.data.paths.y10}} />
+        <input class="tvq-paths-checkbox y20" type="checkbox" name="data.data.paths.y20" data-dtype="Boolean" {{checked data.data.paths.y20}} />
+        <input class="tvq-paths-checkbox y30" type="checkbox" name="data.data.paths.y30" data-dtype="Boolean" {{checked data.data.paths.y30}} />
+        <input class="tvq-paths-checkbox y40" type="checkbox" name="data.data.paths.y40" data-dtype="Boolean" {{checked data.data.paths.y40}} />
+        <input class="tvq-paths-checkbox y50" type="checkbox" name="data.data.paths.y50" data-dtype="Boolean" {{checked data.data.paths.y50}} />
+        <input class="tvq-paths-checkbox y60" type="checkbox" name="data.data.paths.y60" data-dtype="Boolean" {{checked data.data.paths.y60}} />
+        <input class="tvq-paths-checkbox y70" type="checkbox" name="data.data.paths.y70" data-dtype="Boolean" {{checked data.data.paths.y70}} />
+        <input class="tvq-paths-checkbox y80" type="checkbox" name="data.data.paths.y80" data-dtype="Boolean" {{checked data.data.paths.y80}} />
+        <input class="tvq-paths-checkbox y90" type="checkbox" name="data.data.paths.y90" data-dtype="Boolean" {{checked data.data.paths.y90}} />
+        <input class="tvq-paths-checkbox y100" type="checkbox" name="data.data.paths.y100" data-dtype="Boolean" {{checked data.data.paths.y100}} />
+        <input class="tvq-paths-checkbox y110" type="checkbox" name="data.data.paths.y110" data-dtype="Boolean" {{checked data.data.paths.y110}} />
+
+        <input class="tvq-paths-checkbox s10" type="checkbox" name="data.data.paths.s10" data-dtype="Boolean" {{checked data.data.paths.s10}} />
+        <input class="tvq-paths-checkbox s20" type="checkbox" name="data.data.paths.s20" data-dtype="Boolean" {{checked data.data.paths.s20}} />
+        <input class="tvq-paths-checkbox s30" type="checkbox" name="data.data.paths.s30" data-dtype="Boolean" {{checked data.data.paths.s30}} />
+        <input class="tvq-paths-checkbox s40" type="checkbox" name="data.data.paths.s40" data-dtype="Boolean" {{checked data.data.paths.s40}} />
+        <input class="tvq-paths-checkbox s50" type="checkbox" name="data.data.paths.s50" data-dtype="Boolean" {{checked data.data.paths.s50}} />
+        <input class="tvq-paths-checkbox s60" type="checkbox" name="data.data.paths.s60" data-dtype="Boolean" {{checked data.data.paths.s60}} />
+        <input class="tvq-paths-checkbox s70" type="checkbox" name="data.data.paths.s70" data-dtype="Boolean" {{checked data.data.paths.s70}} />
+        <input class="tvq-paths-checkbox s80" type="checkbox" name="data.data.paths.s80" data-dtype="Boolean" {{checked data.data.paths.s80}} />
+        <input class="tvq-paths-checkbox s90" type="checkbox" name="data.data.paths.s90" data-dtype="Boolean" {{checked data.data.paths.s90}} />
+        <input class="tvq-paths-checkbox s100" type="checkbox" name="data.data.paths.s100" data-dtype="Boolean" {{checked data.data.paths.s100}} />
+        <input class="tvq-paths-checkbox s110" type="checkbox" name="data.data.paths.s110" data-dtype="Boolean" {{checked data.data.paths.s110}} />
+    </div>
+
 </form>

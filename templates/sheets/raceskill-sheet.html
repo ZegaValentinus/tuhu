@@ -1,0 +1,49 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    <div class="tvq-weaponsheet-main sheet-items">
+  
+      <div class="tvq-weaponsheet-div1">
+  
+        <div class="tvq-weaponsheet-div1-img">
+          <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        </div>
+  
+      </div>
+    
+      <div class="tvq-weaponsheet-div2">
+  
+        <div class="tvq-weaponsheet-div3-intro">
+          <h1><input name="name" type="text" value="{{item.name}}"/></h1>
+        </div>
+  
+        <div class="tvq-weaponsheet-div2-info">
+  
+          <div class="tvq-weaponsheet-div2-info-1">
+            <div class="tvq-weaponsheet-div2-info-1-2">
+              <input class="damage" name="data.XPCost" type="text" value="{{data.data.XPCost}}"/>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.XPCostText}}</div>
+            </div>
+          </div>
+  
+          <div class="tvq-weaponsheet-div2-info-2">
+            <div class="tvq-weaponsheet-div2-info-2-2">
+              <input class="rangeThrowing" name="data.requiredLevel" type="text" value="{{data.data.requiredLevel}}"/>
+              <div class="tvq-weaponsheet-text">{{localize config.textData.LVRequiredText}}</div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="tvq-weaponsheet-div2-desc div-height">
+          <div class="sheet-perk">
+            {{editor content=data.data.effect target='data.effect' button=true owner=true editable=true}}
+          </div>
+          <div class="tvq-weaponsheet-text-1 tvq-weaponsheet-text-margin">{{localize config.textData.effect}}</div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </form>

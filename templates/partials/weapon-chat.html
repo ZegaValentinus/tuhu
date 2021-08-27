@@ -1,32 +1,40 @@
 <div class="dice-roll">
+    <div class="dice-flavor tvq-rarity-{{rollData.rarityValue}}">
+        {{#if (eq rollData.weaponTypeValue "melee")}}
+            <p>{{localize 'touhouvq.type.melee'}} - {{rarityLabel}}</p>
+        {{/if}}
+        {{#if (eq rollData.weaponTypeValue "ranged")}}
+        <p>{{localize 'touhouvq.type.ranged'}} - {{rarityLabel}}</p>
+    {{/if}}
+    </div>
     <div class="dice-result">
         <img class="tvq-weaponcheck-img" src="{{rollData.itemImg}}">
-        {{#if rarity1}}
+        {{#if (eq rollData.rarityValue "common")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{rollData.itemName}}
             </div>
         {{/if}}
-        {{#if rarity2}}
+        {{#if (eq rollData.rarityValue "uncommon")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
                 {{rollData.itemName}}
             </div>
         {{/if}}
-        {{#if rarity3}}
+        {{#if (eq rollData.rarityValue "rare")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
                 {{rollData.itemName}}
             </div>
         {{/if}}
-        {{#if rarity4}}
+        {{#if (eq rollData.rarityValue "singular")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
                 {{rollData.itemName}}
             </div>
         {{/if}}
-        {{#if rarity5}}
+        {{#if (eq rollData.rarityValue "unique")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
                 {{rollData.itemName}}
             </div>
         {{/if}}
-        {{#if rarity6}}
+        {{#if (eq rollData.rarityValue "youkai")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
                 {{rollData.itemName}}
             </div>
@@ -44,7 +52,7 @@
                             </p>
                         </div>
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
-                            <img src="systems/touhouvq/assets/img/blooddrop.png">
+                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
                             <p class="{{critTotal rollResult.dice}} marginleft1">
                                 {{whichCrit rollResult.dice}}
                             </p>
@@ -71,7 +79,6 @@
                         </div>
 
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
-                            <img class="tvq-weapon2-imgcritdice" src="../icons/svg/{{whichCritDice rollResult.dice}}-grey.svg">
                             <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
                             <p class="{{critTotal rollResult.dice}} marginleft1 ">
                                 {{whichCrit rollResult.dice}}
@@ -88,9 +95,9 @@
                 <div class="dice">
                     <header class="part-header flexrow">
                         <span class="part-formula">{{rollResult.formula}}</span>
-                            <p class="tvq-criticalfailure-display">
-                                {{critString rollResult.dice}}
-                            </p>
+                        <p class="tvq-criticalfailure-display">
+                            {{critString rollResult.dice}}
+                        </p>
                         <span class="part-total">{{rollResult.total}}</span>
                     </header>
                     <ol class="dice-rolls">
@@ -113,4 +120,3 @@
         </div>
     </div>
 </div>
-    

@@ -1,0 +1,24 @@
+{{#if (eq this.type "spellcard")}}
+    <div data-type="item" class="perk-card item reveal-rollable" data-item-id={{_id}} data-item-type={{type}}>
+        <div class="tvq-perk-first-bloc">
+            <p class="tvq-perk-first-bloc-p">{{localize 'touhouvq.spellcards.spellcard'}}</p>
+            <p class="tvq-input-talent-content-name">{{this.name}}</p>
+        </div>
+    </div>
+{{/if}}
+{{#if (eq this.type "talent")}}
+    <div data-type="item" class="perk-card item reveal-rollable" data-item-id={{_id}} data-item-type={{type}}>
+        <div class="tvq-perk-first-bloc">
+            <p class="tvq-perk-first-bloc-p">{{localize 'touhouvq.spellcards.talent'}}</p>
+            <p class="tvq-input-talent-content-name">{{this.name}}</p>
+        </div>
+    </div>
+{{/if}}
+{{#if (eq this.type "skill")}}
+    <div data-type="item" class="perk-card item reveal-rollable" data-item-id={{_id}} data-item-type={{type}}>
+        <div class="tvq-perk-first-bloc">
+            <p class="tvq-perk-first-bloc-p">{{localize 'touhouvq.spellcards.skill'}}</p>
+            <p class="tvq-input-talent-content-name">{{this.name}}</p>
+        </div>
+    </div>
+{{/if}}

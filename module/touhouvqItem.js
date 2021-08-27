@@ -4,7 +4,6 @@ export default class touhouvqItem extends Item {
         "weaponChat": "systems/touhouvq/templates/partials/weapon-chat.html",
         "armor": "systems/touhouvq/templates/partials/armor-card.html",
         "perk": "systems/touhouvq/templates/partials/perk-card.html",
-        "skill": "systems/touhouvq/templates/partials/skill-card.html",
         "spellcard": "systems/touhouvq/templates/partials/spellcard-card.html"
     };
 
