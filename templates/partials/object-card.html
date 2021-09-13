@@ -7,32 +7,33 @@
             </div>
             <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.perkText'}}</p>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity1")}}
+
+        {{#if (eq data.data.rarity "common")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{data.name}}
             </div>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity2")}}
+        {{#if (eq data.data.rarity "uncommon")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
                 {{data.name}}
             </div>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity3")}}
+        {{#if (eq data.data.rarity "rare")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
                 {{data.name}}
             </div>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity4")}}
+        {{#if (eq data.data.rarity "singular")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
                 {{data.name}}
             </div>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity5")}}
+        {{#if (eq data.data.rarity "unique")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
                 {{data.name}}
             </div>
         {{/if}}
-        {{#if (eq data.data.rarity "rarity6")}}
+        {{#if (eq data.data.rarity "youkai")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
                 {{data.name}}
             </div>

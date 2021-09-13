@@ -1,65 +1,154 @@
 <div class="dice-roll">
-    <!--<div class="dice-flavor">Hello there !</div>-->
     <div class="dice-result">
+
         <div class="dice-formula tvq-dice-formula-weapon">
             <p>{{data.compname}}</p>
         </div>
 
-        <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.perkText'}}</p>
+        <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.skillText'}}</p>
 
-        <div class="tvq-values-dices">
-            <div class="tvq-fortalent-half-1">
-                {{#if (eq rollResult.total 1)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-strength-color">Force</p>
-                {{/if}}
-                {{#if (eq rollResult.total 2)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-agility-color">Agilité</p>
-                {{/if}}
-                {{#if (eq rollResult.total 3)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-endurance-color">Endurance</p>
-                {{/if}}
-                {{#if (eq rollResult.total 4)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-discipline-color">Discipline</p>
-                {{/if}}
-                {{#if (eq rollResult.total 5)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-perception-color">Perception</p>
-                {{/if}}
-                {{#if (eq rollResult.total 6)}}
-                    <p class="tvq-statannounce">Statistique améliorée :</p>
-                    <p class="tvq-statannounce-2 tvq-intellect-color">Intelligence</p>
-                {{/if}}
+        {{#if (eq data.race "human")}}
+            <div class="tvq-values-dices">
+                <div class="tvq-fortalent-half-1">
+                    {{#if (eq rollResult.total 1)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-strength-color">{{localize 'touhouvq.stats.strength'}}</p>
+                    {{/if}}
+                    {{#if (eq rollResult.total 2)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-agility-color">{{localize 'touhouvq.stats.agility'}}</p>
+                    {{/if}}
+                    {{#if (eq rollResult.total 3)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-endurance-color">{{localize 'touhouvq.stats.resilience'}}</p>
+                    {{/if}}
+                    {{#if (eq rollResult.total 4)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-discipline-color">{{localize 'touhouvq.stats.discipline'}}</p>
+                    {{/if}}
+                    {{#if (eq rollResult.total 5)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-perception-color">{{localize 'touhouvq.stats.perception'}}</p>
+                    {{/if}}
+                    {{#if (eq rollResult.total 6)}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.humanUpgradedstat'}}</p>
+                        <p class="tvq-statannounce-2 tvq-intellect-color">{{localize 'touhouvq.stats.intelligence'}}</p>
+                    {{/if}}
+                </div>
+                <div class="tvq-fortalent-half-2">
+                    <div class="tvq-flex-weapon-1">
+                        <div>
+                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.png">
+                        </div>
+                        <p class="tvq-raceskill-total">
+                            +{{d4result}}
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="tvq-fortalent-half-2">
+
+            <button id="human-raceskill-button" class="tvq-usehuman" type="button" data-actor-id="{{actor.id}}" data-augment="{{d4result}}" data-stat="{{rollResult._total}}">{{localize 'touhouvq.flavorText.humanButtonskill'}}</button>
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">1d4</span>
+                            <span class="part-total">{{d4result}}</span>
+                        </header>
+                        <ol class="dice-rolls">
+                            <li class="roll die d4">{{d4result}}</li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        {{/if}}
+
+        {{#if (eq data.race "vampire")}}
+            <div class="tvq-values-dices">
+
                 <div class="tvq-flex-weapon-1">
                     <div>
-                        <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.png">
+                        <img class="tvq-vampire-img-raceskill" src="systems/touhouvq/assets/img/vampire_regen.png">
                     </div>
-                    <p class="tvq-raceskill-total">
-                        +{{d4result}}
+                    <p class="tvq-raceskill-total mb-10">
+                        {{rollResult._total}}
                     </p>
                 </div>
+
             </div>
-        </div>
 
-        <button id="human-raceskill-button" class="tvq-usehuman" type="button" data-actor-id="{{actor.id}}">Appliquer le bonus au personnage</button>
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">{{rollResult.formula}}</span>
+                            <span class="part-total">{{rollResult.total}}</span>
+                        </header>
+                        <ol class="dice-rolls">
+                        {{#each rollResult.dice as |object key|}}
+                            {{#each this.results}}
+                                <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                            {{/each}}
+                        {{/each}}
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        {{/if}}
 
-        <div class="dice-tooltip">
-            <section class="tooltip-part">
-                <div class="dice">
-                    <header class="part-header flexrow">
-                        <span class="part-formula">1d4</span>
-                        <span class="part-total">{{d4result}}</span>
-                    </header>
-                    <ol class="dice-rolls">
-                        <li class="roll die d4">{{d4result}}</li>
-                    </ol>
+        {{#if (eq data.race "tsukumogami")}}
+            <div class="tvq-values-dices">
+                <div class="tvq-fortalent-half-1">
+                    {{#if (eq choice "1")}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.tsukumogamiChoice1'}}</p>
+                    {{/if}}
+                    {{#if (eq choice "2")}}
+                        <p class="tvq-statannounce">{{localize 'touhouvq.flavorText.tsukumogamiChoice2'}}</p>
+                    {{/if}}
                 </div>
-            </section>
-        </div>
+                <div class="tvq-fortalent-half-2">
+                    <div class="tvq-flex-weapon-1">
+                        <div>
+                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.png">
+                        </div>
+                        {{#if (eq choice "1")}}
+                            <p class="tvq-raceskill-total-2">
+                                {{rollResult._total}} {{localize 'touhouvq.gameplayParts.action(s)'}}
+                            </p>
+                        {{/if}}
+                        {{#if (eq choice "2")}}
+                            <p class="tvq-raceskill-total-2">
+                                {{rollResult._total}} {{localize 'touhouvq.sheet.healthPoints'}}
+                            </p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            {{#if (eq choice "1")}}
+                                <span class="part-formula">1d4</span>
+                            {{/if}}
+                            {{#if (eq choice "2")}}
+                                <span class="part-formula">1d4+1</span>
+                            {{/if}}
+                            <span class="part-total">{{rollResult._total}}</span>
+                        </header>
+                        <ol class="dice-rolls">
+                            {{#each rollResult.dice as |object key|}}
+                                {{#each this.results}}
+                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                {{/each}}
+                            {{/each}}
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        {{/if}}
+
     </div>
 </div>

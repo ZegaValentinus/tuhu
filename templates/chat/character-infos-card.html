@@ -1,11 +1,11 @@
 <div class="dice-roll">
-    <div class="dice-result">
+    <div class="dice-result flex display-column">
         {{#if (eq info "story")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{actor.data.name}}
             </div>
 
-            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+            <img class="tvq-charInfosShow-img img-object-sanit" src="{{actor.data.img}}">
 
             <div class="tvq-charInfosShow-title">
                 {{localize "touhouvq.sheettext.story"}}
@@ -20,7 +20,7 @@
                 {{actor.data.name}}
             </div>
 
-            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+            <img class="tvq-charInfosShow-img img-object-sanit" src="{{actor.data.img}}">
 
             <div class="tvq-charInfosShow-title">
                 {{localize "touhouvq.sheettext.personality"}}
@@ -35,7 +35,7 @@
                 {{actor.data.name}}
             </div>
 
-            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+            <img class="tvq-charInfosShow-img img-object-sanit" src="{{actor.data.img}}">
 
             <div class="tvq-charInfosShow-title">
                 {{localize "touhouvq.sheettext.power"}}
@@ -50,7 +50,7 @@
                 {{actor.data.name}}
             </div>
 
-            <img class="tvq-charInfosShow-img" src="{{actor.data.img}}">
+            <img class="tvq-charInfosShow-img img-object-sanit" src="{{actor.data.img}}">
 
             <div class="tvq-charInfosShow-title">
                 {{localize "touhouvq.sheettext.distinctive"}}

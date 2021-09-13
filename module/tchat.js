@@ -195,11 +195,37 @@ export async function charInfosShow({
 
 export async function talentInfo({
     data = null,
-    actor = null } = {}) {
+    actor = null,
+    talentSkillType = null } = {}) {
 
     let data1 = {
         data: data,
-        actor: actor
+        actor: actor,
+        talentSkillType: talentSkillType
+    }
+
+    const messageTemplate = "systems/touhouvq/templates/partials/talent-card.html";
+    const html = await renderTemplate(messageTemplate, data1);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: html
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
+}
+
+export async function raceInfo({
+    data = null,
+    actor = null,
+    talentSkillType = null } = {}) {
+
+    let data1 = {
+        data: data,
+        actor: actor,
+        talentSkillType: talentSkillType
     }
 
     const messageTemplate = "systems/touhouvq/templates/partials/talent-card.html";
@@ -219,12 +245,15 @@ export async function raceRoll({
     data = null,
     actor = null } = {}) {
 
+    const messageTemplate = "systems/touhouvq/templates/chat/raceskillroll-sheet.html";
+    let d4 = "1d4";
+    let d6 = "1d6";
+    let d8 = "1d8";
+    let d10 = "1d10";
+    let d12 = "1d12";
+    let d20 = "1d20";
+
     if(data.race === "human") {
-
-        const messageTemplate = "systems/touhouvq/templates/chat/raceskillroll-sheet.html";
-
-        let d6 = "1d6";
-
         let d4result = Math.floor(Math.random() * 4)+1;
 
         let rollResult = new Roll(d6, actor, {isRaceSkill:true, actorId:actor.id}).roll();
@@ -238,8 +267,6 @@ export async function raceRoll({
         }
     
         let htmlContent = await renderTemplate(messageTemplate, messageData);
-    
-        //console.log(htmlContent);
 
         let messageData2 = {
             speaker: ChatMessage.getSpeaker(),
@@ -248,85 +275,333 @@ export async function raceRoll({
     
         rollResult.toMessage(messageData2);
     }
+    if (data.race == "youkai") {
 
-    if(data.race === "youkai") {
-        console.log(data);
     }
+    if (data.race == "ghost") {
 
-    if(data.race === "ghost") {
-        console.log(data);
     }
+    if (data.race == "vampire") {
 
-    if(data.race === "vampire") {
-        console.log(data);
+        let d8 = "d8";
+        let d6 = "d6";
+        let d4 = "d4";
+        let d20 = "d20";
+
+        let actionValue = data.actualStat;
+        
+        let numDivision = Math.floor(actionValue / 5);
+        
+        let rollVar = Math.floor(numDivision / 2);
+    
+        let rollResult;
+
+        let fatiguePoints = data.actualFatigue;
+
+        if(data.regen === 1) {
+            let toRoll = `2` + d6;
+            
+            let rollResult = new Roll(toRoll, actor).roll();
+            
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                data: data
+            }
+            
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+            
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+            
+            rollResult.toMessage(messageData2);
+        } else {
+            if (numDivision % 2 == 0) {
+                rollResult = d20 + ` + ` + rollVar + d8;
+            } else {
+                rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+            }
+        
+            if (numDivision % 2 == 0) {
+                if (fatiguePoints != 0) {
+        
+                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4;
+                    let rollResult = new Roll(rollResult1, actor).roll();
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d6);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker(),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls
+                    }
+                
+                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+                
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker(),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                } else {
+        
+                    const rollResult1 = d20 + ` + ` + rollVar + d8;
+                    let rollResult = new Roll(rollResult1, actor).roll();
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker(),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls
+                    }
+                
+                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+                
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker(),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                }
+            } else {
+                if (fatiguePoints != 0) {
+        
+                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4;
+                    let rollResult = new Roll(rollResult1, actor).roll();
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d4);
+        
+                    rolls.push(d6);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker(),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls
+                    }
+                
+                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+                
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker(),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                } else {
+        
+                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+                    let rollResult = new Roll(rollResult1, actor).roll();
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d4);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker(),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls
+                    }
+    
+                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+                
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker(),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+                }
+            }
+        }
+
     }
+    if (data.race == "fairy") {
 
-    if(data.race === "fairy") {
-        console.log(data);
     }
+    if (data.race == "crowtengu") {
 
-    if(data.race === "crowtengu") {
-        console.log(data);
     }
+    if (data.race == "whitewolftengu") {
 
-    if(data.race === "whitewolftengu") {
-        console.log(data);
     }
+    if (data.race == "greattengu") {
 
-    if(data.race === "greattengu") {
-        console.log(data);
     }
+    if (data.race == "lunarrabbit") {
+        const messageTemplateLR = "systems/touhouvq/templates/partials/tchat-skillcard.html";
 
-    if(data.race === "lunarrabbit") {
-        console.log(data);
+        let actualStat = Math.floor(actor.data.data.stats.discipline / 10);
+
+        let actualDamage = actualStat-1;
+
+        const html = await renderTemplate(messageTemplateLR, {...data, actualStat: actualStat, actor: actor, actualDamage: actualDamage});
+
+        if(actor.isOwner) {
+            let firingline = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
+        
+            if(!firingline) {
+              const effectData = {
+                label:game.i18n.localize("touhouvq.namesRaceSkill.firingline"),
+                icon: "systems/touhouvq/assets/img/talentsandskills/lunarrabbit/Peloton Entraîné.webp"
+              };
+              firingline = await ActiveEffect.create(effectData, {parent: actor});
+            }
+        }
+
+        const messageDataLR = {
+            speaker: ChatMessage.getSpeaker(),
+            content: html,
+            user: game.user.id
+        }
+
+        const messageClassLR = getDocumentClass("ChatMessage");
+    
+        messageClassLR.create(messageDataLR);
     }
+    if (data.race == "oni") {
 
-    if(data.race === "oni") {
-        console.log(data);
     }
+    if (data.race == "amanojaku") {
 
-    if(data.race === "amanojaku") {
-        console.log(data);
     }
+    if (data.race == "inchling") {
 
-    if(data.race === "inchling") {
-        console.log(data);
     }
+    if (data.race == "kappa") {
 
-    if(data.race === "kappa") {
-        console.log(data);
     }
+    if (data.race == "halfyoukai") {
 
-    if(data.race === "halfyoukai") {
-        console.log(data);
     }
+    if (data.race == "celestial") {
 
-    if(data.race === "celestial") {
-        console.log(data);
     }
+    if (data.race == "hermit") {
 
-    if(data.race === "hermit") {
-        console.log(data);
     }
+    if (data.race == "shinigami") {
 
-    if(data.race === "shinigami") {
-        console.log(data);
     }
+    if (data.race == "arahitogami") {
 
-    if(data.race === "arahitogami") {
-        console.log(data);
     }
-
-    if(data.race === "tsukumogami") {
-        console.log(data);
+    if (data.race == "tsukumogami") {
+        if (data.choice === "1") {
+            let rollResult = new Roll(d4, actor).roll();
+        
+            let messageData = {
+                speaker: ChatMessage.getSpeaker(),
+                rollResult: rollResult,
+                data: data,
+                choice: data.choice
+            }
+        
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+    
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker(),
+                content: htmlContent
+            }
+        
+            rollResult.toMessage(messageData2);
+        } else {
+            if (data.choice === "2") {
+                let toRoll = d4 + ` + 1`;
+                
+                let rollResult = new Roll(toRoll, actor).roll();
+        
+                let messageData = {
+                    speaker: ChatMessage.getSpeaker(),
+                    rollResult: rollResult,
+                    data: data,
+                    choice: data.choice
+                }
+            
+                let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+                let messageData2 = {
+                    speaker: ChatMessage.getSpeaker(),
+                    content: htmlContent
+                }
+            
+                rollResult.toMessage(messageData2);
+            } else {
+                const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+                const html = await renderTemplate(messageTemplate, data);
+        
+                const messageData = {
+                    speaker: ChatMessage.getSpeaker(),
+                    content: html,
+                    data: data,
+                    actor: actor,
+                    user: game.user.id,
+                    whisper: [game.user.id]
+                }
+        
+                const messageClass = getDocumentClass("ChatMessage");
+            
+                messageClass.create(messageData);
+            }
+        }
     }
-
-    if(data.race === "earthrabbit") {
-        console.log(data);
+    if (data.race == "earthrabbit") {
+        
+        /* Sur la card des roll trait comme stat, check si earthrabbit, si oui : */
+        /* Affiche autant de bouton qu'il y a de dés sur la card, hors d20, qui contienne en data attribute leur score et leur faces */
+        /* Lorsque bouton appuyé : les boutons disparaîssent, et à leur place, il sera marqué "DX volé !" (et ça, pour tout le monde !), puis les valeurs se mettront à jour, */
+        /* en modifiant le score, ajoutant un activeeffect au personnage qui a volé le dé, qui s'appelle "Gambader: DX volé", et quand le joueur appuie sur le */
+        /* bouton de compétence de race, ça mettra sur le tchat : "utilisation du DX", et au prochain jet de stat ou trait, ça utlisera, en plus, ce dé. */
     }
+    if (data.race == "yamabiko") {
 
-    if(data.race === "yamabiko") {
-        console.log(data);
     }
 }
 

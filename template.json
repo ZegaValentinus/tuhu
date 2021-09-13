@@ -13,6 +13,15 @@
         "magic":0,
         "intelligence":0
       },
+      "upgradeStats":{
+        "strength":0,
+        "agility":0,
+        "resilience":0,
+        "discipline":0,
+        "perception":0,
+        "magic":0,
+        "intelligence":0
+      },
       "knowledgePick":"1",
       "health":{
         "value":0,

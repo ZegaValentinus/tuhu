@@ -6,9 +6,17 @@
             {{data.compname}}
         </div>
 
-        <div class="tvq-spellcard-show">
-            <p class="tvq-spellcard-card-unsealing">{{localize 'touhouvq.sheettext.startertalent'}}</p>
-        </div>
+        {{#if (eq talentSkillType "startertalent")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-unsealing">{{localize 'touhouvq.sheettext.startertalent'}}</p>
+            </div>
+        {{/if}}
+
+        {{#if (eq talentSkillType "raceskill")}}
+            <div class="tvq-spellcard-show">
+                <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.sheettext.raceskill'}}</p>
+            </div>
+        {{/if}}
 
         <div class="dice-tooltip">
             <section class="tooltip-part">
@@ -20,7 +28,7 @@
                     <ol class="dice-rolls">
                         <li>
                             <div class="tvq-weaponperk-show-talent">
-                                <p>{{data.compdesc}}</p>
+                                <p>{{{data.compdesc}}}</p>
                             </div>
                         </li>
                     </ol>

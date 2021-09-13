@@ -1,4 +1,4 @@
-export class ActiveEffectsDebugg extends FormApplication {
+export class ActiveEffectsDebugg extends DocumentSheet {
 
   /** @override */
   constructor(actor) {
@@ -31,6 +31,25 @@ export class ActiveEffectsDebugg extends FormApplication {
     sheetData.actor = actorData;
 
     return sheetData;
+  }
+
+  activateListeners(html) {
+    html.find('button').click(this._onDebuggChange.bind(this));
+
+    super.activateListeners(html);
+  }
+
+  _onDebuggChange(event) {
+    event.preventDefault();
+    const buttonElem = event.currentTarget;
+    const effectID = buttonElem.closest(".tvq-activeeffects-div").dataset.effectId;
+
+    if(buttonElem.classList.contains("tvq-deleteeffect")) {
+      this.actor.deleteEmbeddedDocuments('ActiveEffect', [effectID]);
+    } else {
+      const effect = this.actor.effects.get(effectID);
+      effect.sheet.render(true);
+    }
   }
 
   /** @inheritdoc */

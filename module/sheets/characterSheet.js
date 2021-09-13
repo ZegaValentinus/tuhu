@@ -6,12 +6,15 @@ import {RaceskillsSheet} from "./character-raceskill-sheet.js";
 import {SecondSheet} from "./second-sheet.js";
 import {ActiveEffectsDebugg} from "./debugg-sheet.js";
 import {KnowledgePicking} from "./knowledge-picking-sheet.js";
+import {UpgradingStat} from "./upgrading-stat-sheet.js";
 
 export default class characterSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       template: "systems/touhouvq/templates/sheets/character-sheet.html",
-      classes: ["touhouvq", "sheet", "character"]
+      classes: ["touhouvq", "sheet", "character"],
+      width: 778,
+      height: 720
     });
   }
 
@@ -25,6 +28,23 @@ export default class characterSheet extends ActorSheet {
     
         Dice.LocCheck({
           raceNum: raceNum,
+          actorData: actorData
+        })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.initiativeRoll2"),
+      icon: '<i class="item-roll fas fa-dice-d20"></i>',
+      callback: element => {
+        const agilityValue = this.actor.data.data.stats.agility;
+        const perceptionValue = this.actor.data.data.stats.perception;
+        const raceNum = this.actor.data.data.race;
+        const actorData = this.actor;
+    
+        Dice.initiativeCheck({
+          raceNum: raceNum,
+          agilityValue: agilityValue,
+          perceptionValue: perceptionValue,
           actorData: actorData
         })
       }
@@ -48,6 +68,34 @@ export default class characterSheet extends ActorSheet {
           actorData: actorData
         })
       }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theStrength");
+        const theStat = 1;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[0];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
+      }
     }
   ]
 
@@ -67,6 +115,34 @@ export default class characterSheet extends ActorSheet {
           statType: statType,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theAgility");
+        const theStat = 2;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[1];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
       }
     }
   ]
@@ -88,6 +164,34 @@ export default class characterSheet extends ActorSheet {
           actorData: actorData
         })
       }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theResilience");
+        const theStat = 3;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[2];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
+      }
     }
   ]
 
@@ -107,6 +211,34 @@ export default class characterSheet extends ActorSheet {
           statType: statType,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theDiscipline");
+        const theStat = 4;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[3];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
       }
     }
   ]
@@ -128,6 +260,34 @@ export default class characterSheet extends ActorSheet {
           actorData: actorData
         })
       }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.thePerception");
+        const theStat = 5;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[4];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
+      }
     }
   ]
 
@@ -147,6 +307,22 @@ export default class characterSheet extends ActorSheet {
           statType: statType,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theMagic");
+        const theStat = 6;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
       }
     }
   ]
@@ -170,6 +346,22 @@ export default class characterSheet extends ActorSheet {
       }
     },
     {
+      name: game.i18n.localize("touhouvq.sheet.upgradeStat"),
+      icon: '<i class="item-roll fas fa-arrow-circle-up"></i>',
+      callback: element => {
+        const actualUpgrade = element.data("upgrade-value");
+        const actualStat = element.data("action-value");
+        let actorData = this.actor;
+        let upgradeText = game.i18n.localize("touhouvq.sheet.upgradeText");
+        let upgradeTextStat = game.i18n.localize("touhouvq.sheet.theIntelligence");
+        const theStat = 7;
+
+        const upgradingStat = new UpgradingStat(actorData, actualUpgrade, upgradeText, upgradeTextStat, theStat);
+    
+        upgradingStat.render(true);
+      }
+    },
+    {
       name: game.i18n.localize("touhouvq.sheet.rollKnowledge"),
       icon: '<i class="item-roll fas fa-book-open"></i>',
       callback: element => {
@@ -181,6 +373,18 @@ export default class characterSheet extends ActorSheet {
         const pickingKnowledge = new KnowledgePicking(actorData, actualStat, actualFatigue, knowledgeText);
     
         pickingKnowledge.render(true);
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let selfhelp = this.actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [selfhelp.id]);
+      },
+      condition: element => {
+        const stat = CONFIG.touhouvq.selfhelp[5];
+        return foundry.utils.hasProperty(this.actor.overrides,`data.stats.${stat}`);
       }
     }
   ]
@@ -228,6 +432,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "2";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -238,7 +443,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -255,6 +461,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "3";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -265,7 +472,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -282,6 +490,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "4";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -292,7 +501,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -309,6 +519,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "5";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -319,7 +530,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -336,6 +548,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "6";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -346,7 +559,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -363,6 +577,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "7";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -373,7 +588,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -390,6 +606,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "8";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -400,7 +617,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -417,6 +635,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "9";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -427,7 +646,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -444,6 +664,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "10";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -454,7 +675,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -471,6 +693,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "11";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -481,7 +704,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -498,6 +722,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "12";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -508,7 +733,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -525,6 +751,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "13";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -535,7 +762,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -552,6 +780,7 @@ export default class characterSheet extends ActorSheet {
         const IntelligenceStats = element.data("intelligence-value");
         const actualFatigue = element.data("fatigue-value");
         const traitType = "14";
+        let actorData = this.actor;
 
         Dice.TraitCheck({
           StrengthStats: StrengthStats,
@@ -562,7 +791,8 @@ export default class characterSheet extends ActorSheet {
           MagicStats: MagicStats,
           IntelligenceStats: IntelligenceStats,
           fatiguePoints: actualFatigue,
-          traitType: traitType
+          traitType: traitType,
+          actorData: actorData
         })
       }
     },
@@ -723,6 +953,7 @@ export default class characterSheet extends ActorSheet {
       html.find('.edit-starter').click(this._onTalentEdit.bind(this));
       html.find('.edit-raceskill').click(this._onRaceskillEdit.bind(this));
       html.find('.roll-raceskill').click(this._onRaceskillRoll.bind(this));
+      html.find('.show-raceskill').click(this._onRaceskillInfo.bind(this));
   
       new ContextMenu(html, ".item-card", this.itemContextMenu);
       new ContextMenu(html, ".perk-card", this.spellcardsContextMenu);
@@ -743,9 +974,8 @@ export default class characterSheet extends ActorSheet {
       if (this.actor.owner) {
         /*html.find(".task-check").click(this._onTaskCheck.bind(this));*/
       }
-  
-      super.activateListeners(html);
     }
+    super.activateListeners(html);
   }
 
   _onDeathCheck(event) {
@@ -832,6 +1062,7 @@ export default class characterSheet extends ActorSheet {
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.startertalent."+race);
     let compdesc = game.i18n.localize("touhouvq.startertalentDesc."+race);
+    const talentSkillType = "startertalent";
     const actor = this.actor;
     
     let data = {
@@ -842,7 +1073,8 @@ export default class characterSheet extends ActorSheet {
 
     Tchat.talentInfo({
       actor: actor,
-      data: data
+      data: data,
+      talentSkillType: talentSkillType
     });
   }
 
@@ -851,10 +1083,11 @@ export default class characterSheet extends ActorSheet {
     let element = event.currentTarget;
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.startertalent."+race);
+    let compdesc = game.i18n.localize("touhouvq.startertalentDesc."+race);
     const actor = this.actor;
     const talentSkillType = "startertalent";
     
-    const talentSheet = new TalentsSheet(actor, race, compname, talentSkillType);
+    const talentSheet = new TalentsSheet(actor, race, compname, compdesc, talentSkillType);
 
     talentSheet.render(true);
   }
@@ -864,10 +1097,11 @@ export default class characterSheet extends ActorSheet {
     let element = event.currentTarget;
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
+    let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
     const actor = this.actor;
     const talentSkillType = "raceskill";
     
-    const raceskillSheet = new RaceskillsSheet(actor, race, compname, talentSkillType);
+    const raceskillSheet = new RaceskillsSheet(actor, race, compname, compdesc, talentSkillType);
 
     raceskillSheet.render(true);
   }
@@ -877,18 +1111,48 @@ export default class characterSheet extends ActorSheet {
     let element = event.currentTarget;
     let race = element.dataset.race;
     const actor = this.actor;
+    const actualStat = element.dataset.action;
+    const actualFatigue = element.dataset.fatigue;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+
+    if(race == "lunarrabbit") {
+      //document.querySelector(".tvq-button-traitroll > #context-menu > li.context-item:nth-child(5n)").classList.add("boosted");
+    }
     
     let data = {
       race: race,
       compname: compname,
-      compdesc, compdesc
+      compdesc, compdesc,
+      actualStat: actualStat,
+      actualFatigue: actualFatigue
     };
 
     Tchat.raceRoll({
       actor: actor,
       data: data
+    });
+  }
+
+  _onRaceskillInfo(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    let compname = game.i18n.localize("touhouvq.raceskill."+race);
+    let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    const talentSkillType = "raceskill";
+    const actor = this.actor;
+    
+    let data = {
+      race: race,
+      compdesc: compdesc,
+      compname: compname
+    };
+
+    Tchat.raceInfo({
+      actor: actor,
+      data: data,
+      talentSkillType: talentSkillType
     });
   }
 

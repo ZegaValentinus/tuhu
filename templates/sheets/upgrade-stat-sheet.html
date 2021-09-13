@@ -1,0 +1,60 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  <div class="tvq-weaponsheet-main sheet-items tvq-knowledge-main">
+
+    <p class="upgradestat-title">{{localize 'touhouvq.sheet.upgradeTheStat'}}{{upgradeTextStat}}</p>
+
+    {{#if (eq theStat 1)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.strength" data-dtype="Number" value="{{actor.data.data.upgradeStats.strength}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 2)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.agility" data-dtype="Number" value="{{actor.data.data.upgradeStats.agility}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 3)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.resilience" data-dtype="Number" value="{{actor.data.data.upgradeStats.resilience}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 4)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.discipline" data-dtype="Number" value="{{actor.data.data.upgradeStats.discipline}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 5)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.perception" data-dtype="Number" value="{{actor.data.data.upgradeStats.perception}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 6)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.magic" data-dtype="Number" value="{{actor.data.data.upgradeStats.magic}}">
+      </div>
+    {{/if}}
+
+    {{#if (eq theStat 7)}}
+      <div class="tvq-upgradestat">
+        <p>{{localize 'touhouvq.sheet.upgradeLevel'}}</p>
+        <input class="tvq-char-stat-input" type="text" name="data.upgradeStats.intelligence" data-dtype="Number" value="{{actor.data.data.upgradeStats.intelligence}}">
+      </div>
+    {{/if}}
+
+    <p class="tvq-upgradestat-max">Max: 5</p>
+
+  </div>
+
+</form>

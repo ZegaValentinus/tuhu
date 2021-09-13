@@ -202,6 +202,7 @@ export default class touhouvqItemSheet extends ItemSheet {
     const data = super.getData();
 
     data.config = CONFIG.touhouvq;
+    data.isGM = game.user.isGM;
 
     return data;
   }

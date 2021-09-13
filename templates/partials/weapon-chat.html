@@ -4,8 +4,8 @@
             <p>{{localize 'touhouvq.type.melee'}} - {{rarityLabel}}</p>
         {{/if}}
         {{#if (eq rollData.weaponTypeValue "ranged")}}
-        <p>{{localize 'touhouvq.type.ranged'}} - {{rarityLabel}}</p>
-    {{/if}}
+            <p>{{localize 'touhouvq.type.ranged'}} - {{rarityLabel}}</p>
+        {{/if}}
     </div>
     <div class="dice-result">
         <img class="tvq-weaponcheck-img" src="{{rollData.itemImg}}">
@@ -39,6 +39,12 @@
                 {{rollData.itemName}}
             </div>
         {{/if}}
+        <div class="dice-flavor">
+            {{#ifNotEquals firinglinebuff 0}}
+                <!-- If I am here, the character that is making this roll is under the firing line effect -->
+                <p class="flavor-boosted">{{localize "touhouvq.raceskill.lunarrabbit"}} : +{{firinglinebuff}} {{localize "touhouvq.sheet.damagePoints"}}</p>
+            {{/ifNotEquals}}
+        </div>
         <div class="tvq-values-dices">
             {{#if rollData.perkValue}}
 
@@ -47,9 +53,28 @@
                     <div class="tvq-flex-weapon">
                         <div class="tvq-flex-weapon-1">
                             <img src="systems/touhouvq/assets/img/swords.png">
-                            <p class="{{critTotal rollResult.dice}}">
-                                {{rollResult.total}}
-                            </p>
+                            {{#if (eq rollData.weaponTypeValue "melee")}}
+                                <p class="{{critTotal rollResult.dice}} tvq-damagewidthauto">
+                                    {{rollResult.total}}
+                                </p>
+                                <p class="tvq-meleedamage tvq-damagewidthauto">
+                                    + {{strengthDamage}}
+                                </p>
+                                {{#ifNotEquals firinglinebuff 0}}
+                                    <p class="tvq-lunarrabbitdamage tvq-damagewidthauto">
+                                        + {{firinglinebuff}}
+                                    </p>
+                                {{/ifNotEquals}}
+                            {{else}}
+                                <p class="{{critTotal rollResult.dice}}">
+                                    {{rollResult.total}}
+                                </p>
+                                {{#ifNotEquals firinglinebuff 0}}
+                                    <p class="tvq-lunarrabbitdamage tvq-damagewidthauto">
+                                        + {{firinglinebuff}}
+                                    </p>
+                                {{/ifNotEquals}}
+                            {{/if}}
                         </div>
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
                             <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
@@ -73,9 +98,28 @@
 
                         <div class="tvq-flex-weapon-1">
                             <img src="systems/touhouvq/assets/img/swords.png">
-                            <p class="{{critTotal rollResult.dice}}">
-                                {{rollResult.total}}
-                            </p>
+                            {{#if (eq rollData.weaponTypeValue "melee")}}
+                                <p class="{{critTotal rollResult.dice}} tvq-damagewidthauto">
+                                    {{rollResult.total}}
+                                </p>
+                                <p class="tvq-meleedamage tvq-damagewidthauto">
+                                    + {{strengthDamage}}
+                                </p>
+                                {{#ifNotEquals firinglinebuff 0}}
+                                    <p class="tvq-lunarrabbitdamage tvq-damagewidthauto">
+                                        + {{firinglinebuff}}
+                                    </p>
+                                {{/ifNotEquals}}
+                            {{else}}
+                                <p class="{{critTotal rollResult.dice}}">
+                                    {{rollResult.total}}
+                                </p>
+                                {{#ifNotEquals firinglinebuff 0}}
+                                    <p class="tvq-lunarrabbitdamage tvq-damagewidthauto">
+                                        + {{firinglinebuff}}
+                                    </p>
+                                {{/ifNotEquals}}
+                            {{/if}}
                         </div>
 
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">

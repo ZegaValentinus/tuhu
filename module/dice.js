@@ -41,6 +41,16 @@ export async function StatCheck({
 
     let rollResult;
 
+    //Check if character have the frolic skill
+    let frolicValue = 0;
+    if(actorData.data.data.race === "earthrabbit") {
+        console.log("Tu es un lapin de la Terre !");
+        if(actorData.isOwner) {
+            console.log("Tu es l'owner de la fiche !");
+            frolicValue = 1;
+        }
+    }
+
     const messageTemplate = "systems/touhouvq/templates/chat/stat-check-" + statType + ".html";
 
     if (numDivision % 2 == 0) {
@@ -68,7 +78,10 @@ export async function StatCheck({
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
-                rolls: rolls
+                rolls: rolls,
+                actorID: actorData.data._id,
+                race: actorData.data.data.race,
+                frolicValue: frolicValue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -96,7 +109,10 @@ export async function StatCheck({
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
-                rolls: rolls
+                rolls: rolls,
+                actorID: actorData.data._id,
+                race: actorData.data.data.race,
+                frolicValue: frolicValue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -130,7 +146,10 @@ export async function StatCheck({
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
-                rolls: rolls
+                rolls: rolls,
+                actorID: actorData.data._id,
+                race: actorData.data.data.race,
+                frolicValue: frolicValue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -160,7 +179,10 @@ export async function StatCheck({
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
-                rolls: rolls
+                rolls: rolls,
+                actorID: actorData.data._id,
+                race: actorData.data.data.race,
+                frolicValue: frolicValue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -403,6 +425,12 @@ export async function TraitCheck({
     let stat1;
     let stat2;
 
+    /* active effects vars */
+
+    //Lunar Rabbit's "firingline"
+    let activeFiringline = 0;
+    let firinglinebuff = 0;
+
     if (traitType == 1) {
         stat1 = StrengthStats;
         stat2 = ResilienceStats;
@@ -420,6 +448,9 @@ export async function TraitCheck({
         stat2 = StrengthStats;
     }
     if (traitType == 5) {
+        //Check if lunar rabbit using firingline : here, we are just putting a mark for later : for buffed check
+        activeFiringline = 1;
+
         stat1 = AgilityStats;
         stat2 = DisciplineStats;
     }
@@ -440,6 +471,9 @@ export async function TraitCheck({
         stat2 = MagicStats;
     }
     if (traitType == 10) {
+        //Check if lunar rabbit using firingline : here, we are just putting a mark for later : for buffed check
+        activeFiringline = 1;
+
         stat1 = DisciplineStats;
         stat2 = PerceptionStats;
     }
@@ -464,12 +498,35 @@ export async function TraitCheck({
 
     let numDivision = Math.floor(addiNum / 10);
 
-    numDivision -= 1;
+    //Check if lunar rabbit under firing line active effect
+    let actualStatLunarRabbit = Math.floor(DisciplineStats / 10);
+
+    if(actorData.isOwner) {
+        let firingline = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
+        if(firingline) {
+            if(activeFiringline === 1) {
+                //Now, our character is a lunar rabbit, under the firing line active effect, and using a buffed check
+                console.log("Using firing line !");
+                activeFiringline = 2;
+            }
+        }
+    }
 
     const messageTemplate = "systems/touhouvq/templates/chat/task-check-" + traitType + ".html";
 
     if (fatiguePoints == null || fatiguePoints == 0) {
-        const rollResult1 = d20 + ` + ` + numDivision + d4;
+
+        let rollResult1 = 0;
+
+        if(activeFiringline === 2) {
+            //Check is Lunar rabbit is under firing line buff and using buffed stats
+            firinglinebuff = actualStatLunarRabbit + d4;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff;
+        } else {
+            //Normal trait check
+            rollResult1 = d20 + ` + ` + numDivision + d4;
+        }
+
         let rollResult = new Roll(rollResult1, actorData).roll();
 
         let rolls = [d20];
@@ -485,7 +542,8 @@ export async function TraitCheck({
             stat2: stat2,
             stat1: stat1,
             numDivision: numDivision,
-            rolls: rolls
+            rolls: rolls,
+            firinglinebuff: firinglinebuff
         }
 
         let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -497,7 +555,18 @@ export async function TraitCheck({
 
         rollResult.toMessage(messageData2);
     } else {
-        const rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6;
+
+        let rollResult1 = 0;
+
+        if(activeFiringline === 2) {
+            //Check is Lunar rabbit is under firing line buff and using buffed stats
+            firinglinebuff = actualStatLunarRabbit + d4;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6;
+        } else {
+            //Normal trait check
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6;
+        }
+
         let rollResult = new Roll(rollResult1, actorData).roll();
 
         let rolls = [d20];
@@ -508,6 +577,10 @@ export async function TraitCheck({
 
         rolls.push(d6);
 
+        //Lunar rabbit's firing line buff
+        let firinglinebuff = actualStatLunarRabbit + d4;
+        rolls.push(firinglinebuff);
+
         let messageData = {
             speaker: ChatMessage.getSpeaker(),
             rollResult: rollResult,
@@ -516,7 +589,8 @@ export async function TraitCheck({
             stat2: stat2,
             stat1: stat1,
             numDivision: numDivision,
-            rolls: rolls
+            rolls: rolls,
+            firinglinebuff: firinglinebuff
         }
         
         let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -556,11 +630,27 @@ export async function weaponAttack({
 
     let rollResult = new Roll(damage, actorData).roll();
 
+    let strengthDamage1 = actorData.data.data.stats.strength;
+
+    let strengthDamage = Math.floor(strengthDamage1 / 10);
+
+    let firinglinebuff = 0;
+
+    //Checking if character is under the "firing line" effect
+    if(actorData.isOwner) {
+        let firingline = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
+        if(firingline) {
+            firinglinebuff = Math.floor(actorData.data.data.stats.discipline / 10)-1;
+        }
+    }
+
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
         rollData: rollData,
         rollResult: rollResult,
-        rarityLabel: rarityLabel
+        strengthDamage: strengthDamage,
+        rarityLabel: rarityLabel,
+        firinglinebuff: firinglinebuff
     }
 
     let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -2088,27 +2178,20 @@ export async function spellcardAttack({
                     }
                 } else {
 
-                    console.log(rollVar);
-
                     temp1 = Math.floor(Math.random() * 20)+1;
-                    console.log(temp1);
 
                     for (let i = 0; i < rollVar; i++) {
                         temp2 += Math.floor(Math.random() * 8)+1;
                     }
-                    console.log(temp2);
 
                     temp3 = Math.floor(Math.random() * 4)+1;
 
-                    console.log(temp3);
 
                     tempX = Math.floor(Math.random() * 4)+1;
 
-                    console.log(tempX);
 
                     temp = temp1 + temp2 + temp3 - 18;
 
-                    console.log(temp);
 
                     if (temp > 0) {
                         spellcardAttackRoll = temp + ` + ` + tempX;
@@ -2147,4 +2230,58 @@ export async function spellcardAttack({
     }
 
     rollResult.toMessage(messageData2);
+}
+export async function initiativeCheck({
+    raceNum = null,
+    agilityValue = null,
+    perceptionValue = null,
+    actorData = null } = {}) {
+
+    let d10 = "d10";
+
+    let agiNum = Math.floor(agilityValue / 10);
+    let perNum = Math.floor(perceptionValue / 10)*2;
+
+    const messageTemplate = "systems/touhouvq/templates/chat/initiative-check.html";
+
+    let initCheck = agiNum +  ` + ` + perNum + ` + ` + d10;
+
+    let rollResult = new Roll(initCheck, actorData).roll();
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        raceNum: raceNum,
+        agilityValue: agilityValue,
+        perceptionValue: perceptionValue,
+        rollResult: rollResult
+    }
+
+    let htmlContent = await renderTemplate(messageTemplate, messageData);
+
+    let messageData2 = {
+        speaker: ChatMessage.getSpeaker(),
+        content: htmlContent
+    }
+
+    rollResult.toMessage(messageData2);
+
+    /*
+    let statRollFormula = "@damageValue";
+    let traitRollFormula = "@damageValue";
+    
+    let rollFormula = isTraitRoll == "true" ? traitRollFormula : statRollFormula;
+    if (isTraitRoll == "true") {
+        rollFormula -= fatiguePoints*d8;
+    } else {
+        rollFormula -= fatiguePoints*d4;
+    }
+    let rollData = {
+        actionValue: actionValue
+    };
+
+    let messageData = {
+      speaker: ChatMessage.getSpeaker()
+    }
+    new Roll(rollFormula, rollData).roll().toMessage(messageData);
+    */
 }

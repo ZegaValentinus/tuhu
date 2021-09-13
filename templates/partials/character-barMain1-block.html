@@ -2,52 +2,52 @@
 
     <div class="tvq-char-stat">
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-strength tvq-border" data-action-value="{{data.data.stats.strength}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-strength tvq-border" data-action-value="{{data.data.stats.strength}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.strength}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-strength-color">{{localize 'touhouvq.stats.strength'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.strength" value="{{data.data.stats.strength}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.strength" data-dtype="Number" value="{{data.data.stats.strength}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-agility tvq-border" data-action-value="{{data.data.stats.agility}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-agility tvq-border" data-action-value="{{data.data.stats.agility}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.agility}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-agility-color">{{localize 'touhouvq.stats.agility'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.agility" value="{{data.data.stats.agility}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.agility" data-dtype="Number" value="{{data.data.stats.agility}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-resilience tvq-border" data-action-value="{{data.data.stats.resilience}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-resilience tvq-border" data-action-value="{{data.data.stats.resilience}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.resilience}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-endurance-color">{{localize 'touhouvq.stats.resilience'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.resilience" value="{{data.data.stats.resilience}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.resilience" data-dtype="Number" value="{{data.data.stats.resilience}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-discipline tvq-border" data-action-value="{{data.data.stats.discipline}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-discipline tvq-border" data-action-value="{{data.data.stats.discipline}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.discipline}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-discipline-color">{{localize 'touhouvq.stats.discipline'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.discipline" value="{{data.data.stats.discipline}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.discipline" data-dtype="Number" value="{{data.data.stats.discipline}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-perception tvq-border" data-action-value="{{data.data.stats.perception}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-perception tvq-border" data-action-value="{{data.data.stats.perception}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.perception}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-perception-color">{{localize 'touhouvq.stats.perception'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.perception" value="{{data.data.stats.perception}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.perception" data-dtype="Number" value="{{data.data.stats.perception}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-magic tvq-border" data-action-value="{{data.data.stats.magic}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-magic tvq-border" data-action-value="{{data.data.stats.magic}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.magic}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-magic-color">{{localize 'touhouvq.stats.magic'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.magic" value="{{data.data.stats.magic}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.magic" data-dtype="Number" value="{{data.data.stats.magic}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-intelligence tvq-border" data-action-value="{{data.data.stats.intelligence}}" data-fatigue-value="{{data.data.fatigue.value}}">
+        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-intelligence tvq-border" data-action-value="{{data.data.stats.intelligence}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.intelligence}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-intellect-color">{{localize 'touhouvq.stats.intelligence'}}</p>
-                <input class="tvq-char-stat-input" type="text" name="data.stats.intelligence" value="{{data.data.stats.intelligence}}">
+                <input class="tvq-char-stat-input" type="text" name="data.stats.intelligence" data-dtype="Number" value="{{data.data.stats.intelligence}}">
             </div>
         </div>
 
@@ -457,6 +457,9 @@
                         <p class="tvq-side-bloc-p">{{localize "touhouvq.sheettext.raceskill"}}</p>
                         <div class="tvq-perk-line">
                             {{#if (eq actor.data.data.race "human")}}
+                                <a class="show-raceskill" data-race="human">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="human">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -470,6 +473,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.human"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "youkai")}}
+                                <a class="show-raceskill" data-race="youkai">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="youkai">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -483,6 +489,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.youkai"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "ghost")}}
+                                <a class="show-raceskill" data-race="ghost">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="ghost">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -496,7 +505,10 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.ghost"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "vampire")}}
-                                <a class="roll-raceskill" data-race="vampire">
+                                <a class="show-raceskill" data-race="vampire">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                                <a class="roll-raceskill" data-race="vampire" data-action="{{data.data.stats.strength}}" data-fatigue="{{data.data.fatigue.value}}">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
                                 <a class="edit-raceskill" data-race="vampire">
@@ -509,6 +521,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.vampire"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "fairy")}}
+                                <a class="show-raceskill" data-race="fairy">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="fairy">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -522,6 +537,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.fairy"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "crowtengu")}}
+                                <a class="show-raceskill" data-race="crowtengu">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="crowtengu">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -535,6 +553,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.crowtengu"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "whitewolftengu")}}
+                                <a class="show-raceskill" data-race="whitewolftengu">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="whitewolftengu">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -548,6 +569,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.whitewolftengu"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "greattengu")}}
+                                <a class="show-raceskill" data-race="greattengu">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="greattengu">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -561,6 +585,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.greattengu"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "lunarrabbit")}}
+                                <a class="show-raceskill" data-race="lunarrabbit">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="lunarrabbit">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -574,6 +601,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.lunarrabbit"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "oni")}}
+                                <a class="show-raceskill" data-race="oni">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="oni">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -587,6 +617,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.oni"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "amanojaku")}}
+                                <a class="show-raceskill" data-race="amanojaku">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="amanojaku">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -600,6 +633,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.amanojaku"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "inchling")}}
+                                <a class="show-raceskill" data-race="inchling">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="inchling">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -613,6 +649,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.inchling"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "kappa")}}
+                                <a class="show-raceskill" data-race="kappa">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="kappa">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -626,6 +665,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.kappa"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "halfyoukai")}}
+                                <a class="show-raceskill" data-race="halfyoukai">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="halfyoukai">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -639,6 +681,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.halfyoukai"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "celestial")}}
+                                <a class="show-raceskill" data-race="celestial">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="celestial">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -652,6 +697,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.celestial"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "hermit")}}
+                                <a class="show-raceskill" data-race="hermit">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="hermit">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -665,6 +713,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.hermit"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "shinigami")}}
+                                <a class="show-raceskill" data-race="shinigami">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="shinigami">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -678,6 +729,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.shinigami"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "arahitogami")}}
+                                <a class="show-raceskill" data-race="arahitogami">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="arahitogami">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -691,6 +745,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.arahitogami"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "tsukumogami")}}
+                                <a class="show-raceskill" data-race="tsukumogami">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="tsukumogami">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -704,6 +761,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.tsukumogami"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "earthrabbit")}}
+                                <a class="show-raceskill" data-race="earthrabbit">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="earthrabbit">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>
@@ -717,6 +777,9 @@
                             <p class="tvq-startertalent-perk-class">{{localize "touhouvq.raceskill.earthrabbit"}}</p>
                         {{/if}}
                             {{#if (eq actor.data.data.race "yamabiko")}}
+                                <a class="show-raceskill" data-race="yamabiko">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a class="roll-raceskill" data-race="yamabiko">
                                     <i class="fas fa-dice-d20"></i>
                                 </a>

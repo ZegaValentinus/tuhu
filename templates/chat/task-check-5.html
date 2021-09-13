@@ -1,6 +1,11 @@
 
 <div class="dice-roll">
-    <!--<div class="dice-flavor">Hello there !</div>-->
+    <div class="dice-flavor">
+        {{#ifNotEquals firinglinebuff 0}}
+            <!-- If I am here, the character that is making this roll is under the firing line effect -->
+            <p class="flavor-boosted">{{localize "touhouvq.raceskill.lunarrabbit"}} : +{{firinglinebuff}}</p>
+        {{/ifNotEquals}}
+    </div>
     <div class="dice-result">
         <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
             {{localize "touhouvq.sheet.rollStealth1"}}
@@ -57,4 +62,4 @@
         </div>
     </div>
 </div>
-    
+{{log this}}

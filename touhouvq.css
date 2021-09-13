@@ -18,6 +18,22 @@
   flex-direction: row;
   justify-content: center;
 }
+.display-column {
+  flex-direction: column;
+}
+.img-object-sanit {
+  object-fit: scale-down;
+  width: fit-content;
+  margin: 0 auto;
+}
+.flavor-boosted {
+  color: rgb(0 97 134 / 100%) !important;
+  font-size: 12.5px !important;
+  line-height: 10px;
+}
+.boosted {
+  text-shadow: #FC0 1px 0 10px;
+}
 .wrap {
   flex-wrap: wrap;
 }
@@ -32,7 +48,7 @@
 }
 .status-effect {
   color: #741b47 !important;
-  text-shadow: 0 0 6px rgb(0 0 0 / 95%);
+  text-shadow: 0 0 6px rgb(0 0 0 / 32%);
   font-weight: bold;
 }
 .magic-points {
@@ -75,6 +91,9 @@
   color: #8cbc08 !important;
   font-weight: bold !important;
 }
+.inflicted-damage {
+  color: rgb(173, 0, 0);
+}
 .m-0 {
   margin: 0 !important;
 }
@@ -83,6 +102,9 @@
 }
 .mr-10 {
   margin-right: 10px !important;
+}
+.mb-10 {
+  margin-bottom: 10px !important;
 }
 .touhouvq.sheet.item form {
   display: flex;
@@ -152,8 +174,41 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   top: 0;
   left: 0;
 }
-.tvq-char-stat-bloc-intelligence #context-menu, .tvq-char-stat-bloc-resilience #context-menu, .tvq-char-stat-bloc-discipline #context-menu, .tvq-char-stat-bloc-perception #context-menu {
-  width: 166px !important;
+.tvq-activeeffects {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.tvq-activeeffects-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tvq-activeeffects-div1 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tvq-activeeffects-div2 {
+  width: 50%;
+}
+.tvq-activeeffects-div p {
+  width: 50%;
+  text-align: left;
+  margin: 0 0 0 8px;
+}
+.tvq-deleteeffect, .tvq-editeffect {
+  width: 70px;
+  margin: 0 2px;
+}
+.tvq-activestatbuff {
+  border: 1px solid #ffc400 !important;
+  box-shadow: 0 0 5px 1px #ffc400c5 !important;
+}
+.tvq-char-stat-bloc-magic #context-menu, .tvq-char-stat-bloc-agility #context-menu, .tvq-char-stat-bloc-strength #context-menu, .tvq-char-stat-bloc-intelligence #context-menu, .tvq-char-stat-bloc-resilience #context-menu, .tvq-char-stat-bloc-discipline #context-menu, .tvq-char-stat-bloc-perception #context-menu {
+  width: 190px !important;
 }
 .touhouvq.sheet.item .sheet-description .editor, .touhouvq.sheet.item .sheet-perk .editor, .touhouvq.sheet.item .sheet-perk-2 .editor {
   height: 84px;
@@ -271,7 +326,10 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 .tvq-upperside-person #context-menu {
   top: calc(100% + 0px);
   bottom: unset !important;
-  width: 174px !important;
+  width: 216px !important;
+}
+.tvq-upperside-person .tvq-green, .tvq-upperside-person .tvq-darkgreen {
+  margin: 0 !important;
 }
 .fa-male {
   height: 27px;
@@ -888,22 +946,26 @@ h3.thv-h3 {
   height: 157px;
 }
 .tvq-actorimg {
-  width: 84%;
+  width: 154px;
+  height: 154px;
+  margin-right: 36px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 .tvq-actor-img img {
-  width: 154px;
-  border-radius: 5px;
-  height: 154px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: unset;
+  max-height: unset;
+  object-fit: cover;
+  border-radius: 6px;
 }
 .tvq-top-banner img {
   position: absolute;
   top: 30px;
   right: 0;
-  width: 556px;
+  width: 542px;
   border-radius: 0;
   z-index: 1;
 }
@@ -960,15 +1022,16 @@ h1 {
 }
 .tvq-knowledge-checkbox {
   flex: 0 0 17px !important;
-  margin: 0 !important;
+  margin: 0 -1px !important;
   width: 0px !important;
   height: 13px !important;
   flex: 0 0 16px;
   justify-content: center;
 }
 .tvq-knowledge p {
-  margin: 0 10px 0 0 !important;
+  margin: 0 9px 0 0 !important;
   font-size: 11px !important;
+  letter-spacing: -0.2px;
 }
 .tvq-deathcheck-roll {
   cursor: pointer;
@@ -1046,6 +1109,9 @@ h1 {
 .tvq-dice-result {
   position: relative;
 }
+.tvq-dice-result-height {
+  height: 54px;
+}
 .tvq-taskcheck-resulttotal {
   font-family: 'Domine', serif !important;
   font-weight: 600;
@@ -1058,6 +1124,32 @@ h1 {
   top: 13px;
   left: 1px;
   text-shadow: #efefef 0px 0 8px;
+}
+.tvq-skillcard-img {
+  width: 132px !important;
+  height: auto !important;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  -webkit-mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99));
+  mask: radial-gradient(circle farthest-side,#0000 50%,#000);
+}
+.tvq-skillcard-img2 {
+  width: 180px !important;
+  height: auto !important;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  -webkit-mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99));
+  mask: radial-gradient(circle farthest-side,#0000 50%,#000);
+}
+.tvq-vampire-img-raceskill {
+  position: absolute !important;
+  width: 65px !important;
+  opacity: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tchat-card .tchat-info .dice-roll {
+  width: 100%;
 }
 .tvq-taskcheck-img {
   width: auto;
@@ -1188,7 +1280,18 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
 }
-.tvq-values-dices p {
+.tvq-meleedamage {
+  margin-left: 8px !important;
+  color: #ff0000bf !important;
+}
+.tvq-lunarrabbitdamage {
+  margin-left: 8px !important;
+  color: #000ba1bf !important;
+}
+.tvq-damagewidthauto {
+  width: auto !important;
+}
+.tvq-values-dices p:not(.tvq-raceskill-total-1, .tvq-raceskill-total-2) {
   text-align: center;
   font-family: 'Domine', serif !important;
   font-weight: 600;
@@ -1197,8 +1300,8 @@ h1 {
   position: relative;
   color: black;
   text-align: center;
-  width: 100%;
-  margin-top: 6px;
+  width: auto;
+  margin-top: 1px;
   text-shadow: #efefef 0px 0 8px;
 }
 .tvq-weaponperk p {
@@ -1226,6 +1329,9 @@ h1 {
 .tvq-flex-weapon-1 {
   position: relative;
   width: -webkit-fill-available;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .tvq-flex-weapon-2 {
   width: -webkit-fill-available;
@@ -1429,9 +1535,11 @@ img {
 }
 .tvq-side-bloc-height-2 .editor .editor-content p span {
   font-size: 14px !important;
+  background-color: unset !important;
 }
 .tvq-side-bloc-height .tvq-charInfos-div span, .tvq-side-bloc-height .tvq-charInfos-div-2 span {
   font-size: 11px !important;
+  background-color: unset !important;
 }
 .charInfos-1 {
   padding: 2px 4px 0 4px;
@@ -1464,6 +1572,7 @@ img {
   font-family: 'Carme', sans-serif !important;
   font-size: 12px !important;
   line-height: 12.5px !important;
+  background-color: unset !important;
 }
 .tvq-damagediv {
   font-family: "Signika", sans-serif !important;
@@ -2883,8 +2992,47 @@ select.tvq-select-rarity:focus {
   width: 100%;
   text-shadow: #efefef 0px 0 8px;
 }
+.tvq-raceskill-total-1 {
+  font-family: 'Kreon', serif !important;
+  margin: 8px 0 0 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 17px;
+  z-index: 8;
+  position: relative;
+  color: black;
+  text-align: center;
+  width: 100%;
+  text-shadow: unset;
+}
+.tvq-raceskill-total-2 {
+  font-family: 'Kreon', serif !important;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 17px;
+  z-index: 8;
+  position: relative;
+  color: black;
+  text-align: center;
+  width: 100%;
+  text-shadow: unset;
+}
 .tvq-hide {
   display: none !important;
+}
+.tvq-skillcard-div2 {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+}
+.tvq-choosetsukumogami {
+  width: 45% !important;
+  font-size: 13px !important;
+  height: 60px !important;
+  position: relative !important;
+  line-height: 16px !important;
+  cursor: pointer;
 }
 
 /* knowledge */
@@ -2910,4 +3058,94 @@ select.tvq-select-rarity:focus {
 .tvq-knowledge-bloc2 button {
   width: 72%;
   margin: 1% 0;
+}
+
+/* armor sheet */
+.tvq-armorinput {
+  padding: 5px !important;
+  text-align: center !important;
+  width: 50px !important;
+  background: rgba(0, 0, 0, 0.05);
+  font-family: "Signika", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  resize: none;
+  letter-spacing: -0.4px !important;
+  border: unset !important;
+}
+
+/* upgrade stat */
+.upgradestat-title {
+  width: 100%;
+}
+
+.tvq-upgradestat {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.tvq-upgradestat p {
+  font-size: 20px !important;
+  margin: 3px 0px 0 0 !important;
+  font-family: 'Kreon', serif !important;
+}
+
+.tvq-upgradestat .tvq-char-stat-input {
+  width: 40px !important;
+  margin: 0 auto !important;
+  border: 2px groove #eeede0b5 !important;
+  border-radius: 4px;
+  height: 31px !important;
+}
+
+.comp-img {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 16px 23%;
+}
+
+.forcomp-upper {
+  font-size: 15px !important;
+  text-transform: unset !important;
+  font-family: "Signika", sans-serif !important;
+  color: rgb(0 97 134 / 80%) !important;
+  text-align: center !important;
+}
+
+.tvq-skillcard {
+  width: 100%;
+}
+
+.margint {
+  margin: 3px 0 !important;
+}
+
+.tvq-frolic-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.tvq-frolic-button {
+  width: 82px;
+  margin: 2px 0;
+  cursor: pointer;
+}
+
+.tvq-usehuman {
+  cursor: pointer;
+}
+
+.tvq-raceskilllunarrabbit {
+  cursor: pointer;
+}
+
+.tvq-choosevampire {
+  cursor: pointer;
 }

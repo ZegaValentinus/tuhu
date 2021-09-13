@@ -80,7 +80,8 @@ touhouvq.textData = {
   effect: "touhouvq.itemText.effect",
   attack: "touhouvq.sheet.attack",
   XPCostText: "touhouvq.sheet.XPCostText",
-  LVRequiredText: "touhouvq.sheet.LVRequiredText"
+  LVRequiredText: "touhouvq.sheet.LVRequiredText",
+  armorText: "touhouvq.sheet.armor"
 }
 
 touhouvq.spellcardDamageSign = {
@@ -164,3 +165,12 @@ touhouvq.spellcardTextData = {
   effectDreamsigh3: "touhouvq.spellcardTextData.effectDreamsigh3",
   effectDreamsigh4: "touhouvq.spellcardTextData.effectDreamsigh4"
 }
+
+touhouvq.selfhelp = [
+  "strength",
+  "agility",
+  "resilience",
+  "discipline",
+  "perception",
+  "intelligence"
+]

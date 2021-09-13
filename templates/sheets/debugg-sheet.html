@@ -1,12 +1,21 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
   <div class="tvq-weaponsheet-main sheet-items">
-  
-    {{#each actor.effects as |effect id|}}
-      <p>{{effect.label}}</p><br>
+
+    <div class="tvq-activeeffects">
+      {{#each actor.effects as |effect key|}}
+      <div class="tvq-activeeffects-div" data-effect-id="{{effect._id}}">
+        <div class="tvq-activeeffects-div1">
+          <p>{{effect.label}}</p>
+        </div>
+        <div class="tvq-activeeffects-div2">
+          <button class="tvq-deleteeffect" type="button">Retirer</button>
+          <button class="tvq-editeffect" type="button">Editer</button>
+        </div>
+      </div>
     {{/each}}
+    </div>
 
   </div>
 
 </form>
-{{log this}}

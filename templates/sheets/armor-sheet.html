@@ -1,0 +1,163 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <!--
+    <header class="sheet-header">
+    </header>
+  -->
+
+  <div class="tvq-weaponsheet-main sheet-items">
+
+    <div class="tvq-weaponsheet-div1">
+
+      {{#if (eq data.data.rarity "common")}}
+        <div class="tvq-weaponsheet-div1-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+          </div>
+      {{/if}}
+
+      {{#if (eq data.data.rarity "uncommon")}}
+        <div class="tvq-weaponsheet-div2-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.rarity "rare")}}
+        <div class="tvq-weaponsheet-div3-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.rarity "singular")}}
+        <div class="tvq-weaponsheet-div4-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.rarity "unique")}}
+        <div class="tvq-weaponsheet-div5-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (eq data.data.rarity "youkai")}}
+        <div class="tvq-weaponsheet-div6-img">
+          {{#if isGM}}
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+          {{else}}
+            <img src="{{item.img}}" title="{{item.name}}"/>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      <div class="tvq-weaponsheet-div1-rarity">
+        <div class="tvq-weaponsheet-text-rarity">{{localize config.textData.weaponRarityText}}</div>
+
+        {{#if (eq data.data.rarity "common")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-common">
+        {{/if}}
+
+        {{#if (eq data.data.rarity "uncommon")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-uncommon">
+        {{/if}}
+
+        {{#if (eq data.data.rarity "rare")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-rare">
+        {{/if}}
+
+        {{#if (eq data.data.rarity "singular")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-singular">
+        {{/if}}
+
+        {{#if (eq data.data.rarity "unique")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-unique">
+        {{/if}}
+
+        {{#if (eq data.data.rarity "youkai")}}
+          <select name="data.rarity" class="tvq-select-rarity tvq-rarity-youkai">
+        {{/if}}
+
+          {{#select data.data.rarity}}
+            {{#each config.rarityTypes as |name type|}}
+              {{#if @last}}
+              <!-- afficher youkaitype only if gamemaster -->
+              {{else}}
+                <option class="tvq-rarity-{{type}}" value="{{type}}">{{localize name}}</option>
+              {{/if}}
+            {{/each}}
+          {{/select}}
+        </select>
+      </div>
+
+    </div>
+  
+    <div class="tvq-weaponsheet-div2">
+
+      <div class="tvq-weaponsheet-div2-intro">
+        {{#if (eq data.data.rarity "common")}}
+          <h1><input class="tvq-rarity-common" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+
+        {{#if (eq data.data.rarity "uncommon")}}
+          <h1><input class="tvq-rarity-uncommon" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+
+        {{#if (eq data.data.rarity "rare")}}
+          <h1><input class="tvq-rarity-rare" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+
+        {{#if (eq data.data.rarity "singular")}}
+          <h1><input class="tvq-rarity-singular" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+
+        {{#if (eq data.data.rarity "unique")}}
+          <h1><input class="tvq-rarity-unique-2" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+
+        {{#if (eq data.data.rarity "youkai")}}
+          <h1><input class="tvq-rarity-youkai-2" name="name" type="text" value="{{item.name}}"/></h1>
+        {{/if}}
+      </div>
+
+      <div class="tvq-weaponsheet-div2-desc">
+          <input class="tvq-armorinput" name="data.value" type="text" value="{{data.data.value}}"/>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.armorText}}</div>
+      </div>
+
+      <div class="tvq-weaponsheet-div2-desc">
+        <div class="sheet-perk">
+          <textarea name="data.description" rows="4" cols="33" spellcheck="false">{{data.data.description}}</textarea>
+        </div>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.descText}}</div>
+      </div>
+
+      <div class="tvq-weaponsheet-div2-perk">
+        <div class="sheet-perk-2">
+          <textarea name="data.perk" rows="3" cols="33" spellcheck="false">{{data.data.perk}}</textarea>
+        </div>
+        <div class="tvq-weaponsheet-text">{{localize config.textData.perkText}}</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>
