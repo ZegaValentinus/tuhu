@@ -331,7 +331,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 .tvq-upperside-person .tvq-green, .tvq-upperside-person .tvq-darkgreen {
   margin: 0 !important;
 }
-.fa-male {
+.fa-male:not(.fa-fw) {
   height: 27px;
   font-size: 31px;
   padding: 2px 5px;
@@ -358,7 +358,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   font-size: 30px;
   padding: 3px 5px 5px 4px !important;
 }
-.tvq-button-traitroll #context-menu {
+.tvq-button-traitroll #context-menu:not(.expand-up) {
   width: 220px !important;
 }
 .tvq-button-traitroll .context-item .fa-dice-d20 {
@@ -698,7 +698,7 @@ section.item-list {
 .bloc-cw input {
   border: none;
 }
-li.context-item {
+.sheet-body li.context-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -772,7 +772,7 @@ h3.thv-h3 {
   flex-direction: row;
   position: relative;
 }
-#context-menu {
+#context-menu:not(.expand-up) {
   min-width: 118px !important;
 }
 .tvq-button-traitroll #context-menu li.context-item {
@@ -1285,7 +1285,7 @@ h1 {
   color: #ff0000bf !important;
 }
 .tvq-lunarrabbitdamage {
-  margin-left: 8px !important;
+  margin-left: 5px !important;
   color: #000ba1bf !important;
 }
 .tvq-damagewidthauto {

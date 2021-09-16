@@ -63,7 +63,7 @@ export async function StatCheck({
         if (fatiguePoints != 0) {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4;
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
 
@@ -96,7 +96,7 @@ export async function StatCheck({
         } else {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8;
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
 
@@ -129,7 +129,7 @@ export async function StatCheck({
         if (fatiguePoints != 0) {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4;
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
 
@@ -164,7 +164,7 @@ export async function StatCheck({
         } else {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
 
@@ -198,317 +198,91 @@ export async function StatCheck({
     }
 }
 
-export async function LocCheck(locData) {
-    const messageTemplate = "systems/touhouvq/templates/partials/tchat-card.html";
+/**
+ * Returns a string of css classes given the loca and whether it's been hit or not.
+ * @param  {Object} loca std object : can contain booleans 'crit' and/or 'armor' or none of them.
+ * @param  {Boolean} isHit whether that loca has been it (default false).
+ * 
+ * @returns {String} list of css classes to be added to the <p> element (can be '').
+ */
+ function getLocaClasses(loca, isHit = false) {
+    let cssClasses = '';
+    if ( isHit ) {
+      cssClasses = loca.crit === true ? 'crit bold' : 'bold';
+    } else {
+      cssClasses = loca.crit === true ? 'crit-no-bold' : '';
+    }
+    return loca.armor === true ? `${cssClasses} armor`: cssClasses;
+  }
+  
+  export async function LocCheck(locData) {
+    const race = CONFIG.touhouvq.races[locData.raceNum];
+    const template = "systems/touhouvq/templates/partials/tchat-card.html";
+  
+    //roll the loca hit
+    const locaRoll = await new Roll('1d10').evaluate({async: true});
+    const rollResult = parseInt(locaRoll.result);
+    //find out which loca has been hit : 
+    const locaHit = race.locaList.filter( loca => loca.range.includes(rollResult))[0];
+  
+    //prepare the templateData
+    const templateData = {
+      rollResult: rollResult,
+      bodyClass: getLocaClasses(locaHit, true),
+      raceNum: locData.raceNum,
+      raceName:  game.i18n.localize(`touhouvq.race.${locData.raceNum}`),
+      localist: race.locaList.map( loca => {
+        const isHit = loca.id === locaHit.id;
+        return {
+          cssClasses: getLocaClasses(loca, isHit),
+          isHit: isHit,
+          name: game.i18n.localize(`touhouvq.loca.${loca.id}`)
+        }
+      })
+    }
+  
+    const html = await renderTemplate(template, templateData);
+  
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      sound: CONFIG.sounds.dice,
+      roll: locaRoll,
+      content: html,
+      user: game.user.id
+    });
+  }
 
-    let raceName;
+export async function TraitCheck(actor, traitRollKey) {
+    if ( !actor ) {return; }
+    const actorData = actor.data;
+    const traitRoll = CONFIG.touhouvq.traitRolls[traitRollKey];
+    const stat1 = foundry.utils.getProperty(actorData.data.stats, traitRoll.stats[0]);
+    const stat2 = foundry.utils.getProperty(actorData.data.stats, traitRoll.stats[1]);
+    const numDivision = Math.floor((stat1 + stat2) / 10);
+    const fatiguePoints = actorData.data.fatigue.value;
+    const traitType = traitRoll.traitType;
 
-    let humanValue = 0;
-    let youkaiValue = 0;
-    let ghostValue = 0;
-    let vampireValue = 0;
-    let fairyValue = 0;
-    let crowtenguValue = 0;
-    let whitewolftenguValue = 0;
-    let greattenguValue = 0;
-    let lunarrabbitValue = 0;
-    let oniValue = 0;
-    let amanojakuValue = 0;
-    let inchlingValue = 0;
-    let kappaValue = 0;
-    let halfyoukaiValue = 0;
-    let celestialValue = 0;
-    let hermitValue = 0;
-    let shinigamiValue = 0;
-    let arahitogamiValue = 0;
-    let tsukumogamiValue = 0;
-    let earthrabbitValue = 0;
-    let yamabikoValue = 0;
-    
-    if (locData.raceNum == "human") {
-        locData.raceName = "Humain";
-        humanValue = 1;
-    }
-    if (locData.raceNum == "youkai") {
-        locData.raceName = "Youkai";
-        youkaiValue = 1;
-    }
-    if (locData.raceNum == "ghost") {
-        locData.raceName = "Fantôme";
-        ghostValue = 1;
-    }
-    if (locData.raceNum == "vampire") {
-        locData.raceName = "Vampire";
-        vampireValue = 1;
-    }
-    if (locData.raceNum == "fairy") {
-        locData.raceName = "Fée";
-        fairyValue = 1;
-    }
-    if (locData.raceNum == "crowtengu") {
-        locData.raceName = "Tengu Corbeau";
-        crowtenguValue = 1;
-    }
-    if (locData.raceNum == "whitewolftengu") {
-        locData.raceName = "Tengu Loup Blanc";
-        whitewolftenguValue = 1;
-    }
-    if (locData.raceNum == "greattengu") {
-        locData.raceName = "Grand Tengu";
-        greattenguValue = 1;
-    }
-    if (locData.raceNum == "lunarrabbit") {
-        locData.raceName = "Lapin Lunaire";
-        lunarrabbitValue = 1;
-    }
-    if (locData.raceNum == "oni") {
-        locData.raceName = "Oni";
-        oniValue = 1;
-    }
-    if (locData.raceNum == "amanojaku") {
-        locData.raceName = "Amanojaku";
-        amanojakuValue = 1;
-    }
-    if (locData.raceNum == "inchling") {
-        locData.raceName = "Kobito";
-        inchlingValue = 1;
-    }
-    if (locData.raceNum == "kappa") {
-        locData.raceName = "Kappa";
-        kappaValue = 1;
-    }
-    if (locData.raceNum == "halfyoukai") {
-        locData.raceName = "Demi-Youkai";
-        halfyoukaiValue = 1;
-    }
-    if (locData.raceNum == "celestial") {
-        locData.raceName = "Céleste";
-        celestialValue = 1;
-    }
-    if (locData.raceNum == "hermit") {
-        locData.raceName = "Ermite";
-        hermitValue = 1;
-    }
-    if (locData.raceNum == "shinigami") {
-        locData.raceName = "Shinigami";
-        shinigamiValue = 1;
-    }
-    if (locData.raceNum == "arahitogami") {
-        locData.raceName = "Arahitogami";
-        arahitogamiValue = 1;
-    }
-    if (locData.raceNum == "tsukumogami") {
-        locData.raceName = "Tsukumogami";
-        tsukumogamiValue = 1;
-    }
-    if (locData.raceNum == "earthrabbit") {
-        locData.raceName = "Lapin de la Terre";
-        earthrabbitValue = 1;
-    }
-    if (locData.raceNum == "yamabiko") {
-        locData.raceName = "Yamabiko";
-        yamabikoValue = 1;
-    }
-
-    let rollResult = Math.floor(Math.random() * 10)+1;
-    let theActor = locData.actorData;
-    let theNum = locData.raceNum;
-
-    let one = 0;
-    let two = 0;
-    let three = 0;
-    let four = 0;
-    let five = 0;
-    let six = 0;
-    let seven = 0;
-    let eight = 0;
-    let nine = 0;
-    let ten = 0;
-
-    if (rollResult == 1) {
-        one = 1;
-    }
-    if (rollResult == 2) {
-        two = 1;
-    }
-    if (rollResult == 3) {
-        three = 1;
-    }
-    if (rollResult == 4) {
-        four = 1;
-    }
-    if (rollResult == 5) {
-        five = 1;
-    }
-    if (rollResult == 6) {
-        six = 1;
-    }
-    if (rollResult == 7) {
-        seven = 1;
-    }
-    if (rollResult == 8) {
-        eight = 1;
-    }
-    if (rollResult == 9) {
-        nine = 1;
-    }
-    if (rollResult == 10) {
-        ten = 1;
-    }
-
-    let data = {
-        raceName: raceName,
-        raceNum: theNum,
-        rollResult: rollResult,
-        theActor: theActor,
-        one: one,
-        two: two,
-        three: three,
-        four: four,
-        five: five,
-        six: six,
-        seven: seven,
-        eight: eight,
-        nine: nine,
-        ten: ten,
-        humanValue: humanValue,
-        youkaiValue: youkaiValue,
-        ghostValue: ghostValue,
-        vampireValue: vampireValue,
-        fairyValue: fairyValue,
-        crowtenguValue: crowtenguValue,
-        whitewolftenguValue: whitewolftenguValue,
-        greattenguValue: greattenguValue,
-        lunarrabbitValue: lunarrabbitValue,
-        oniValue: oniValue,
-        amanojakuValue: amanojakuValue,
-        inchlingValue: inchlingValue,
-        kappaValue: kappaValue,
-        halfyoukaiValue: halfyoukaiValue,
-        celestialValue: celestialValue,
-        hermitValue: hermitValue,
-        shinigamiValue: shinigamiValue,
-        arahitogamiValue: arahitogamiValue,
-        tsukumogamiValue: tsukumogamiValue,
-        earthrabbitValue: earthrabbitValue,
-        yamabikoValue: yamabikoValue
-    };
-
-    const html = await renderTemplate(messageTemplate, data);
-
-    const messageData = {
-        speaker: ChatMessage.getSpeaker(),
-        content: html
-    }
-
-    const messageClass = getDocumentClass("ChatMessage");
-
-    messageClass.create(messageData);
-}
-
-export async function TraitCheck({
-    StrengthStats = null,
-    AgilityStats = null,
-    ResilienceStats = null,
-    DisciplineStats = null,
-    PerceptionStats = null,
-    MagicStats = null,
-    IntelligenceStats = null,
-    traitType = null,
-    fatiguePoints = null,
-    actorData = null } = {}) {
-    
     let d4 = "d4";
     let d6 = "d6";
     let d20 = "d20";
     
-    let stat1;
-    let stat2;
-
     /* active effects vars */
 
     //Lunar Rabbit's "firingline"
-    let activeFiringline = 0;
+    let activeFiringline = false;
     let firinglinebuff = 0;
 
-    if (traitType == 1) {
-        stat1 = StrengthStats;
-        stat2 = ResilienceStats;
-    }
-    if (traitType == 2) {
-        stat1 = StrengthStats;
-        stat2 = DisciplineStats;
-    }
-    if (traitType == 3) {
-        stat1 = StrengthStats;
-        stat2 = PerceptionStats;
-    }
-    if (traitType == 4) {
-        stat1 = AgilityStats;
-        stat2 = StrengthStats;
-    }
-    if (traitType == 5) {
-        //Check if lunar rabbit using firingline : here, we are just putting a mark for later : for buffed check
-        activeFiringline = 1;
-
-        stat1 = AgilityStats;
-        stat2 = DisciplineStats;
-    }
-    if (traitType == 6) {
-        stat1 = AgilityStats;
-        stat2 = PerceptionStats;
-    }
-    if (traitType == 7) {
-        stat1 = AgilityStats;
-        stat2 = IntelligenceStats;
-    }
-    if (traitType == 8) {
-        stat1 = ResilienceStats;
-        stat2 = PerceptionStats;
-    }
-    if (traitType == 9) {
-        stat1 = ResilienceStats;
-        stat2 = MagicStats;
-    }
-    if (traitType == 10) {
-        //Check if lunar rabbit using firingline : here, we are just putting a mark for later : for buffed check
-        activeFiringline = 1;
-
-        stat1 = DisciplineStats;
-        stat2 = PerceptionStats;
-    }
-    if (traitType == 11) {
-        stat1 = DisciplineStats;
-        stat2 = MagicStats;
-    }
-    if (traitType == 12) {
-        stat1 = DisciplineStats;
-        stat2 = IntelligenceStats;
-    }
-    if (traitType == 13) {
-        stat1 = PerceptionStats;
-        stat2 = IntelligenceStats;
-    }
-    if (traitType == 14) {
-        stat1 = MagicStats;
-        stat2 = IntelligenceStats;
-    }
-    
-    let addiNum = stat1 + stat2;
-
-    let numDivision = Math.floor(addiNum / 10);
-
     //Check if lunar rabbit under firing line active effect
-    let actualStatLunarRabbit = Math.floor(DisciplineStats / 10);
+    let actualStatLunarRabbit = Math.floor(actorData.data.stats.discipline / 10);
 
-    if(actorData.isOwner) {
-        let firingline = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
-        if(firingline) {
-            if(activeFiringline === 1) {
-                //Now, our character is a lunar rabbit, under the firing line active effect, and using a buffed check
-                console.log("Using firing line !");
-                activeFiringline = 2;
-            }
+    if ( actor.isOwner ) {
+      
+        const firinglineEffect = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
+        if ( traitRoll.firingLine && firinglineEffect ) {
+            //Now, our character is a lunar rabbit, under the firing line active effect, and using a buffed check
+            console.log("Using firing line !");
+            activeFiringline = true;
         }
     }
 
@@ -518,7 +292,7 @@ export async function TraitCheck({
 
         let rollResult1 = 0;
 
-        if(activeFiringline === 2) {
+        if(activeFiringline) {
             //Check is Lunar rabbit is under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff;
@@ -558,7 +332,7 @@ export async function TraitCheck({
 
         let rollResult1 = 0;
 
-        if(activeFiringline === 2) {
+        if(activeFiringline) {
             //Check is Lunar rabbit is under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6;

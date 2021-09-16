@@ -1,158 +1,32 @@
 export async function BodyLoc(bodyData) {
-    const messageTemplate = "systems/touhouvq/templates/partials/tchat-card.html";
-
-    let raceName;
-
-    let humanValue = 0;
-    let youkaiValue = 0;
-    let ghostValue = 0;
-    let vampireValue = 0;
-    let fairyValue = 0;
-    let crowtenguValue = 0;
-    let whitewolftenguValue = 0;
-    let greattenguValue = 0;
-    let lunarrabbitValue = 0;
-    let oniValue = 0;
-    let amanojakuValue = 0;
-    let inchlingValue = 0;
-    let kappaValue = 0;
-    let halfyoukaiValue = 0;
-    let celestialValue = 0;
-    let hermitValue = 0;
-    let shinigamiValue = 0;
-    let arahitogamiValue = 0;
-    let tsukumogamiValue = 0;
-    let earthrabbitValue = 0;
-    let yamabikoValue = 0;
-    
-    if (bodyData.raceNum == "human") {
-        raceName = "Humain";
-        humanValue = 1;
-    }
-    if (bodyData.raceNum == "youkai") {
-        raceName = "Youkai";
-        youkaiValue = 1;
-    }
-    if (bodyData.raceNum == "ghost") {
-        raceName = "Fantôme";
-        ghostValue = 1;
-    }
-    if (bodyData.raceNum == "vampire") {
-        raceName = "Vampire";
-        vampireValue = 1;
-    }
-    if (bodyData.raceNum == "fairy") {
-        raceName = "Fée";
-        fairyValue = 1;
-    }
-    if (bodyData.raceNum == "crowtengu") {
-        raceName = "Tengu Corbeau";
-        crowtenguValue = 1;
-    }
-    if (bodyData.raceNum == "whitewolftengu") {
-        raceName = "Tengu Loup Blanc";
-        whitewolftenguValue = 1;
-    }
-    if (bodyData.raceNum == "greattengu") {
-        raceName = "Grand Tengu";
-        greattenguValue = 1;
-    }
-    if (bodyData.raceNum == "lunarrabbit") {
-        raceName = "Lapin Lunaire";
-        lunarrabbitValue = 1;
-    }
-    if (bodyData.raceNum == "oni") {
-        raceName = "Oni";
-        oniValue = 1;
-    }
-    if (bodyData.raceNum == "amanojaku") {
-        raceName = "Amanojaku";
-        amanojakuValue = 1;
-    }
-    if (bodyData.raceNum == "inchling") {
-        raceName = "Kobito";
-        inchlingValue = 1;
-    }
-    if (bodyData.raceNum == "kappa") {
-        raceName = "Kappa";
-        kappaValue = 1;
-    }
-    if (bodyData.raceNum == "halfyoukai") {
-        raceName = "Demi-Youkai";
-        halfyoukaiValue = 1;
-    }
-    if (bodyData.raceNum == "celestial") {
-        raceName = "Céleste";
-        celestialValue = 1;
-    }
-    if (bodyData.raceNum == "hermit") {
-        raceName = "Ermite";
-        hermitValue = 1;
-    }
-    if (bodyData.raceNum == "shinigami") {
-        raceName = "Shinigami";
-        shinigamiValue = 1;
-    }
-    if (bodyData.raceNum == "arahitogami") {
-        raceName = "Arahitogami";
-        arahitogamiValue = 1;
-    }
-    if (bodyData.raceNum == "tsukumogami") {
-        raceName = "Tsukumogami";
-        tsukumogamiValue = 1;
-    }
-    if (bodyData.raceNum == "earthrabbit") {
-        raceName = "Lapin de la Terre";
-        earthrabbitValue = 1;
-    }
-    if (bodyData.raceNum == "yamabiko") {
-        raceName = "Yamabiko";
-        yamabikoValue = 1;
-    }
-
-    let data = {
-        raceName: raceName,
+    const race = CONFIG.touhouvq.races[bodyData.raceNum];
+    const template = "systems/touhouvq/templates/partials/tchat-card.html";
+  
+    //todo : use function getLocaClasses(loca, hit = false)
+      const templateData = {
         raceNum: bodyData.raceNum,
-        humanValue: humanValue,
-        youkaiValue: youkaiValue,
-        ghostValue: ghostValue,
-        vampireValue: vampireValue,
-        fairyValue: fairyValue,
-        crowtenguValue: crowtenguValue,
-        whitewolftenguValue: whitewolftenguValue,
-        greattenguValue: greattenguValue,
-        lunarrabbitValue: lunarrabbitValue,
-        oniValue: oniValue,
-        amanojakuValue: amanojakuValue,
-        inchlingValue: inchlingValue,
-        kappaValue: kappaValue,
-        halfyoukaiValue: halfyoukaiValue,
-        celestialValue: celestialValue,
-        hermitValue: hermitValue,
-        shinigamiValue: shinigamiValue,
-        arahitogamiValue: arahitogamiValue,
-        tsukumogamiValue: tsukumogamiValue,
-        earthrabbitValue: earthrabbitValue,
-        yamabikoValue: yamabikoValue
-    }
-
-    const html = await renderTemplate(messageTemplate, data);
-
-    const actorActual = bodyData.actorData;
-
-    /* hasPlayerOwner */
-
-    const messageData = {
-        speaker: ChatMessage.getSpeaker(),
-        content: html,
-        user: game.user.id,
-        whisper: [game.user.id]
-    }
-
-    const messageClass = getDocumentClass("ChatMessage");
-
-    messageClass.create(messageData);
-}
+        raceName: game.i18n.localize(`touhouvq.race.${bodyData.raceNum}`),
+        localist: race.locaList.map( loca => {
+          let classes = loca.crit === true ? 'crit-no-bold' : ''; 
+          classes = `${classes} ${loca.armor === true ? 'armor' : ''}`; 
+          return {
+            cssClasses: classes,
+            name: game.i18n.localize(`touhouvq.loca.${loca.id}`)
+          }
+        })
+      }
+  
+      const html = await renderTemplate(template, templateData);
+  
+      const messageData = {
+          speaker: ChatMessage.getSpeaker(),
+          content: html,
+          user: game.user.id,
+          whisper: [game.user.id]
+      };
+  
+      ChatMessage.create(messageData);
+  }
 
 export async function itemShow({
     itemData = null } = {}) {
@@ -490,7 +364,7 @@ export async function raceRoll({
             if(!firingline) {
               const effectData = {
                 label:game.i18n.localize("touhouvq.namesRaceSkill.firingline"),
-                icon: "systems/touhouvq/assets/img/talentsandskills/lunarrabbit/Peloton Entraîné.webp"
+                icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/firingline.webp"
               };
               firingline = await ActiveEffect.create(effectData, {parent: actor});
             }

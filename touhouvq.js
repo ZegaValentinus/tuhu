@@ -1,5 +1,5 @@
 import { touhouvq } from "./module/config.js";
- import * as Tchat from "./module/tchat.js";
+import * as Tchat from "./module/tchat.js";
 import touhouvqItemSheet from "./module/sheets/touhouvqItemSheet.js";
 import touhouvqItem from "./module/touhouvqItem.js";
 import characterSheet from "./module/sheets/characterSheet.js";
@@ -25,6 +25,14 @@ Hooks.once("init", function() {
   console.log("touhouvq | Initialising Touhou:VenturesomeQuest! System");
 
   CONFIG.touhouvq = touhouvq;
+
+  //Updating localist  for races that use casual list
+  Object.entries(CONFIG.touhouvq.races).forEach(([key, entry]) => {
+    if ( entry.locaList === 'useDefault' ) {
+      entry.locaList = CONFIG.touhouvq.defaultLocaList;
+    }
+  });
+
   CONFIG.Item.entityClass = touhouvqItem;
 
   Items.unregisterSheet("core", ItemSheet);
@@ -156,23 +164,53 @@ Hooks.on("renderChatLog", (app, html, data) => {
 
 Hooks.on("renderChatMessage", (app, html, data) => {
   if(!app._roll){return;}
-  if(!app._roll.options.isRaceSkill) {return;}
+
   const actor = game.actors.get(app._roll.options.actorId);
 
+
+  /* EARTH RABBIT RACESKILL - BEGIN */
+
+  //Hide earth rabbit race skill buttons for non sheet owners
+  /* Carter side notes : Here, we want to hide : */
+  /* The buttons of own rolls. We don't want earthrabbits to self-still their own dices. */
+  /* The buttons for people that don't own earth rabbits. */
+  const frolicButtons = html.find('.tvq-frolic-button');
+  const frolicDiv = html.find('.tvq-frolic-buttons');
+
+  if(frolicDiv.length > 0) {
+    const frolicActor = frolicDiv[0].dataset.actor;
+    if(frolicButtons.length > 0) {
+      game.actors.forEach(actor => {
+        if(actor.isOwner && actor.data.data.race === "earthrabbit") {
+          frolicButtons.each( function() {
+            if(actor.data._id === frolicActor) {
+              html.find('.tvq-frolic-buttons')[0].classList.add('tvq-hide');
+            } else {
+              this.classList.remove('tvq-hide');
+            }
+          });
+        }
+      });
+    }
+  }
+
+
+  /* EARTH RABBIT RACESKILL - END */
+
+  if(!app._roll.options.isRaceSkill) {return;}
+
   if(!actor.isOwner) {
+
+    /* HUMAN RACESKILL - BEGIN */
+
     //Hide human race skill button for non sheet owners
     const myButton = html.find('.tvq-usehuman')[0];
-    console.log(myButton);
     if(myButton) {
       myButton.classList.add("tvq-hide");
     }
 
-    //Hide earth rabbit race skill buttons for non sheet owners
-    const myButton1 = html.find('.tvq-frolic-buttons')[0];
-    console.log(myButton1);
-    if(myButton1) {
-      myButton1.classList.add("tvq-hide");
-    }
+    /* HUMAN RACESKILL - END */
+
   }
 });
 
@@ -201,7 +239,7 @@ async function _onUseHuman(event) {
     if(!selfhelp) {
       const effectData = {
         label:game.i18n.localize("touhouvq.namesRaceSkill.selfhelp"),
-        icon: "systems/touhouvq/assets/img/talentsandskills/human/Débrouillardise.webp"
+        icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/selfhelp.webp"
       };
       selfhelp = await ActiveEffect.create(effectData, {parent: actor});
     }
@@ -224,8 +262,9 @@ async function _onChooseVampire(event) {
   const actorID = event.currentTarget.dataset.actorId;
   const actor = game.actors.get(actorID);
 
-  let compname = game.i18n.localize("touhouvq.raceskill.vampire");
+  let compname = game.i18n.localize("touhouvq.namesRaceSkill.savagerecovery");
   let compdesc = game.i18n.localize("touhouvq.raceskillDesc.vampire");
+  let compname1 = game.i18n.localize("touhouvq.raceskill1.vampire");
 
   const regen = 1;
   
@@ -233,6 +272,7 @@ async function _onChooseVampire(event) {
     race: race,
     compname: compname,
     compdesc, compdesc,
+    compname1: compname1,
     regen: regen
   };
 
@@ -247,9 +287,11 @@ async function _onDeleteEffectLunarrabbit(event) {
   const actor = game.actors.get(actorID);
   let firingline = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
   actor.deleteEmbeddedDocuments('ActiveEffect', [firingline.id]);
+  /*
   if(race == "lunarrabbit") {
     document.querySelector(".tvq-button-traitroll li.context-item:nth-child(5n)").classList.add("boosted");
   }
+  */
 }
 
 async function _onChooseTsukumogami(event) {
@@ -264,13 +306,15 @@ async function _onChooseTsukumogami(event) {
   const message = game.messages.get(messageID);
   message.delete();
 
-  let compname = game.i18n.localize("touhouvq.raceskill.tsukumogami");
+  let compname = game.i18n.localize("touhouvq.namesRaceSkill.tsukumogamirecon");
   let compdesc = game.i18n.localize("touhouvq.raceskillDesc.tsukumogami");
+  let compname1 = game.i18n.localize("touhouvq.raceskill1.tsukumogami");
   
   let data = {
     race: race,
     compname: compname,
     compdesc, compdesc,
+    compname1: compname1,
     choice: choice
   };
 
@@ -281,18 +325,36 @@ async function _onChooseTsukumogami(event) {
 }
 
 async function _onRaceskillFrolic(event) {
-  let actorID = event.currentTarget.dataset;
-  const actor = game.actors.get(actorID);
+  event.preventDefault();
+  event.stopPropagation();
+
+  //Get the actor, the one that have is stealing the dice
+  const actor = game.actors.get(game.user.data.character);
+
+  if(!actor) {
+    ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noActor"));
+    return;
+  }
+
+  console.log(actor);
+
+  //Get the actor targeted, the one that have done the roll, and is about to get screwed by the earth rabbit
+  let targetActorID = event.currentTarget.closest(".tvq-frolic-buttons").dataset.actor;
+  const targetActor = game.actors.get(targetActorID);
+
+  //Get the targeted die faces, and it's result
   const faces = event.currentTarget.dataset.faces;
   const result = event.currentTarget.dataset.result;
-  console.log(actorID);
-  console.log(faces);
-  console.log(result);
-  //let firingline = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
-  //actor.deleteEmbeddedDocuments('ActiveEffect', [firingline.id]);
-  /*
-  if(race == "lunarrabbit") {
-    document.querySelector(".tvq-button-traitroll li.context-item:nth-child(5n)").classList.add("boosted");
+
+  if(actor.isOwner) {
+    let frolic = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+
+    if(!frolic) {
+      const effectData = {
+        label:game.i18n.localize("touhouvq.namesRaceSkill.frolic")+" [d"+faces+"]",
+        icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/frolic.webp"
+      };
+      frolic = await ActiveEffect.create(effectData, {parent: actor});
+    }
   }
-  */
 }

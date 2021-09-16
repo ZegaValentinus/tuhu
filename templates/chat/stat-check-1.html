@@ -54,19 +54,16 @@
                 {{/ifEquals}}
             {{/ifEquals}}
         </div>
-        {{#if (eq frolicValue 1)}}
-            {{#if (eq race "earthrabbit")}}
-                <div class="tvq-frolic-buttons">
-                    {{#each rollResult.dice as |object key|}}
-                        {{#ifNotEquals this.faces 20}}
-                            {{#each this.results}}
-                                <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button" data-actor-id="{{actorID}}" data-faces="{{object.faces}}" data-result="{{this.result}}">Voler d{{object.faces}}</button>
-                            {{/each}}
-                        {{/ifNotEquals}}
+
+        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data.data._id}}">
+            {{#each rollResult.dice as |object key|}}
+                {{#ifNotEquals this.faces 20}}
+                    {{#each this.results}}
+                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">Voler d{{object.faces}}</button>
                     {{/each}}
-                </div>
-            {{/if}}
-        {{/if}}
+                {{/ifNotEquals}}
+            {{/each}}
+        </div>
+
     </div>
 </div>
-{{log this}}

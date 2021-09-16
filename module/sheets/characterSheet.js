@@ -389,414 +389,17 @@ export default class characterSheet extends ActorSheet {
     }
   ]
 
-  traitRollsContextMenu = [
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollResistance"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "1";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
+  getTraitRollsContextMenu() {
+    return Object.keys(CONFIG.touhouvq.traitRolls).map( traitRollKey => (
+      {
+        name: game.i18n.localize(`touhouvq.sheet.${traitRollKey}`),
+        icon: '<i class="item-roll fas fa-dice-d20"></i>',
+        callback: (element) => {
+          Dice.TraitCheck(this.actor, traitRollKey);
+        }
       }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollMelee"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "2";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollIntimidation"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "3";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollThrow"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "4";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollStealth"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "5";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollPrecision"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "6";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollSleightHand"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "7";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollMental"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "8";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollMastery"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "9";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollInvestigation"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "10";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollFaith"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "11";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollTechnology"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "12";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollCharisma"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "13";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-    {
-      name: game.i18n.localize("touhouvq.sheet.rollDanmaku"),
-      icon: '<i class="item-roll fas fa-dice-d20"></i>',
-      callback: element => {
-        const StrengthStats = element.data("strength-value");
-        const AgilityStats = element.data("agility-value");
-        const ResilienceStats = element.data("resilience-value");
-        const DisciplineStats = element.data("discipline-value");
-        const PerceptionStats = element.data("perception-value");
-        const MagicStats = element.data("magic-value");
-        const IntelligenceStats = element.data("intelligence-value");
-        const actualFatigue = element.data("fatigue-value");
-        const traitType = "14";
-        let actorData = this.actor;
-
-        Dice.TraitCheck({
-          StrengthStats: StrengthStats,
-          AgilityStats: AgilityStats,
-          ResilienceStats: ResilienceStats,
-          DisciplineStats: DisciplineStats,
-          PerceptionStats: PerceptionStats,
-          MagicStats: MagicStats,
-          IntelligenceStats: IntelligenceStats,
-          fatiguePoints: actualFatigue,
-          traitType: traitType,
-          actorData: actorData
-        })
-      }
-    },
-  ]
+    ))
+  }
 
   itemContextMenu = [
     {
@@ -966,7 +569,7 @@ export default class characterSheet extends ActorSheet {
       new ContextMenu(html, ".tvq-char-stat-bloc-magic", this.statMagicContextMenu);
       new ContextMenu(html, ".tvq-char-stat-bloc-intelligence", this.statIntelligenceContextMenu);
 
-      new ContextMenu(html, ".tvq-button-traitroll", this.traitRollsContextMenu);
+      new ContextMenu(html, ".tvq-button-traitroll", this.getTraitRollsContextMenu());
 
       new ContextMenu(html, ".tvq-button-bodyloc", this.damageLocContextMenu);
 
@@ -1061,6 +664,7 @@ export default class characterSheet extends ActorSheet {
     let element = event.currentTarget;
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.startertalent."+race);
+    let compname1 = game.i18n.localize("touhouvq.startertalent1."+race);
     let compdesc = game.i18n.localize("touhouvq.startertalentDesc."+race);
     const talentSkillType = "startertalent";
     const actor = this.actor;
@@ -1068,7 +672,8 @@ export default class characterSheet extends ActorSheet {
     let data = {
       race: race,
       compdesc: compdesc,
-      compname: compname
+      compname: compname,
+      compname1: compname1
     };
 
     Tchat.talentInfo({
@@ -1084,10 +689,11 @@ export default class characterSheet extends ActorSheet {
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.startertalent."+race);
     let compdesc = game.i18n.localize("touhouvq.startertalentDesc."+race);
+    let compname1 = game.i18n.localize("touhouvq.startertalent1."+race);
     const actor = this.actor;
     const talentSkillType = "startertalent";
     
-    const talentSheet = new TalentsSheet(actor, race, compname, compdesc, talentSkillType);
+    const talentSheet = new TalentsSheet(actor, race, compname, compdesc, compname1, talentSkillType);
 
     talentSheet.render(true);
   }
@@ -1098,10 +704,11 @@ export default class characterSheet extends ActorSheet {
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
     const actor = this.actor;
     const talentSkillType = "raceskill";
     
-    const raceskillSheet = new RaceskillsSheet(actor, race, compname, compdesc, talentSkillType);
+    const raceskillSheet = new RaceskillsSheet(actor, race, compname, compdesc, compname1, talentSkillType);
 
     raceskillSheet.render(true);
   }
@@ -1115,6 +722,7 @@ export default class characterSheet extends ActorSheet {
     const actualFatigue = element.dataset.fatigue;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
 
     if(race == "lunarrabbit") {
       //document.querySelector(".tvq-button-traitroll > #context-menu > li.context-item:nth-child(5n)").classList.add("boosted");
@@ -1124,6 +732,7 @@ export default class characterSheet extends ActorSheet {
       race: race,
       compname: compname,
       compdesc, compdesc,
+      compname1: compname1,
       actualStat: actualStat,
       actualFatigue: actualFatigue
     };
@@ -1140,13 +749,15 @@ export default class characterSheet extends ActorSheet {
     let race = element.dataset.race;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
     const talentSkillType = "raceskill";
     const actor = this.actor;
     
     let data = {
       race: race,
       compdesc: compdesc,
-      compname: compname
+      compname: compname,
+      compname1: compname1
     };
 
     Tchat.raceInfo({

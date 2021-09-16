@@ -40,6 +40,18 @@
       "earthrabbit":"Lapin de la Terre",
       "yamabiko":"Yamabiko"
     },
+    "loca": {
+      "head": "Tête",
+      "heart": "Cœur",
+      "wingsTorso": "Ailes ou Torse",
+      "wings": "Ailes",
+      "torso": "Torse",
+      "object": "Objet",
+      "rArm": "Bras droit",
+      "lArm": "Bras gauche",
+      "rLeg": "Jambe Droite",
+      "lLeg": "Jambe gauche"
+    },
     "itemText": {
       "weaponTypeText": "Type d'Arme",
       "spellcardTypeText": "Type de Spellcard",
@@ -54,7 +66,8 @@
       "effect": "Effets"
     },
     "notifications": {
-      "tooMuchItems": "Attention! Ce personnage porte trop d'objets."
+      "tooMuchItems": "Attention! Ce personnage porte trop d'objets.",
+      "noActor":"Attention ! Vous n'avez pas sélectionné de personnage."
     },
     "critical": {
       "critsuccess": "Réussite critique",
@@ -345,6 +358,52 @@
       "earthrabbit":"Gambader",
       "yamabiko":"WiP"
     },
+    "startertalent1": {
+      "human":"selfhelp",
+      "youkai":"scourgebynature",
+      "ghost":"intangibility",
+      "vampire":"bornofevil",
+      "fairy":"childishspirit",
+      "crowtengu":"throughthewind",
+      "whitewolftengu":"unrelenting",
+      "greattengu":"eyeoftenma",
+      "lunarrabbit":"onassignment",
+      "oni":"enjoyer",
+      "amanojaku":"demonicnature",
+      "inchling":"smallfeet",
+      "kappa":"emergencypack",
+      "halfyoukai":"youkaipart",
+      "celestial":"heavenstrike",
+      "hermit":"disciplineofalifetime",
+      "shinigami":"continuingduty",
+      "arahitogami":"preceptsoffaith",
+      "tsukumogami":"livingobject",
+      "earthrabbit":"throughthetallgrass",
+      "yamabiko":"WiP"
+    },
+    "raceskill1": {
+      "human":"daredevil",
+      "youkai":"powerunleash",
+      "ghost":"stanceofthedead",
+      "vampire":"savagerecovery",
+      "fairy":"manifestationofnature",
+      "crowtengu":"unrealdodge",
+      "whitewolftengu":"unrealdodge",
+      "greattengu":"unrealdodge",
+      "lunarrabbit":"firingline",
+      "oni":"showofpower",
+      "amanojaku":"hostiletaunt",
+      "inchling":"littleresistance",
+      "kappa":"tipsandtricks",
+      "halfyoukai":"semihumanresistance",
+      "celestial":"benevolencefromabove",
+      "hermit":"artsofhermits",
+      "shinigami":"annihilate",
+      "arahitogami":"lawofthegods",
+      "tsukumogami":"tsukumogamirecon",
+      "earthrabbit":"frolic",
+      "yamabiko":"WiP"
+    },
     "startertalentDesc": {
       "human":"Votre personnage bénéficie de l’effet de point de destin amélioré sur une utilisation de point de destin, une fois par scénario. Votre personnage, sauf exception, ne sait ni voler, ni utiliser la magie.",
       "youkai":"<font class='trait'>Jet de Charisme</font> + 1d4 (si effectué envers un Humain), <font class='trait'>Jet de d’Intimidation</font> + 1d4 (si effectué envers un Humain), <font class='trait'>Jet de Résistance</font> + 1d4.",
@@ -397,7 +456,7 @@
       "stanceofthedead":"Posture du Défunt",
       "savagerecovery":"Régénération Sauvage",
       "manifestationofnature":"Manifestation de la Nature",
-      "fantasticdodge":"Esquive Fantastique",
+      "unrealdodge":"Esquive Fantastique",
       "firingline":"Pelon Entraîné",
       "showofpower":"Démonstration de Puissance",
       "hostiletaunt":"Provocation Hostile",

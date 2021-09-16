@@ -24,6 +24,172 @@ touhouvq.raceListing = {
   yamabiko:"touhouvq.race.yamabiko"
 }
 
+
+touhouvq.defaultLocaList = [
+  {id: 'head', crit: true, range: [10]},
+  {id: 'heart', crit: true, range: [9]},
+  {id: 'torso', range: [6, 7, 8]},
+  {id: 'object', range: [5]},
+  {id: 'rArm', range: [4]},
+  {id: 'lArm', range: [3]},
+  {id: 'rLeg', range: [2]},
+  {id: 'lLeg', range: [1]}
+]
+
+touhouvq.races = {
+  human: { 
+    locaList: 'useDefault'
+  },
+  youkai:{
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'wingsTorso', range: [8]}, 
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  ghost: {
+    locaList:  [
+      {id: 'head', range: [10]},
+      {id: 'heart', range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  vampire: {
+    locaList: [
+      {id: 'head', range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'wings', range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}      
+    ] 
+  },
+  fairy: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', range: [9]},
+      {id: 'wings', range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  crowtengu: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'wings', crit: true, range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  whitewolftengu: {
+    locaList: 'useDefault'
+  },
+  greattengu: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'wingsTorso', range: [8]}, 
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  lunarrabbit: {
+    locaList: 'useDefault'
+  },
+  oni: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'horns', armor: true, range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  amanojaku: {
+    locaList: 'useDefault'
+  },
+  inchling: {
+    locaList: 'useDefault'
+  },
+  kappa: {
+    locaList: 'useDefault'
+  },
+  halfyoukai: {
+    locaList: 'useDefault'
+  },
+  celestial: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'wingsTorso', range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  hermit: {
+    locaList: 'useDefault'
+  },
+  shinigami: {
+    locaList: 'useDefault'
+  },
+  arahitogami: {
+    locaList: 'useDefault'
+  },
+  tsukumogami: {
+    locaList: [
+      {id: 'head', armor: true, range: [10]},
+      {id: 'heart', armor: true, range: [9]},
+      {id: 'torso', armor: true, range: [6, 7, 8]},
+      {id: 'object', crit: true, range: [5]},
+      {id: 'rArm', armor: true, range: [4]},
+      {id: 'lArm', armor: true, range: [3]},
+      {id: 'rLeg', armor: true, range: [2]},
+      {id: 'lLeg', armor: true, range: [1]}
+    ]
+  },
+  earthrabbit: {
+    locaList: 'useDefault'
+  },
+  yamabiko: {
+    locaList: 'useDefault'
+  }
+}
+
 touhouvq.stats = {
   strength: "touhouvq.stats.strength",
   agility: "touhouvq.stats.agility",
@@ -164,6 +330,23 @@ touhouvq.spellcardTextData = {
   effectDreamsigh2: "touhouvq.spellcardTextData.effectDreamsigh2",
   effectDreamsigh3: "touhouvq.spellcardTextData.effectDreamsigh3",
   effectDreamsigh4: "touhouvq.spellcardTextData.effectDreamsigh4"
+}
+
+touhouvq.traitRolls = {
+  rollResistance: {stats: ['strength', 'resilience'], traitType: 1},
+  rollMelee: {stats: ['strength', 'discipline'], traitType: 2},
+  rollIntimidation: {stats: ['strength', 'perception'], traitType: 3},
+  rollThrow: {stats: ['agility', 'strength'], traitType: 4},
+  rollStealth: {stats: ['agility', 'discipline'], traitType: 5, firingLine: true},
+  rollPrecision: {stats: ['agility', 'perception'], traitType: 6},
+  rollSleightHand: {stats: ['agility', 'intelligence'], traitType: 7},
+  rollMental: {stats: ['resilience', 'perception'], traitType: 8},
+  rollMastery: {stats: ['resilience', 'magic'], traitType: 9},
+  rollInvestigation: {stats: ['discipline', 'perception'], traitType: 10, firingLine: true},
+  rollFaith: {stats: ['discipline', 'magic'], traitType: 11},
+  rollTechnology: {stats: ['discipline', 'intelligence'], traitType: 12},
+  rollCharisma: {stats: ['perception', 'intelligence'], traitType: 13},
+  rollDanmaku: {stats: ['magic', 'intelligence'], traitType: 14}
 }
 
 touhouvq.selfhelp = [

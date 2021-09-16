@@ -1,7 +1,7 @@
 export class TalentsSheet extends FormApplication {
 
   /** @override */
-  constructor(actor, race, compname, compdesc, talentSkillType) {
+  constructor(actor, race, compname, compdesc, compname1, talentSkillType) {
     super(actor, {
       closeOnSubmit: false,
       submitOnChange: true,
@@ -13,6 +13,7 @@ export class TalentsSheet extends FormApplication {
     this.race = race;
     this.compname = compname;
     this.compdesc = compdesc;
+    this.compname1 = compname1;
     this.talentSkillType = talentSkillType;
   }
 
@@ -37,6 +38,7 @@ export class TalentsSheet extends FormApplication {
     sheetData.race = this.race;
     sheetData.compname = this.compname;
     sheetData.compdesc = this.compdesc;
+    sheetData.compname1 = this.compname1;
     sheetData.talentSkillType = this.talentSkillType;
 
     return sheetData;
