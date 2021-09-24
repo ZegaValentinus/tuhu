@@ -74,5 +74,6 @@
   "gridDistance": 5,
   "gridUnits": "m",
   "primaryTokenAttribute": "attributes.hp",
-  "initiative": "1d10"
+  "initiative": "1d10",
+  "socket": "true"
 }

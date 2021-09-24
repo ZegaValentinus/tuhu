@@ -839,6 +839,17 @@ export async function knowledgeCheck({
     }
 }
 
+export function onSocketReceived(data) {
+    if(!game.user.isGM) {
+        return;
+    }
+
+    if(data.action === "diceStolen") {
+        const message = game.messages.get(data.messageID);
+        message.setFlag("touhouvq","diceStolen",true);
+    }
+}
+
 /**
  * Creates and send a welcome chatMessage
  * flags the user so the message is displayed only once

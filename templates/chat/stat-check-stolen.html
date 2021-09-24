@@ -1,0 +1,165 @@
+<div class="dice-roll">
+    <div class="dice-result">
+        {{#if (eq compskillvalue "unrealdodge")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.namesRaceSkill.unrealdodge"}}
+            </div>
+        {{/if}}
+        {{#if (eq compskillvalue "lawofthegods")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.lawofthegods"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "1")}}
+            <div class="dice-formula tvq-dice-formula tvq-strength-color">
+                {{localize "touhouvq.sheet.rollStrength"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "2")}}
+            <div class="dice-formula tvq-dice-formula tvq-agility-color">
+                {{localize "touhouvq.sheet.rollAgility"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "3")}}
+            <div class="dice-formula tvq-dice-formula tvq-resilience-color">
+                {{localize "touhouvq.sheet.rollResilience"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "4")}}
+            <div class="dice-formula tvq-dice-formula tvq-discipline-color">
+                {{localize "touhouvq.sheet.rollDiscipline"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "5")}}
+            <div class="dice-formula tvq-dice-formula tvq-perception-color">
+                {{localize "touhouvq.sheet.rollPerception"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "6")}}
+            <div class="dice-formula tvq-dice-formula tvq-magic-color">
+                {{localize "touhouvq.sheet.rollMagic"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "7")}}
+            <div class="dice-formula tvq-dice-formula tvq-intellect-color">
+                {{localize "touhouvq.sheet.rollIntelligence"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "8")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollResistance1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "9")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollMelee1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "10")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollIntimidation1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "11")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollThrow1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "12")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollStealth1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "13")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollPrecision1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "14")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollSleightHand1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "15")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollMental1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "16")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollMastery1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "17")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollInvestigation1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "18")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollFaith1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "19")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollTechnology1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "20")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollCharisma1"}}
+            </div>
+        {{/if}}
+        {{#if (eq rolltype "21")}}
+            <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
+                {{localize "touhouvq.sheet.rollDanmaku1"}}
+            </div>
+        {{/if}}
+        
+        <div class="dice-stolen-div">
+            <span class="part-formula formula-stolen">
+                {{localize "touhouvq.flavorText.earthrabbitStolen"}} <ol class="dice-rolls dice-rolls-stolen"><li class="roll die d{{dieFaces}}">{{actualresult}}</li></ol>
+            </span>
+        </div>
+
+        <div class="tvq-dice-result">
+            {{#ifEquals bigresult 20}}
+                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_{{rolltype}}.png">
+                <h4 class="tvq-taskcheck-resulttotal tvq-criticalsuccess">{{finalscore}}</h4>
+            {{else}}
+                {{#ifEquals bigresult 1}}
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_{{rolltype}}.png">
+                    <h4 class="tvq-taskcheck-resulttotal tvq-criticalfailure">{{finalscore}}</h4>
+                {{else}}
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_{{rolltype}}.png">
+                    <h4 class="tvq-taskcheck-resulttotal">{{finalscore}}</h4>
+                {{/ifEquals}}
+            {{/ifEquals}}
+        </div>
+
+        {{#if (eq compskillvalue "unrealdodge")}}
+            {{#ifSuperiorOrEquals finalscore 20}}
+                <div class="raceskill-checkdiv">
+                    <div class="checkdiv-1">
+                        <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                        <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                    </div>
+                    <div class="checkdiv-2 checkdiv-2-success">
+                        <p>{{localize "touhouvq.simpleCheck.success"}}</p>
+                    </div>
+                </div>
+            {{else}}
+            <div class="raceskill-checkdiv">
+                <div class="checkdiv-1">
+                    <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                    <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                </div>
+                <div class="checkdiv-2 checkdiv-2-failure">
+                    <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                </div>
+            </div>
+            {{/ifSuperiorOrEquals}}
+        {{/if}}
+
+    </div>
+</div>

@@ -2,6 +2,11 @@
 <div class="dice-roll">
     <!--<div class="dice-flavor">Hello there !</div>-->
     <div class="dice-result">
+        {{#if (eq compskillvalue "lawofthegods")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.lawofthegods"}}
+            </div>
+        {{/if}}
         <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
             {{localize "touhouvq.sheet.rollFaith1"}}
         </div>
@@ -55,6 +60,25 @@
                 {{/ifEquals}}
             {{/ifEquals}}
         </div>
+
+        {{#if (eq compskillvalue "lawofthegods")}}
+            {{#ifSuperiorOrEquals rollResult.total 20}}
+                <p>SUCCESS</p>
+            {{else}}
+                <p>FAILURE</p>
+            {{/ifSuperiorOrEquals}}
+        {{/if}}
+
+        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data._id}}" data-type="18" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}" data-skill="{{compskillvalue}}">
+            {{#each rollResult.dice as |object key|}}
+                {{#ifNotEquals this.faces 20}}
+                    {{#each this.results}}
+                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">{{localize "touhouvq.flavorText.earthrabbitStolen2"}}{{object.faces}} ({{this.result}})</button>
+                    {{/each}}
+                {{/ifNotEquals}}
+            {{/each}}
+        </div>
+
     </div>
 </div>
-    
+{{log this}}

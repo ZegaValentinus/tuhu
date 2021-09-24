@@ -40,6 +40,32 @@
       "earthrabbit":"Lapin de la Terre",
       "yamabiko":"Yamabiko"
     },
+    "difficulties": {
+      "Transcendent": "Transcendant",
+      "ExcessivelySimple": "Excessivement Simple",
+      "VeryEasy": "Très Facile",
+      "Easy": "Facile",
+      "Normal": "Normal",
+      "Arduous": "Ardu",
+      "RatherDifficult": "Plutôt Difficile",
+      "Difficult": "Difficile",
+      "VeryDifficult": "Très Difficile",
+      "ExtremelyDifficult": "Extrêmement Difficile",
+      "AlmostImpossible": "Presque Impossible",
+      "Impossible": "Impossible",
+      "Transcendent1": "1",
+      "ExcessivelySimple1": "8",
+      "VeryEasy1": "12",
+      "Easy1": "14",
+      "Normal1": "18",
+      "Arduous1": "20",
+      "RatherDifficult1": "22",
+      "Difficult1": "24",
+      "VeryDifficult1": "28",
+      "ExtremelyDifficult1": "32",
+      "AlmostImpossible1": "36",
+      "Impossible1": "40"
+    },
     "loca": {
       "head": "Tête",
       "heart": "Cœur",
@@ -67,7 +93,10 @@
     },
     "notifications": {
       "tooMuchItems": "Attention! Ce personnage porte trop d'objets.",
-      "noActor":"Attention ! Vous n'avez pas sélectionné de personnage."
+      "noActor":"Attention ! Vous n'avez pas sélectionné de personnage.",
+      "noDieStolen":"Attention ! Votre personnage n'a pas encore volé de dé...",
+      "dieReady":"Dé prêt à être utilisé !",
+      "dieNotReady":"Le dé reste rangé dans un coin..."
     },
     "critical": {
       "critsuccess": "Réussite critique",
@@ -424,13 +453,13 @@
       "shinigami":"A chaque fois que votre personnage infligera des dégâts à la mêlée, et/ou avec une arme, alors la créature subissant les dégâts subit également <font class='critwounds'>1 blessure critique</font>.",
       "arahitogami":"A chaque fois que votre personnage utilisera <font class='magic-points'>un point de magie</font>, un allié ne possédant pas tous ses <font class='magic-points'>points de magie</font>, situé à moins de 15 mètres de votre personnage, choisi aléatoirement, gagne <font class='magic-points'>un point de magie</font>.",
       "tsukumogami":"Votre personnage peut être soigné sans besoin de matériel médical avec la réussite d’un <font class='trait'>jet de Technologie</font> <font class='difficulty'>{Ardu:20}</font> (disponible une fois par jour). Si votre personnage doit se soigner, il doit utiliser du matériel médical. Votre personnage est capable de se retransformer en l’objet qu’il est à sa guise, cependant, dans cet état, il est immobile.",
-      "earthrabbit":"Votre personnage confère le talent <font class='round'>Vigilance</font> à toute créature alliée située à moins de 15 mètres, dont lui-même. En combat, au début d’une <font class='magic-points'>action</font>, votre personnage peut gratuitement et instantanément se déplacer de [<font class='stat-agility'>statistique d’Agilité</font>]/10 <font class='round'>(arrondi à l’inférieur)</font> mètre(s).",
+      "earthrabbit":"Votre personnage confère le talent <font class='round'>Vigilance</font> à toute créature alliée située à moins de 15 mètres, dont lui-même. En combat, au début d’une <font class='action'>action</font>, votre personnage peut gratuitement et instantanément se déplacer de [<font class='stat-agility'>statistique d’Agilité</font>]/10 <font class='round'>(arrondi à l’inférieur)</font> mètre(s).",
       "yamabiko":"WiP"
     },
     "raceskillDesc": {
       "human":"Si votre personnage est en combat, alors, au début de chacune de vos <font class='action'>actions</font>, vous pouvez augmenter aléatoirement de 1d4 point(s) une de vos statistiques (sauf <font class='stat-magic'>Magie</font>). L’effet s'estompe à la fin du combat. Cette compétence est gratuite, et s’utilise instantanément.",
       "youkai":"Cette compétence est gratuite. En combat, effectuez un <font class='stat-strength'>jet de Force</font>, <font class='stat-discipline'>de Discipline</font>, ou <font class='stat-intellect'>d’Intelligence</font> <font class='difficulty'>{Ardu:20}</font>. S’il réussit, votre personnage récupère <font class='magic-points'>1 point de magie</font>. Hors combat, sacrifiez 6 de vos points de vie pour récupérer <font class='magic-points'>1 point de magie</font>.",
-      "ghost":"Votre personnage réduis le lien entre le monde physique et son corps. En plus de perdre 1d4 <font class='critwounds'>blessure(s) critique(s)</font>, effectuez un <font class='trait'>jet de Maîtrise</font>, ou <font class='trait'>de Passe-Passe</font> <font class='difficulty'>{Difficile:24}</font>. Puis, jusqu’à la fin de sa prochaine <font class='action'>action</font>, tous les dégâts que votre personnage subira seront réduits de 1+[<font class='trait'>Degrés de Réussite</font>].",
+      "ghost":"Votre personnage réduis le lien entre le monde physique et son corps. En plus de perdre 1d4 <font class='critwounds'>blessure(s) critique(s)</font>, effectuez un <font class='trait'>jet de Maîtrise</font>, ou <font class='trait'>de Passe-Passe</font> <font class='difficulty'>{Difficile:24}</font>. Puis, jusqu’à la fin du tour de combat prochain, ou pendant l’équivalent de 4 secondes, tous les dégâts que votre personnage subira seront réduits de 1+[<font class='trait'>Degrés de Réussite</font>].",
       "vampire":"Votre personnage est capable de se soigner lui-même de 2d6 points de vie si ses points de vie sont inférieurs à [<font class='stat-magic'>statistique de Magie</font>]. Pour ce faire, un <font class='stat-strength'>jet de Force</font> <font class='difficulty'>{Ardu:20}</font> doit être réussi. Si le jet échoue, le <font class='magic-points'>point de magie</font> n’est pas dépensé.",
       "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Si le jet est une réussite, tous les alliés de votre personnage situés à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendront, durant les prochaines 1d4 <font class='action'>action(s)</font> (ou 6 prochaines secondes) un bonus sur leurs <font class='trait'>jet(s) de caractéristiques</font> égal à +2d4. Chaque point de fatigue que possède votre personnage retire 1d4 à ce bonus.",
       "crowtengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
@@ -472,9 +501,11 @@
       "WiP":"WiP"
     },
     "deleteActiveEffect": {
-      "selfhelp":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Débrouillardise</font>"
+      "selfhelp":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Débrouillardise</font>",
+      "frolic":"Retirer l'effet de <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Gambader</font>"
     },
     "flavorText": {
+      "activeEffectsOptions":"Afficher le panneau de contrôle des ActiveEffects",
       "humanUpgradedstat":"Statistique améliorée :",
       "humanButtonskill":"Appliquer le bonus au personnage",
       "vampireButton":"Se régénérer",
@@ -486,7 +517,19 @@
       "tsukumogamiButton1":"Prolonger la durée d'un effet de statut",
       "tsukumogamiButton2":"Supprimer un effet de statut pour vous soigner",
       "tsukumogamiChoice1":"Effet de statut prolongé de ",
-      "tsukumogamiChoice2":"Votre personnage est soigné de "
+      "tsukumogamiChoice2":"Votre personnage est soigné de ",
+      "earthrabbitStolen":"Dé volé : ",
+      "earthrabbitStolen1":"Dé volé !",
+      "earthrabbitStolen2":"Voler d",
+      "earthrabbitStolen3":"Dé volé par ",
+      "earthrabbitFrolicButtonDisplay":"Afficher les boutons de la compétence Gambader"
+    },
+    "simpleCheck": {
+      "success":"Réussite",
+      "failure":"Echec"
+    },
+    "simpleMessage": {
+      "diceDifficulty":"Jet de difficulté "
     }
   }
 }

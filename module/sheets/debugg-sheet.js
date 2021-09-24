@@ -30,6 +30,7 @@ export class ActiveEffectsDebugg extends DocumentSheet {
     const actorData = this.actor.data.toObject(false);
     sheetData.actor = actorData;
 
+    console.log("Console.log des effets !");
     console.log(sheetData.actor.effects);
 
     return sheetData;

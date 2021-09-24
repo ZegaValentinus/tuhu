@@ -23,19 +23,19 @@
                         <span class="part-total">{{rollResult.total}}</span>
                     </header>
                     <ol class="dice-rolls">
-                    {{#each rollResult.dice as |object key|}}
-                        {{#each this.results}}
-                            {{#ifSuperiorOrEquals this.result object.faces}}
-                                <li class="roll max die d{{object.faces}}">{{this.result}}</li>
-                            {{else}}
-                                {{#ifEquals this.result 1}}
-                                    <li class="roll min die d{{object.faces}}">{{this.result}}</li>
+                        {{#each rollResult.dice as |object key|}}
+                            {{#each this.results}}
+                                {{#ifSuperiorOrEquals this.result object.faces}}
+                                    <li class="roll max die d{{object.faces}}">{{this.result}}</li>
                                 {{else}}
-                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
-                                {{/ifEquals}}
-                            {{/ifSuperiorOrEquals}}
+                                    {{#ifEquals this.result 1}}
+                                        <li class="roll min die d{{object.faces}}">{{this.result}}</li>
+                                    {{else}}
+                                        <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                    {{/ifEquals}}
+                                {{/ifSuperiorOrEquals}}
+                            {{/each}}
                         {{/each}}
-                    {{/each}}
                     </ol>
                 </div>
             </section>
@@ -55,11 +55,11 @@
             {{/ifEquals}}
         </div>
 
-        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data.data._id}}">
+        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data.data._id}}" data-type="1" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}">
             {{#each rollResult.dice as |object key|}}
                 {{#ifNotEquals this.faces 20}}
                     {{#each this.results}}
-                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">Voler d{{object.faces}}</button>
+                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">{{localize "touhouvq.flavorText.earthrabbitStolen2"}}{{object.faces}} ({{this.result}})</button>
                     {{/each}}
                 {{/ifNotEquals}}
             {{/each}}

@@ -54,6 +54,17 @@
                 {{/ifEquals}}
             {{/ifEquals}}
         </div>
+
+        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data._id}}" data-type="8" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}">
+            {{#each rollResult.dice as |object key|}}
+                {{#ifNotEquals this.faces 20}}
+                    {{#each this.results}}
+                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">{{localize "touhouvq.flavorText.earthrabbitStolen2"}}{{object.faces}} ({{this.result}})</button>
+                    {{/each}}
+                {{/ifNotEquals}}
+            {{/each}}
+        </div>
+
     </div>
 </div>
-    
+{{log this}}

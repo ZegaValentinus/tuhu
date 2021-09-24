@@ -9,6 +9,12 @@ import {KnowledgePicking} from "./knowledge-picking-sheet.js";
 import {UpgradingStat} from "./upgrading-stat-sheet.js";
 
 export default class characterSheet extends ActorSheet {
+
+  /** @override */
+  constructor(...args) {
+    super(...args);
+  }
+
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       template: "systems/touhouvq/templates/sheets/character-sheet.html",
@@ -47,6 +53,18 @@ export default class characterSheet extends ActorSheet {
           perceptionValue: perceptionValue,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.frolic"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let frolic = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [frolic.id]);
+      },
+      condition: element => {
+        let frolic = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+        return frolic;
       }
     }
   ]
@@ -535,6 +553,8 @@ export default class characterSheet extends ActorSheet {
     data.equipables = data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
     data.perks = data.items.filter(item => [ "talent", "spellcard" ].includes(item.type) );
 
+    data.isGM = game.user.isGM;
+
     return data;
   }
 
@@ -551,6 +571,7 @@ export default class characterSheet extends ActorSheet {
       html.find('.mini-button-infosShow').click(this._onButtonInfosShowClick.bind(this));
 
       html.find('.open-debugg').click(this._onButtonDebugg.bind(this));
+      html.find('.toggle-frolic-buttons').click(this._onToggleFrolic.bind(this));
 
       html.find('.info-starter').click(this._onTalentInfo.bind(this));
       html.find('.edit-starter').click(this._onTalentEdit.bind(this));
@@ -724,8 +745,72 @@ export default class characterSheet extends ActorSheet {
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
     let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
 
+    if(race == "youkai") {
+      //Message de choix : Soigner ou récupérer de la magie ?
+      //Si soigner : retire 6 PV (check avant si ça tue le perso, dans ce cas impossible (notif) et redonne 1 point de magie)
+      //Si Magie : choix : jet de force, de discipline, ou d'intel ?
+      //Faire le jet en question : si réussi : message de réussite, et point de magie en plus.
+    }
+
+    if(race == "ghost") {
+      //Message : perte de 1d4 point de blessures critiques + les faire perdre (min : 0)
+      //+ : choix : jet de maitrise ou passepasse ?
+      //puis, lorsque jet fait, show 1+degrés de réu.
+    }
+
+    if(race == "fairy") {
+      //jet de magie
+      //display si réussite ou non via jet card + 1d4 rollé pour les actions + 2d4 roll pour les bonus sur jet de carac
+
+      /*
+      const actors = game.users
+        .filter(user => user.active)
+        .map(user => user.character)
+        .filter(actor => !!actor);
+      */
+    }
+
+    if(race == "crowtengu" || race == "whitewolftengu" || race == "greattengu") {
+      Dice.StatCheck({
+        actionValue: actor.data.data.stats.agility,
+        fatiguePoints: actor.data.data.fatigue.value,
+        statType: 2,
+        actorData: actor,
+        compskillvalue: "unrealdodge"
+      });
+    }
+
     if(race == "lunarrabbit") {
       //document.querySelector(".tvq-button-traitroll > #context-menu > li.context-item:nth-child(5n)").classList.add("boosted");
+    }
+
+    if(race == "arahitogami") {
+      Dice.TraitCheck(actor, "rollFaith", "lawofthegods");
+
+      //récupérer degrés de réussite+1 (on appelera ce nombre X) : tirer X dé(s), dont les résultats pointeront chacun vers une parties du corps du perso transformée en renforcée
+
+
+      //Dans le même temps, récupérer stat de magie divisé par 10 pour display la durée en action du buff
+
+    }
+
+    if(race == "earthrabbit") {
+      //vérifier si frolic
+      let frolic = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+
+      if(!frolic) {
+        ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noDieStolen"));
+        return;
+      }
+
+      //if the user has clicked on the race skill use button, then we put the flag on the activeeffect isusable at true.
+      if(frolic.getFlag("touhouvq","isUsable") === false) {
+        frolic.setFlag("touhouvq","isUsable",true);
+        ui.notifications.info(game.i18n.localize("touhouvq.notifications.dieReady"));
+      } else {
+        frolic.setFlag("touhouvq","isUsable",false);
+        ui.notifications.info(game.i18n.localize("touhouvq.notifications.dieNotReady"));
+      }
     }
     
     let data = {
@@ -769,9 +854,22 @@ export default class characterSheet extends ActorSheet {
 
   _onButtonDebugg(event) {
     event.preventDefault();
-    /*let myActiveEffects = new ActiveEffect({name:"Débrouillardise"},this.actor);*/
     const leDebugg = new ActiveEffectsDebugg(this.actor);
 
     leDebugg.render(true);
+  }
+
+  _onToggleFrolic(event) {
+    event.preventDefault();
+    var elements = document.getElementsByClassName("tvq-frolic-buttons");
+
+    console.log(elements);
+
+    for(let elem of elements) {
+      elem.classList.toggle('no-display');
+    }
+
+    const toggle = this.actor.noDisplayFrolicButtons === true;
+    this.actor.noDisplayFrolicButtons = !toggle;
   }
 }

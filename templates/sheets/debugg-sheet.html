@@ -4,6 +4,7 @@
 
     <div class="tvq-activeeffects">
       {{#each actor.effects as |effect key|}}
+      {{log this}}
         <div class="tvq-activeeffects-div" data-effect-id="{{effect._id}}">
           <div class="tvq-activeeffects-div1">
             <p>{{effect.label}}</p>

@@ -1,5 +1,6 @@
 import { touhouvq } from "./module/config.js";
 import * as Tchat from "./module/tchat.js";
+import * as Dice from "./module/dice.js";
 import touhouvqItemSheet from "./module/sheets/touhouvqItemSheet.js";
 import touhouvqItem from "./module/touhouvqItem.js";
 import characterSheet from "./module/sheets/characterSheet.js";
@@ -25,6 +26,8 @@ Hooks.once("init", function() {
   console.log("touhouvq | Initialising Touhou:VenturesomeQuest! System");
 
   CONFIG.touhouvq = touhouvq;
+
+  game.socket.on('system.touhouvq', Tchat.onSocketReceived);
 
   //Updating localist  for races that use casual list
   Object.entries(CONFIG.touhouvq.races).forEach(([key, entry]) => {
@@ -148,7 +151,6 @@ Hooks.once("init", function() {
         }
       });
     });
-    console.log(dice);
     return returnString;
   });
 
@@ -167,7 +169,6 @@ Hooks.on("renderChatMessage", (app, html, data) => {
 
   const actor = game.actors.get(app._roll.options.actorId);
 
-
   /* EARTH RABBIT RACESKILL - BEGIN */
 
   //Hide earth rabbit race skill buttons for non sheet owners
@@ -177,23 +178,32 @@ Hooks.on("renderChatMessage", (app, html, data) => {
   const frolicButtons = html.find('.tvq-frolic-button');
   const frolicDiv = html.find('.tvq-frolic-buttons');
 
-  if(frolicDiv.length > 0) {
-    const frolicActor = frolicDiv[0].dataset.actor;
-    if(frolicButtons.length > 0) {
-      game.actors.forEach(actor => {
-        if(actor.isOwner && actor.data.data.race === "earthrabbit") {
-          frolicButtons.each( function() {
-            if(actor.data._id === frolicActor) {
-              html.find('.tvq-frolic-buttons')[0].classList.add('tvq-hide');
-            } else {
-              this.classList.remove('tvq-hide');
-            }
-          });
-        }
-      });
-    }
+  if(!actor.noDisplayFrolicButtons) {
+    let elements = html.find(".tvq-frolic-buttons");
+    elements[0].classList.add('no-display');
   }
 
+  if(!app.getFlag("touhouvq","diceStolen")) {
+    console.log(frolicDiv);
+    if(frolicDiv.length > 0) {
+      const frolicActor = frolicDiv[0].dataset.actor;
+      if(frolicButtons.length > 0) {
+        game.actors.forEach(actor => {
+          if(actor.isOwner && actor.data.data.race === "earthrabbit") {
+            frolicButtons.each( function() {
+              if(actor.data._id === frolicActor) {
+                html.find('.tvq-frolic-buttons')[0].classList.add('tvq-hide');
+              } else {
+                this.classList.remove('tvq-hide');
+              }
+            });
+          }
+        });
+      }
+    }
+  } else {
+    html.find('.dice-result')[0].classList.add("obsolete");
+  }
 
   /* EARTH RABBIT RACESKILL - END */
 
@@ -328,7 +338,7 @@ async function _onRaceskillFrolic(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  //Get the actor, the one that have is stealing the dice
+  //Get the actor, the one that is stealing the dice
   const actor = game.actors.get(game.user.data.character);
 
   if(!actor) {
@@ -336,11 +346,12 @@ async function _onRaceskillFrolic(event) {
     return;
   }
 
-  console.log(actor);
+  //Get the message
+  const messageID = event.currentTarget.closest(".chat-message").dataset.messageId;
+  const message = game.messages.get(messageID);
 
-  //Get the actor targeted, the one that have done the roll, and is about to get screwed by the earth rabbit
-  let targetActorID = event.currentTarget.closest(".tvq-frolic-buttons").dataset.actor;
-  const targetActor = game.actors.get(targetActorID);
+  //Get all the data from the button div : from the dataset attached to it
+  const dataset = event.currentTarget.closest(".tvq-frolic-buttons").dataset;
 
   //Get the targeted die faces, and it's result
   const faces = event.currentTarget.dataset.faces;
@@ -350,11 +361,49 @@ async function _onRaceskillFrolic(event) {
     let frolic = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
 
     if(!frolic) {
+      //If actor don't have frolic, then he obtains frolic effect.
       const effectData = {
         label:game.i18n.localize("touhouvq.namesRaceSkill.frolic")+" [d"+faces+"]",
-        icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/frolic.webp"
+        icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/frolic.webp",
+        flags: {
+          touhouvq: {
+            nbFaces: faces,
+            isUsable: false
+          }
+        }
       };
       frolic = await ActiveEffect.create(effectData, {parent: actor});
+    } else {
+      //If actor already have frolic effect, then we delete the old one and update it.
+      frolic.update({
+        label:game.i18n.localize("touhouvq.namesRaceSkill.frolic")+" [d"+faces+"]",
+        flags: {
+          touhouvq: {
+            nbFaces: faces,
+            isUsable: false
+          }
+        }
+      });
     }
+
+    if(game.user.isGM) {
+      message.setFlag("touhouvq","diceStolen",true);
+    } else {
+      game.socket.emit('system.touhouvq', {
+        action: "diceStolen",
+        messageID: messageID
+      });
+    }
+
+    const frolicdivelement = event.currentTarget.closest(".tvq-frolic-buttons");
+    frolicdivelement.remove();
+
+    Dice.diceStolen({
+      dataset: dataset,
+      message: message,
+      faces: faces,
+      result: result,
+      actor: actor
+    });
   }
 }

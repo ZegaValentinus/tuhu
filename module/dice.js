@@ -28,7 +28,8 @@ export async function StatCheck({
     actionValue = null,
     fatiguePoints = 0,
     statType = null,
-    actorData = null } = {}) {
+    actorData = null,
+    compskillvalue = null } = {}) {
     
     let d8 = "d8";
     let d6 = "d6";
@@ -38,31 +39,37 @@ export async function StatCheck({
     let numDivision = Math.floor(actionValue / 5);
     
     let rollVar = Math.floor(numDivision / 2);
-
+    
     let rollResult;
-
+    
     //Check if character have the frolic skill
+    let frolicFaces = "";
     let frolicValue = 0;
     if(actorData.data.data.race === "earthrabbit") {
-        console.log("Tu es un lapin de la Terre !");
         if(actorData.isOwner) {
-            console.log("Tu es l'owner de la fiche !");
             frolicValue = 1;
+            let frolic = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+            if(frolic) {
+                if(frolic.getFlag("touhouvq","isUsable") === true) {
+                    frolicFaces = "+ d"+frolic.getFlag("touhouvq","nbFaces");
+                    actorData.deleteEmbeddedDocuments('ActiveEffect', [frolic.id]);
+                }
+            }
         }
     }
 
     const messageTemplate = "systems/touhouvq/templates/chat/stat-check-" + statType + ".html";
 
     if (numDivision % 2 == 0) {
-        rollResult = d20 + ` + ` + rollVar + d8;
+        rollResult = d20 + ` + ` + rollVar + d8 + frolicFaces;
     } else {
-        rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+        rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces;
     }
 
     if (numDivision % 2 == 0) {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4 + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
@@ -81,7 +88,8 @@ export async function StatCheck({
                 rolls: rolls,
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
-                frolicValue: frolicValue
+                frolicValue: frolicValue,
+                compskillvalue: compskillvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -95,7 +103,7 @@ export async function StatCheck({
 
         } else {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
@@ -112,7 +120,8 @@ export async function StatCheck({
                 rolls: rolls,
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
-                frolicValue: frolicValue
+                frolicValue: frolicValue,
+                compskillvalue: compskillvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -128,7 +137,7 @@ export async function StatCheck({
     } else {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4 + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
@@ -149,7 +158,8 @@ export async function StatCheck({
                 rolls: rolls,
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
-                frolicValue: frolicValue
+                frolicValue: frolicValue,
+                compskillvalue: compskillvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -163,7 +173,7 @@ export async function StatCheck({
 
         } else {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
 
             let rolls = [d20];
@@ -182,7 +192,8 @@ export async function StatCheck({
                 rolls: rolls,
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
-                frolicValue: frolicValue
+                frolicValue: frolicValue,
+                compskillvalue: compskillvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -213,9 +224,9 @@ export async function StatCheck({
       cssClasses = loca.crit === true ? 'crit-no-bold' : '';
     }
     return loca.armor === true ? `${cssClasses} armor`: cssClasses;
-  }
+}
   
-  export async function LocCheck(locData) {
+export async function LocCheck(locData) {
     const race = CONFIG.touhouvq.races[locData.raceNum];
     const template = "systems/touhouvq/templates/partials/tchat-card.html";
   
@@ -251,14 +262,16 @@ export async function StatCheck({
       content: html,
       user: game.user.id
     });
-  }
+}
 
-export async function TraitCheck(actor, traitRollKey) {
+export async function TraitCheck(actor, traitRollKey, compskillvalue) {
     if ( !actor ) {return; }
     const actorData = actor.data;
     const traitRoll = CONFIG.touhouvq.traitRolls[traitRollKey];
+
     const stat1 = foundry.utils.getProperty(actorData.data.stats, traitRoll.stats[0]);
     const stat2 = foundry.utils.getProperty(actorData.data.stats, traitRoll.stats[1]);
+
     const numDivision = Math.floor((stat1 + stat2) / 10);
     const fatiguePoints = actorData.data.fatigue.value;
     const traitType = traitRoll.traitType;
@@ -266,6 +279,22 @@ export async function TraitCheck(actor, traitRollKey) {
     let d4 = "d4";
     let d6 = "d6";
     let d20 = "d20";
+
+    //Check if character have the frolic skill
+    let frolicFaces = "";
+    let frolicValue = 0;
+    if(actor.data.data.race === "earthrabbit") {
+        if(actor.isOwner) {
+            frolicValue = 1;
+            let frolic = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
+            if(frolic) {
+                if(frolic.getFlag("touhouvq","isUsable") === true) {
+                    frolicFaces = "+ d"+frolic.getFlag("touhouvq","nbFaces");
+                    actor.deleteEmbeddedDocuments('ActiveEffect', [frolic.id]);
+                }
+            }
+        }
+    }
     
     /* active effects vars */
 
@@ -281,7 +310,6 @@ export async function TraitCheck(actor, traitRollKey) {
         const firinglineEffect = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
         if ( traitRoll.firingLine && firinglineEffect ) {
             //Now, our character is a lunar rabbit, under the firing line active effect, and using a buffed check
-            console.log("Using firing line !");
             activeFiringline = true;
         }
     }
@@ -293,15 +321,15 @@ export async function TraitCheck(actor, traitRollKey) {
         let rollResult1 = 0;
 
         if(activeFiringline) {
-            //Check is Lunar rabbit is under firing line buff and using buffed stats
+            //Check if Lunar rabbit is under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + frolicFaces;
         } else {
             //Normal trait check
-            rollResult1 = d20 + ` + ` + numDivision + d4;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + frolicFaces;
         }
 
-        let rollResult = new Roll(rollResult1, actorData).roll();
+        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id}).roll();
 
         let rolls = [d20];
 
@@ -317,7 +345,9 @@ export async function TraitCheck(actor, traitRollKey) {
             stat1: stat1,
             numDivision: numDivision,
             rolls: rolls,
-            firinglinebuff: firinglinebuff
+            firinglinebuff: firinglinebuff,
+            frolicValue: frolicValue,
+            compskillvalue: compskillvalue
         }
 
         let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -335,13 +365,13 @@ export async function TraitCheck(actor, traitRollKey) {
         if(activeFiringline) {
             //Check is Lunar rabbit is under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
         } else {
             //Normal trait check
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
         }
 
-        let rollResult = new Roll(rollResult1, actorData).roll();
+        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id}).roll();
 
         let rolls = [d20];
 
@@ -364,7 +394,9 @@ export async function TraitCheck(actor, traitRollKey) {
             stat1: stat1,
             numDivision: numDivision,
             rolls: rolls,
-            firinglinebuff: firinglinebuff
+            firinglinebuff: firinglinebuff,
+            frolicValue: frolicValue,
+            compskillvalue: compskillvalue
         }
         
         let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -2005,6 +2037,7 @@ export async function spellcardAttack({
 
     rollResult.toMessage(messageData2);
 }
+
 export async function initiativeCheck({
     raceNum = null,
     agilityValue = null,
@@ -2038,24 +2071,38 @@ export async function initiativeCheck({
     }
 
     rollResult.toMessage(messageData2);
+}
 
-    /*
-    let statRollFormula = "@damageValue";
-    let traitRollFormula = "@damageValue";
-    
-    let rollFormula = isTraitRoll == "true" ? traitRollFormula : statRollFormula;
-    if (isTraitRoll == "true") {
-        rollFormula -= fatiguePoints*d8;
-    } else {
-        rollFormula -= fatiguePoints*d4;
+export async function diceStolen({
+    message = null,
+    dataset = null,
+    faces = 0,
+    result = 0,
+    actor = null } = {}) {
+
+    let finalscore = dataset.score-result;
+
+    const messageTemplate = "systems/touhouvq/templates/chat/stat-check-stolen.html";
+
+    let data1 = {
+        actor: actor,
+        finalscore: finalscore,
+        rolltype: dataset.type,
+        dieFaces: faces,
+        actualresult: result,
+        bigresult: dataset.bigresult,
+        compskillvalue: dataset.skill
     }
-    let rollData = {
-        actionValue: actionValue
-    };
+
+    let htmlContent = await renderTemplate(messageTemplate, data1);
 
     let messageData = {
-      speaker: ChatMessage.getSpeaker()
+        flavor: game.i18n.localize("touhouvq.flavorText.earthrabbitStolen3")+actor.data.name,
+        speaker: message.data.speaker,
+        content: htmlContent
     }
-    new Roll(rollFormula, rollData).roll().toMessage(messageData);
-    */
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
 }
