@@ -863,13 +863,18 @@ export default class characterSheet extends ActorSheet {
     event.preventDefault();
     var elements = document.getElementsByClassName("tvq-frolic-buttons");
 
-    console.log(elements);
+    this.actor.displayRaceskillButtons = !this.actor.displayRaceskillButtons;
 
     for(let elem of elements) {
-      elem.classList.toggle('no-display');
+      if(this.actor.displayRaceskillButtons) {
+        elem.classList.remove('tvq-hide');
+      } else {
+        elem.classList.add('tvq-hide');
+      }
     }
 
-    const toggle = this.actor.noDisplayFrolicButtons === true;
-    this.actor.noDisplayFrolicButtons = !toggle;
+    const button = event.currentTarget;
+    button.dataset.activated = this.actor.displayRaceskillButtons;
+    console.log(button.dataset);
   }
 }

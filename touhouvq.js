@@ -3,6 +3,7 @@ import * as Tchat from "./module/tchat.js";
 import * as Dice from "./module/dice.js";
 import touhouvqItemSheet from "./module/sheets/touhouvqItemSheet.js";
 import touhouvqItem from "./module/touhouvqItem.js";
+import touhouvqActor from "./module/touhouvqActor.js";
 import characterSheet from "./module/sheets/characterSheet.js";
 
 async function preloadHandlebarsTemplates() {
@@ -36,7 +37,8 @@ Hooks.once("init", function() {
     }
   });
 
-  CONFIG.Item.entityClass = touhouvqItem;
+  CONFIG.Item.documentClass = touhouvqItem;
+  CONFIG.Actor.documentClass = touhouvqActor;
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("touhouvq", touhouvqItemSheet, { makeDefault: true });
@@ -178,13 +180,14 @@ Hooks.on("renderChatMessage", (app, html, data) => {
   const frolicButtons = html.find('.tvq-frolic-button');
   const frolicDiv = html.find('.tvq-frolic-buttons');
 
-  if(!actor.noDisplayFrolicButtons) {
+  /*
+  if(!actor.displayRaceskillButtons) {
     let elements = html.find(".tvq-frolic-buttons");
     elements[0].classList.add('no-display');
   }
+  */
 
   if(!app.getFlag("touhouvq","diceStolen")) {
-    console.log(frolicDiv);
     if(frolicDiv.length > 0) {
       const frolicActor = frolicDiv[0].dataset.actor;
       if(frolicButtons.length > 0) {
@@ -194,7 +197,9 @@ Hooks.on("renderChatMessage", (app, html, data) => {
               if(actor.data._id === frolicActor) {
                 html.find('.tvq-frolic-buttons')[0].classList.add('tvq-hide');
               } else {
-                this.classList.remove('tvq-hide');
+                if(actor.displayRaceskillButtons) {
+                  this.classList.remove('tvq-hide');
+                }
               }
             });
           }
