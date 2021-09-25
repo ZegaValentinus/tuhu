@@ -3267,18 +3267,35 @@ select.tvq-select-rarity:focus {
   margin: 1px 0;
   font-size: 15px;
   font-family: 'Kreon', serif;
+  color: #5d5d5d;
 }
 
 .checkdiv-2-success {
-  margin: 1px 0;
   font-size: 18px;
   font-family: 'Kreon', serif;
-  color: #45c126;
+  color: #3ab11c;
 }
 
 .checkdiv-2-failure {
-  margin: 1px 0;
   font-size: 18px;
   font-family: 'Kreon', serif;
   color: #cc0808;
+}
+
+.checkdiv-2-success p {
+  padding: 4px 0 !important;
+  margin: 1px 4px !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 2px #fff inset;
+  word-break: break-all;
+}
+
+.checkdiv-2-failure p {
+  padding: 4px 0 !important;
+  margin: 1px 4px !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 2px #fff inset;
+  word-break: break-all;
 }
