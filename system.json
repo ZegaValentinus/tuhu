@@ -6,7 +6,6 @@
   "author": "Benjamin Prieur",
   "minimumCoreVersion": "0.8.2",
   "compatibleCoreVersion": "0.8.2",
-  "url": "https://gitlab.com/BenjaminPrieur/touhouvq-foundryvttgamesystem",
   "esmodules": [
     "touhouvq.js"
   ],
@@ -75,5 +74,9 @@
   "gridUnits": "m",
   "primaryTokenAttribute": "attributes.hp",
   "initiative": "1d10",
-  "socket": "true"
+  "socket": "true",
+  "url": "https://gitlab.com/BenjaminPrieur/touhouvq",
+  "manifest": "https://gitlab.com/BenjaminPrieur/touhouvq/-/raw/master/system.json",
+  "download": "https://gitlab.com/BenjaminPrieur/touhouvq/-/archive/master/touhouvq-master.zip",
+  "license": "LICENSE"
 }
