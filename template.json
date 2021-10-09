@@ -190,11 +190,13 @@
       "effect":""
     },
     "talent":{
+      "idname":"",
       "effect":"",
       "XPCost":"",
       "requiredLevel":0
     },
     "skill":{
+      "idname":"",
       "effect":""
     },
     "spellcard":{

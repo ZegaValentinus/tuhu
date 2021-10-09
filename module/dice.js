@@ -29,12 +29,29 @@ export async function StatCheck({
     fatiguePoints = 0,
     statType = null,
     actorData = null,
-    compskillvalue = null } = {}) {
+    compskillvalue = null,
+    talentvalue = null } = {}) {
     
     let d8 = "d8";
     let d6 = "d6";
     let d4 = "d4";
     let d20 = "d20";
+
+    //Check if character is using the powerunleash skill
+    if(compskillvalue === "powerunleash") {
+        if(statType === "strength") {
+            actionValue = actionValue.strength;
+            statType = 1;
+        }
+        if(statType === "discipline") {
+            actionValue = actionValue.discipline;
+            statType = 4;
+        }
+        if(statType === "intelligence") {
+            actionValue = actionValue.intelligence;
+            statType = 7;
+        }
+    }
     
     let numDivision = Math.floor(actionValue / 5);
     
@@ -42,7 +59,7 @@ export async function StatCheck({
     
     let rollResult;
     
-    //Check if character have the frolic skill
+    //Check if character is using the frolic skill
     let frolicFaces = "";
     let frolicValue = 0;
     if(actorData.data.data.race === "earthrabbit") {
@@ -89,7 +106,8 @@ export async function StatCheck({
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
-                compskillvalue: compskillvalue
+                compskillvalue: compskillvalue,
+                talentvalue: talentvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -121,7 +139,8 @@ export async function StatCheck({
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
-                compskillvalue: compskillvalue
+                compskillvalue: compskillvalue,
+                talentvalue: talentvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -159,7 +178,8 @@ export async function StatCheck({
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
-                compskillvalue: compskillvalue
+                compskillvalue: compskillvalue,
+                talentvalue: talentvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -193,7 +213,8 @@ export async function StatCheck({
                 actorID: actorData.data._id,
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
-                compskillvalue: compskillvalue
+                compskillvalue: compskillvalue,
+                talentvalue: talentvalue
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -2091,7 +2112,8 @@ export async function diceStolen({
         dieFaces: faces,
         actualresult: result,
         bigresult: dataset.bigresult,
-        compskillvalue: dataset.skill
+        compskillvalue: dataset.skill,
+        talentvalue: dataset.talent
     }
 
     let htmlContent = await renderTemplate(messageTemplate, data1);

@@ -89,14 +89,18 @@
       "perkText": "Talent",
       "skillText": "Compétence de Race",
       "chosenStat": "Statistique de la Spellcard",
-      "effect": "Effets"
+      "effect": "Effets",
+      "idname": "Nom Identifiant",
+      "tooltipWarning": "⚠ Attention : Changer ce nom retirera les fonctionnalités que peut proposer ce talent."
     },
     "notifications": {
       "tooMuchItems": "Attention! Ce personnage porte trop d'objets.",
       "noActor":"Attention ! Vous n'avez pas sélectionné de personnage.",
       "noDieStolen":"Attention ! Votre personnage n'a pas encore volé de dé...",
       "dieReady":"Dé prêt à être utilisé !",
-      "dieNotReady":"Le dé reste rangé dans un coin..."
+      "dieNotReady":"Le dé reste rangé dans un coin...",
+      "magicPointGained":"Point de magie gagné !",
+      "noActorTargeted":"Aucune créature ciblée !"
     },
     "critical": {
       "critsuccess": "Réussite critique",
@@ -445,11 +449,11 @@
       "lunarrabbit":"Votre personnage débute avec l’une de ces deux possibilités : [Pas de pouvoir de Youkai, mais un pouvoir d’Humain, un <font class='tvq-rarity-singular'>Fusil Springfield M1903</font> et un chargeur], [Un pouvoir de Youkai]. Votre personnage est également capable de détecter, et/ou communiquer avec d’autres lapins lunaires, plus ou moins proches.",
       "oni":"Votre personnage gagne un défaut. Votre personnage possède un bonus d’1d8 sur tous ses jets opposés. A chaque fois que votre personnage subira une ou plusieurs suspicion(s), 1d4+1 suspicions supplémentaires seront obtenues.",
       "amanojaku":"Votre personnage n’a besoin d’aucune structure particulière pour être capable de se reposer. De plus, en échange d’un <font class='magic-points'>point de magie</font> ou d’un point de destin, votre personnage peut forcer une créature, alliée ou ennemie, qui se trouve sous un <font class='status-effect'>effet de statut</font>, à relancer des dés, de votre choix, d’un jet que la créature vient d’effectuer.",
-      "inchling":"Tous les <font class='trait'>jets d’Investigation</font>, <font class='trait'>de Passe-Passe</font> et <font class='trait'>de Foi</font> de tous les personnages alliés situés à moins de [<font class='stat-strength'>statistique de Force</font>] mètre(s) de votre personnage obtiennent un bonus de ([<font class='magic-points'>points de magie possédés par votre personnage</font>]d4)-2.",
+      "inchling":"Tous les <font class='trait'>jets d’Investigation</font>, <font class='trait'>de Passe-Passe</font> et <font class='trait'>de Foi</font> de tous les personnages alliés situés à moins de [<font class='stat-strength'>statistique de Force</font>] mètre(s) de votre personnage obtiennent un bonus de ([<font class='magic-points'>points de magie possédés par votre personnage</font>]d4)-2. Votre personnage étant plus petit, tous ses déplacements en combat sont réduits de 2 mètres.",
       "kappa":"Votre personnage possède un sac de provisions et d’équipements, contenant une ration de survie, une carte de Gensokyo, et un compte-rendu d’inventaire Kappa.",
       "halfyoukai":"A chaque fois que votre personnage sera attaqué, et que l’attaquant visera un point en particulier de votre corps, votre personnage gagnera à ce moment-là, jusqu’au début de sa prochaine <font class='action'>action</font> <font class='status-effect'>peau dure</font>. Votre personnage peut être soigné au-delà de ses points de vie maximum, jusqu’à +[<font class='stat-magic'>statistique de Magie</font>]/10 <font class='round'>(arrondi à l’inférieur)</font> point(s) de vie.",
       "celestial":"A chaque fois que votre personnage portera une attaque de mêlée réussie contre une entité, cette dernière sera <font class='status-effect'>réduite au silence</font> si elle échoue à un <font class='trait'>jet de Résistance</font> <font class='difficulty'>{Difficile:24}</font> jusqu’à la fin de sa prochaine <font class='action'>action</font>.",
-      "hermit":"Votre personnage gagne <font class='magic-points'>2 points de Magie</font> maximum supplémentaires. Votre personnage confère automatiquement un bonus d’1d4 à tous les <font class='stat-discipline'>jets de Discipline</font> des personnages alliés, situé à moins de [<font class='stat-magic'>statistique de Magie</font>] mètre(s) tant que votre personnage possède tous ses points de vie.",
+      "hermit":"Votre personnage gagne <font class='magic-points'>2 points de Magie</font> maximum supplémentaires. Votre personnage confère automatiquement un bonus d’1d4 à tous les <font class='stat-discipline'>jets de Discipline</font> des personnages alliés, situé à moins de [<font class='stat-agility'>statistique d'Agilité</font>] mètre(s).",
       "shinigami":"A chaque fois que votre personnage infligera des dégâts à la mêlée, et/ou avec une arme, alors la créature subissant les dégâts subit également <font class='critwounds'>1 blessure critique</font>.",
       "arahitogami":"A chaque fois que votre personnage utilisera <font class='magic-points'>un point de magie</font>, un allié ne possédant pas tous ses <font class='magic-points'>points de magie</font>, situé à moins de 15 mètres de votre personnage, choisi aléatoirement, gagne <font class='magic-points'>un point de magie</font>.",
       "tsukumogami":"Votre personnage peut être soigné sans besoin de matériel médical avec la réussite d’un <font class='trait'>jet de Technologie</font> <font class='difficulty'>{Ardu:20}</font> (disponible une fois par jour). Si votre personnage doit se soigner, il doit utiliser du matériel médical. Votre personnage est capable de se retransformer en l’objet qu’il est à sa guise, cependant, dans cet état, il est immobile.",
@@ -461,7 +465,7 @@
       "youkai":"Cette compétence est gratuite. En combat, effectuez un <font class='stat-strength'>jet de Force</font>, <font class='stat-discipline'>de Discipline</font>, ou <font class='stat-intellect'>d’Intelligence</font> <font class='difficulty'>{Ardu:20}</font>. S’il réussit, votre personnage récupère <font class='magic-points'>1 point de magie</font>. Hors combat, sacrifiez 6 de vos points de vie pour récupérer <font class='magic-points'>1 point de magie</font>.",
       "ghost":"Votre personnage réduis le lien entre le monde physique et son corps. En plus de perdre 1d4 <font class='critwounds'>blessure(s) critique(s)</font>, effectuez un <font class='trait'>jet de Maîtrise</font>, ou <font class='trait'>de Passe-Passe</font> <font class='difficulty'>{Difficile:24}</font>. Puis, jusqu’à la fin du tour de combat prochain, ou pendant l’équivalent de 4 secondes, tous les dégâts que votre personnage subira seront réduits de 1+[<font class='trait'>Degrés de Réussite</font>].",
       "vampire":"Votre personnage est capable de se soigner lui-même de 2d6 points de vie si ses points de vie sont inférieurs à [<font class='stat-magic'>statistique de Magie</font>]. Pour ce faire, un <font class='stat-strength'>jet de Force</font> <font class='difficulty'>{Ardu:20}</font> doit être réussi. Si le jet échoue, le <font class='magic-points'>point de magie</font> n’est pas dépensé.",
-      "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Si le jet est une réussite, tous les alliés de votre personnage situés à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendront, durant les prochaines 1d4 <font class='action'>action(s)</font> (ou 6 prochaines secondes) un bonus sur leurs <font class='trait'>jet(s) de caractéristiques</font> égal à +2d4. Chaque point de fatigue que possède votre personnage retire 1d4 à ce bonus.",
+      "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Puis, une créature sélectionnée par votre personnage, située à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendra, durant les prochaines [<font class='stat-magic'>Degrés de réussite du jet de Magie</font>] <font class='action'>action(s)</font> (ou [<font class='stat-magic'>Degrés de réussite</font>]+1 prochaines secondes) un bonus sur ses <font class='trait'>jets de caractéristiques</font> égal à +2d4.",
       "crowtengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
       "whitewolftengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
       "greattengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
@@ -508,11 +512,14 @@
       "activeEffectsOptions":"Afficher le panneau de contrôle des ActiveEffects",
       "humanUpgradedstat":"Statistique améliorée :",
       "humanButtonskill":"Appliquer le bonus au personnage",
+      "youkaitext1":"Effectuer un jet de :",
       "vampireButton":"Se régénérer",
+      "manifestationofnature1":"Aider ",
       "lunarrabbitRaceskill1":"<font class='trait'>Jets de Discrétion</font> : ",
       "lunarrabbitRaceskill2":"<font class='trait'>Jets d'Investigation</font> : ",
       "lunarrabbitRaceskill3":"Dégâts infligés : ",
       "lunarrabbitButton":"Supprimer l'effet",
+      "lowofthegodsButton":"Localiser la/les parties renforcée(s)",
       "tsukumogamiRaceskill":"Que souhaitez-vous faire ?",
       "tsukumogamiButton1":"Prolonger la durée d'un effet de statut",
       "tsukumogamiButton2":"Supprimer un effet de statut pour vous soigner",
@@ -530,6 +537,15 @@
     },
     "simpleMessage": {
       "diceDifficulty":"Jet de difficulté "
+    },
+    "rollTalent": {
+      "search":"Jet de Fouille",
+      "orientation":"Jet d'Orientation"
     }
+  },
+  "SETTINGS":{
+    "None":"Aucune option disponible !",
+    "disableFrolicButtonsGM":"Basculer boutons Gambader",
+    "disableFrolicButtonsGMHint":"Activer ou désactiver les boutons de la compétence de race du lapin de la Terre : Gambader"
   }
 }

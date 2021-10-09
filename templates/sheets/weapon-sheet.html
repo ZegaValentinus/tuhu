@@ -74,7 +74,11 @@
           {{#select data.data.rarity}}
             {{#each config.rarityTypes as |name type|}}
               {{#if @last}}
-              <!-- afficher youkaitype only if gamemaster -->
+                {{#if @root.isGM}}
+                  <option class="tvq-rarity-{{type}}" value="{{type}}">{{localize name}}</option>
+                {{else}}
+                  <option class="tvq-rarity-{{type}}" value="{{type}}" disabled>???</option>
+                {{/if}}
               {{else}}
                 <option class="tvq-rarity-{{type}}" value="{{type}}">{{localize name}}</option>
               {{/if}}

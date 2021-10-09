@@ -151,9 +151,28 @@ export async function raceRoll({
     }
     if (data.race == "youkai") {
 
-    }
-    if (data.race == "ghost") {
+        const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
 
+        const messageData = {
+            data: data,
+            race: data.race,
+            actor: actor,
+            user: game.user.id,
+            whisper: [game.user.id]
+        }
+
+        const html = await renderTemplate(messageTemplate, messageData);
+
+        const messageData2 = {
+            speaker: ChatMessage.getSpeaker(),
+            content: html,
+            user: game.user.id,
+            whisper: [game.user.id]
+        }
+
+        const messageClass = getDocumentClass("ChatMessage");
+    
+        messageClass.create(messageData2);
     }
     if (data.race == "vampire") {
 
@@ -337,18 +356,6 @@ export async function raceRoll({
         }
 
     }
-    if (data.race == "fairy") {
-
-    }
-    if (data.race == "crowtengu") {
-
-    }
-    if (data.race == "whitewolftengu") {
-
-    }
-    if (data.race == "greattengu") {
-
-    }
     if (data.race == "lunarrabbit") {
         const messageTemplateLR = "systems/touhouvq/templates/partials/tchat-skillcard.html";
 
@@ -379,33 +386,6 @@ export async function raceRoll({
         const messageClassLR = getDocumentClass("ChatMessage");
     
         messageClassLR.create(messageDataLR);
-    }
-    if (data.race == "oni") {
-
-    }
-    if (data.race == "amanojaku") {
-
-    }
-    if (data.race == "inchling") {
-
-    }
-    if (data.race == "kappa") {
-
-    }
-    if (data.race == "halfyoukai") {
-
-    }
-    if (data.race == "celestial") {
-
-    }
-    if (data.race == "hermit") {
-
-    }
-    if (data.race == "shinigami") {
-
-    }
-    if (data.race == "arahitogami") {
-
     }
     if (data.race == "tsukumogami") {
         if (data.choice === "1") {
@@ -465,17 +445,6 @@ export async function raceRoll({
                 messageClass.create(messageData);
             }
         }
-    }
-    if (data.race == "earthrabbit") {
-        
-        /* Sur la card des roll trait comme stat, check si earthrabbit, si oui : */
-        /* Affiche autant de bouton qu'il y a de dés sur la card, hors d20, qui contienne en data attribute leur score et leur faces */
-        /* Lorsque bouton appuyé : les boutons disparaîssent, et à leur place, il sera marqué "DX volé !" (et ça, pour tout le monde !), puis les valeurs se mettront à jour, */
-        /* en modifiant le score, ajoutant un activeeffect au personnage qui a volé le dé, qui s'appelle "Gambader: DX volé", et quand le joueur appuie sur le */
-        /* bouton de compétence de race, ça mettra sur le tchat : "utilisation du DX", et au prochain jet de stat ou trait, ça utlisera, en plus, ce dé. */
-    }
-    if (data.race == "yamabiko") {
-
     }
 }
 

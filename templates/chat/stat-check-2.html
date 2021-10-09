@@ -14,33 +14,33 @@
                 <div class="dice">
                     <header class="part-header flexrow">
                         <span class="part-formula">{{rollResult.formula}}</span>
-                        {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
-                            <p class="tvq-criticalsuccess-display">
-                                {{localize "touhouvq.critical.critsuccess"}}
-                            </p>
-                        {{else}}
-                            {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
-                                <p class="tvq-criticalfailure-display">
-                                    {{localize "touhouvq.critical.critfailure"}}
+                            {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
+                                <p class="tvq-criticalsuccess-display">
+                                    {{localize "touhouvq.critical.critsuccess"}}
                                 </p>
+                            {{else}}
+                                {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
+                                    <p class="tvq-criticalfailure-display">
+                                        {{localize "touhouvq.critical.critfailure"}}
+                                    </p>
+                                {{/ifEquals}}
                             {{/ifEquals}}
-                        {{/ifEquals}}
                         <span class="part-total">{{rollResult.total}}</span>
                     </header>
                     <ol class="dice-rolls">
-                    {{#each rollResult.dice as |object key|}}
-                        {{#each this.results}}
-                            {{#ifSuperiorOrEquals this.result object.faces}}
-                                <li class="roll max die d{{object.faces}}">{{this.result}}</li>
-                            {{else}}
-                                {{#ifEquals this.result 1}}
-                                    <li class="roll min die d{{object.faces}}">{{this.result}}</li>
+                        {{#each rollResult.dice as |object key|}}
+                            {{#each this.results}}
+                                {{#ifSuperiorOrEquals this.result object.faces}}
+                                    <li class="roll max die d{{object.faces}}">{{this.result}}</li>
                                 {{else}}
-                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
-                                {{/ifEquals}}
-                            {{/ifSuperiorOrEquals}}
+                                    {{#ifEquals this.result 1}}
+                                        <li class="roll min die d{{object.faces}}">{{this.result}}</li>
+                                    {{else}}
+                                        <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                    {{/ifEquals}}
+                                {{/ifSuperiorOrEquals}}
+                            {{/each}}
                         {{/each}}
-                    {{/each}}
                     </ol>
                 </div>
             </section>
@@ -72,29 +72,27 @@
                     </div>
                 </div>
             {{else}}
-            <div class="raceskill-checkdiv">
-                <div class="checkdiv-1">
-                    <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
-                    <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                <div class="raceskill-checkdiv">
+                    <div class="checkdiv-1">
+                        <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                        <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                    </div>
+                    <div class="checkdiv-2 checkdiv-2-failure">
+                        <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                    </div>
                 </div>
-                <div class="checkdiv-2 checkdiv-2-failure">
-                    <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
-                </div>
-            </div>
             {{/ifSuperiorOrEquals}}
         {{/if}}
-
         
-        <div class="tvq-frolic-buttons" data-actor="{{rollResult.data.data._id}}" data-type="2" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}" data-skill="{{compskillvalue}}">
+        <div class="tvq-frolic-buttons tvq-hide" data-actor="{{rollResult.data.data._id}}" data-type="2" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}" data-skill="{{compskillvalue}}">
             {{#each rollResult.dice as |object key|}}
                 {{#ifNotEquals this.faces 20}}
                     {{#each this.results}}
-                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button tvq-hide" data-faces="{{object.faces}}" data-result="{{this.result}}">{{localize "touhouvq.flavorText.earthrabbitStolen2"}}{{object.faces}} ({{this.result}})</button>
+                        <button type="button" id="earthrabbit-raceskill-button" class="tvq-frolic-button" data-faces="{{object.faces}}" data-result="{{this.result}}">{{localize "touhouvq.flavorText.earthrabbitStolen2"}}{{object.faces}} ({{this.result}})</button>
                     {{/each}}
                 {{/ifNotEquals}}
             {{/each}}
         </div>
-        
 
     </div>
 </div>

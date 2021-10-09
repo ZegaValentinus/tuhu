@@ -162,7 +162,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   padding-top: 100px;
   opacity: 50%;
 }
-.open-debugg, .toggle-frolic-buttons {
+.open-debugg, .toggle-frolic-buttons, .toggle-fairy-buttons {
   width: 16px;
   height: 16px;
   border-radius: 5px;
@@ -171,7 +171,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   padding: 0;
   margin: 0;
 }
-.cog-button {
+.cog-button, .fa-seedling {
   margin: 0;
   position: absolute;
   font-size: 12px;
@@ -2929,22 +2929,12 @@ select.tvq-select-rarity:focus {
 }
 
 .tvq-rarity-youkai {
-  background: #840CBF !important;
-  background: -webkit-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  background: -moz-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  background: linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  color: #24A80F !important;
   font-weight: bold !important;
 }
 
 .tvq-rarity-youkai-2 {
-  background: #840CBF !important;
-  background: -webkit-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  background: -moz-linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  background: linear-gradient(to bottom right, #840CBF 0%, #24A80F 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  color: #24A80F !important;
 }
 
 .dice-flavor {
@@ -3243,6 +3233,7 @@ select.tvq-select-rarity:focus {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .checkdiv-1 {
@@ -3298,4 +3289,90 @@ select.tvq-select-rarity:focus {
   border-radius: 3px !important;
   box-shadow: 0 0 2px #fff inset;
   word-break: break-all;
+}
+
+.tvq-manifestationofnature-button {
+  width: 128px;
+  margin: 2px 3px;
+  cursor: pointer;
+  font-size: 12.5px;
+  line-height: 10px;
+  height: 37px;
+}
+
+.tvq-chooseyoukai-1 {
+  cursor: pointer;
+  color: #d80e0e !important;
+}
+
+.tvq-chooseyoukai-2 {
+  cursor: pointer;
+  color: #2020D8 !important;
+}
+
+.tvq-chooseyoukai-3 {
+  cursor: pointer;
+  color: #8F20D8 !important;
+}
+
+.talent-color {
+  color: rgb(58 134 0 / 80%) !important;
+}
+
+.actor-name {
+  border: unset !important;
+  background: unset !important;
+}
+
+.actor-name:active, .actor-name:focus {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.tvq-weaponsheet-divgm {
+  width: 160px;
+  margin: 14px auto;
+  opacity: 0.8;
+  position: relative;
+}
+
+.idname-input {
+  font-size: 13px !important;
+  height: 23px !important;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: rgb(32, 32, 32);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -81px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12.5px !important;
+  line-height: 14px !important;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  transition: opacity 0.3s;
+}
+
+.tvq-weaponsheet-divgm:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
 }

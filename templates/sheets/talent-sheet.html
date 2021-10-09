@@ -100,6 +100,14 @@
           <img src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
         </div>
 
+        {{#if isGM}}
+          <div class="tvq-weaponsheet-divgm">
+            <input class="idname-input" name="data.idname" type="text" value="{{data.data.idname}}"/>
+            <div class="tvq-weaponsheet-text">{{localize "touhouvq.itemText.idname"}}</div>
+            <span class="tooltiptext">{{localize "touhouvq.itemText.tooltipWarning"}}</span>
+          </div>
+        {{/if}}
+
       </div>
     
       <div class="tvq-weaponsheet-div2">
@@ -140,3 +148,4 @@
   </div>
 
 </form>
+{{log this}}

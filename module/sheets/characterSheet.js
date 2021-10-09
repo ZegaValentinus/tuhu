@@ -296,6 +296,50 @@ export default class characterSheet extends ActorSheet {
       }
     },
     {
+      name: game.i18n.localize("touhouvq.rollTalent.search"),
+      icon: '<i class="fas fa-search"></i>',
+      callback: element => {
+        const actualStat = element.data("action-value");
+        const actualFatigue = element.data("fatigue-value");
+        const statType = "5";
+        const talentvalue = "search";
+        let actorData = this.actor;
+
+        Dice.StatCheck({
+          actionValue: actualStat,
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData,
+          talentvalue: talentvalue
+        })
+      },
+      condition: element => {
+        return this.actor.items.some(item => (item.data.type === 'talent' && item.data.data.idname === 'search'));
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.rollTalent.orientation"),
+      icon: '<i class="fas fa-search"></i>',
+      callback: element => {
+        const actualStat = element.data("action-value");
+        const actualFatigue = element.data("fatigue-value");
+        const statType = "5";
+        const talentvalue = "orientation";
+        let actorData = this.actor;
+
+        Dice.StatCheck({
+          actionValue: actualStat,
+          fatiguePoints: actualFatigue,
+          statType: statType,
+          actorData: actorData,
+          talentvalue: talentvalue
+        })
+      },
+      condition: element => {
+        return this.actor.items.some(item => (item.data.type === 'talent' && item.data.data.idname === 'orientation'));
+      }
+    },
+    {
       name: game.i18n.localize("touhouvq.deleteActiveEffect.selfhelp"),
       icon: '<i class="fas fa-times"></i>',
       callback: element => {
@@ -595,7 +639,7 @@ export default class characterSheet extends ActorSheet {
       new ContextMenu(html, ".tvq-button-bodyloc", this.damageLocContextMenu);
 
       //Owner-only listeners
-      if (this.actor.owner) {
+      if (this.actor.isOwner) {
         /*html.find(".task-check").click(this._onTaskCheck.bind(this));*/
       }
     }
@@ -734,7 +778,7 @@ export default class characterSheet extends ActorSheet {
     raceskillSheet.render(true);
   }
 
-  _onRaceskillRoll(event) {
+_onRaceskillRoll(event) {
     event.preventDefault();
     let element = event.currentTarget;
     let race = element.dataset.race;
@@ -746,10 +790,7 @@ export default class characterSheet extends ActorSheet {
     let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
 
     if(race == "youkai") {
-      //Message de choix : Soigner ou récupérer de la magie ?
-      //Si soigner : retire 6 PV (check avant si ça tue le perso, dans ce cas impossible (notif) et redonne 1 point de magie)
-      //Si Magie : choix : jet de force, de discipline, ou d'intel ?
-      //Faire le jet en question : si réussi : message de réussite, et point de magie en plus.
+      //Directly go to Tchat.raceRoll({})
     }
 
     if(race == "ghost") {
@@ -758,16 +799,51 @@ export default class characterSheet extends ActorSheet {
       //puis, lorsque jet fait, show 1+degrés de réu.
     }
 
-    if(race == "fairy") {
-      //jet de magie
-      //display si réussite ou non via jet card + 1d4 rollé pour les actions + 2d4 roll pour les bonus sur jet de carac
+    if(race == "vampire") {
+      //Directly go to Tchat.raceRoll({})
+    }
 
-      /*
-      const actors = game.users
-        .filter(user => user.active)
-        .map(user => user.character)
-        .filter(actor => !!actor);
-      */
+    if(race == "fairy") {
+
+      //Checking if at least an actor is targeted
+      if(game.user.targets.size > 0) {
+
+        //Check if the selected actor is himself.
+        game.user.targets.forEach((usr) => {
+          //If the fairy have the talent, then she can target herself
+          if(actor.data._id !== usr.data.actorId) {
+            let manifestationofnature = usr.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"))[0];
+            if(!manifestationofnature) {
+              const effectData = {
+                label:game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"),
+                icon: "systems/touhouvq/assets/img/talentsandskills/fairy/manifestationofnature.webp"
+              };
+              //manifestationofnature = await ActiveEffect.create(effectData, {parent: usr});
+            }
+          }
+        });
+
+        Dice.StatCheck({
+          actionValue: actor.data.data.stats.magic,
+          fatiguePoints: actor.data.data.fatigue.value,
+          statType: 6,
+          actorData: actor,
+          compskillvalue: "manifestationofnature",
+          talentvalue: null
+        });
+      } else {
+        ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noActorTargeted"));
+      }
+
+
+
+      //puis, display une liste de tout les actors éligible au buff
+
+      //NOTES : parmis ces actors apparaîtront :
+      //_tout les actors owned par un player
+      //_tout les actors pnj slectionnés dans la liste par le MJ
+      //+2d4 (bonus sur jet de carac)
+      //activeeffect
     }
 
     if(race == "crowtengu" || race == "whitewolftengu" || race == "greattengu") {
@@ -781,7 +857,7 @@ export default class characterSheet extends ActorSheet {
     }
 
     if(race == "lunarrabbit") {
-      //document.querySelector(".tvq-button-traitroll > #context-menu > li.context-item:nth-child(5n)").classList.add("boosted");
+      //Directly go to Tchat.raceRoll({})
     }
 
     if(race == "arahitogami") {
@@ -789,9 +865,12 @@ export default class characterSheet extends ActorSheet {
 
       //récupérer degrés de réussite+1 (on appelera ce nombre X) : tirer X dé(s), dont les résultats pointeront chacun vers une parties du corps du perso transformée en renforcée
 
-
       //Dans le même temps, récupérer stat de magie divisé par 10 pour display la durée en action du buff
 
+    }
+
+    if(race == "tsukumogami") {
+      //Directly go to Tchat.raceRoll({})
     }
 
     if(race == "earthrabbit") {
@@ -861,12 +940,13 @@ export default class characterSheet extends ActorSheet {
 
   _onToggleFrolic(event) {
     event.preventDefault();
-    var elements = document.getElementsByClassName("tvq-frolic-buttons");
+    let elements = document.getElementsByClassName("tvq-frolic-buttons");
 
     this.actor.displayRaceskillButtons = !this.actor.displayRaceskillButtons;
 
     for(let elem of elements) {
-      if(this.actor.displayRaceskillButtons) {
+      console.log(elem);
+      if(this.actor.displayRaceskillButtons && this.actor.id !== elem.dataset.actor) {
         elem.classList.remove('tvq-hide');
       } else {
         elem.classList.add('tvq-hide');
@@ -875,6 +955,5 @@ export default class characterSheet extends ActorSheet {
 
     const button = event.currentTarget;
     button.dataset.activated = this.actor.displayRaceskillButtons;
-    console.log(button.dataset);
   }
 }

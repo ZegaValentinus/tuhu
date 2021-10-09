@@ -1,8 +1,23 @@
 <div class="tchat-card">
     <div class="tchat-info">
+        {{#if (eq race "youkai")}}
+            <div class="tvq-skillcard">
+                <div class="tvq-skillcard-div1">
+                    <p>{{localize 'touhouvq.flavorText.youkaitext1'}}</p>
+                </div>
+                <div class="tvq-skillcard-div2">
+                    <button id="youkai-raceskill-button-1" class="tvq-chooseyoukai tvq-chooseyoukai-1" type="button" data-actor="{{actor.data._id}}" data-choice="strength">{{localize 'touhouvq.stats.strength'}}</button>
+                    <button id="youkai-raceskill-button-2" class="tvq-chooseyoukai tvq-chooseyoukai-2" type="button" data-actor="{{actor.data._id}}" data-choice="discipline">{{localize 'touhouvq.stats.discipline'}}</button>
+                    <button id="youkai-raceskill-button-3" class="tvq-chooseyoukai tvq-chooseyoukai-3" type="button" data-actor="{{actor.data._id}}" data-choice="intelligence">{{localize 'touhouvq.stats.intelligence'}}</button>
+                </div>
+            </div>
+        {{/if}}
         {{#if (eq race "vampire")}}
             <div class="dice-roll">
                 <div class="dice-result">
+                    <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                        {{localize "touhouvq.namesRaceSkill.savagerecovery"}}
+                    </div>
                     <div class="dice-formula tvq-dice-formula tvq-strength-color">
                         {{localize "touhouvq.sheet.rollStrength"}}
                     </div>
@@ -56,9 +71,30 @@
                             {{/ifEquals}}
                         {{/ifEquals}}
                     </div>
-                    <div class="tvq-skillcard-div2">
-                        <button id="vampire-raceskill-button" class="tvq-choosevampire" type="button" data-actor-id="{{actor.id}}">{{localize 'touhouvq.flavorText.vampireButton'}}</button>
-                    </div>
+                    {{#ifSuperiorOrEquals rollResult.total 20}}
+                        <div class="raceskill-checkdiv">
+                            <div class="checkdiv-1">
+                                <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                                <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                            </div>
+                            <div class="checkdiv-2 checkdiv-2-success">
+                                <p>{{localize "touhouvq.simpleCheck.success"}}</p>
+                            </div>
+                        </div>
+                        <div class="tvq-skillcard-div2">
+                            <button id="vampire-raceskill-button" class="tvq-choosevampire" type="button" data-actor-id="{{actor.id}}">{{localize 'touhouvq.flavorText.vampireButton'}}</button>
+                        </div>
+                    {{else}}
+                        <div class="raceskill-checkdiv">
+                            <div class="checkdiv-1">
+                                <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                                <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                            </div>
+                            <div class="checkdiv-2 checkdiv-2-failure">
+                                <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                            </div>
+                        </div>
+                    {{/ifSuperiorOrEquals}}
                 </div>
             </div>
         {{/if}}

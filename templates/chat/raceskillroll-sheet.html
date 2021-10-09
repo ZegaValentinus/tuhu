@@ -1,9 +1,21 @@
 <div class="dice-roll">
     <div class="dice-result">
 
-        <div class="dice-formula tvq-dice-formula-weapon">
-            <p>{{data.compname}}</p>
-        </div>
+        {{#if (eq data.race "human")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.selfhelp"}}
+            </div>
+        {{/if}}
+        {{#if (eq data.race "vampire")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.savagerecovery"}}
+            </div>
+        {{/if}}
+        {{#if (eq data.race "tsukumogami")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.tsukumogamirecon"}}
+            </div>
+        {{/if}}
 
         <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.skillText'}}</p>
 

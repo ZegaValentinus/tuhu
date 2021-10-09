@@ -1,5 +1,15 @@
 <div class="dice-roll">
     <div class="dice-result">
+        {{#if (eq talentvalue "search")}}
+            <div class="dice-formula tvq-dice-formula talent-color">
+                {{localize "touhouvq.rollTalent.search"}}
+            </div>
+        {{/if}}
+        {{#if (eq talentvalue "orientation")}}
+            <div class="dice-formula tvq-dice-formula talent-color">
+                {{localize "touhouvq.rollTalent.orientation"}}
+            </div>
+        {{/if}}
         {{#if (eq compskillvalue "unrealdodge")}}
             <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
                 {{localize "touhouvq.namesRaceSkill.unrealdodge"}}
@@ -8,6 +18,16 @@
         {{#if (eq compskillvalue "lawofthegods")}}
             <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
                 {{localize "touhouvq.namesRaceSkill.lawofthegods"}}
+            </div>
+        {{/if}}
+        {{#if (eq compskillvalue "manifestationofnature")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.manifestationofnature"}}
+            </div>
+        {{/if}}
+        {{#if (eq compskillvalue "powerunleash")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.powerunleash"}}
             </div>
         {{/if}}
         {{#if (eq rolltype "1")}}
@@ -31,9 +51,11 @@
             </div>
         {{/if}}
         {{#if (eq rolltype "5")}}
-            <div class="dice-formula tvq-dice-formula tvq-perception-color">
-                {{localize "touhouvq.sheet.rollPerception"}}
-            </div>
+            {{#if (eq talentvalue "")}}
+                <div class="dice-formula tvq-dice-formula tvq-perception-color">
+                    {{localize "touhouvq.sheet.rollPerception"}}
+                </div>
+            {{/if}}
         {{/if}}
         {{#if (eq rolltype "6")}}
             <div class="dice-formula tvq-dice-formula tvq-magic-color">
@@ -137,7 +159,7 @@
             {{/ifEquals}}
         </div>
 
-        {{#if (eq compskillvalue "unrealdodge")}}
+        {{#if compskillvalue}}
             {{#ifSuperiorOrEquals finalscore 20}}
                 <div class="raceskill-checkdiv">
                     <div class="checkdiv-1">
@@ -149,17 +171,19 @@
                     </div>
                 </div>
             {{else}}
-            <div class="raceskill-checkdiv">
-                <div class="checkdiv-1">
-                    <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
-                    <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                <div class="raceskill-checkdiv">
+                    <div class="checkdiv-1">
+                        <p class="checkdiv-p1">{{localize "touhouvq.simpleMessage.diceDifficulty"}}</p>
+                        <p class="checkdiv-p2">{{localize "touhouvq.difficulties.Arduous"}} ({{localize "touhouvq.difficulties.Arduous1"}})</p>
+                    </div>
+                    <div class="checkdiv-2 checkdiv-2-failure">
+                        <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                    </div>
                 </div>
-                <div class="checkdiv-2 checkdiv-2-failure">
-                    <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
-                </div>
-            </div>
             {{/ifSuperiorOrEquals}}
         {{/if}}
 
     </div>
 </div>
+
+{{log this}}
