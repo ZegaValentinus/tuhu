@@ -2,7 +2,7 @@
   "name": "touhouvq",
   "title": "Touhou: Venturesome Quest!",
   "description": "A system for playing Touhou: Venturesome Quest!, the touhou tabletop roleplay game that can be played in the Foundry Virtual Tabletop environment.",
-  "version": 1.01,
+  "version": 1.05,
   "author": "Benjamin Prieur",
   "minimumCoreVersion": "0.8.9",
   "compatibleCoreVersion": "0.8.9",

@@ -246,9 +246,11 @@ export async function StatCheck({
     }
     return loca.armor === true ? `${cssClasses} armor`: cssClasses;
 }
-  
+
 export async function LocCheck(locData) {
-    const race = CONFIG.touhouvq.races[locData.raceNum];
+    const lotgEffect = locData.actorData.effects.filter( effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods"))[0];
+    const race = lotgEffect ? lotgEffect.data.flags.touhouvq : CONFIG.touhouvq.races[locData.raceNum];
+
     const template = "systems/touhouvq/templates/partials/tchat-card.html";
   
     //roll the loca hit
@@ -350,7 +352,19 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             rollResult1 = d20 + ` + ` + numDivision + d4 + frolicFaces;
         }
 
-        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id}).roll();
+        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
+        await rollResult.evaluate({async:true});
+        
+        //calculations of the 'degree of success'
+        let difficulty = 0;
+        if (compskillvalue === 'lawofthegods') {
+          difficulty = 20;
+        }
+        let successDegree = Math.max(rollResult.total - difficulty, 0);
+
+        if (compskillvalue === 'lawofthegods') {
+          successDegree += 1;
+        }
 
         let rolls = [d20];
 
@@ -361,6 +375,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let messageData = {
             speaker: ChatMessage.getSpeaker(),
             rollResult: rollResult,
+            successDegree: successDegree,
             traitType: traitType,
             stat2: stat2,
             stat1: stat1,
@@ -392,7 +407,19 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
         }
 
-        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id}).roll();
+        let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
+        await rollResult.evaluate({async:true});
+        
+        //calculations of the 'degree of success'
+        let difficulty = 0;
+        if (compskillvalue === 'lawofthegods') {
+          difficulty = 20;
+        }
+        let successDegree = Math.max(rollResult.total - difficulty, 0);
+
+        if (compskillvalue === 'lawofthegods') {
+          successDegree += 1;
+        }
 
         let rolls = [d20];
 
@@ -409,6 +436,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let messageData = {
             speaker: ChatMessage.getSpeaker(),
             rollResult: rollResult,
+            successDegree: successDegree,
             fatiguePoints: fatiguePoints,
             traitType: traitType,
             stat2: stat2,
@@ -2105,6 +2133,14 @@ export async function diceStolen({
 
     const messageTemplate = "systems/touhouvq/templates/chat/stat-check-stolen.html";
 
+    let reinf = null;
+    if(dataset.reinforcement !== "undefined") {
+        reinf = dataset.reinforcement-result;
+        if(reinf < 1) {
+            reinf = 1;
+        }
+    }
+
     let data1 = {
         actor: actor,
         finalscore: finalscore,
@@ -2113,7 +2149,9 @@ export async function diceStolen({
         actualresult: result,
         bigresult: dataset.bigresult,
         compskillvalue: dataset.skill,
-        talentvalue: dataset.talent
+        talentvalue: dataset.talent,
+        successDegree: reinf,
+        originalActorId: message.data.speaker.actor
     }
 
     let htmlContent = await renderTemplate(messageTemplate, data1);
@@ -2121,7 +2159,8 @@ export async function diceStolen({
     let messageData = {
         flavor: game.i18n.localize("touhouvq.flavorText.earthrabbitStolen3")+actor.data.name,
         speaker: message.data.speaker,
-        content: htmlContent
+        content: htmlContent,
+        roll: message._roll.toJSON()
     }
 
     const messageClass = getDocumentClass("ChatMessage");

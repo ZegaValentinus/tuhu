@@ -94,7 +94,17 @@
       "tooltipWarning": "⚠ Attention : Changer ce nom retirera les fonctionnalités que peut proposer ce talent."
     },
     "notifications": {
-      "tooMuchItems": "Attention! Ce personnage porte trop d'objets.",
+      "tooMuchItems":"Attention! Ce personnage porte trop d'objets.",
+      "headLawofthegods":"La tête",
+      "heartLawofthegods":"Le coeur",
+      "torsoLawofthegods":"Le torse",
+      "objectLawofthegods":"L'objet",
+      "rArmLawofthegods":"Le bras droit",
+      "lArmLawofthegods":"Le bras gauche",
+      "rLegLawofthegods":"La jambe droite",
+      "lLegLawofthegods":"La jambe gauche",
+      "reinforcedLawofthegods":" est/sont renforcé/e/s !",
+      "allLawofthegods":"Votre corps tout entier est renforcé !",
       "noActor":"Attention ! Vous n'avez pas sélectionné de personnage.",
       "noDieStolen":"Attention ! Votre personnage n'a pas encore volé de dé...",
       "dieReady":"Dé prêt à être utilisé !",
@@ -506,6 +516,7 @@
     },
     "deleteActiveEffect": {
       "selfhelp":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Débrouillardise</font>",
+      "lawofthegods":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Loi des Dieux</font>",
       "frolic":"Retirer l'effet de <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Gambader</font>"
     },
     "flavorText": {

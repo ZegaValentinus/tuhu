@@ -39,6 +39,18 @@ export default class characterSheet extends ActorSheet {
       }
     },
     {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.lawofthegods"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let lawofthegods = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [lawofthegods.id]);
+      },
+      condition: element => {
+        let lawofthegods = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods")))[0];
+        return lawofthegods;
+      }
+    },
+    {
       name: game.i18n.localize("touhouvq.sheet.initiativeRoll2"),
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {

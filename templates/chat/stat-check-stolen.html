@@ -181,9 +181,10 @@
                     </div>
                 </div>
             {{/ifSuperiorOrEquals}}
+            {{#if (eq compskillvalue "lawofthegods")}}
+                <button id="lawofthegods-raceskill-button-steal" class="tvq-raceskillarahitogami" data-actor-id="{{originalActorId}}" data-reinforcement="{{successDegree}}" type="button">{{localize 'touhouvq.flavorText.lowofthegodsButton'}} ({{successDegree}})</button>
+            {{/if}}
         {{/if}}
 
     </div>
 </div>
-
-{{log this}}

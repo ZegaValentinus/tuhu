@@ -3146,7 +3146,7 @@ select.tvq-select-rarity:focus {
   cursor: pointer;
 }
 
-.tvq-raceskilllunarrabbit {
+.tvq-raceskilllunarrabbit, .tvq-raceskillarahitogami {
   cursor: pointer;
 }
 

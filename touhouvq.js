@@ -59,14 +59,26 @@ Hooks.on("renderChatLog", (app, html, data) => {
   html.on("click",".tvq-chooseyoukai",_onChooseYoukai);
   html.on("click",".tvq-choosevampire",_onChooseVampire);
   html.on("click",".tvq-raceskilllunarrabbit",_onDeleteEffectLunarrabbit);
+  html.on("click",".tvq-raceskillarahitogami",_onReinforcementArahitogami);
   html.on("click",".tvq-choosetsukumogami",_onChooseTsukumogami);
   html.on("click",".tvq-frolic-button",_onRaceskillFrolic);
 });
 
 Hooks.on("renderChatMessage", (app, html, data) => {
+
   if(!app._roll){return;}
 
   const actor = game.actors.get(app._roll.options.actorId);
+
+  /* ARAHITOGAMI RACESKILL - BEGIN */
+
+  //Hide human race skill button for non sheet owners
+  const myButtonLawofthegods = html.find('.tvq-raceskillarahitogami')[0];
+  if(myButtonLawofthegods && !actor.isOwner) {
+    myButtonLawofthegods.classList.add("tvq-hide");
+  }
+
+  /* ARAHITOGAMI RACESKILL - END */
 
   /* EARTH RABBIT RACESKILL - BEGIN */
 
@@ -230,6 +242,109 @@ async function _onDeleteEffectLunarrabbit(event) {
   const actor = game.actors.get(actorID);
   let firingline = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
   actor.deleteEmbeddedDocuments('ActiveEffect', [firingline.id]);
+}
+
+async function _onReinforcementArahitogami(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const actorID = event.currentTarget.dataset.actorId;
+  const actor = game.actors.get(actorID);
+  const reinforcement = event.currentTarget.dataset.reinforcement;
+
+  const locaList = [
+    {id: 'head', crit: true, range: [10]},
+    {id: 'heart', crit: true, range: [9]},
+    {id: 'torso', range: [6, 7, 8]},
+    {id: 'object', range: [5]},
+    {id: 'rArm', range: [4]},
+    {id: 'lArm', range: [3]},
+    {id: 'rLeg', range: [2]},
+    {id: 'lLeg', range: [1]}
+  ];
+
+  let locaList2 = ['head','heart','torso','object','rArm','lArm','rLeg','lLeg'];
+
+  let rollResult = null;
+  let rollResult1 = null;
+  let bodylocation = "";
+
+  if(reinforcement >= 8) {
+    locaList.filter(loca => loca.range.includes(1))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(2))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(3))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(4))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(5))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(6))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(9))[0].armor = true;
+    locaList.filter(loca => loca.range.includes(10))[0].armor = true;
+    ui.notifications.info(game.i18n.localize("touhouvq.notifications.allLawofthegods"));
+  } else {
+    for (let i = 8; i > 8-reinforcement; i--) {
+      rollResult = Math.floor(Math.random() * i);
+
+      if(i < 8) {
+        bodylocation += ", ";
+      }
+  
+      if(locaList2[rollResult] === "head") {
+        rollResult1 = 10;
+        bodylocation += game.i18n.localize("touhouvq.notifications.headLawofthegods");
+      }
+      if(locaList2[rollResult] === "heart") {
+        rollResult1 = 9;
+        bodylocation += game.i18n.localize("touhouvq.notifications.heartLawofthegods");
+      }
+      if(locaList2[rollResult] === "torso") {
+        rollResult1 = 6;
+        bodylocation += game.i18n.localize("touhouvq.notifications.torsoLawofthegods");
+      }
+      if(locaList2[rollResult] === "object") {
+        rollResult1 = 5;
+        bodylocation += game.i18n.localize("touhouvq.notifications.objectLawofthegods");
+      }
+      if(locaList2[rollResult] === "rArm") {
+        rollResult1 = 4;
+        bodylocation += game.i18n.localize("touhouvq.notifications.rArmLawofthegods");
+      }
+      if(locaList2[rollResult] === "lArm") {
+        rollResult1 = 3;
+        bodylocation += game.i18n.localize("touhouvq.notifications.lArmLawofthegods");
+      }
+      if(locaList2[rollResult] === "rLeg") {
+        rollResult1 = 2;
+        bodylocation += game.i18n.localize("touhouvq.notifications.rLegLawofthegods");
+      }
+      if(locaList2[rollResult] === "lLeg") {
+        rollResult1 = 1;
+        bodylocation += game.i18n.localize("touhouvq.notifications.lLegLawofthegods");
+      }
+  
+      locaList.filter(loca => loca.range.includes(rollResult1))[0].armor = true;
+  
+      locaList2.splice(rollResult, 1);
+    }
+    ui.notifications.info(bodylocation+game.i18n.localize("touhouvq.notifications.reinforcedLawofthegods"));
+  }
+
+  const effectData = {
+    label:game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods"),
+    icon: "systems/touhouvq/assets/img/talentsandskills/"+actor.data.data.race+"/lawofthegods.webp",
+    flags: {
+      touhouvq: {
+        locaList: locaList
+      }
+    }
+  };
+
+  let lawOfTheGodsExists = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods")))[0];
+
+  if(lawOfTheGodsExists) {
+    actor.deleteEmbeddedDocuments('ActiveEffect', [lawOfTheGodsExists.id]);
+  }
+
+  const lawofthegods = await ActiveEffect.create(effectData, {parent: actor});
+
 }
 
 async function _onChooseTsukumogami(event) {

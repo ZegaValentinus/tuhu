@@ -1,5 +1,7 @@
 export async function BodyLoc(bodyData) {
-    const race = CONFIG.touhouvq.races[bodyData.raceNum];
+    const lotgEffect = bodyData.actorData.effects.filter( effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.lawofthegods"))[0];
+    const race = lotgEffect ? lotgEffect.data.flags.touhouvq : CONFIG.touhouvq.races[bodyData.raceNum];
+
     const template = "systems/touhouvq/templates/partials/tchat-card.html";
   
     //todo : use function getLocaClasses(loca, hit = false)
