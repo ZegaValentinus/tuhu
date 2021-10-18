@@ -19,7 +19,7 @@ export default class characterSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       template: "systems/touhouvq/templates/sheets/character-sheet.html",
       classes: ["touhouvq", "sheet", "character"],
-      width: 778,
+      width: 750,
       height: 720
     });
   }
@@ -36,6 +36,18 @@ export default class characterSheet extends ActorSheet {
           raceNum: raceNum,
           actorData: actorData
         })
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.deleteActiveEffect.manifestationofnature"),
+      icon: '<i class="fas fa-seedling"></i>',
+      callback: element => {
+        let manifestationofnature = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [manifestationofnature.id]);
+      },
+      condition: element => {
+        let manifestationofnature = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature")))[0];
+        return manifestationofnature;
       }
     },
     {
@@ -606,6 +618,8 @@ export default class characterSheet extends ActorSheet {
     const data = super.getData();
     data.config = CONFIG.touhouvq;
 
+    data.raceListing = this.actor.type === "personnage" ? CONFIG.touhouvq.raceListing : {...CONFIG.touhouvq.raceListing, ...CONFIG.touhouvq.raceListingPnj};
+
     data.equipables = data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
     data.perks = data.items.filter(item => [ "talent", "spellcard" ].includes(item.type) );
 
@@ -620,6 +634,8 @@ export default class characterSheet extends ActorSheet {
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".tvq-button-bodyloc").click(this._onBodyLoc.bind(this));
       html.find(".tvq-deathcheck-roll").click(this._onDeathCheck.bind(this));
+
+      html.find(".tvq-input-race").change(this._onRaceChange.bind(this));
 
       html.find('.mini-button').click(this._onMiniButtonClick.bind(this));
       html.find('.sheet2-button').click(this._onSheet2ButtonClick.bind(this));
@@ -817,23 +833,45 @@ _onRaceskillRoll(event) {
 
     if(race == "fairy") {
 
+      let dotheRoll = 0;
+      let buffingInfo = [];
+
       //Checking if at least an actor is targeted
       if(game.user.targets.size > 0) {
 
         //Check if the selected actor is himself.
-        game.user.targets.forEach((usr) => {
+        let foreachvalue = 0;
+        game.user.targets.forEach( async function(target) {
           //If the fairy have the talent, then she can target herself
-          if(actor.data._id !== usr.data.actorId) {
-            let manifestationofnature = usr.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"))[0];
-            if(!manifestationofnature) {
-              const effectData = {
-                label:game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"),
-                icon: "systems/touhouvq/assets/img/talentsandskills/fairy/manifestationofnature.webp"
-              };
-              //manifestationofnature = await ActiveEffect.create(effectData, {parent: usr});
-            }
+          if(actor.data._id !== target.actor.id) {
+
+            dotheRoll = 1;
+
+              if(game.user.isGM) {
+                const effectData = {
+                  label:game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"),
+                  icon: "systems/touhouvq/assets/img/talentsandskills/fairy/manifestationofnature.webp"
+                };
+                const manifestationofnature = await ActiveEffect.create(effectData, {parent: target.actor});
+              } else {
+                game.socket.emit('system.touhouvq', {
+                  action: "manifestationofnature",
+                  actorId: target.actor.id
+                });
+              }
+
+              buffingInfo[foreachvalue] = target.actor.data.name;
+            
+          } else {
+            return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.cantTargetSelf"));
           }
+          foreachvalue++;
         });
+      } else {
+        return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noActorTargeted"));
+      }
+
+      if(dotheRoll === 1) {
 
         Dice.StatCheck({
           actionValue: actor.data.data.stats.magic,
@@ -841,21 +879,10 @@ _onRaceskillRoll(event) {
           statType: 6,
           actorData: actor,
           compskillvalue: "manifestationofnature",
-          talentvalue: null
+          talentvalue: buffingInfo
         });
-      } else {
-        ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noActorTargeted"));
       }
 
-
-
-      //puis, display une liste de tout les actors éligible au buff
-
-      //NOTES : parmis ces actors apparaîtront :
-      //_tout les actors owned par un player
-      //_tout les actors pnj slectionnés dans la liste par le MJ
-      //+2d4 (bonus sur jet de carac)
-      //activeeffect
     }
 
     if(race == "crowtengu" || race == "whitewolftengu" || race == "greattengu") {
@@ -967,5 +994,45 @@ _onRaceskillRoll(event) {
 
     const button = event.currentTarget;
     button.dataset.activated = this.actor.displayRaceskillButtons;
+  }
+
+  _onRaceChange(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const selectElem = event.currentTarget;
+    const race = selectElem.options[selectElem.selectedIndex].value;
+
+    const updateObj = {};
+
+    updateObj['data.race'] = race;
+    updateObj['data.talentStarter'] = race;
+    updateObj['data.raceSkill'] = race;
+
+    return this.actor.update(updateObj);
+
+
+    /*
+    let element = event.currentTarget;
+    let race = element.dataset.race;
+    let compname = game.i18n.localize("touhouvq.raceskill."+race);
+    let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
+    let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
+    const talentSkillType = "raceskill";
+    const actor = this.actor;
+    
+    let data = {
+      race: race,
+      compdesc: compdesc,
+      compname: compname,
+      compname1: compname1
+    };
+
+    Tchat.raceInfo({
+      actor: actor,
+      data: data,
+      talentSkillType: talentSkillType
+    });
+    */
   }
 }

@@ -87,7 +87,19 @@ export async function StatCheck({
         if (fatiguePoints != 0) {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4 + frolicFaces;
-            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
+            await rollResult.evaluate({async:true});
+
+            //calculations of the 'degree of success'
+            let difficulty = 0;
+            if (compskillvalue === 'manifestationofnature') {
+                difficulty = 20;
+            }
+            let successDegree = Math.floor(Math.max(rollResult.total - difficulty, 0)/2);
+
+            if (compskillvalue === 'manifestationofnature') {
+                successDegree += 1;
+            }
 
             let rolls = [d20];
 
@@ -107,7 +119,8 @@ export async function StatCheck({
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
                 compskillvalue: compskillvalue,
-                talentvalue: talentvalue
+                talentvalue: talentvalue,
+                successDegree: successDegree
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -122,7 +135,19 @@ export async function StatCheck({
         } else {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + frolicFaces;
-            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
+            await rollResult.evaluate({async:true});
+
+            //calculations of the 'degree of success'
+            let difficulty = 0;
+            if (compskillvalue === 'manifestationofnature') {
+                difficulty = 20;
+            }
+            let successDegree = Math.floor(Math.max(rollResult.total - difficulty, 0)/2);
+
+            if (compskillvalue === 'manifestationofnature') {
+                successDegree += 1;
+            }
 
             let rolls = [d20];
 
@@ -140,7 +165,8 @@ export async function StatCheck({
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
                 compskillvalue: compskillvalue,
-                talentvalue: talentvalue
+                talentvalue: talentvalue,
+                successDegree: successDegree
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -157,7 +183,19 @@ export async function StatCheck({
         if (fatiguePoints != 0) {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4 + frolicFaces;
-            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
+            await rollResult.evaluate({async:true});
+
+            //calculations of the 'degree of success'
+            let difficulty = 0;
+            if (compskillvalue === 'manifestationofnature') {
+                difficulty = 20;
+            }
+            let successDegree = Math.floor(Math.max(rollResult.total - difficulty, 0)/2);
+
+            if (compskillvalue === 'manifestationofnature') {
+                successDegree += 1;
+            }
 
             let rolls = [d20];
 
@@ -179,7 +217,8 @@ export async function StatCheck({
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
                 compskillvalue: compskillvalue,
-                talentvalue: talentvalue
+                talentvalue: talentvalue,
+                successDegree: successDegree
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -194,7 +233,19 @@ export async function StatCheck({
         } else {
 
             const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces;
-            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id}).roll();
+            let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
+            await rollResult.evaluate({async:true});
+
+            //calculations of the 'degree of success'
+            let difficulty = 0;
+            if (compskillvalue === 'manifestationofnature') {
+                difficulty = 20;
+            }
+            let successDegree = Math.floor(Math.max(rollResult.total - difficulty, 0)/2);
+
+            if (compskillvalue === 'manifestationofnature') {
+                successDegree += 1;
+            }
 
             let rolls = [d20];
 
@@ -214,7 +265,8 @@ export async function StatCheck({
                 race: actorData.data.data.race,
                 frolicValue: frolicValue,
                 compskillvalue: compskillvalue,
-                talentvalue: talentvalue
+                talentvalue: talentvalue,
+                successDegree: successDegree
             }
         
             let htmlContent = await renderTemplate(messageTemplate, messageData);
@@ -319,23 +371,25 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         }
     }
     
-    /* active effects vars */
+    /* active effects vars - BEGIN */
 
-    //Lunar Rabbit's "firingline"
+    //initializing buff values to 0;
     let activeFiringline = false;
     let firinglinebuff = 0;
+    let manifestationofnaturebuff = 0;
 
     //Check if lunar rabbit under firing line active effect
     let actualStatLunarRabbit = Math.floor(actorData.data.stats.discipline / 10);
 
     if ( actor.isOwner ) {
-      
         const firinglineEffect = actorData.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.firingline"))[0];
         if ( traitRoll.firingLine && firinglineEffect ) {
-            //Now, our character is a lunar rabbit, under the firing line active effect, and using a buffed check
+            //Now, our character is under the firingline active effect, and using a buffed check
             activeFiringline = true;
         }
     }
+
+    /* active effects vars - END */
 
     const messageTemplate = "systems/touhouvq/templates/chat/task-check-" + traitType + ".html";
 
@@ -344,13 +398,22 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let rollResult1 = 0;
 
         if(activeFiringline) {
-            //Check if Lunar rabbit is under firing line buff and using buffed stats
+            //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + frolicFaces;
         } else {
             //Normal trait check
             rollResult1 = d20 + ` + ` + numDivision + d4 + frolicFaces;
         }
+
+        //manifestationofnature
+        let allActorsEffect = actorData.effects;
+        allActorsEffect.forEach(function(effect) {
+            if(effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature")) {
+                manifestationofnaturebuff++;
+                rollResult1 += ` + 2` + d4;
+            }
+        });
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
         await rollResult.evaluate({async:true});
@@ -382,6 +445,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             numDivision: numDivision,
             rolls: rolls,
             firinglinebuff: firinglinebuff,
+            manifestationofnaturebuff: manifestationofnaturebuff,
             frolicValue: frolicValue,
             compskillvalue: compskillvalue
         }
@@ -399,13 +463,22 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let rollResult1 = 0;
 
         if(activeFiringline) {
-            //Check is Lunar rabbit is under firing line buff and using buffed stats
+            //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
         } else {
             //Normal trait check
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
         }
+
+        //manifestationofnature
+        let allActorsEffect = actorData.effects;
+        allActorsEffect.forEach(function(effect) {
+            if(effect.data.label === game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature")) {
+                manifestationofnaturebuff++;
+                rollResult1 += ` + 2` + d4;
+            }
+        });
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
         await rollResult.evaluate({async:true});
@@ -444,6 +517,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             numDivision: numDivision,
             rolls: rolls,
             firinglinebuff: firinglinebuff,
+            manifestationofnaturebuff: manifestationofnaturebuff,
             frolicValue: frolicValue,
             compskillvalue: compskillvalue
         }
@@ -2134,10 +2208,25 @@ export async function diceStolen({
     const messageTemplate = "systems/touhouvq/templates/chat/stat-check-stolen.html";
 
     let reinf = null;
+    let otherInfos = [];
     if(dataset.reinforcement !== "undefined") {
-        reinf = dataset.reinforcement-result;
-        if(reinf < 1) {
-            reinf = 1;
+        if(dataset.skill === "lawofthegods") {
+            reinf = dataset.reinforcement-result;
+            if(reinf < 1) {
+                reinf = 1;
+            }
+        }
+        if(dataset.skill === "manifestationofnature") {
+            let otherInfos1 = dataset.reinforcement;
+            if(Array.isArray(otherInfos1)) {
+                //foreach
+            } else {
+                otherInfos[0] = dataset.reinforcement;
+                if(Math.floor((result-20)/2) < 1) {
+                    reinf = Math.floor((finalscore-20)/2);
+                }
+                
+            }
         }
     }
 
@@ -2151,7 +2240,8 @@ export async function diceStolen({
         compskillvalue: dataset.skill,
         talentvalue: dataset.talent,
         successDegree: reinf,
-        originalActorId: message.data.speaker.actor
+        originalActorId: message.data.speaker.actor,
+        otherInfos: otherInfos
     }
 
     let htmlContent = await renderTemplate(messageTemplate, data1);
@@ -2160,7 +2250,8 @@ export async function diceStolen({
         flavor: game.i18n.localize("touhouvq.flavorText.earthrabbitStolen3")+actor.data.name,
         speaker: message.data.speaker,
         content: htmlContent,
-        roll: message._roll.toJSON()
+        roll: message._roll,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     const messageClass = getDocumentClass("ChatMessage");

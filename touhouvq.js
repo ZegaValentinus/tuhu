@@ -128,12 +128,6 @@ Hooks.on("renderChatMessage", (app, html, data) => {
 
     /* HUMAN RACESKILL - END */
 
-    /* FAIRY RACESKILL - BEGIN */
-
-    const selectActorsGM = game.settings.get("touhouvq","selectManifestationofnatureActorsGM");
-
-    /* FAIRY RACESKILL - END */
-
   }
 });
 
@@ -558,5 +552,20 @@ function registerHandlebarsHelpers() {
       });
     });
     return returnString;
+  });
+
+  Handlebars.registerHelper('forLoop', function (nbIterr, loopInner) {
+    return [...Array(nbIterr)].reduce((acc, cur, index) => (acc + loopInner.fn(index)), "");
+  });
+
+  //github.com/adg29/concat.js
+  Handlebars.registerHelper('concat', function () {
+    let outStr = '';
+    for (const arg in arguments) {
+      if (typeof arguments[arg] !== 'object') {
+        outStr += arguments[arg];
+      }
+    }
+    return outStr;
   });
 }

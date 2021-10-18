@@ -6,9 +6,9 @@
 
     <div class="flex tvq-char-infos">
         <div class="tvq-char-infos-div">
-            <select name="data.race"  class="tvq-input tvq-input-race">
+            <select name="data.race" class="tvq-input tvq-input-race">
                 {{#select data.data.race}}
-                    {{#each config.raceListing as |name race|}}
+                    {{#each raceListing as |name race|}}
                         <option value="{{race}}">{{localize name}}</option>
                     {{/each}}
                 {{/select}}

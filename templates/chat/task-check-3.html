@@ -1,6 +1,13 @@
 
 <div class="dice-roll">
-    <!--<div class="dice-flavor">Hello there !</div>-->
+    <div class="dice-flavor">
+        {{#ifNotEquals manifestationofnaturebuff 0}}
+            {{#forLoop manifestationofnaturebuff}}
+                <!-- If I am here, the character that is making this roll is under the manifestation of nature active effect -->
+                <p class="flavor-boosted">{{localize "touhouvq.raceskill.fairy"}} : +2d4</p>
+            {{/forLoop}}
+        {{/ifNotEquals}}
+    </div>
     <div class="dice-result">
         <div class="dice-formula tvq-dice-formula tvq-dice-formula-trait">
             {{localize "touhouvq.sheet.rollIntimidation1"}}

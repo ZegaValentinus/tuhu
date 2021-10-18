@@ -1,4 +1,11 @@
 {
+  "ACTOR.TypePersonnage": "Personnage",
+  "ACTOR.TypePersonnagenonjoueur": "Personnage Non-Joueur",
+  "ITEM.TypeWeapon": "Arme",
+  "ITEM.TypeArmor": "Armure",
+  "ITEM.TypeObject": "Objet",
+  "ITEM.TypeTalent": "Talent",
+  "ITEM.TypeSpellcard": "Carte de sort",
   "touhouvq": {
     "type": {
       "melee": "Arme de corps-à-corps",
@@ -110,7 +117,8 @@
       "dieReady":"Dé prêt à être utilisé !",
       "dieNotReady":"Le dé reste rangé dans un coin...",
       "magicPointGained":"Point de magie gagné !",
-      "noActorTargeted":"Aucune créature ciblée !"
+      "noActorTargeted":"Aucune créature ciblée !",
+      "cantTargetSelf":"Vous ne pouvez pas vous cibler vous-même !"
     },
     "critical": {
       "critsuccess": "Réussite critique",
@@ -475,7 +483,7 @@
       "youkai":"Cette compétence est gratuite. En combat, effectuez un <font class='stat-strength'>jet de Force</font>, <font class='stat-discipline'>de Discipline</font>, ou <font class='stat-intellect'>d’Intelligence</font> <font class='difficulty'>{Ardu:20}</font>. S’il réussit, votre personnage récupère <font class='magic-points'>1 point de magie</font>. Hors combat, sacrifiez 6 de vos points de vie pour récupérer <font class='magic-points'>1 point de magie</font>.",
       "ghost":"Votre personnage réduis le lien entre le monde physique et son corps. En plus de perdre 1d4 <font class='critwounds'>blessure(s) critique(s)</font>, effectuez un <font class='trait'>jet de Maîtrise</font>, ou <font class='trait'>de Passe-Passe</font> <font class='difficulty'>{Difficile:24}</font>. Puis, jusqu’à la fin du tour de combat prochain, ou pendant l’équivalent de 4 secondes, tous les dégâts que votre personnage subira seront réduits de 1+[<font class='trait'>Degrés de Réussite</font>].",
       "vampire":"Votre personnage est capable de se soigner lui-même de 2d6 points de vie si ses points de vie sont inférieurs à [<font class='stat-magic'>statistique de Magie</font>]. Pour ce faire, un <font class='stat-strength'>jet de Force</font> <font class='difficulty'>{Ardu:20}</font> doit être réussi. Si le jet échoue, le <font class='magic-points'>point de magie</font> n’est pas dépensé.",
-      "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Puis, une créature sélectionnée par votre personnage, située à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendra, durant les prochaines [<font class='stat-magic'>Degrés de réussite du jet de Magie</font>] <font class='action'>action(s)</font> (ou [<font class='stat-magic'>Degrés de réussite</font>]+1 prochaines secondes) un bonus sur ses <font class='trait'>jets de caractéristiques</font> égal à +2d4.",
+      "fairy":"Effectuez un <font class='stat-magic'>jet de Magie</font> <font class='difficulty'>{Ardu:20}</font>. Puis, une créature sélectionnée par votre personnage, située à moins de [<font class='stat-agility'>statistique d’Agilité</font>] mètres autour de ce dernier obtiendra, durant les prochaines 1+[<font class='stat-magic'>Degrés de réussite du jet de Magie</font>]/2 <font class='action'>action(s)</font> (ou [<font class='stat-magic'>Degrés de réussite</font>]+2 prochaines secondes) un bonus sur ses <font class='trait'>jets de caractéristiques</font> égal à +2d4.",
       "crowtengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
       "whitewolftengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
       "greattengu":"En réussissant un <font class='stat-agility'>jet d’Agilité</font> <font class='difficulty'>{Ardu:20}</font>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
@@ -516,6 +524,7 @@
     },
     "deleteActiveEffect": {
       "selfhelp":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Débrouillardise</font>",
+      "manifestationofnature":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Manif. de la Nature</font>",
       "lawofthegods":"Retirer <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Loi des Dieux</font>",
       "frolic":"Retirer l'effet de <font style='color:rgb(0 97 134 / 100%);font-weight:bold;margin-left:4px;'>Gambader</font>"
     },

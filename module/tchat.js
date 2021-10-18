@@ -815,6 +815,15 @@ export function onSocketReceived(data) {
         return;
     }
 
+    if(data.action === "manifestationofnature") {
+        const effectData = {
+            label:game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"),
+            icon: "systems/touhouvq/assets/img/talentsandskills/fairy/manifestationofnature.webp"
+        };
+        let targetedActor = game.actors.get(data.actorId);
+        ActiveEffect.create(effectData, {parent: targetedActor});
+    }
+
     if(data.action === "diceStolen") {
         const message = game.messages.get(data.messageID);
         message.setFlag("touhouvq","diceStolen",true);

@@ -24,6 +24,17 @@ touhouvq.raceListing = {
   yamabiko:"touhouvq.race.yamabiko"
 }
 
+touhouvq.raceListingPnj = {
+  jiangshi: "touhouvq.race.jiangshi",
+  satori:"touhouvq.race.satori",
+  satoriclosedeye:"touhouvq.race.satoriclosedeye",
+  bakedanuki:"touhouvq.race.bakedanuki",
+  priestess:"touhouvq.race.priestess",
+  lunarian:"touhouvq.race.lunarian",
+  mecanical:"touhouvq.race.mecanical",
+  sentientgrimoire:"touhouvq.race.sentientgrimoire"
+}
+
 
 touhouvq.defaultLocaList = [
   {id: 'head', crit: true, range: [10]},

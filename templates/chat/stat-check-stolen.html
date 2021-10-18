@@ -184,7 +184,16 @@
             {{#if (eq compskillvalue "lawofthegods")}}
                 <button id="lawofthegods-raceskill-button-steal" class="tvq-raceskillarahitogami" data-actor-id="{{originalActorId}}" data-reinforcement="{{successDegree}}" type="button">{{localize 'touhouvq.flavorText.lowofthegodsButton'}} ({{successDegree}})</button>
             {{/if}}
+            {{#if (eq compskillvalue "manifestationofnature")}}
+                {{#each otherInfos as |object key|}}
+                    <div class="tvq-buffing">
+                        <p>{{this}}</p>
+                        <p>{{../successDegree}} {{localize "touhouvq.gameplayParts.action(s)"}}</p>
+                    </div>
+                {{/each}}
+            {{/if}}
         {{/if}}
 
     </div>
 </div>
+{{log this}}

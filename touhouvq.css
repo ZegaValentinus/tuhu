@@ -153,7 +153,8 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   box-shadow: unset !important;
 }
 .tvq-options {
-  width: 16%;
+  width: 10%;
+  margin-left: -15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -171,7 +172,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   padding: 0;
   margin: 0;
 }
-.cog-button, .fa-seedling {
+.open-debugg .cog-button, .open-debugg .fa-seedling {
   margin: 0;
   position: absolute;
   font-size: 12px;
@@ -412,8 +413,8 @@ input[type="checkbox"].tvq-deathsave:checked {
 .tvq-sheet-button {
   padding: 0;
   font-size: 12px;
-  width: 228px;
-  margin-left: 10px;
+  width: 230px;
+  margin-left: 3px;
   line-height: 25px;
   font-family: 'Carme', sans-serif !important;
   letter-spacing: -0.4px;
@@ -498,7 +499,7 @@ section.item-list {
   background-color: rgba(0,0,0,0.06) !important;
 }
 .tvq-knowledge-forp {
-  width: 76px;
+  width: 71px;
   margin: 2px 16px -1px 0;
   text-align: right;
   height: 16px !important;
@@ -633,7 +634,7 @@ section.item-list {
   flex-direction: row;
 }
 .tvq-equipment {
-  height: 268px;
+  height: 274px;
 }
 .tvq-side-bloc-content-p {
   font-family: 'Carme', sans-serif;
@@ -647,7 +648,7 @@ section.item-list {
   margin: 2px 0 1px 0;
 }
 .tvq-side-bloc {
-  margin: 3px 10px;
+  margin: 3px;
 }
 .tvq-side-bloc-p {
   color: #494842;
@@ -960,7 +961,7 @@ h3.thv-h3 {
 .tvq-actorimg {
   width: 154px;
   height: 154px;
-  margin-right: 36px;
+  margin-right: 4px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -986,7 +987,7 @@ h3.thv-h3 {
   border-bottom: 0 !important;
   text-align: center;
   font-family: 'Kreon', serif !important;
-  font-size: 21px !important;
+  font-size: 18px !important;
   margin-left: 1% !important;
   margin-right: 1% !important;
   margin-bottom: 3px !important;
@@ -1003,7 +1004,7 @@ h3.thv-h3 {
   flex-direction: row;
 }
 .barFirst {
-  width: 30%;
+  width: 27%;
 }
 .barSecond {
   width: 70%;
@@ -1041,9 +1042,9 @@ h1 {
   justify-content: center;
 }
 .tvq-knowledge p {
-  margin: 0 9px 0 0 !important;
+  margin: 0 7px 0 0 !important;
   font-size: 11px !important;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.5px;
 }
 .tvq-deathcheck-roll {
   cursor: pointer;
@@ -1210,6 +1211,10 @@ h1 {
   width: auto;
   text-align: right;
   padding: 0 6px 0 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 .tvq-criticalfailure-display {
   margin: 0;
@@ -1217,6 +1222,10 @@ h1 {
   width: auto;
   text-align: right;
   padding: 0 6px 0 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 .tvq-weapon-inside {
   background: rgba(0, 0, 0, 0.1);
@@ -3375,4 +3384,28 @@ select.tvq-select-rarity:focus {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s;
+}
+
+.dice-tooltip .part-header {
+  line-height: 18px !important;
+}
+
+.dice-tooltip .part-header .part-total {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tvq-buffing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tvq-buffing p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-family: 'Kreon', serif;
 }
