@@ -1,17 +1,48 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <div class="tvq-weaponsheet-main sheet-items">
+  <div class="tvq-weaponsheet-main">
 
-    <div class="tvq-activeeffects">
+    <div class="tvq-activeeffects-2">
+
+      <!-- Status effect displaying Part -->
+      <p>{{localize "touhouvq.debugg.debuggSheetText1"}}</p>
+
+      <div class="displayeffects">
+        <button class="tvq-displaybuff" type="button">{{localize "touhouvq.debugg.displayBuff"}}</button>
+        <button class="tvq-displaydebuff" type="button">{{localize "touhouvq.debugg.displayDebuff"}}</button>
+      </div>
+
+      <!-- Apply active effects Part -->
+      <p>{{localize "touhouvq.debugg.debuggSheetText2"}}</p>
+
+      <div class="displayeffects displayeffects1">
+        <button class="tvq-applybuff" type="button">{{localize "touhouvq.debugg.applyBuff"}}</button>
+        <button class="tvq-applydebuff" type="button">{{localize "touhouvq.debugg.applyDebuff"}}</button>
+        <button class="tvq-applyalcohol" type="button">{{localize "touhouvq.debugg.applyAlcohol"}}</button>
+      </div>
+
+      <!-- Apply unreal bonus Part -->
+      <p>{{localize "touhouvq.debugg.debuggSheetText3"}}</p>
+
+      <button class="tvq-effect-unrealstrength" type="button">{{localize "touhouvq.debugg.unrealStrength"}}</button>
+      <button class="tvq-effect-unrealagility" type="button">{{localize "touhouvq.debugg.unrealAgility"}}</button>
+      <button class="tvq-effect-unrealresilience" type="button">{{localize "touhouvq.debugg.unrealResilience"}}</button>
+      <button class="tvq-effect-unrealdiscipline" type="button">{{localize "touhouvq.debugg.unrealDiscipline"}}</button>
+      <button class="tvq-effect-unrealperception" type="button">{{localize "touhouvq.debugg.unrealPerception"}}</button>
+      <button class="tvq-effect-unrealmagic" type="button">{{localize "touhouvq.debugg.unrealMagic"}}</button>
+      <button class="tvq-effect-unrealintelligence" type="button">{{localize "touhouvq.debugg.unrealIntelligence"}}</button>
+
+    </div>
+
+    <div class="tvq-activeeffects-1">
       {{#each actor.effects as |effect key|}}
-      {{log this}}
         <div class="tvq-activeeffects-div" data-effect-id="{{effect._id}}">
           <div class="tvq-activeeffects-div1">
             <p>{{effect.label}}</p>
           </div>
           <div class="tvq-activeeffects-div2">
-            <button class="tvq-deleteeffect" type="button">Retirer</button>
-            <button class="tvq-editeffect" type="button">Editer</button>
+            <button class="tvq-deleteeffect" type="button">{{localize "touhouvq.debugg.withdraw"}}</button>
+            <button class="tvq-editeffect" type="button">{{localize "touhouvq.debugg.edit"}}</button>
           </div>
         </div>
       {{/each}}

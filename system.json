@@ -15,49 +15,42 @@
   "packs": [
     {
       "name":"itemObjects",
-      "label":"Objects of Touhou: Venturesome Quest!",
+      "label":"Objects Compendium [TVQ!]",
       "path":"./packs/objects.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemWeapons",
-      "label":"Weapons of Touhou: Venturesome Quest!",
+      "label":"Weapons Compendium [TVQ!]",
       "path":"./packs/weapons.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemArmors",
-      "label":"Armors of Touhou: Venturesome Quest!",
+      "label":"Armors Compendium [TVQ!]",
       "path":"./packs/armors.db",
       "entity":"Item",
       "private":true
     },
     {
-      "name":"itemSkills",
-      "label":"Skills of Touhou: Venturesome Quest!",
-      "path":"./packs/skills.db",
-      "entity":"Item",
-      "private":true
-    },
-    {
       "name":"itemTalents",
-      "label":"Talents of Touhou: Venturesome Quest!",
+      "label":"Talents Compendium [TVQ!]",
       "path":"./packs/talents.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemSpellcards",
-      "label":"Spellcards of Touhou: Venturesome Quest!",
+      "label":"Spellcards Compendium [TVQ!]",
       "path":"./packs/spellcards.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemEnemies",
-      "label":"Enemies of Touhou: Venturesome Quest!",
+      "label":"Enemies Compendium [TVQ!]",
       "path":"./packs/enemies.db",
       "entity":"Actor",
       "private":true
@@ -72,7 +65,7 @@
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "primaryTokenAttribute": "attributes.hp",
+  "primaryTokenAttribute": "health",
   "initiative": "1d10",
   "socket": "true",
   "url": "https://gitlab.com/BenjaminPrieur/touhouvq",

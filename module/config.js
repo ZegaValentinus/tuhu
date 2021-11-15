@@ -211,6 +211,23 @@ touhouvq.stats = {
   intelligence: "touhouvq.stats.intelligence"
 }
 
+touhouvq.traits = {
+  resistance: "touhouvq.traits.resistance",
+  melee: {stats: ['strength', 'discipline'], traitType: 2},
+  intimidation: {stats: ['strength', 'perception'], traitType: 3},
+  throw: {stats: ['agility', 'strength'], traitType: 4},
+  stealth: {stats: ['agility', 'discipline'], traitType: 5, firingLine: true},
+  precision: {stats: ['agility', 'perception'], traitType: 6},
+  sleightHand: {stats: ['agility', 'intelligence'], traitType: 7},
+  mental: {stats: ['resilience', 'perception'], traitType: 8},
+  mastery: {stats: ['resilience', 'magic'], traitType: 9},
+  investigation: {stats: ['discipline', 'perception'], traitType: 10, firingLine: true},
+  faith: {stats: ['discipline', 'magic'], traitType: 11},
+  technology: {stats: ['discipline', 'intelligence'], traitType: 12},
+  charisma: {stats: ['perception', 'intelligence'], traitType: 13},
+  danmaku: {stats: ['magic', 'intelligence'], traitType: 14}
+}
+
 touhouvq.sheet = {
   rollStrength: "touhouvq.sheet.rollStrength",
   rollAgility: "touhouvq.sheet.rollAgility",
@@ -360,11 +377,57 @@ touhouvq.traitRolls = {
   rollDanmaku: {stats: ['magic', 'intelligence'], traitType: 14}
 }
 
+touhouvq.buffs = {
+  regeneration:"touhouvq.statusEffectsBuffs.regeneration",
+  unstoppable:"touhouvq.statusEffectsBuffs.unstoppable",
+  hardskin:"touhouvq.statusEffectsBuffs.hardskin",
+  magebarrier:"touhouvq.statusEffectsBuffs.magebarrier",
+  onibreastplate:"touhouvq.statusEffectsBuffs.onibreastplate",
+  wellofmagic:"touhouvq.statusEffectsBuffs.wellofmagic",
+  bloodlust:"touhouvq.statusEffectsBuffs.bloodlust",
+  unshakeable:"touhouvq.statusEffectsBuffs.unshakeable",
+  invulnerable:"touhouvq.statusEffectsBuffs.invulnerable",
+  instantcelerity:"touhouvq.statusEffectsBuffs.instantcelerity",
+  strokeofgenius:"touhouvq.statusEffectsBuffs.strokeofgenius",
+  nightvision:"touhouvq.statusEffectsBuffs.nightvision"
+}
+
+touhouvq.debuffs = {
+  bleeding:"touhouvq.statusEffectsDebuffs.bleeding",
+  stun:"touhouvq.statusEffectsDebuffs.stun",
+  burning:"touhouvq.statusEffectsDebuffs.burning",
+  hampered:"touhouvq.statusEffectsDebuffs.hampered",
+  paralyzed:"touhouvq.statusEffectsDebuffs.paralyzed",
+  blind:"touhouvq.statusEffectsDebuffs.blind",
+  silenced:"touhouvq.statusEffectsDebuffs.silenced",
+  taunt:"touhouvq.statusEffectsDebuffs.taunt",
+  fear:"touhouvq.statusEffectsDebuffs.fear",
+  overwhelmed:"touhouvq.statusEffectsDebuffs.overwhelmed",
+  dejected:"touhouvq.statusEffectsDebuffs.dejected",
+  drunk:"touhouvq.statusEffectsDebuffs.drunk",
+  deaddrunk:"touhouvq.statusEffectsDebuffs.deaddrunk"
+}
+
+touhouvq.alcoholEffects = {
+  perched:"touhouvq.alcoholEffects.perched",
+  forgedinfire:"touhouvq.alcoholEffects.forgedinfire"
+}
+
 touhouvq.selfhelp = [
   "strength",
   "agility",
   "resilience",
   "discipline",
   "perception",
+  "intelligence"
+]
+
+touhouvq.simpleStats = [
+  "strength",
+  "agility",
+  "resilience",
+  "discipline",
+  "perception",
+  "magic",
   "intelligence"
 ]

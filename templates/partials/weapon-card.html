@@ -41,29 +41,19 @@
                     {{name}}
                 </div>
             {{/if}}
-            <div class="tvq-weaponperk-show">
-                <p class="tvq-centerstrong">{{localize config.textData.descText}}</p>
-                <p>{{data.description}}</p>
-            </div>
-            {{#if data.perk}}
-                <div class="dice-tooltip">
-                    <section class="tooltip-part">
-                        <div class="dice">
-                            <header class="part-header flexrow">
-                                <span class="part-formula">
-                                </span>
-                            </header>
-                            <ol class="dice-rolls">
-                                <li>
-                                    <div class="tvq-weaponperk-show">
-                                        <p>{{data.perk}}</p>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </section>
-                </div>
+
+            {{#if (eq data.weaponType "melee")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.type.melee"}}
+                </p>
             {{/if}}
+
+            {{#if (eq data.weaponType "ranged")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.type.ranged"}}
+                </p>
+            {{/if}}
+
         </div>
     </div>
 {{/if}}

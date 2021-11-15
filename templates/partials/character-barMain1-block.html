@@ -2,49 +2,49 @@
 
     <div class="tvq-char-stat">
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-strength tvq-border" data-action-value="{{data.data.stats.strength}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.strength}}">
+        <div id="stat-strength-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-strength tvq-border {{unrealStats.strength}}" data-action-value="{{data.data.stats.strength}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.strength}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-strength-color">{{localize 'touhouvq.stats.strength'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.strength" data-dtype="Number" value="{{data.data.stats.strength}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-agility tvq-border" data-action-value="{{data.data.stats.agility}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.agility}}">
+        <div id="stat-agility-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-agility tvq-border {{unrealStats.agility}}" data-action-value="{{data.data.stats.agility}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.agility}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-agility-color">{{localize 'touhouvq.stats.agility'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.agility" data-dtype="Number" value="{{data.data.stats.agility}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-resilience tvq-border" data-action-value="{{data.data.stats.resilience}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.resilience}}">
+        <div id="stat-resilience-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-resilience tvq-border {{unrealStats.resilience}}" data-action-value="{{data.data.stats.resilience}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.resilience}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-endurance-color">{{localize 'touhouvq.stats.resilience'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.resilience" data-dtype="Number" value="{{data.data.stats.resilience}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-discipline tvq-border" data-action-value="{{data.data.stats.discipline}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.discipline}}">
+        <div id="stat-discipline-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-discipline tvq-border {{unrealStats.discipline}}" data-action-value="{{data.data.stats.discipline}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.discipline}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-discipline-color">{{localize 'touhouvq.stats.discipline'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.discipline" data-dtype="Number" value="{{data.data.stats.discipline}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-perception tvq-border" data-action-value="{{data.data.stats.perception}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.perception}}">
+        <div id="stat-perception-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-perception tvq-border {{unrealStats.perception}}" data-action-value="{{data.data.stats.perception}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.perception}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-perception-color">{{localize 'touhouvq.stats.perception'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.perception" data-dtype="Number" value="{{data.data.stats.perception}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-magic tvq-border" data-action-value="{{data.data.stats.magic}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.magic}}">
+        <div id="stat-magic-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-magic tvq-border {{unrealStats.magic}}" data-action-value="{{data.data.stats.magic}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.magic}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-magic-color">{{localize 'touhouvq.stats.magic'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.magic" data-dtype="Number" value="{{data.data.stats.magic}}">
             </div>
         </div>
 
-        <div class="tvq-char-stat-bloc tvq-char-stat-bloc-intelligence tvq-border" data-action-value="{{data.data.stats.intelligence}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.intelligence}}">
+        <div id="stat-intelligence-div" class="tvq-char-stat-bloc tvq-char-stat-bloc-intelligence tvq-border {{unrealStats.intelligence}}" data-action-value="{{data.data.stats.intelligence}}" data-fatigue-value="{{data.data.fatigue.value}}" data-upgrade-value="{{data.data.upgradeStats.intelligence}}">
             <div class="tvq-char-stat-content">
                 <p class="tvq-intellect-color">{{localize 'touhouvq.stats.intelligence'}}</p>
                 <input class="tvq-char-stat-input" type="text" name="data.stats.intelligence" data-dtype="Number" value="{{data.data.stats.intelligence}}">

@@ -1,0 +1,107 @@
+{{#if inSheet}}
+    <div data-type="item" class="weapon-card item reveal-rollable" data-item-id={{_id}}>
+        <div class="weapon-info weapon-name">
+            <p class="weapon-name-name">{{data.name}}</p>
+            <div class="weapon-name-body">
+                {{data.data.damage}}
+            </div>
+        </div>
+    </div>
+{{else}}
+    <div class="dice-roll">
+        <div class="dice-result">
+            <img class="tvq-weaponcheck-img" src="{{img}}">
+            {{#if (eq data.data.rarity "common")}}
+                <div class="dice-formula tvq-dice-formula-weapon">
+                    {{data.name}}
+                </div>
+            {{/if}}
+            {{#if (eq data.data.rarity "uncommon")}}
+                <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
+                    {{data.name}}
+                </div>
+            {{/if}}
+            {{#if (eq data.data.rarity "rare")}}
+                <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
+                    {{data.name}}
+                </div>
+            {{/if}}
+            {{#if (eq data.data.rarity "singular")}}
+                <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
+                    {{data.name}}
+                </div>
+            {{/if}}
+            {{#if (eq data.data.rarity "unique")}}
+                <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
+                    {{data.name}}
+                </div>
+            {{/if}}
+            {{#if (eq data.data.rarity "youkai")}}
+                <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
+                    {{data.name}}
+                </div>
+            {{/if}}
+
+            <p class="tvq-centerstrong">
+                {{localize "touhouvq.type.ranged"}}
+            </p>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <div class="tvq-weaponperk-showmore">
+
+                            <div class="tvq-weapon-showmore-div">
+                                <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.itemText.damageText"}}</p>
+                                <p class="tvq-weapon-showmore-p2">{{data.data.damage}}</p>
+                            </div>
+                
+                            <div class="tvq-weapon-showmore-div">
+                                <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.itemText.weaponTypeText"}}</p>
+            
+                                {{#if (eq data.data.weaponType "melee")}}
+                                    <p class="tvq-weapon-showmore-p2">
+                                        {{localize "touhouvq.type.melee"}}
+                                    </p>
+                                {{/if}}
+            
+                                {{#if (eq data.data.weaponType "ranged")}}
+                                <p class="tvq-weapon-showmore-p2">
+                                    {{localize "touhouvq.type.ranged"}}
+                                </p>
+                                {{/if}}
+            
+                            </div>
+                
+                            <div class="tvq-weapon-showmore-div">
+                                <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.itemText.rangeText"}}</p>
+                                <p class="tvq-weapon-showmore-p2">{{data.data.range}}m</p>
+                            </div>
+                
+                            <div class="tvq-weapon-showmore-div">
+                                <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.itemText.rangeThrowText"}}</p>
+                                <p class="tvq-weapon-showmore-p2">{{data.data.rangeThrowing}}m</p>
+                            </div>
+            
+                            <div class="tvq-weaponperk-show">
+                                <p>{{data.data.description}}</p>
+                            </div>
+            
+                        </div>
+                        {{#if data.data.perk}}
+                            <ol class="dice-rolls">
+                                <p class="tvq-weapon-showmore-p3">{{localize "touhouvq.itemText.perkText"}}</p>
+
+                                <div class="tvq-weaponperk-show">
+                                    <p>{{data.data.perk}}</p>
+                                </div>
+                            </ol>
+                        {{/if}}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{{/if}}

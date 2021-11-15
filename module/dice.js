@@ -32,10 +32,14 @@ export async function StatCheck({
     compskillvalue = null,
     talentvalue = null } = {}) {
     
-    let d8 = "d8";
-    let d6 = "d6";
     let d4 = "d4";
+    let d6 = "d6";
+    let d8 = "d8";
+    let d10 = "d10";
+    let d12 = "d12";
     let d20 = "d20";
+
+    const inlineStatName = Object.keys(CONFIG.touhouvq.stats)[statType-1];
 
     //Check if character is using the powerunleash skill
     if(compskillvalue === "powerunleash") {
@@ -58,6 +62,15 @@ export async function StatCheck({
     let rollVar = Math.floor(numDivision / 2);
     
     let rollResult;
+
+    //Check if character is under an unreal buff
+    let unrealCheck = 0;
+    let unreal = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize(`touhouvq.unreal.${inlineStatName}`)))[0];
+    if(unreal) {
+        unrealCheck = 1;
+        d4 = "d8";
+        d8 = "d12";
+    }
     
     //Check if character is using the frolic skill
     let frolicFaces = "";
@@ -86,7 +99,7 @@ export async function StatCheck({
     if (numDivision % 2 == 0) {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4 + frolicFaces;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + `d4` + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
             await rollResult.evaluate({async:true});
 
@@ -110,7 +123,9 @@ export async function StatCheck({
             rolls.push(d6);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -126,7 +141,9 @@ export async function StatCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -156,7 +173,9 @@ export async function StatCheck({
             }
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -172,7 +191,9 @@ export async function StatCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -182,7 +203,7 @@ export async function StatCheck({
     } else {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4 + frolicFaces;
+            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + `d4` + frolicFaces;
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
             await rollResult.evaluate({async:true});
 
@@ -208,7 +229,9 @@ export async function StatCheck({
             rolls.push(d6);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -224,7 +247,9 @@ export async function StatCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -256,7 +281,9 @@ export async function StatCheck({
             rolls.push(d4);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -272,7 +299,9 @@ export async function StatCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -330,7 +359,9 @@ export async function LocCheck(locData) {
     const html = await renderTemplate(template, templateData);
   
     ChatMessage.create({
-      speaker: ChatMessage.getSpeaker(),
+      speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
       sound: CONFIG.sounds.dice,
       roll: locaRoll,
@@ -353,7 +384,27 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
     let d4 = "d4";
     let d6 = "d6";
+    let d8 = "d8";
+    let d10 = "d10";
+    let d12 = "d12";
     let d20 = "d20";
+
+    //Check if character is under an unreal buff
+    let unrealCheck = 0;
+    let unreal = null;
+
+    traitRoll.stats.forEach((stat) => {
+        unreal = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize(`touhouvq.unreal.${stat}`)))[0];
+        if (unreal) {
+            if (unrealCheck === 1) {
+                unrealCheck ++;
+                d4 = "d10";
+            } else {
+                unrealCheck ++;
+                d4 = "d8";
+            }
+        }
+    });
 
     //Check if character have the frolic skill
     let frolicFaces = "";
@@ -372,11 +423,9 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
     }
     
     /* active effects vars - BEGIN */
-
-    //initializing buff values to 0;
-    let activeFiringline = false;
-    let firinglinebuff = 0;
-    let manifestationofnaturebuff = 0;
+        //initializing buff values to 0;
+        let activeFiringline = false;
+        let manifestationofnaturebuff = 0;
 
     //Check if lunar rabbit under firing line active effect
     let actualStatLunarRabbit = Math.floor(actorData.data.stats.discipline / 10);
@@ -397,6 +446,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let rollResult1 = 0;
 
+        let firinglinebuff = 0;
+
         if(activeFiringline) {
             //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
@@ -414,6 +465,13 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
                 rollResult1 += ` + 2` + d4;
             }
         });
+
+        if (compskillvalue === 'scourgebynature') {
+            rollResult1 += ` + 1` + d4;
+        }
+        if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
+            rollResult1 += ` + 1` + d4;
+        }
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
         await rollResult.evaluate({async:true});
@@ -436,7 +494,9 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         }
 
         let messageData = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             rollResult: rollResult,
             successDegree: successDegree,
             traitType: traitType,
@@ -453,7 +513,9 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let htmlContent = await renderTemplate(messageTemplate, messageData);
 
         let messageData2 = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             content: htmlContent
         }
 
@@ -462,10 +524,12 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let rollResult1 = 0;
 
+        let firinglinebuff = 0;
+
         if(activeFiringline) {
             //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + ` - ` + fatiguePoints + d6 + frolicFaces;
         } else {
             //Normal trait check
             rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
@@ -479,6 +543,13 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
                 rollResult1 += ` + 2` + d4;
             }
         });
+
+        if (compskillvalue === 'scourgebynature') {
+            rollResult1 += ` + 1` + d4;
+        }
+        if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
+            rollResult1 += ` + 1` + d4;
+        }
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
         await rollResult.evaluate({async:true});
@@ -503,11 +574,13 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         rolls.push(d6);
 
         //Lunar rabbit's firing line buff
-        let firinglinebuff = actualStatLunarRabbit + d4;
+        firinglinebuff = actualStatLunarRabbit + d4;
         rolls.push(firinglinebuff);
 
         let messageData = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             rollResult: rollResult,
             successDegree: successDegree,
             fatiguePoints: fatiguePoints,
@@ -525,7 +598,9 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         let htmlContent = await renderTemplate(messageTemplate, messageData);
 
         let messageData2 = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             content: htmlContent
         }
 
@@ -540,7 +615,9 @@ export async function DeathCheck(actorData) {
     let renderedRoll = await rollResult.render({ template: messageTemplate });
     
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: renderedRoll
     }
 
@@ -574,7 +651,9 @@ export async function weaponAttack({
     }
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         rollData: rollData,
         rollResult: rollResult,
         strengthDamage: strengthDamage,
@@ -585,7 +664,9 @@ export async function weaponAttack({
     let htmlContent = await renderTemplate(messageTemplate, messageData);
 
     let messageData2 = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: htmlContent
     }
 
@@ -2137,7 +2218,9 @@ export async function spellcardAttack({
     rollResult = new Roll(spellcardAttackRoll, actorData).roll();
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         rollResult: rollResult,
         chosenstat: chosenstat,
         name: name,
@@ -2154,7 +2237,9 @@ export async function spellcardAttack({
     let htmlContent = await renderTemplate(messageTemplate, messageData);
 
     let messageData2 = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: htmlContent
     }
 
@@ -2179,7 +2264,9 @@ export async function initiativeCheck({
     let rollResult = new Roll(initCheck, actorData).roll();
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         raceNum: raceNum,
         agilityValue: agilityValue,
         perceptionValue: perceptionValue,
@@ -2189,7 +2276,9 @@ export async function initiativeCheck({
     let htmlContent = await renderTemplate(messageTemplate, messageData);
 
     let messageData2 = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: htmlContent
     }
 
@@ -2250,8 +2339,7 @@ export async function diceStolen({
         flavor: game.i18n.localize("touhouvq.flavorText.earthrabbitStolen3")+actor.data.name,
         speaker: message.data.speaker,
         content: htmlContent,
-        roll: message._roll,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        roll: message._roll
     }
 
     const messageClass = getDocumentClass("ChatMessage");

@@ -90,6 +90,114 @@ export default class characterSheet extends ActorSheet {
         let frolic = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.namesRaceSkill.frolic")))[0];
         return frolic;
       }
+    },
+    {
+      name: game.i18n.localize("touhouvq.flavorText.youkairoll1"),
+      icon: '<i class="item-roll fas fa-dice-d20"></i>',
+      callback: element => {
+        const traitRollKey = "rollCharisma";
+        const compskillvalue = "scourgebynature";
+        Dice.TraitCheck(this.actor, traitRollKey, compskillvalue);
+      },
+      condition: element => {
+        return this.actor.data.data.talentStarter === "youkai";
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.flavorText.youkairoll2"),
+      icon: '<i class="item-roll fas fa-dice-d20"></i>',
+      callback: element => {
+        const traitRollKey = "rollIntimidation";
+        const compskillvalue = "scourgebynature";
+        Dice.TraitCheck(this.actor, traitRollKey, compskillvalue);
+      },
+      condition: element => {
+        return this.actor.data.data.talentStarter === "youkai";
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealStrength0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.strength")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.strength")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealAgility0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.agility")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.agility")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealResilience0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.resilience")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.resilience")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealDiscipline0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.discipline")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.discipline")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealPerception0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.perception")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.perception")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealMagic0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.magic")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.magic")))[0];
+        return unreal;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.debugg.unrealIntelligence0"),
+      icon: '<i class="fas fa-times"></i>',
+      callback: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.intelligence")))[0];
+        this.actor.deleteEmbeddedDocuments('ActiveEffect', [unreal.id]);
+      },
+      condition: element => {
+        let unreal = this.actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.intelligence")))[0];
+        return unreal;
+      }
     }
   ]
 
@@ -484,7 +592,7 @@ export default class characterSheet extends ActorSheet {
           Dice.TraitCheck(this.actor, traitRollKey);
         }
       }
-    ))
+    ));
   }
 
   itemContextMenu = [
@@ -517,6 +625,70 @@ export default class characterSheet extends ActorSheet {
             itemData: item
           });
         }
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.show+"),
+      icon: '<i class="item-roll far fa-eye"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+
+        Tchat.itemShowMore({
+          itemData: item
+        });
+      },
+      condition: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+        let isArmor = false;
+        if(item.data.type === "armor") {
+          isArmor = true;
+        }
+        return isArmor;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.destructionSave"),
+      icon: '<i class="item-roll fas fa-bolt"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+
+        Tchat.armorBreakCheck({
+          itemData: item,
+          actorData: this.actor
+        });
+      },
+      condition: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+        let isArmor = false;
+        if(item.data.type === "armor") {
+          isArmor = true;
+        }
+        return isArmor;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.show+"),
+      icon: '<i class="item-roll far fa-eye"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+
+        Tchat.itemShowMore({
+          itemData: item
+        });
+      },
+      condition: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.getOwnedItem(itemID);
+        let isWeapon = false;
+        if(item.data.type === "weapon") {
+          isWeapon = true;
+        }
+        return isWeapon;
       }
     },
     {
@@ -623,6 +795,8 @@ export default class characterSheet extends ActorSheet {
     data.equipables = data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
     data.perks = data.items.filter(item => [ "talent", "spellcard" ].includes(item.type) );
 
+    data.unrealStats = this.getUnrealStats();
+
     data.isGM = game.user.isGM;
 
     return data;
@@ -718,11 +892,17 @@ export default class characterSheet extends ActorSheet {
 
   async _onDropItem(event, data) {
     event.preventDefault();
-    if(this.actor.items.size >= 14) {
+
+    console.log(event);
+
+    let objectsHeld = this.actor.data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
+    
+    if(objectsHeld.length >= 14) {
       ui.notifications.warn(game.i18n.localize("touhouvq.notifications.tooMuchItems"));
-      return false;
+        return false;
+    } else {
+      return super._onDropItem(event, data);
     }
-    return super._onDropItem(event, data);
   }
 
   _onMiniButtonClick(event) {
@@ -901,11 +1081,6 @@ _onRaceskillRoll(event) {
 
     if(race == "arahitogami") {
       Dice.TraitCheck(actor, "rollFaith", "lawofthegods");
-
-      //récupérer degrés de réussite+1 (on appelera ce nombre X) : tirer X dé(s), dont les résultats pointeront chacun vers une parties du corps du perso transformée en renforcée
-
-      //Dans le même temps, récupérer stat de magie divisé par 10 pour display la durée en action du buff
-
     }
 
     if(race == "tsukumogami") {
@@ -1034,5 +1209,12 @@ _onRaceskillRoll(event) {
       talentSkillType: talentSkillType
     });
     */
+  }
+
+  getUnrealStats() {
+    return Object.keys(CONFIG.touhouvq.stats).reduce( (acc,cur) => {
+      const unreal = this.actor.data.effects.filter(effect => effect.data.label.includes(game.i18n.localize(`touhouvq.unreal.${cur}`)))[0];
+      return unreal ? {...acc,[cur]:"unrealclass"} : acc;
+    },{});
   }
 }

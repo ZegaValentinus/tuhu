@@ -7,36 +7,96 @@
             </div>
             <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.perkText'}}</p>
         {{/if}}
-
+            
         {{#if (eq data.data.rarity "common")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
         {{#if (eq data.data.rarity "uncommon")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
         {{#if (eq data.data.rarity "rare")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
         {{#if (eq data.data.rarity "singular")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
         {{#if (eq data.data.rarity "unique")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
         {{#if (eq data.data.rarity "youkai")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
                 {{data.name}}
             </div>
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
         {{/if}}
 
         {{#if (eq data.data.spellcardType "sign")}}
@@ -44,11 +104,43 @@
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-sign">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.sign'}}</p>
             </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
+            </div>
         {{/if}}
         {{#if (eq data.data.spellcardType "unsealing")}}
             <div class="tvq-spellcard-show">
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-unsealing">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.unsealing'}}</p>
+            </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
             </div>
         {{/if}}
         {{#if (eq data.data.spellcardType "thought")}}
@@ -56,11 +148,43 @@
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-thought">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.thought'}}</p>
             </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
+            </div>
         {{/if}}
         {{#if (eq data.data.spellcardType "unleash")}}
             <div class="tvq-spellcard-show">
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-unleash">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.unleash1'}}</p>
+            </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
             </div>
         {{/if}}
         {{#if (eq data.data.spellcardType "soulrattle")}}
@@ -68,20 +192,72 @@
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-soulrattle">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.soulrattle1'}}</p>
             </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
+            </div>
         {{/if}}
         {{#if (eq data.data.spellcardType "dreamsigh")}}
             <div class="tvq-spellcard-show">
                 <p class="tvq-spellcard-card-name">{{data.name}}</p>
                 <p class="tvq-spellcard-card-dreamsigh">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.dreamsigh1'}}</p>
             </div>
+
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                        </header>
+                        <ol class="dice-rolls">
+                            <div class="tvq-weaponperk-show">
+                                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+                            </div>
+                        </ol>
+                    </div>
+                </section>
+            </div>
         {{/if}}
 
-        <div class="tvq-weaponperk-show">
-            <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
-        </div>
+        {{#if (eq data.type "object")}}
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
 
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <div class="tvq-weaponperk-show">
+                            <p>{{data.data.description}}</p>
+                        </div>
+                        {{#if data.data.perk}}
+                            <ol class="dice-rolls">
+                                <p class="tvq-weapon-showmore-p3">{{localize "touhouvq.itemText.perkText"}}</p>
+                                <div class="tvq-weaponperk-show">
+                                    <p>{{data.data.perk}}</p>
+                                </div>
+                            </ol>
+                        {{/if}}
+                    </div>
+                </section>
+            </div>
+        {{/if}}
 
         {{#if (eq data.type "weapon")}}
+            <div class="tvq-weaponperk-show">
+                <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
+            </div>
             {{#if data.data.perk}}
                 <div class="dice-tooltip">
                     <section class="tooltip-part">
@@ -104,13 +280,11 @@
         {{/if}}
 
         {{#if (eq data.type "talent")}}
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+
             <div class="dice-tooltip">
                 <section class="tooltip-part">
                     <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">
-                            </span>
-                        </header>
                         <ol class="dice-rolls">
                             <li>
                                 <div class="tvq-weaponperk-show-talent">

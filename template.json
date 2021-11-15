@@ -38,9 +38,6 @@
       "fatigue":{
         "value":0
       },
-      "defense":{
-        "value":0
-      },
       "gensokyoPower":{
         "value":0
       },
@@ -182,9 +179,6 @@
         "value":0
       },
       "fatigue":{
-        "value":0
-      },
-      "defense":{
         "value":0
       },
       "gensokyoPower":{

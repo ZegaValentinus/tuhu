@@ -21,7 +21,9 @@ export async function BodyLoc(bodyData) {
       const html = await renderTemplate(template, templateData);
   
       const messageData = {
-          speaker: ChatMessage.getSpeaker(),
+          speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
           content: html,
           user: game.user.id,
           whisper: [game.user.id]
@@ -37,7 +39,9 @@ export async function itemShow({
     const html = await renderTemplate(messageTemplate, itemData);
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: html,
         rarity: itemData.rarity
     }
@@ -45,6 +49,54 @@ export async function itemShow({
     const messageClass = getDocumentClass("ChatMessage");
 
     messageClass.create(messageData);
+}
+
+export async function itemShowMore({
+    itemData = null } = {}) {
+
+    let messageTemplate = null;
+
+    if(itemData.data.type === "armor") {
+        messageTemplate = "systems/touhouvq/templates/partials/object-card-more.html";
+    } else {
+        messageTemplate = "systems/touhouvq/templates/partials/weapon-card-more.html";
+    }
+    
+    const html = await renderTemplate(messageTemplate, itemData);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
+        content: html,
+        rarity: itemData.rarity
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
+}
+
+export async function armorBreakCheck({
+    itemData = null,
+    actorData = null } = {}) {
+
+    let messageTemplate = "systems/touhouvq/templates/partials/destruction-card.html";
+    const rollFormula = "d20";
+    let rollResult = new Roll(rollFormula, actorData).roll();
+    let renderedRoll = await rollResult.render({ template: messageTemplate });
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
+        content: renderedRoll,
+        rarity: itemData.rarity
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    rollResult.toMessage(messageData);
 }
 
 export async function charInfosShow({
@@ -60,7 +112,9 @@ export async function charInfosShow({
     const html = await renderTemplate(messageTemplate, data);
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: html
     }
 
@@ -84,7 +138,9 @@ export async function talentInfo({
     const html = await renderTemplate(messageTemplate, data1);
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: html
     }
 
@@ -108,7 +164,9 @@ export async function raceInfo({
     const html = await renderTemplate(messageTemplate, data1);
 
     let messageData = {
-        speaker: ChatMessage.getSpeaker(),
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
         content: html
     }
 
@@ -135,7 +193,9 @@ export async function raceRoll({
         let rollResult = new Roll(d6, actor, {isRaceSkill:true, actorId:actor.id}).roll();
         
         let messageData = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             rollResult: rollResult,
             data: data,
             actor: actor,
@@ -145,7 +205,9 @@ export async function raceRoll({
         let htmlContent = await renderTemplate(messageTemplate, messageData);
 
         let messageData2 = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             content: htmlContent
         }
     
@@ -166,7 +228,9 @@ export async function raceRoll({
         const html = await renderTemplate(messageTemplate, messageData);
 
         const messageData2 = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             content: html,
             user: game.user.id,
             whisper: [game.user.id]
@@ -199,7 +263,9 @@ export async function raceRoll({
             let rollResult = new Roll(toRoll, actor).roll();
             
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 data: data
             }
@@ -207,7 +273,9 @@ export async function raceRoll({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
             
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
             
@@ -234,7 +302,9 @@ export async function raceRoll({
                     rolls.push(d6);
         
                     let messageData = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
@@ -247,7 +317,9 @@ export async function raceRoll({
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         content: htmlContent
                     }
                 
@@ -265,7 +337,9 @@ export async function raceRoll({
                     }
         
                     let messageData = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
@@ -278,7 +352,9 @@ export async function raceRoll({
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         content: htmlContent
                     }
                 
@@ -302,7 +378,9 @@ export async function raceRoll({
                     rolls.push(d6);
         
                     let messageData = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
@@ -315,7 +393,9 @@ export async function raceRoll({
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         content: htmlContent
                     }
                 
@@ -335,7 +415,9 @@ export async function raceRoll({
                     rolls.push(d4);
         
                     let messageData = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
@@ -348,7 +430,9 @@ export async function raceRoll({
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
-                        speaker: ChatMessage.getSpeaker(),
+                        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                         content: htmlContent
                     }
                 
@@ -380,7 +464,9 @@ export async function raceRoll({
         }
 
         const messageDataLR = {
-            speaker: ChatMessage.getSpeaker(),
+            speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
             content: html,
             user: game.user.id
         }
@@ -394,7 +480,9 @@ export async function raceRoll({
             let rollResult = new Roll(d4, actor).roll();
         
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 data: data,
                 choice: data.choice
@@ -403,7 +491,9 @@ export async function raceRoll({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
     
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
         
@@ -415,7 +505,9 @@ export async function raceRoll({
                 let rollResult = new Roll(toRoll, actor).roll();
         
                 let messageData = {
-                    speaker: ChatMessage.getSpeaker(),
+                    speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                     rollResult: rollResult,
                     data: data,
                     choice: data.choice
@@ -424,7 +516,9 @@ export async function raceRoll({
                 let htmlContent = await renderTemplate(messageTemplate, messageData);
         
                 let messageData2 = {
-                    speaker: ChatMessage.getSpeaker(),
+                    speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                     content: htmlContent
                 }
             
@@ -434,7 +528,9 @@ export async function raceRoll({
                 const html = await renderTemplate(messageTemplate, data);
         
                 const messageData = {
-                    speaker: ChatMessage.getSpeaker(),
+                    speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                     content: html,
                     data: data,
                     actor: actor,
@@ -448,6 +544,150 @@ export async function raceRoll({
             }
         }
     }
+}
+
+export async function displayBuff(buff) {
+    
+    const messageTemplate = "systems/touhouvq/templates/partials/effectbuff-card.html";
+    const html = await renderTemplate(messageTemplate, buff);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
+        content: html
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
+}
+
+export async function displayDebuff(debuff) {
+
+    const messageTemplate = "systems/touhouvq/templates/partials/effectdebuff-card.html";
+    const html = await renderTemplate(messageTemplate, debuff);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
+        content: html
+    }
+
+    const messageClass = getDocumentClass("ChatMessage");
+
+    messageClass.create(messageData);
+}
+
+export async function applyBuff(buff, actor) {
+
+    let applyTheBuff = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.statusEffectsBuffs."+buff))[0];
+
+    if(applyTheBuff){return;}
+
+    let theBuff = {
+        label:game.i18n.localize("touhouvq.statusEffectsBuffs."+buff),
+        icon: "systems/touhouvq/assets/img/effects/"+buff+".svg",
+        changes:[]
+    };
+
+    switch (buff) {
+        case 'hardskin':
+            theBuff.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                value: 1
+            });
+            break;
+        case 'magebarrier':
+            theBuff.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                value: 2
+            });
+            break;
+        case 'onibreastplate':
+            theBuff.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                value: 3
+            });
+            break;
+        default:
+    }
+
+    applyTheBuff = ActiveEffect.create(theBuff, {parent: actor});
+}
+
+export async function applyDebuff(debuff, actor) {
+
+    let applyTheDebuff = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.statusEffectsDebuffs."+debuff))[0];
+
+    if(applyTheDebuff){return;}
+
+    let effectData = {
+        label:game.i18n.localize("touhouvq.statusEffectsDebuffs."+debuff),
+        icon: "systems/touhouvq/assets/img/effects/"+debuff+".svg",
+        changes:[]
+    };
+
+    switch (debuff) {
+        case 'overwhelmed':
+            effectData.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.DOWNGRADE,
+                value: "1"
+            });
+            break;
+        case 'blind':
+            
+            break;
+        case 'silenced':
+        
+            break;
+        case 'drunk':
+    
+            break;
+        case 'deaddrunk':
+
+            break;
+        default:
+    }
+
+    applyTheDebuff = ActiveEffect.create(effectData, {parent: actor});
+}
+
+export async function applyAlcohol(alcoholEffect, actor) {
+
+    let applyTheEffect = actor.effects.filter(effect => effect.data.label === game.i18n.localize("touhouvq.alcoholEffects."+alcoholEffect))[0];
+
+    if(applyTheEffect){return;}
+
+    let effectData = {
+        label:game.i18n.localize("touhouvq.alcoholEffects."+alcoholEffect),
+        icon: "systems/touhouvq/assets/img/effects/drunk.svg",
+        changes:[]
+    };
+
+    switch (alcoholEffect) {
+        case 'perched':
+            const downgrade = Math.floor(Math.random() * 7)+1;
+            const stat = CONFIG.touhouvq.simpleStats[downgrade-1];
+
+            effectData.changes.push({
+                key: `data.stats.${stat}`,
+                mode: CONST.ACTIVE_EFFECT_MODES.DOWNGRADE,
+                value: "0"
+            });
+            break;
+        case 'forgedinfire':
+            
+            break;
+        default:
+    }
+
+    applyTheEffect = ActiveEffect.create(effectData, {parent: actor});
 }
 
 export async function knowledgeCheck({
@@ -548,7 +788,9 @@ export async function knowledgeCheck({
             rolls.push(d6);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -562,7 +804,9 @@ export async function knowledgeCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
         
@@ -625,7 +869,9 @@ export async function knowledgeCheck({
             }
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -639,7 +885,9 @@ export async function knowledgeCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
         
@@ -707,7 +955,9 @@ export async function knowledgeCheck({
             rolls.push(d6);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -721,7 +971,9 @@ export async function knowledgeCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
         
@@ -786,7 +1038,9 @@ export async function knowledgeCheck({
             rolls.push(d4);
 
             let messageData = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -800,7 +1054,9 @@ export async function knowledgeCheck({
             let htmlContent = await renderTemplate(messageTemplate, messageData);
         
             let messageData2 = {
-                speaker: ChatMessage.getSpeaker(),
+                speaker: ChatMessage.getSpeaker({
+            alias:game.user.name
+        }),
                 content: htmlContent
             }
         

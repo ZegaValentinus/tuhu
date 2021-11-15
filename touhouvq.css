@@ -27,7 +27,7 @@
 .img-object-sanit {
   object-fit: scale-down;
   width: fit-content;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
 }
 .flavor-boosted {
   color: rgb(0 97 134 / 100%) !important;
@@ -51,7 +51,7 @@
 }
 .status-effect {
   color: #741b47 !important;
-  text-shadow: 0 0 6px rgb(0 0 0 / 32%);
+  text-shadow: 0 0 6px rgb(0 0 0 / 22%);
   font-weight: bold;
 }
 .magic-points {
@@ -186,10 +186,26 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   top: 0;
   left: 0;
 }
-.tvq-activeeffects {
+.tvq-activeeffects-1 {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 66%;
+  border-left: 1px solid rgba(0, 0, 0, 0.267);
+  padding-left: 5px;
+}
+.tvq-activeeffects-2 {
+  display: flex;
+  flex-direction: column;
+  width: 34%;
+  padding: 0 5px;
+}
+.tvq-activeeffects-2 button {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 2px 10px;
+  margin: 2px 0;
+  height: 36px;
 }
 .tvq-activeeffects-div {
   width: 100%;
@@ -198,23 +214,24 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   justify-content: space-around;
 }
 .tvq-activeeffects-div1 {
-  width: 50%;
+  width: 51%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .tvq-activeeffects-div2 {
-  width: 50%;
+  width: 49%;
 }
 .tvq-activeeffects-div p {
-  width: 50%;
+  width: 90%;
   text-align: left;
   margin: 0 0 0 8px;
 }
 .tvq-deleteeffect, .tvq-editeffect {
   width: 70px;
-  margin: 0 2px;
+  margin: 0 1px;
   cursor: pointer;
+  padding: 0 2px;
 }
 .tvq-activestatbuff {
   border: 1px solid #ffc400 !important;
@@ -339,7 +356,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
 .tvq-upperside-person #context-menu {
   top: calc(100% + 0px);
   bottom: unset !important;
-  width: 216px !important;
+  width: 240px !important;
 }
 .tvq-upperside-person .tvq-green, .tvq-upperside-person .tvq-darkgreen {
   margin: 0 !important;
@@ -443,7 +460,7 @@ section.item-list {
   display: flex !important;
   flex-direction: column !important;
   flex-wrap: wrap !important;
-  overflow: hidden;
+  overflow: visible;
 }
 .weapon-name-body, .item-name-body {
   display: flex !important;
@@ -484,7 +501,7 @@ section.item-list {
   box-shadow: unset !important;
 }
 .weapon-info p:not(.weapon-attack-damage), .item-info p:not(.weapon-attack-damage) {
-  line-height: 11px;
+  line-height: 10.5px;
   margin: 1px 0 0 0 !important;
   font-size: 11px !important;
   letter-spacing: -0.5px !important;
@@ -529,12 +546,16 @@ section.item-list {
   text-align: left;
 }
 .tvq-side-bloc-bloc {
-  margin: 3px 0px 2px 10px;
+  margin: 3px 0px 2px 6px;
   width: 106px;
 }
 .tvq-side-bloc-bloc-def {
   margin: 3px 0px 2px 0px;
   width: 72px;
+  cursor: default !important;
+}
+.tvq-side-bloc-bloc-def input {
+  color: #191813 !important;
 }
 .tvq-side-bloc-fatigue {
   margin: 0 4px 0 0;
@@ -1250,7 +1271,7 @@ h1 {
 }
 .tvq-weaponcheck-img {
   width: auto;
-  height: 94px;
+  height: 118px;
   margin-left: 50%;
   transform: translateX(-50%);
   object-fit: cover;
@@ -1420,7 +1441,7 @@ h1 {
   flex-direction: row;
   align-items: stretch;
   align-content: stretch;
-  min-height: 26px;
+  height: 35px;
 }
 .perk-card {
   width: 100%;
@@ -1462,12 +1483,12 @@ img {
   font-weight: 500;
   font-size: 12px;
   letter-spacing: -0.4px;
-  line-height: 13px;
+  line-height: 12.8px;
   z-index: 8;
   position: relative;
   color: black;
   width: 100%;
-  margin-top: 0;
+  margin: 4px 0;
   text-shadow: #efefef 0px 0 8px;
   font-family: 'Carme', sans-serif !important;
 }
@@ -2705,8 +2726,11 @@ select.tvq-select-rarity:focus {
   outline: none;
 }
 
-.tvq-weaponsheet-div1-img img {
+.tvq-weaponsheet-div1-img img, .tvq-weaponsheet-div2-img img, .tvq-weaponsheet-div3-img img, .tvq-weaponsheet-div4-img img, .tvq-weaponsheet-div5-img img, .tvq-weaponsheet-div6-img img {
   margin: auto !important;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
 }
 
 .tvq-weaponsheet-div1-rarity {
@@ -3147,7 +3171,8 @@ select.tvq-select-rarity:focus {
   width: 82px;
   margin: 2px 0;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12.5px;
+  padding: 1px;
   line-height: 24px;
 }
 
@@ -3283,6 +3308,7 @@ select.tvq-select-rarity:focus {
 }
 
 .checkdiv-2-success p {
+  text-align: center;
   padding: 4px 0 !important;
   margin: 1px 4px !important;
   background: rgba(0, 0, 0, 0.1) !important;
@@ -3292,6 +3318,7 @@ select.tvq-select-rarity:focus {
 }
 
 .checkdiv-2-failure p {
+  text-align: center;
   padding: 4px 0 !important;
   margin: 1px 4px !important;
   background: rgba(0, 0, 0, 0.1) !important;
@@ -3408,4 +3435,219 @@ select.tvq-select-rarity:focus {
   margin: 8px 0;
   font-size: 16px;
   font-family: 'Kreon', serif;
+}
+
+.little {
+  font-size: 16px !important;
+  margin: -2px 0 3px 0 !important;
+  opacity: 0.9 !important;
+}
+
+.unrealclass {
+  height: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(124deg, #ff22008e, #e81d1d88, #e8b71d, #e5e81d79, #1de83f79, #1ddde8, #2b1de873, #df00f37e, #df00f386);
+  background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 10s ease infinite;
+-z-animation: rainbow 10s ease infinite;
+-o-animation: rainbow 10s ease infinite;
+  animation: rainbow 10s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+.tvq-activeeffects-2 p {
+  font-size: 11px;
+  line-height: 11px;
+  margin: 0 0 3px 0;
+}
+
+.displayeffects {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tvq-displaybuff, .tvq-displaydebuff {
+  font-size: 12px !important;
+  line-height: 11px !important;
+  height: 39px !important;
+  padding: 1px 0 !important;
+}
+
+.displayeffects .context-item {
+  text-align: left;
+  line-height: 23px !important;
+}
+
+.tvq-effect-img {
+  width: auto;
+  height: 64px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+}
+
+.tvq-effect-title {
+  color: #741b47 !important;
+  text-shadow: 0 0 6px rgb(0 0 0 / 22%);
+  font-weight: bold;
+  font-size: 19px;
+  text-align: left;
+  margin-left: 4px;
+}
+
+.tvq-effect-label-p {
+  text-align: left;
+  font-family: 'Kreon', serif !important;
+  margin-left: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 10px;
+}
+
+.tvq-effect-desc {
+  font-size: 13px;
+  margin: 0 4px;
+  line-height: 14px;
+}
+
+.dice-result hr {
+  margin: 1px 0 !important;
+}
+
+.tvq-weaponperk-showmore {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 2px;
+  margin-top: 6px;
+}
+
+.tvq-weapon-showmore-div-center {
+  width: 100%;
+  margin: 1px 0;
+}
+
+.tvq-weapon-showmore-div {
+  width: 50%;
+  margin: 1px 0;
+}
+
+.tvq-weapon-showmore-p1 {
+  margin: 0;
+  font-family: 'Kreon', serif !important;
+  font-size: 14px;
+  text-align: center;
+}
+
+.tvq-weapon-showmore-p2 {
+  margin: 0;
+  text-align: center;
+  font-size: 12.5px;
+}
+
+.tvq-weapon-showmore-p3 {
+  margin: 5px 0 0 0;
+  text-align: left;
+}
+
+.tvq-centerstrong {
+  text-align: center;
+  margin: 6px 0 2px 0;
+  font-family: 'Kreon', serif !important;
+  font-size: 14px;
+}
+
+.displayeffects1 button {
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 13px;
+  padding: 2px 0px;
+  margin: 2px 0;
+  height: 36px;
+  width: 33.3%;
+}
+
+.tvq-armorbreak-p1 {
+  flex: 0 0 100%;
+  position: relative;
+  margin: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px #fff inset;
+  word-break: break-all;
+  border: unset !important;
+  padding: 2px 0;
+  font-size: 17px;
+  line-height: 26px;
+  font-family: 'Kreon', serif !important;
+  margin-bottom: 5px;
+}
+
+.tvq-armorbreak-total {
+  font-family: 'Domine', serif !important;
+  font-weight: 600;
+  font-size: 26px;
+  z-index: 8;
+  position: absolute;
+  color: black;
+  text-align: center;
+  width: 100%;
+  top: 84px;
+  left: 1px;
+  text-shadow: #efefef 0px 0 8px;
+  border: unset;
+}
+
+.tvq-armorbreak-dicelife, .tvq-armorbreak-dicedeath {
+  position: relative;
+  width: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.deploy-down {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  position: relative;
+  margin: -8px 0 0 0;
+}
+
+.tvq-equipment #context-menu {
+  min-width: unset !important;
+  max-width: unset !important;
+  width: 100% !important;
+}
+
+.tvq-equipment #context-menu li.context-item {
+  line-height: 28px !important;
 }
