@@ -1,70 +1,89 @@
 <div class="dice-roll">
     <div class="dice-result">
                     
-        {{#if (eq data.data.rarity "common")}}
+        {{#if (eq item.data.data.rarity "common")}}
             <div class="dice-formula tvq-dice-formula-weapon">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
-        {{#if (eq data.data.rarity "uncommon")}}
+        {{#if (eq item.data.data.rarity "uncommon")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity2">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
-        {{#if (eq data.data.rarity "rare")}}
+        {{#if (eq item.data.data.rarity "rare")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity3">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
-        {{#if (eq data.data.rarity "singular")}}
+        {{#if (eq item.data.data.rarity "singular")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity4">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
-        {{#if (eq data.data.rarity "unique")}}
+        {{#if (eq item.data.data.rarity "unique")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity5">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
-        {{#if (eq data.data.rarity "youkai")}}
+        {{#if (eq item.data.data.rarity "youkai")}}
             <div class="dice-formula tvq-dice-formula-weapon tvq-rarity6">
-                {{data.name}}
+                {{item.data.name}}
             </div>
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
         {{/if}}
 
-        {{#ifSuperiorOrEquals total 10}}
-            <p class="tvq-armorbreak-p1">{{localize "touhouvq.sheet.destructionSaveText"}}</p>
-            <div class="checkdiv-2-success">
-                <p>{{localize "touhouvq.simpleCheck.success"}}</p>
-            </div>
-            <img class="tvq-armorbreak-dicelife" src="systems/touhouvq/assets/img/d20success1.png">
-            <h2 class="tvq-armorbreak-total">{{total}}</h2>
-        {{else}}
-            <p class="tvq-armorbreak-p1">{{localize "touhouvq.sheet.destructionSaveText"}}</p>
-            <div class="checkdiv-2-failure">
-                <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
-            </div>
-            <img class="tvq-armorbreak-dicedeath" src="systems/touhouvq/assets/img/d20fumble1.png">
-            <h2 class="tvq-armorbreak-total">{{total}}</h2>
-        {{/ifSuperiorOrEquals}}
+        {{#if (eq item.data.type "armor")}}
+            <p class="tvq-centerstrong">
+                {{localize "touhouvq.sheet.armor"}}
+            </p>
+        {{/if}}
+        {{#if (eq item.data.type "weapon")}}
+            <p class="tvq-centerstrong">
+                {{localize "touhouvq.sheet.weapon"}}
+            </p>
+        {{/if}}
+        {{#if (eq item.data.type "object")}}
+            <p class="tvq-centerstrong">
+                {{localize "touhouvq.sheet.object"}}
+            </p>
+        {{/if}}
+        
+        <br>
+
+        {{#if (eq difficulty 1)}}
+            <p class="tvq-armorbreak-p1">{{localize "touhouvq.sheet.destructionSaveDifficulty1"}}</p>
+            {{#ifSuperiorOrEquals rollResult.total 6}}
+                <div class="checkdiv-2-success">
+                    <p>{{localize "touhouvq.simpleCheck.success"}}</p>
+                </div>
+                <img class="tvq-armorbreak-dicelife" src="systems/touhouvq/assets/img/d20success1.webp">
+                <h2 class="tvq-armorbreak-total">{{rollResult.total}}</h2>
+            {{else}}
+                <div class="checkdiv-2-failure">
+                    <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                </div>
+                <img class="tvq-armorbreak-dicedeath" src="systems/touhouvq/assets/img/d20fumble1.webp">
+                <h2 class="tvq-armorbreak-total">{{rollResult.total}}</h2>
+            {{/ifSuperiorOrEquals}}
+        {{/if}}
+
+        {{#if (eq difficulty 2)}}
+            <p class="tvq-armorbreak-p1">{{localize "touhouvq.sheet.destructionSaveDifficulty2"}}</p>
+            {{#ifSuperiorOrEquals rollResult.total 10}}
+                <div class="checkdiv-2-success">
+                    <p>{{localize "touhouvq.simpleCheck.success"}}</p>
+                </div>
+                <img class="tvq-armorbreak-dicelife" src="systems/touhouvq/assets/img/d20success1.webp">
+                <h2 class="tvq-armorbreak-total">{{rollResult.total}}</h2>
+            {{else}}
+                <div class="checkdiv-2-failure">
+                    <p>{{localize "touhouvq.simpleCheck.failure"}}</p>
+                </div>
+                <img class="tvq-armorbreak-dicedeath" src="systems/touhouvq/assets/img/d20fumble1.webp">
+                <h2 class="tvq-armorbreak-total">{{rollResult.total}}</h2>
+            {{/ifSuperiorOrEquals}}
+        {{/if}}
 
     </div>
 </div>
+{{log this}}

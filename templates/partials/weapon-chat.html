@@ -6,6 +6,9 @@
         {{#if (eq rollData.weaponTypeValue "ranged")}}
             <p>{{localize 'touhouvq.type.ranged'}} - {{rarityLabel}}</p>
         {{/if}}
+        {{#if (eq rollData.weaponTypeValue "throw")}}
+            <p>{{localize 'touhouvq.type.throw'}} - {{rarityLabel}}</p>
+        {{/if}}
     </div>
     <div class="dice-result">
         <img class="tvq-weaponcheck-img" src="{{rollData.itemImg}}">
@@ -52,7 +55,7 @@
 
                     <div class="tvq-flex-weapon">
                         <div class="tvq-flex-weapon-1">
-                            <img src="systems/touhouvq/assets/img/swords.png">
+                            <img src="systems/touhouvq/assets/img/swords.webp">
                             {{#if (eq rollData.weaponTypeValue "melee")}}
                                 <p class="{{critTotal rollResult.dice}} tvq-damagewidthauto">
                                     {{rollResult.total}}
@@ -77,17 +80,11 @@
                             {{/if}}
                         </div>
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
-                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
+                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.webp">
                             <p class="{{critTotal rollResult.dice}} marginleft1">
                                 {{whichCrit rollResult.dice}}
                             </p>
                         </div>
-                    </div>
-
-                    <div class="tvq-weaponperk">
-                        <p>
-                            {{rollData.perkValue}}
-                        </p>
                     </div>
                     
                 </div>
@@ -97,7 +94,7 @@
                     <div class="tvq-flex-weapon">
 
                         <div class="tvq-flex-weapon-1">
-                            <img src="systems/touhouvq/assets/img/swords.png">
+                            <img src="systems/touhouvq/assets/img/swords.webp">
                             {{#if (eq rollData.weaponTypeValue "melee")}}
                                 <p class="{{critTotal rollResult.dice}} tvq-damagewidthauto">
                                     {{rollResult.total}}
@@ -123,7 +120,7 @@
                         </div>
 
                         <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
-                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
+                            <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.webp">
                             <p class="{{critTotal rollResult.dice}} marginleft1 ">
                                 {{whichCrit rollResult.dice}}
                             </p>

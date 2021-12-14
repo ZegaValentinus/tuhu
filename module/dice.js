@@ -71,7 +71,22 @@ export async function StatCheck({
         d4 = "d8";
         d8 = "d12";
     }
-    
+
+    //Check if character is drunk
+    let drunk = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.drunk")))[0];
+    let drunkdices = "";
+    if(drunk) {
+        drunkdices = " - 1d4";
+    }
+
+    //Check if character is deaddrunk
+    let deaddrunk = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.deaddrunk")))[0];
+    let deaddrunkdices = "";
+    if(deaddrunk) {
+        drunkdices = "";
+        deaddrunkdices = " - 2d4";
+    }
+
     //Check if character is using the frolic skill
     let frolicFaces = "";
     let frolicValue = 0;
@@ -91,15 +106,23 @@ export async function StatCheck({
     const messageTemplate = "systems/touhouvq/templates/chat/stat-check-" + statType + ".html";
 
     if (numDivision % 2 == 0) {
-        rollResult = d20 + ` + ` + rollVar + d8 + frolicFaces;
+        rollResult = d20 + ` + ` + rollVar + d8 + frolicFaces + drunkdices + deaddrunkdices;
     } else {
-        rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces;
+        rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces + drunkdices + deaddrunkdices;
     }
 
     if (numDivision % 2 == 0) {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + `d4` + frolicFaces;
+            let rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + `d4` + frolicFaces + drunkdices + deaddrunkdices;
+            let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+            let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+            if(blind) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
+            if(juggernautsburden && statType == 2) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
             await rollResult.evaluate({async:true});
 
@@ -151,8 +174,17 @@ export async function StatCheck({
 
         } else {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + frolicFaces;
+            let rollResult1 = d20 + ` + ` + rollVar + d8 + frolicFaces + drunkdices + deaddrunkdices;
+            let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+            let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+            if(blind) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
+            if(juggernautsburden && statType == 2) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
+            console.log(rollResult);
             await rollResult.evaluate({async:true});
 
             //calculations of the 'degree of success'
@@ -203,7 +235,15 @@ export async function StatCheck({
     } else {
         if (fatiguePoints != 0) {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + `d4` + frolicFaces;
+            let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + `d4` + frolicFaces + drunkdices + deaddrunkdices;
+            let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+            let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+            if(blind) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
+            if(juggernautsburden && statType == 2) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
             await rollResult.evaluate({async:true});
 
@@ -257,7 +297,15 @@ export async function StatCheck({
 
         } else {
 
-            const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces;
+            let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + frolicFaces + drunkdices + deaddrunkdices;
+            let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+            let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+            if(blind) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
+            if(juggernautsburden && statType == 2) {
+                rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+            }
             let rollResult = new Roll(rollResult1, actorData, {actorId:actorData.id});
             await rollResult.evaluate({async:true});
 
@@ -389,6 +437,21 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
     let d12 = "d12";
     let d20 = "d20";
 
+    //Check if character is drunk
+    let drunk = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.drunk")))[0];
+    let drunkdices = "";
+    if(drunk) {
+        drunkdices = " - 2d4";
+    }
+
+    //Check if character is deaddrunk
+    let deaddrunk = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.deaddrunk")))[0];
+    let deaddrunkdices = "";
+    if(deaddrunk) {
+        drunkdices = "";
+        deaddrunkdices = " - 3d4";
+    }
+
     //Check if character is under an unreal buff
     let unrealCheck = 0;
     let unreal = null;
@@ -423,9 +486,9 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
     }
     
     /* active effects vars - BEGIN */
-        //initializing buff values to 0;
-        let activeFiringline = false;
-        let manifestationofnaturebuff = 0;
+    //initializing buff values to 0;
+    let activeFiringline = false;
+    let manifestationofnaturebuff = 0;
 
     //Check if lunar rabbit under firing line active effect
     let actualStatLunarRabbit = Math.floor(actorData.data.stats.discipline / 10);
@@ -451,10 +514,10 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         if(activeFiringline) {
             //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + frolicFaces;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + frolicFaces + drunkdices + deaddrunkdices;
         } else {
             //Normal trait check
-            rollResult1 = d20 + ` + ` + numDivision + d4 + frolicFaces;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + frolicFaces + drunkdices + deaddrunkdices;
         }
 
         //manifestationofnature
@@ -471,6 +534,15 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         }
         if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
             rollResult1 += ` + 1` + d4;
+        }
+
+        let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+        let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+        if(blind) {
+            rollResult1 = d20 + drunkdices + deaddrunkdices;
+        }
+        if(juggernautsburden && (traitType == 4 || traitType == 6)) {
+            rollResult1 = d20 + drunkdices + deaddrunkdices;
         }
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
@@ -495,8 +567,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let messageData = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actorData
+            }),
             rollResult: rollResult,
             successDegree: successDegree,
             traitType: traitType,
@@ -514,8 +586,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let messageData2 = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actorData
+            }),
             content: htmlContent
         }
 
@@ -529,10 +601,10 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         if(activeFiringline) {
             //Check if under firing line buff and using buffed stats
             firinglinebuff = actualStatLunarRabbit + d4;
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + ` - ` + fatiguePoints + d6 + frolicFaces;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` + ` + firinglinebuff + ` - ` + fatiguePoints + d6 + frolicFaces + drunkdices + deaddrunkdices;
         } else {
             //Normal trait check
-            rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces;
+            rollResult1 = d20 + ` + ` + numDivision + d4 + ` - ` + fatiguePoints + d6 + frolicFaces + drunkdices + deaddrunkdices;
         }
 
         //manifestationofnature
@@ -549,6 +621,15 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
         }
         if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
             rollResult1 += ` + 1` + d4;
+        }
+
+        let blind = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+        let juggernautsburden = actorData.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.juggernautsburden")))[0];
+        if(blind) {
+            rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+        }
+        if(juggernautsburden && (traitType == 4 || traitType == 6)) {
+            rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
         }
 
         let rollResult = new Roll(rollResult1, actorData, {actorId:actor.id});
@@ -579,8 +660,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let messageData = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actorData
+            }),
             rollResult: rollResult,
             successDegree: successDegree,
             fatiguePoints: fatiguePoints,
@@ -599,8 +680,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 
         let messageData2 = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actorData
+            }),
             content: htmlContent
         }
 
@@ -616,7 +697,7 @@ export async function DeathCheck(actorData) {
     
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         content: renderedRoll
     }
@@ -652,7 +733,7 @@ export async function weaponAttack({
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         rollData: rollData,
         rollResult: rollResult,
@@ -665,7 +746,7 @@ export async function weaponAttack({
 
     let messageData2 = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         content: htmlContent
     }
@@ -2219,7 +2300,7 @@ export async function spellcardAttack({
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         rollResult: rollResult,
         chosenstat: chosenstat,
@@ -2238,7 +2319,7 @@ export async function spellcardAttack({
 
     let messageData2 = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         content: htmlContent
     }
@@ -2259,13 +2340,16 @@ export async function initiativeCheck({
 
     const messageTemplate = "systems/touhouvq/templates/chat/initiative-check.html";
 
-    let initCheck = agiNum +  ` + ` + perNum + ` + ` + d10;
+    let initCheck = d10 + ` + ` + agiNum +  ` + ` + perNum;
 
-    let rollResult = new Roll(initCheck, actorData).roll();
+    let rollResult = new Roll(initCheck, actorData, {actorId:actorData.id});
+    await rollResult.evaluate({async:true});
+
+    game.combat?.combatants?.filter(c => c.actor.id === actorData.id).forEach(c => c.update({ initiative: rollResult.total }));
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         raceNum: raceNum,
         agilityValue: agilityValue,
@@ -2277,7 +2361,7 @@ export async function initiativeCheck({
 
     let messageData2 = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actorData
         }),
         content: htmlContent
     }

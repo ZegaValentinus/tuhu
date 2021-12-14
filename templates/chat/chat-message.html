@@ -1,0 +1,65 @@
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+    <header class="message-header flexrow">
+        <h4 class="message-sender">{{alias}}</h4>
+        <span class="message-metadata">
+            <time class="message-timestamp">{{timeSince message.timestamp}}</time>
+            {{#if user.isGM}}
+                <a class="button message-delete"><i class="fas fa-trash"></i></a>
+            {{/if}}
+        </span>
+
+        {{#if isWhisper}}
+            <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+        {{/if}}
+
+        {{#if message.flavor}}
+
+            {{#if message.flags.core.RollTable}}
+                <span class="flavor-text flavor-loottable">{{getTableName message.flags.core.RollTable}}</span>
+            {{else}}
+                {{#unless message.flags.core.initiativeRoll}}
+                    <span class="flavor-text">{{{message.flavor}}}</span>
+                {{/unless}}
+            {{/if}}
+
+        {{/if}}
+    </header>
+
+    {{#if (includes message.flavor "Draws a result from")}}
+        {{#if (includes message.flavor "Objet Mystère")}}
+            {{#if user.isGM}}
+                <div class="message-content">
+                    {{{message.content}}}
+                </div>
+            {{else}}
+                <div class="message-content hiding-mysteryloottable">
+                    {{{message.content}}}
+                </div>
+            {{/if}}
+        {{else}}
+            {{#if (includes message.flavor "Mystery Item")}}
+                {{#if user.isGM}}
+                    <div class="message-content">
+                        {{{message.content}}}
+                    </div>
+                {{else}}
+                    <div class="message-content hiding-mysteryloottable">
+                        {{{message.content}}}
+                    </div>
+                {{/if}}
+            {{else}}
+                <div class="message-content">
+                    {{{message.content}}}
+                </div>
+            {{/if}}
+        {{/if}}
+    {{else}}
+        <div class="message-content">
+            {{{message.content}}}
+        </div>
+    {{/if}}
+
+
+
+</li>
+{{log this}}

@@ -11,6 +11,7 @@
     <div class="dice-roll">
         <div class="dice-result">
             <img class="tvq-weaponcheck-img" src="{{img}}">
+            <!--
             {{#if (eq data.rarity "common")}}
                 <div class="dice-formula tvq-dice-formula-weapon">
                     {{name}}
@@ -41,7 +42,9 @@
                     {{name}}
                 </div>
             {{/if}}
+            -->
 
+            <!--
             {{#if (eq data.weaponType "melee")}}
                 <p class="tvq-centerstrong">
                     {{localize "touhouvq.type.melee"}}
@@ -53,6 +56,13 @@
                     {{localize "touhouvq.type.ranged"}}
                 </p>
             {{/if}}
+
+            {{#if (eq data.weaponType "throw")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.type.throw"}}
+                </p>
+            {{/if}}
+            -->
 
         </div>
     </div>

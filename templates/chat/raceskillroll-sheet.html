@@ -16,6 +16,11 @@
                 {{localize "touhouvq.namesRaceSkill.tsukumogamirecon"}}
             </div>
         {{/if}}
+        {{#if (eq data.race "mecanical")}}
+            <div class="dice-formula tvq-dice-formula tvq-spellcardcolor-thought">
+                {{localize "touhouvq.namesRaceSkill.crush"}}
+            </div>
+        {{/if}}
 
         <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.skillText'}}</p>
 
@@ -50,7 +55,7 @@
                 <div class="tvq-fortalent-half-2">
                     <div class="tvq-flex-weapon-1">
                         <div>
-                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.png">
+                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.webp">
                         </div>
                         <p class="tvq-raceskill-total">
                             +{{d4result}}
@@ -81,7 +86,7 @@
 
                 <div class="tvq-flex-weapon-1">
                     <div>
-                        <img class="tvq-vampire-img-raceskill" src="systems/touhouvq/assets/img/vampire_regen.png">
+                        <img class="tvq-vampire-img-raceskill" src="systems/touhouvq/assets/img/vampire_regen.webp">
                     </div>
                     <p class="tvq-raceskill-total mb-10">
                         {{rollResult._total}}
@@ -122,7 +127,7 @@
                 <div class="tvq-fortalent-half-2">
                     <div class="tvq-flex-weapon-1">
                         <div>
-                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.png">
+                            <img class="tvq-taskcheck-img-raceskill" src="systems/touhouvq/assets/img/skillroll.webp">
                         </div>
                         {{#if (eq choice "1")}}
                             <p class="tvq-raceskill-total-2">
@@ -149,6 +154,39 @@
                                 <span class="part-formula">1d4+1</span>
                             {{/if}}
                             <span class="part-total">{{rollResult._total}}</span>
+                        </header>
+                        <ol class="dice-rolls">
+                            {{#each rollResult.dice as |object key|}}
+                                {{#each this.results}}
+                                    <li class="roll die d{{object.faces}}">{{this.result}}</li>
+                                {{/each}}
+                            {{/each}}
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        {{/if}}
+
+        {{#if (eq data.race "mecanical")}}
+            <div class="tvq-values-dices">
+                <div class="tvq-dicetotalfull">
+                    <div class="tvq-flex-weapon">
+
+                        <div class="tvq-flex-weapon-1">
+                            <p>{{rollResult.total}}</p>
+
+                            <img src="systems/touhouvq/assets/img/swords.webp">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="dice-tooltip">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">{{rollResult.formula}}</span>
+                            <span class="part-total">{{rollResult.total}}</span>
                         </header>
                         <ol class="dice-rolls">
                             {{#each rollResult.dice as |object key|}}

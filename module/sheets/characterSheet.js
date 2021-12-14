@@ -5,8 +5,10 @@ import {TalentsSheet} from "./character-talent-sheet.js";
 import {RaceskillsSheet} from "./character-raceskill-sheet.js";
 import {SecondSheet} from "./second-sheet.js";
 import {ActiveEffectsDebugg} from "./debugg-sheet.js";
+import {FunEffectsPanel} from "./fun-effects-panel.js";
 import {KnowledgePicking} from "./knowledge-picking-sheet.js";
 import {UpgradingStat} from "./upgrading-stat-sheet.js";
+import {DestructionSave} from "./destruction-save-sheet.js";
 
 export default class characterSheet extends ActorSheet {
 
@@ -600,7 +602,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.edit"),
       icon: '<i class="fas fa-pen"></i>',
       callback: element => {
-        const item = this.actor.getOwnedItem(element.data("item-id"));
+        const item = this.actor.items.get(element.data("item-id"));
         item.sheet.render(true);
       }
     },
@@ -608,7 +610,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.delete"),
       icon: '<i class="fas fa-trash"></i>',
       callback: element => {
-        this.actor.deleteOwnedItem(element.data("item-id"));
+        this.actor.deleteEmbeddedDocuments("Item",[element.data("item-id")]);
       }
     },
     {
@@ -616,13 +618,15 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-eye"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
+        let actorID = this.actor.id;
 
         if(item.data.type === "weapon") {
           item.roll();
         } else {
           Tchat.itemShow({
-            itemData: item
+            itemData: item,
+            actorID: actorID
           });
         }
       }
@@ -632,37 +636,40 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll far fa-eye"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
+        let actorID = this.actor.id;
 
         Tchat.itemShowMore({
-          itemData: item
+          itemData: item,
+          actorID: actorID
         });
       },
       condition: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
-        let isArmor = false;
-        if(item.data.type === "armor") {
-          isArmor = true;
+        const item = this.actor.items.get(itemID);
+        let isObject = false;
+        if(item.data.type === "object") {
+          isObject = true;
         }
-        return isArmor;
+        return isObject;
       }
     },
     {
-      name: game.i18n.localize("touhouvq.sheet.destructionSave"),
-      icon: '<i class="item-roll fas fa-bolt"></i>',
+      name: game.i18n.localize("touhouvq.sheet.show+"),
+      icon: '<i class="item-roll far fa-eye"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
+        let actorID = this.actor.id;
 
-        Tchat.armorBreakCheck({
+        Tchat.itemShowMore({
           itemData: item,
-          actorData: this.actor
+          actorID: actorID
         });
       },
       condition: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
         let isArmor = false;
         if(item.data.type === "armor") {
           isArmor = true;
@@ -675,15 +682,17 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll far fa-eye"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
+        let actorID = this.actor.id;
 
         Tchat.itemShowMore({
-          itemData: item
+          itemData: item,
+          actorID: actorID
         });
       },
       condition: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
         let isWeapon = false;
         if(item.data.type === "weapon") {
           isWeapon = true;
@@ -692,11 +701,67 @@ export default class characterSheet extends ActorSheet {
       }
     },
     {
+      name: game.i18n.localize("touhouvq.sheet.destructionSave"),
+      icon: '<i class="item-roll fas fa-bolt"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.items.get(itemID);
+
+        let actorID = this.actor.id;
+        let destrSaveText = game.i18n.localize("touhouvq.sheet.destructionSaveText");
+
+        const destrSave = new DestructionSave(itemID, actorID, destrSaveText);
+    
+        destrSave.render(true);
+      },
+      condition: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.items.get(itemID);
+        let isWeaponOrObject = false;
+        if(item.data.type === "weapon" || item.data.type === "object") {
+          isWeaponOrObject = true;
+        }
+        return isWeaponOrObject;
+      }
+    },
+    {
+      name: game.i18n.localize("touhouvq.sheet.destructionSave"),
+      icon: '<i class="item-roll fas fa-bolt"></i>',
+      callback: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.items.get(itemID);
+
+        let actorID = this.actor.id;
+        let destrSaveText = game.i18n.localize("touhouvq.sheet.destructionSaveText");
+
+        const destrSave = new DestructionSave(itemID, actorID, destrSaveText);
+    
+        destrSave.render(true);
+
+        /*
+        //old
+        Tchat.armorBreakCheck({
+          itemData: item,
+          actorData: this.actor
+        });
+        */
+      },
+      condition: element => {
+        const itemID = element.data("itemId");
+        const item = this.actor.items.get(itemID);
+        let isArmor = false;
+        if(item.data.type === "armor") {
+          isArmor = true;
+        }
+        return isArmor;
+      }
+    },
+    {
       name: game.i18n.localize("touhouvq.sheet.attack"),
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
         let actorData = this.actor;
         let rollData = {
           damageValue: item.data.data.damage,
@@ -735,7 +800,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.edit"),
       icon: '<i class="fas fa-pen"></i>',
       callback: element => {
-        const item = this.actor.getOwnedItem(element.data("item-id"));
+        const item = this.actor.items.get(element.data("item-id"));
         item.sheet.render(true);
       }
     },
@@ -743,7 +808,7 @@ export default class characterSheet extends ActorSheet {
       name: game.i18n.localize("touhouvq.sheet.delete"),
       icon: '<i class="fas fa-trash"></i>',
       callback: element => {
-        this.actor.deleteOwnedItem(element.data("item-id"));
+        this.actor.deleteEmbeddedDocuments("Item",[element.data("item-id")]);
       }
     },
     {
@@ -751,7 +816,7 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-eye"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
 
         if(item.data.type === "weapon") {
           item.roll();
@@ -767,7 +832,7 @@ export default class characterSheet extends ActorSheet {
       icon: '<i class="item-roll fas fa-dice-d20"></i>',
       callback: element => {
         const itemID = element.data("itemId");
-        const item = this.actor.getOwnedItem(itemID);
+        const item = this.actor.items.get(itemID);
         let actorData = this.actor;
         let rollData = {
           damageValue: item,
@@ -817,6 +882,7 @@ export default class characterSheet extends ActorSheet {
       html.find('.mini-button-infosShow').click(this._onButtonInfosShowClick.bind(this));
 
       html.find('.open-debugg').click(this._onButtonDebugg.bind(this));
+      html.find('.open-funeffects').click(this._onButtonFunEffects.bind(this));
       html.find('.toggle-frolic-buttons').click(this._onToggleFrolic.bind(this));
 
       html.find('.info-starter').click(this._onTalentInfo.bind(this));
@@ -869,7 +935,7 @@ export default class characterSheet extends ActorSheet {
 
   _onItemRoll(event) {
     const itemID = event.currentTarget.closest(".weapon-card").dataset.itemId;
-    const item = this.actor.getOwnedItem(itemID);
+    const item = this.actor.items.get(itemID);
 
     item.roll();
   }
@@ -878,7 +944,7 @@ export default class characterSheet extends ActorSheet {
     event.preventDefault();
     let element = event.currentTarget;
     let itemId = element.closest(".weapon-card").dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
 
     item.sheet.render(true);
   }
@@ -887,13 +953,11 @@ export default class characterSheet extends ActorSheet {
     event.preventDefault();
     let element = event.currentTarget;
     let itemId = element.closest(".weapon-card").dataset.itemId;
-    return this.actor.deleteOwnedItem(itemId);
+    return this.actor.deleteEmbeddedDocuments("Item",[itemId]);
   }
 
   async _onDropItem(event, data) {
     event.preventDefault();
-
-    console.log(event);
 
     let objectsHeld = this.actor.data.items.filter(item => [ "weapon", "armor", "object" ].includes(item.type) );
     
@@ -965,6 +1029,10 @@ export default class characterSheet extends ActorSheet {
     let compname1 = game.i18n.localize("touhouvq.startertalent1."+race);
     const actor = this.actor;
     const talentSkillType = "startertalent";
+
+    if(race.includes("mecanical")) {
+      race = "mecanical";
+    }
     
     const talentSheet = new TalentsSheet(actor, race, compname, compdesc, compname1, talentSkillType);
 
@@ -980,6 +1048,11 @@ export default class characterSheet extends ActorSheet {
     let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
     const actor = this.actor;
     const talentSkillType = "raceskill";
+
+    if(race.includes("mecanical")) {
+      race = "mecanical";
+      compdesc = game.i18n.localize("touhouvq.raceskillDesc.mecanical");
+    }
     
     const raceskillSheet = new RaceskillsSheet(actor, race, compname, compdesc, compname1, talentSkillType);
 
@@ -991,8 +1064,8 @@ _onRaceskillRoll(event) {
     let element = event.currentTarget;
     let race = element.dataset.race;
     const actor = this.actor;
-    const actualStat = element.dataset.action;
-    const actualFatigue = element.dataset.fatigue;
+    let actualStat = element.dataset.action;
+    let actualFatigue = element.dataset.fatigue;
     let compname = game.i18n.localize("touhouvq.raceskill."+race);
     let compdesc = game.i18n.localize("touhouvq.raceskillDesc."+race);
     let compname1 = game.i18n.localize("touhouvq.raceskill1."+race);
@@ -1008,6 +1081,8 @@ _onRaceskillRoll(event) {
     }
 
     if(race == "vampire") {
+      actualStat = actor.data.data.stats.strength;
+      actualFatigue = actor.data.data.fatigue.value;
       //Directly go to Tchat.raceRoll({})
     }
 
@@ -1105,6 +1180,20 @@ _onRaceskillRoll(event) {
         ui.notifications.info(game.i18n.localize("touhouvq.notifications.dieNotReady"));
       }
     }
+
+    if(race.includes("mecanical")) {
+      actualStat = actor.data.data.stats.strength;
+      actualFatigue = actor.data.data.fatigue.value;
+      race = "mecanical";
+    }
+
+    if(race == "sentientgrimoire") {
+      let actualStat = actor.data.data.stats.intelligence;
+      let actualFatigue = actor.data.data.fatigue.value;
+      let knowledgeText = game.i18n.localize("touhouvq.sheet.rollKnowledge");
+      const pickingKnowledge = new KnowledgePicking(actor, actualStat, actualFatigue, knowledgeText);
+      pickingKnowledge.render(true);
+    }
     
     let data = {
       race: race,
@@ -1150,6 +1239,13 @@ _onRaceskillRoll(event) {
     const leDebugg = new ActiveEffectsDebugg(this.actor);
 
     leDebugg.render(true);
+  }
+
+  _onButtonFunEffects(event) {
+    event.preventDefault();
+    const leFunEffects = new FunEffectsPanel(this.actor);
+
+    leFunEffects.render(true);
   }
 
   _onToggleFrolic(event) {

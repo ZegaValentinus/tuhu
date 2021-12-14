@@ -8,6 +8,7 @@
             <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.itemText.perkText'}}</p>
         {{/if}}
             
+        <!--
         {{#if (eq data.data.rarity "common")}}
             <div class="dice-formula tvq-dice-formula-weapon">
                 {{data.name}}
@@ -98,6 +99,7 @@
                 </p>
             {{/if}}
         {{/if}}
+        -->
 
         {{#if (eq data.data.spellcardType "sign")}}
             <div class="tvq-spellcard-show">
@@ -105,7 +107,7 @@
                 <p class="tvq-spellcard-card-sign">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.sign'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -127,7 +129,7 @@
                 <p class="tvq-spellcard-card-unsealing">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.unsealing'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -149,7 +151,7 @@
                 <p class="tvq-spellcard-card-thought">{{data.type}}  -  {{localize 'touhouvq.spellcardtype.thought'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -171,7 +173,7 @@
                 <p class="tvq-spellcard-card-unleash">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.unleash1'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -193,7 +195,7 @@
                 <p class="tvq-spellcard-card-soulrattle">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.soulrattle1'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -215,7 +217,7 @@
                 <p class="tvq-spellcard-card-dreamsigh">{{localize 'touhouvq.spellcardtype.type2'}}  -  {{localize 'touhouvq.spellcardtype.dreamsigh1'}}</p>
             </div>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -233,7 +235,8 @@
         {{/if}}
 
         {{#if (eq data.type "object")}}
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <!--
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -252,8 +255,10 @@
                     </div>
                 </section>
             </div>
+            -->
         {{/if}}
 
+        <!--
         {{#if (eq data.type "weapon")}}
             <div class="tvq-weaponperk-show">
                 <p class="tvq-spellcard-card-desc">{{data.data.description}}</p>
@@ -278,9 +283,10 @@
                 </div>
             {{/if}}
         {{/if}}
+        -->
 
         {{#if (eq data.type "talent")}}
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">

@@ -47,14 +47,14 @@
         </div>
         <div class="tvq-dice-result">
             {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
-                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_4.png">
+                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_4.webp">
                 <h4 class="tvq-taskcheck-resulttotal tvq-criticalsuccess">{{rollResult.total}}</h4>
             {{else}}
                 {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_4.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_4.webp">
                     <h4 class="tvq-taskcheck-resulttotal tvq-criticalfailure">{{rollResult.total}}</h4>
                 {{else}}
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_4.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_4.webp">
                     <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
                 {{/ifEquals}}
             {{/ifEquals}}

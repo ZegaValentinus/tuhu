@@ -146,14 +146,14 @@
 
         <div class="tvq-dice-result">
             {{#ifEquals bigresult 20}}
-                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_{{rolltype}}.png">
+                <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20success2_{{rolltype}}.webp">
                 <h4 class="tvq-taskcheck-resulttotal tvq-criticalsuccess">{{finalscore}}</h4>
             {{else}}
                 {{#ifEquals bigresult 1}}
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_{{rolltype}}.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_{{rolltype}}.webp">
                     <h4 class="tvq-taskcheck-resulttotal tvq-criticalfailure">{{finalscore}}</h4>
                 {{else}}
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_{{rolltype}}.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_{{rolltype}}.webp">
                     <h4 class="tvq-taskcheck-resulttotal">{{finalscore}}</h4>
                 {{/ifEquals}}
             {{/ifEquals}}

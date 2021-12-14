@@ -46,7 +46,7 @@
                 {{localize "touhouvq.type.ranged"}}
             </p>
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
@@ -68,9 +68,15 @@
                                 {{/if}}
             
                                 {{#if (eq data.data.weaponType "ranged")}}
-                                <p class="tvq-weapon-showmore-p2">
-                                    {{localize "touhouvq.type.ranged"}}
-                                </p>
+                                    <p class="tvq-weapon-showmore-p2">
+                                        {{localize "touhouvq.type.ranged"}}
+                                    </p>
+                                {{/if}}
+
+                                {{#if (eq data.data.weaponType "throw")}}
+                                    <p class="tvq-weapon-showmore-p2">
+                                        {{localize "touhouvq.type.throw"}}
+                                    </p>
                                 {{/if}}
             
                             </div>

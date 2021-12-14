@@ -54,6 +54,10 @@
   text-shadow: 0 0 6px rgb(0 0 0 / 22%);
   font-weight: bold;
 }
+.skillname {
+  color: #1c4587 !important;
+  font-weight: bold;
+}
 .magic-points {
   color: #daa430 !important;
 }
@@ -144,7 +148,7 @@
   margin-top: 18px;
 }
 .touhouvq.sheet.item .sheet-perk-2 {
-  height: 58px;
+  height: 68px;
   border: unset;
   border-radius: 5px;
   margin-top: 18px;
@@ -172,10 +176,27 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   padding: 0;
   margin: 0;
 }
+.open-funeffects {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  line-height: 0 !important;
+}
 .open-debugg .cog-button, .open-debugg .fa-seedling {
   margin: 0;
   position: absolute;
   font-size: 12px;
+  top: 0;
+  left: 0;
+}
+.funeffects-button {
+  margin: 0;
+  position: absolute;
+  font-size: 13px !important;
   top: 0;
   left: 0;
 }
@@ -619,7 +640,7 @@ section.item-list {
   margin-top: 8px;
 }
 .tvq-char-sheet-body-bar2 {
-  width: 176px;
+  width: 164px;
   margin-top: 8px;
 }
 .tvq-char-sheet-body-bar3 {
@@ -807,7 +828,7 @@ h3.thv-h3 {
   position: relative;
 }
 #context-menu:not(.expand-up) {
-  min-width: 118px !important;
+  min-width: 134px !important;
 }
 .tvq-button-traitroll #context-menu li.context-item {
   line-height: 14px !important;
@@ -857,7 +878,7 @@ h3.thv-h3 {
 }
 .tvq-char-sheet-body-bar2 .tvq-perk-line .fas {
   font-size: 12px !important;
-  margin-right: 6px !important;
+  margin-right: 4px !important;
 }
 .tvq-char-sheet-body-bar2 .tvq-custom-hr {
   margin: 1px 0 0 0 !important;
@@ -1271,7 +1292,7 @@ h1 {
 }
 .tvq-weaponcheck-img {
   width: auto;
-  height: 118px;
+  height: 100px;
   margin-left: 50%;
   transform: translateX(-50%);
   object-fit: cover;
@@ -1429,7 +1450,7 @@ h1 {
   margin-top: 2px !important;
 }
 .tvq-startertalent-perk-class {
-  font-size: 12px !important;
+  font-size: 11.5px !important;
   margin: -0.5px 0 -1px 2px !important;
   letter-spacing: -0.1px !important;
 }
@@ -3093,6 +3114,14 @@ select.tvq-select-rarity:focus {
 .tvq-knowledge-bloc2 button {
   width: 72%;
   margin: 1% 0;
+  cursor: pointer;
+}
+
+/* destruction sheet */
+.destruction-title {
+  width: 100%;
+  font-family: 'Kreon', serif !important;
+  font-size: 18px !important;
 }
 
 /* armor sheet */
@@ -3184,7 +3213,7 @@ select.tvq-select-rarity:focus {
   cursor: pointer;
 }
 
-.tvq-choosevampire {
+.tvq-choosevampire, .tvq-choosemecanical {
   cursor: pointer;
 }
 
@@ -3310,7 +3339,7 @@ select.tvq-select-rarity:focus {
 .checkdiv-2-success p {
   text-align: center;
   padding: 4px 0 !important;
-  margin: 1px 4px !important;
+  margin: 1px 0 !important;
   background: rgba(0, 0, 0, 0.1) !important;
   border-radius: 3px !important;
   box-shadow: 0 0 2px #fff inset;
@@ -3620,7 +3649,7 @@ select.tvq-select-rarity:focus {
   color: black;
   text-align: center;
   width: 100%;
-  top: 84px;
+  top: 157px;
   left: 1px;
   text-shadow: #efefef 0px 0 8px;
   border: unset;
@@ -3650,4 +3679,66 @@ select.tvq-select-rarity:focus {
 
 .tvq-equipment #context-menu li.context-item {
   line-height: 28px !important;
+  font-size: 13px !important;
+}
+
+.flavor-loottable {
+  flex: 0 0 100%;
+  position: relative;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid #999;
+  border-radius: 3px;
+  box-shadow: 0 0 2px #FFF inset;
+  margin: 0 0 5px 0 !important;
+  font-size: 15px !important;
+  line-height: 16px !important;
+  padding: 6px !important;
+  word-break: break-word;
+}
+
+ol.table-results li.table-result {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+ol.table-results li.table-result .result-text {
+  height: 32px !important;
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+ol.table-results li.table-result .result-text a {
+  height: 100% !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 231px !important;
+  overflow: hidden !important;
+  word-break: break-word !important;
+  line-break: auto !important;
+  white-space: break-spaces !important;
+  line-height: 14px !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 1px 4px 1px 25px !important;
+}
+
+ol.table-results li.table-result .result-text a i {
+  position: absolute !important;
+  top: 50% !important;
+  left: 5px !important;
+  transform: translateY(-50%) !important;
+}
+
+.hiding-mysteryloottable .table-results {
+  display: none !important;
 }

@@ -31,7 +31,12 @@ touhouvq.raceListingPnj = {
   bakedanuki:"touhouvq.race.bakedanuki",
   priestess:"touhouvq.race.priestess",
   lunarian:"touhouvq.race.lunarian",
-  mecanical:"touhouvq.race.mecanical",
+  mecanical1:"touhouvq.race.mecanical1",
+  mecanical2:"touhouvq.race.mecanical2",
+  mecanical3:"touhouvq.race.mecanical3",
+  mecanical4:"touhouvq.race.mecanical4",
+  mecanical5:"touhouvq.race.mecanical5",
+  mecanical6:"touhouvq.race.mecanical6",
   sentientgrimoire:"touhouvq.race.sentientgrimoire"
 }
 
@@ -240,7 +245,8 @@ touhouvq.sheet = {
 
 touhouvq.weaponTypes = {
   melee: "touhouvq.type.melee",
-  ranged: "touhouvq.type.ranged"
+  ranged: "touhouvq.type.ranged",
+  throw: "touhouvq.type.throw"
 }
 
 touhouvq.spellcardTypes = {
@@ -399,13 +405,13 @@ touhouvq.debuffs = {
   hampered:"touhouvq.statusEffectsDebuffs.hampered",
   paralyzed:"touhouvq.statusEffectsDebuffs.paralyzed",
   blind:"touhouvq.statusEffectsDebuffs.blind",
-  silenced:"touhouvq.statusEffectsDebuffs.silenced",
   taunt:"touhouvq.statusEffectsDebuffs.taunt",
   fear:"touhouvq.statusEffectsDebuffs.fear",
   overwhelmed:"touhouvq.statusEffectsDebuffs.overwhelmed",
   dejected:"touhouvq.statusEffectsDebuffs.dejected",
   drunk:"touhouvq.statusEffectsDebuffs.drunk",
-  deaddrunk:"touhouvq.statusEffectsDebuffs.deaddrunk"
+  deaddrunk:"touhouvq.statusEffectsDebuffs.deaddrunk",
+  juggernautsburden:"touhouvq.statusEffectsDebuffs.juggernautsburden"
 }
 
 touhouvq.alcoholEffects = {

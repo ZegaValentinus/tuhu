@@ -63,7 +63,7 @@ export class KnowledgePicking extends FormApplication {
     let knowledgeType = 1;
     let knowledgeLabel = game.i18n.localize("touhouvq.sheet.rollKnowledge1");
 
-    var selectElem = document.getElementById('select-knowledge');
+    let selectElem = document.getElementById('select-knowledge');
     const knowledgeText = selectElem.options[selectElem.selectedIndex].value;
 
     let knowledgeLabel1 = game.i18n.localize("touhouvq.knowledgeText."+knowledgeText);
@@ -88,7 +88,7 @@ export class KnowledgePicking extends FormApplication {
     let knowledgeType = 2;
     let knowledgeLabel = game.i18n.localize("touhouvq.sheet.rollKnowledge2");
 
-    var selectElem = document.getElementById('select-knowledge');
+    let selectElem = document.getElementById('select-knowledge');
     const knowledgeText = selectElem.options[selectElem.selectedIndex].value;
 
     let knowledgeLabel1 = game.i18n.localize("touhouvq.knowledgeText."+knowledgeText);

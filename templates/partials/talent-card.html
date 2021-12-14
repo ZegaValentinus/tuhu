@@ -1,7 +1,56 @@
 <div class="dice-roll">
     <div class="dice-result">
-        <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/{{data.race}}/{{data.compname1}}.webp" title="{{data.compname}}">
 
+        {{#if (eq data.race "mecanical1")}}
+            {{#if (eq talentSkillType "raceskill")}}
+                <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+            {{else}}
+                <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+            {{/if}}
+        {{else}}
+            {{#if (eq data.race "mecanical2")}}
+                {{#if (eq talentSkillType "raceskill")}}
+                    <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+                {{else}}
+                    <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+                {{/if}}
+            {{else}}
+                {{#if (eq data.race "mecanical3")}}
+                    {{#if (eq talentSkillType "raceskill")}}
+                        <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+                    {{else}}
+                        <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+                    {{/if}}
+                {{else}}
+                    {{#if (eq data.race "mecanical4")}}
+                        {{#if (eq talentSkillType "raceskill")}}
+                            <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+                        {{else}}
+                            <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+                        {{/if}}
+                    {{else}}
+                        {{#if (eq data.race "mecanical5")}}
+                            {{#if (eq talentSkillType "raceskill")}}
+                                <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+                            {{else}}
+                                <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+                            {{/if}}
+                        {{else}}
+                            {{#if (eq data.race "mecanical6")}}
+                                {{#if (eq talentSkillType "raceskill")}}
+                                    <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/crush.webp" title="{{data.compname}}">
+                                {{else}}
+                                    <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/mecanical/{{data.compname1}}.webp" title="{{data.compname}}">
+                                {{/if}}
+                            {{else}}
+                                <img class="tvq-weaponcheck-img" src="systems/touhouvq/assets/img/talentsandskills/{{data.race}}/{{data.compname1}}.webp" title="{{data.compname}}">
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+        
         <div class="dice-formula tvq-dice-formula-weapon">
             {{data.compname}}
         </div>
@@ -17,6 +66,8 @@
                 <p class="tvq-spellcard-card-thought">{{localize 'touhouvq.sheettext.raceskill'}}</p>
             </div>
         {{/if}}
+
+        <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
         <div class="dice-tooltip">
             <section class="tooltip-part">
@@ -38,3 +89,4 @@
 
     </div>
 </div>
+{{log this}}

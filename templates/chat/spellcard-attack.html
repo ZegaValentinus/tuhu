@@ -81,14 +81,14 @@
                         <div class="tvq-flex-weapon">
                             <div class="tvq-flex-weapon-1">
                                 <div>
-                                    <img class="tvq-taskcheck-img-danmaku" src="systems/touhouvq/assets/img/danmaku.png">
+                                    <img class="tvq-taskcheck-img-danmaku" src="systems/touhouvq/assets/img/danmaku.webp">
                                 </div>
                                 <p class="{{critTotal rollResult.dice}}">
                                     {{rollResult.total}}
                                 </p>
                             </div>
                             <div class="tvq-flex-weapon-2" style="position: relative;{{critRoll rollResult.dice}};">
-                                <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.png">
+                                <img class="tvq-weapon2-imgdice" src="systems/touhouvq/assets/img/blooddrop.webp">
                                 <p class="{{critTotal rollResult.dice}} marginleft1">
                                     {{whichCrit rollResult.dice}}
                                 </p>
@@ -136,13 +136,13 @@
             {{#if (eq rollResult.dice.[0].faces rollResult.dice.[0].total)}}
             {{else}}
                 <div class="tvq-dice-result">
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.webp">
                     <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
                 </div>
             {{/if}}
             {{else}}
                 <div class="tvq-dice-result">
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.png">
+                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/danmaku.webp">
                     <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
                 </div>
         {{/if}}

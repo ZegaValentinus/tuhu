@@ -42,20 +42,29 @@
                 </div>
             {{/if}}
 
-            <p class="tvq-centerstrong">
-                {{localize "touhouvq.sheet.armor"}}
-            </p>
+            {{#if (eq data.type "object")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.object"}}
+                </p>
+            {{/if}}
+            {{#if (eq data.type "armor")}}
+                <p class="tvq-centerstrong">
+                    {{localize "touhouvq.sheet.armor"}}
+                </p>
+            {{/if}}
 
-            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.svg">
+            <img class="deploy-down" src="systems/touhouvq/assets/img/expand-down.webp">
 
             <div class="dice-tooltip">
                 <section class="tooltip-part">
                     <div class="dice">
                         <div class="tvq-weaponperk-showmore">
-                            <div class="tvq-weapon-showmore-div-center">
-                                <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.sheet.defense"}}</p>
-                                <p class="tvq-weapon-showmore-p2">{{data.data.value}}</p>
-                            </div>
+                            {{#if (eq data.type "armor")}}
+                                <div class="tvq-weapon-showmore-div-center">
+                                    <p class="tvq-weapon-showmore-p1">{{localize "touhouvq.sheet.defense"}}</p>
+                                    <p class="tvq-weapon-showmore-p2">{{data.data.value}}</p>
+                                </div>
+                            {{/if}}
                             <div class="tvq-weaponperk-show">
                                 <p>{{data.data.description}}</p>
                             </div>
@@ -75,3 +84,4 @@
         </div>
     </div>
 {{/if}}
+{{log this}}

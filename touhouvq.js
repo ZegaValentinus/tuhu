@@ -4,6 +4,8 @@ import * as Dice from "./module/dice.js";
 import touhouvqItemSheet from "./module/sheets/touhouvqItemSheet.js";
 import touhouvqItem from "./module/touhouvqItem.js";
 import touhouvqActor from "./module/touhouvqActor.js";
+import touhouvqCombat from "./module/combat.js";
+import touhouvqCombatTracker from "./module/combatTracker.js";
 import characterSheet from "./module/sheets/characterSheet.js";
 import { registerSystemSettings } from "./module/settings.js";
 
@@ -28,6 +30,8 @@ Hooks.once("init", function() {
   console.log("touhouvq | Initialising Touhou:VenturesomeQuest! System");
 
   CONFIG.touhouvq = touhouvq;
+  CONFIG.Combat.entityClass = touhouvqCombat;
+  CONFIG.ui.combat = touhouvqCombatTracker;
 
   game.socket.on('system.touhouvq', Tchat.onSocketReceived);
 
@@ -41,6 +45,9 @@ Hooks.once("init", function() {
   CONFIG.Item.documentClass = touhouvqItem;
   CONFIG.Actor.documentClass = touhouvqActor;
 
+  CONFIG.ChatMessage.documentClass = tvqChatMessage;
+  CONFIG.ChatMessage.template = "systems/touhouvq/templates/chat/chat-message.html";
+
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("touhouvq", touhouvqItemSheet, { makeDefault: true });
 
@@ -49,9 +56,11 @@ Hooks.once("init", function() {
 
   registerHandlebarsHelpers();
 
-  preloadHandlebarsTemplates();  
+  preloadHandlebarsTemplates();
 
   registerSystemSettings();
+
+  registerInitiative();
 });
 
 Hooks.on("renderChatLog", (app, html, data) => {
@@ -62,6 +71,7 @@ Hooks.on("renderChatLog", (app, html, data) => {
   html.on("click",".tvq-raceskillarahitogami",_onReinforcementArahitogami);
   html.on("click",".tvq-choosetsukumogami",_onChooseTsukumogami);
   html.on("click",".tvq-frolic-button",_onRaceskillFrolic);
+  html.on("click",".tvq-choosemecanical",_onChooseMecanical);
 });
 
 Hooks.on("renderChatMessage", (app, html, data) => {
@@ -445,6 +455,33 @@ async function _onRaceskillFrolic(event) {
   }
 }
 
+async function _onChooseMecanical(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  let race = "mecanical";
+  const actorID = event.currentTarget.dataset.actorId;
+  const actor = game.actors.get(actorID);
+
+  let compname = game.i18n.localize("touhouvq.namesRaceSkill.crush");
+  let compdesc = game.i18n.localize("touhouvq.raceskillDesc.mecanical1");
+  let compname1 = game.i18n.localize("touhouvq.raceskill1.mecanical1");
+
+  const crush = 1;
+  
+  let data = {
+    race: race,
+    compname: compname,
+    compdesc, compdesc,
+    compname1: compname1,
+    crush: crush
+  };
+
+  Tchat.raceRoll({
+    actor: actor,
+    data: data
+  });
+}
+
 function registerHandlebarsHelpers() {
   Handlebars.registerHelper('ifSuperiorOrEquals', function(arg1, arg2, options) {
     return (arg1 >= arg2) ? options.fn(this) : options.inverse(this);
@@ -568,4 +605,54 @@ function registerHandlebarsHelpers() {
     }
     return outStr;
   });
+
+  Handlebars.registerHelper('getTableName', function (docId) {
+    const table = game.tables.get(docId);
+    return table.data.name;
+  });
+
+  Handlebars.registerHelper('ifExists', function (elem) {
+    const theElem = elem;
+    let answer = false;
+
+    if(theElem !== "undefined") {
+      answer = true;
+    }
+
+    return answer;
+  });
+
+  Handlebars.registerHelper("includes", includes);
+
+  function includes(string, searchString) {
+    return string?.includes(searchString) ?? false;
+  }
+
+}
+
+function registerInitiative() {
+  Combatant.prototype._getInitiativeFormula = function () {
+
+    const actorData = this.actor.data;
+
+    let agiNum = Math.floor(actorData.data.stats.agility / 10);
+    let perNum = Math.floor(actorData.data.stats.perception / 10)*2;
+
+    const formula = `1d10 + ${agiNum} + ${perNum}`;
+    return formula;
+  }
+}
+
+class tvqChatMessage extends ChatMessage {
+  async getHTML() {
+    if(this.data.flags.core?.initiativeRoll) {
+      if(this.isContentVisible) {
+        return super.getHTML();
+      }
+      //console.log("Initiative roll !");
+    } else {
+      return super.getHTML();
+      //console.log("NOT AN Initiative roll !");
+    }
+  }
 }

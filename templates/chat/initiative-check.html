@@ -9,17 +9,6 @@
                 <div class="dice">
                     <header class="part-header flexrow">
                         <span class="part-formula">{{rollResult.formula}}</span>
-                        {{#ifEquals rollResult.dice.[0].results.[0].result 20}}
-                            <p class="tvq-criticalsuccess-display">
-                                {{localize "touhouvq.critical.critsuccess"}}
-                            </p>
-                        {{else}}
-                            {{#ifEquals rollResult.dice.[0].results.[0].result 1}}
-                                <p class="tvq-criticalfailure-display">
-                                    {{localize "touhouvq.critical.critfailure"}}
-                                </p>
-                            {{/ifEquals}}
-                        {{/ifEquals}}
                         <span class="part-total">{{rollResult.total}}</span>
                     </header>
                     <ol class="dice-rolls">

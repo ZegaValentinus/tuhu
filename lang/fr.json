@@ -9,7 +9,8 @@
   "touhouvq": {
     "type": {
       "melee": "Arme de corps-à-corps",
-      "ranged": "Arme à distance"
+      "ranged": "Arme à distance",
+      "throw": "Arme de Jet"
     },
     "spellcardtype": {
       "sign": "Signe de l'Âme",
@@ -52,7 +53,12 @@
       "bakedanuki":"Bake-danuki",
       "priestess":"Prêtresse",
       "lunarian":"Sélénite",
-      "mecanical":"Mécanique",
+      "mecanical1":"Mécanique [find()]",
+      "mecanical2":"Mécanique [observe()]",
+      "mecanical3":"Mécanique [reduce()]",
+      "mecanical4":"Mécanique [sanitize()]",
+      "mecanical5":"Mécanique [folder()]",
+      "mecanical6":"Mécanique [placeholder()]",
       "sentientgrimoire":"Grimoire Vivant"
     },
     "difficulties": {
@@ -155,6 +161,7 @@
       "totalxp":"XP Tota.",
       "XPCostText":"Coût en Expérience",
       "LVRequiredText":"Niveau Requis",
+      "weapon": "Arme",
       "object": "Objet",
       "armor": "Armure",
       "race":"Race",
@@ -209,6 +216,7 @@
       "rollKnowledge1": "Jet de Connaissances Normal",
       "rollKnowledge2": "Jet de Connaissances Avancé",
       "rollKnowledge3": "Jet de Connaissances Expert",
+      "rollKnowledgeText": "Jet de Connaissances sur :",
       "upgradeStat" : "Améliorer la statistique",
       "upgradeText" : "Amélioration de statistique",
       "upgradeTheStat" : "Améliorer ",
@@ -221,7 +229,9 @@
       "theIntelligence" : "l'Intelligence",
       "upgradeLevel" : "Statistique niveau : ",
       "destructionSave": "Sauv. vs dest.",
-      "destructionSaveText": "Sauvegarde contre la Destruction"
+      "destructionSaveText": "Sauvegarde contre la Destruction",
+      "destructionSaveDifficulty1": "Sauv. contre la Destruction Normale",
+      "destructionSaveDifficulty2": "Sauv. contre la Destruction Difficile"
     },
     "generalRarity": {
       "common": "Classique",
@@ -422,7 +432,12 @@
       "satoriclosedeye":"Inconscient Déconnecté",
       "bakedanuki":"Nature Espiègle",
       "priestess":"Acquis Mystique",
-      "mecanical":"fnd-analyse_prototype[|%%%value...0|]~",
+      "mecanical1":"fnd-analyse_prttp[|%val.0|]~",
+      "mecanical2":"fnd-analyse_prttp[|%val.0|]~",
+      "mecanical3":"fnd-analyse_prttp[|%val.0|]~",
+      "mecanical4":"fnd-analyse_prttp[|%val.0|]~",
+      "mecanical5":"fnd-analyse_prttp[|%val.0|]~",
+      "mecanical6":"fnd-analyse_prttp[|%val.0|]~",
       "sentientgrimoire":"Libre Arbitre de l'Atlas"
     },
     "raceskill": {
@@ -452,7 +467,12 @@
       "satoriclosedeye":"Destruction d'un Lien",
       "bakedanuki":"Métamorphose",
       "priestess":"Invocation des Pouvoirs",
-      "mecanical":"Écraser",
+      "mecanical1":"Écraser",
+      "mecanical2":"Écraser",
+      "mecanical3":"Écraser",
+      "mecanical4":"Écraser",
+      "mecanical5":"Écraser",
+      "mecanical6":"Écraser",
       "sentientgrimoire":"Pages Éthérées"
     },
     "startertalent1": {
@@ -482,7 +502,12 @@
       "satoriclosedeye":"disconnectedunconscious",
       "bakedanuki":"mischievousnature",
       "priestess":"mysticalawareness",
-      "mecanical":"fndanalyseprototype1",
+      "mecanical1":"fndanalyseprototype1",
+      "mecanical2":"bsrvgetprototype2",
+      "mecanical3":"rdcslowprototype3",
+      "mecanical4":"sntzcleanprototype4",
+      "mecanical5":"fldrfilterprototype5",
+      "mecanical6":"plchldrguardprototype6",
       "sentientgrimoire":"freewillwielder"
     },
     "raceskill1": {
@@ -512,7 +537,12 @@
       "satoriclosedeye":"destructionofalink",
       "bakedanuki":"metamorphosis",
       "priestess":"invokingpowers",
-      "mecanical":"crush",
+      "mecanical1":"crush",
+      "mecanical2":"crush",
+      "mecanical3":"crush",
+      "mecanical4":"crush",
+      "mecanical5":"crush",
+      "mecanical6":"crush",
       "sentientgrimoire":"etherealpages"
     },
     "startertalentDesc": {
@@ -542,14 +572,19 @@
       "satoriclosedeye":"WiP",
       "bakedanuki":"WiP",
       "priestess":"WiP",
-      "mecanical":"WiP",
-      "sentientgrimoire":"WiP"
+      "mecanical1":"Votre personnage est considéré comme étant sous l’effet de statut <span class='status-effect'>provoqué(e)</span> par toute créature lui infligeant des dégâts, ou par toute créature que votre personnage aperçoit.",
+      "mecanical2":"WiP2",
+      "mecanical3":"WiP3",
+      "mecanical4":"WiP4",
+      "mecanical5":"WiP5",
+      "mecanical6":"WiP6",
+      "sentientgrimoire":"Deux connaissances sont sélectionnées lors de la création de ce personnage. Elles deviennent alors des connaissances expertes. A chaque fois que votre personnage effectuera un jet de statistique, vous pouvez dépenser <span class='magic-points'>un point de magie</span> afin d’effectuer un jet de connaissance à la place du jet de statistique, qui sera une réussite si le jet de connaissance est une réussite."
     },
     "raceskillDesc": {
       "human":"Si votre personnage est en combat, alors, au début de chacune de vos <span class='action'>actions</span>, vous pouvez augmenter aléatoirement de 1d4 point(s) une de vos statistiques (sauf <span class='stat-magic'>Magie</span>). L’effet s'estompe à la fin du combat. Cette compétence est gratuite, et s’utilise instantanément.",
-      "youkai":"Cette compétence est gratuite. En combat, effectuez un <span class='stat-strength'>jet de Force</span>, <span class='stat-discipline'>de Discipline</span>, ou <span class='stat-intellect'>d’Intelligence</span> <span class='difficulty'>{Ardu:20}</span>. S’il réussit, votre personnage récupère <span class='magic-points'>1 point de magie</span>. Hors combat, sacrifiez 6 de vos points de vie pour récupérer <span class='magic-points'>1 point de magie</span>.",
+      "youkai":"Cette compétence est gratuite. En combat, effectuez un <span class='stat-strength'>jet de Force</span>, <span class='stat-discipline'>de Discipline</span>, ou <span class='stat-intellect'>d’Intelligence</span> <span class='difficulty'>{Ardu:20}</span>. S’il réussit, votre personnage récupère <span class='magic-points'>1 point de magie</span>. Si le jet échoue, votre personnage n’aura consommé qu’une <span class='action'>demi-action</span> (au lieu de l’<span class='action'>action</span> complète normalement consommée par cette compétence). Hors combat, sacrifiez 6 de vos points de vie pour récupérer <span class='magic-points'>1 point de magie</span>.",
       "ghost":"Votre personnage réduis le lien entre le monde physique et son corps. En plus de perdre 1d4 <span class='critwounds'>blessure(s) critique(s)</span>, effectuez un <span class='trait'>jet de Maîtrise</span>, ou <span class='trait'>de Passe-Passe</span> <span class='difficulty'>{Difficile:24}</span>. Puis, jusqu’à la fin du tour de combat prochain, ou pendant l’équivalent de 4 secondes, tous les dégâts que votre personnage subira seront réduits de 1+[<span class='trait'>Degrés de Réussite</span>].",
-      "vampire":"Votre personnage est capable de se soigner lui-même de 2d6 points de vie si ses points de vie sont inférieurs à [<span class='stat-magic'>statistique de Magie</span>]. Pour ce faire, un <span class='stat-strength'>jet de Force</span> <span class='difficulty'>{Ardu:20}</span> doit être réussi. Si le jet échoue, le <span class='magic-points'>point de magie</span> n’est pas dépensé.",
+      "vampire":"Votre personnage est capable de se soigner lui-même de [<span class='stat-endurance'>dizaine(s) de la statistique d'Endurance</span>]d6 point(s) de vie si ses points de vie sont inférieurs à [<span class='stat-magic'>statistique de Magie</span>]. Pour ce faire, un <span class='stat-strength'>jet de Force</span> <span class='difficulty'>{Ardu:20}</span> doit être réussi. Si le jet échoue, le <span class='magic-points'>point de magie</span> n’est pas dépensé.",
       "fairy":"Effectuez un <span class='stat-magic'>jet de Magie</span> <span class='difficulty'>{Ardu:20}</span>. Puis, une créature sélectionnée par votre personnage, située à moins de [<span class='stat-agility'>statistique d’Agilité</span>] mètres autour de ce dernier obtiendra, durant les prochaines 1+[<span class='stat-magic'>Degrés de réussite du jet de Magie</span>]/2 <span class='action'>action(s)</span> (ou [<span class='stat-magic'>Degrés de réussite</span>]+2 prochaines secondes) un bonus sur ses <span class='trait'>jets de caractéristiques</span> égal à +2d4.",
       "crowtengu":"En réussissant un <span class='stat-agility'>jet d’Agilité</span> <span class='difficulty'>{Ardu:20}</span>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
       "whitewolftengu":"En réussissant un <span class='stat-agility'>jet d’Agilité</span> <span class='difficulty'>{Ardu:20}</span>, votre personnage est capable d’esquiver. Réalisable instantanément et peut être utilisée n’importe quand une fois par tour, la compétence permet d'esquiver une attaque, outrepassant ainsi ses dégâts.",
@@ -572,8 +607,8 @@
       "satoriclosedeye":"WiP",
       "bakedanuki":"WiP",
       "priestess":"WiP",
-      "mecanical":"WiP",
-      "sentientgrimoire":"WiP"
+      "mecanical":"Votre personnage frappe sa cible en écrasant le sol. Effectuez un <span class='trait'>jet de Corps-à-Corps</span> <span class='difficulty'>{Ardu:20}</span>. Si le jet réussi, votre personnage inflige [<span class='stat-strength'>Dizaine de Force</span>]d4+2 points de dégâts, outrepassant toute réduction de dégâts par l’<span class='stat-endurance'>Endurance</span>.",
+      "sentientgrimoire":"Cette compétence s’utilise instantanément. Effectuez un jet de connaissances expert <span class='difficulty'>{Ardu:20}</span>, sur la connaissance qu’il vous plaira. Puis, sélectionnez une créature située à moins de [degré(s) de réussite du jet de connaissances]+1 mètre(s). Votre prochain jet de statistique ou <span class='trait'>de caractéristique</span>, ainsi que celui de la créature ciblée pourront être relancés une fois, gratuitement, en cas d'échec."
     },
     "namesRaceSkill": {
       "selfhelp":"Débrouillardise",
@@ -611,6 +646,7 @@
     },
     "flavorText": {
       "activeEffectsOptions":"Afficher le panneau de contrôle des ActiveEffects",
+      "activeFunEffects":"Afficher le panneau de contrôle des effects visuels",
       "humanUpgradedstat":"Statistique améliorée :",
       "humanButtonskill":"Appliquer le bonus au personnage",
       "youkaitext1":"Effectuer un jet de :",
@@ -632,7 +668,8 @@
       "earthrabbitStolen1":"Dé volé !",
       "earthrabbitStolen2":"Voler d",
       "earthrabbitStolen3":"Dé volé par ",
-      "earthrabbitFrolicButtonDisplay":"Afficher les boutons de la compétence Gambader"
+      "earthrabbitFrolicButtonDisplay":"Afficher les boutons de la compétence Gambader",
+      "mecanicalButton":"Écraser"
     },
     "simpleCheck": {
       "success":"Réussite",
@@ -669,7 +706,8 @@
       "debuggSheetText3":"Appliquer un bonus irréel",
       "applyBuff":"Appliquer un buff",
       "applyDebuff":"Appliquer un debuff",
-      "applyAlcohol":"Effet d'un alcool"
+      "applyAlcohol":"Effet d'un alcool",
+      "funEffectsText": "Boutons d'Effets Visuels"
     },
     "unreal": {
       "strength":"Force Irréelle",
@@ -707,7 +745,8 @@
       "overwhelmed":"Accablé(e)",
       "dejected":"Abattu(e)",
       "drunk":"Ivre",
-      "deaddrunk":"Ivre Mort(e)"
+      "deaddrunk":"Ivre Mort(e)",
+      "juggernautsburden":"Fardeau du Mastodonte"
     },
     "descBuffs": {
       "regeneration":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de se soigner d’1 point de vie à la fin de chacune de ses <span class='action'>demi-actions</span>.",
@@ -721,22 +760,22 @@
       "invulnerable":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de ne jamais être capable de voir ses points de vie diminuer.",
       "instantcelerity":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de bénéficier d’une <span class='action'>demi-action</span> supplémentaire bonus au cours de chacun des tours d’un combat durant lesquels la créature est sous l’effet de cet <span class='status-effect'>effet de statut</span>.",
       "strokeofgenius":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de relancer instantanément tout <span class='trait'>jet de Technologie</span> ou <span class='trait'>jet d’Investigation</span>, gratuitement, si le jet est un échec.",
-      "nightvision":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de voir dans le noir durant toute la durée de cet effet de statut."
+      "nightvision":"Cet <span class='status-effect'>effets de statut</span> permet à la créature de voir dans le noir durant toute la durée de cet <span class='status-effect'>effet de statut</span>."
     },
     "descDebuffs": {
       "bleeding":"Cet <span class='status-effect'>effets de statut</span> fait saigner la créature, lui infligeant 1 point de dégât en début d'<span class='action'>action</span>. Ces dégâts outrepassent la réduction des dégâts par l’<span class='stat-endurance'>Endurance</span>.",
-      "stun":"Cet <span class='status-effect'>effets de statut</span> empêche la créature d’effectuer un quelconque mouvement demandant un jet, ou une quelconque utilisation d’une compétence. Elle ne peut également plus se mouvoir d’elle-même, ou penser clairement d’elle-même.",
+      "stun":"Cet <span class='status-effect'>effets de statut</span> empêche la créature d’utiliser sa <span class='skillname'>compétence de race</span>, tant qu’elle est sous l’effet de cet <span class='status-effect'>effet de statut</span>. Pour se déplacer normalement, la réussite d’un <span class='stat-perception'>jet de Perception</span> <span class='difficulty'>{Normal:18}</span> est nécessaire en début d’<span class='action'>action</span>. Si le jet réussit, la créature pourra se déplacer normalement pendant cette <span class='action'>action</span>, si elle échoue, elle ne pourra pas se mouvoir pendant cette <span class='action'>action</span>.",
       "burning":"Cet <span class='status-effect'>effets de statut</span> met en feu la créature, qui ne peut plus manier ni objet ni arme, et doit effectuer un <span class='stat-endurance'>jet d’Endurance</span> <span class='difficulty'>{Ardu:20}</span> au début de chaque <span class='action'>action</span> qu’elle passe à brûler. Si elle échoue à ce jet, elle subit 3 points de dégâts, et le feu perdurera jusqu’à sa prochaine <span class='action'>action</span>. Le feu peut être potentiellement retiré par des personnages (se jeter dans un étang). Les dégâts de cet <span class='status-effect'>effets de statut</span> outrepassent la réduction des dégâts par l’<span class='stat-endurance'>Endurance</span>.",
       "hampered":"Cet <span class='status-effect'>effets de statut</span> empêche la créature de se déplacer, cependant, elle est toujours capable d’agir et de penser. Cet <span class='status-effect'>effets de statut</span> force la difficulté de tous les <span class='trait'>jets de Caractéristique</span> de la créature à la difficulté <span class='difficulty'>{Difficile:24}</span>, tant que la créature est affectée par cet <span class='status-effect'>effets de statut</span>.",
       "paralyzed":"Cet <span class='status-effect'>effets de statut</span> empêche la créature de bouger, réduisant ses mouvements, sa capacité à utiliser la magie, et sa mobilité à néant. Elle est cependant toujours capable de penser, et réduit sa capacité à parler mais ne l’annule pas totalement.",
-      "blind":"Cet <span class='status-effect'>effets de statut</span> fait subir à la créature un malus sur tous ses jets tant qu’elle est <span class='status-effect'>aveuglée</span> : pour chacun de ses jets de Statistique ou <span class='trait'>de Caractéristique</span>, le joueur ou le Maître du Jeu contrôlant cette créature ne lancera que le d20 du jet. Pour se déplacer normalement, la réussite d’un <span class='stat-agility'>jet d'Agilité</span> <span class='difficulty'>{Normal:18}</span> (possédant le malus de cet <span class='status-effect'>effets de statut</span>) est nécessaire en début d’<span class='action'>action</span>. Si le jet réussit, elle pourra se déplacer normalement pendant cette <span class='action'>action</span>, si elle échoue, elle ne pourra pas se mouvoir pendant cette <span class='action'>action</span>.",
-      "silenced":"Cet <span class='status-effect'>effets de statut</span> désactive tous les <span class='round'>Talents</span> possédés par la créature, tant que la créature est sous l’effet de cet <span class='status-effect'>effets de statut</span>.",
+      "blind":"Cet <span class='status-effect'>effets de statut</span> fait subir à la créature un malus sur tous ses jets tant qu’elle est <span class='status-effect'>aveuglée</span> : pour chacun de ses jets de Statistique ou <span class='trait'>de Caractéristique</span>, le joueur ou le Maître du Jeu contrôlant cette créature ne lancera que le d20 du jet. Pour se déplacer normalement, la réussite d’un <span class='stat-perception'>jet de Perception</span> <span class='difficulty'>{Normal:18}</span> (possédant le malus de cet <span class='status-effect'>effets de statut</span>) est nécessaire en début d’<span class='action'>action</span>. Si le jet réussit, la créature pourra se déplacer normalement pendant cette <span class='action'>action</span>, si elle échoue, elle ne pourra pas se mouvoir pendant cette <span class='action'>action</span>.",
       "taunt":"Cet <span class='status-effect'>effets de statut</span> force la créature à attaquer la créature l’ayant <span class='status-effect'>provoquée</span> pendant chacune de ses <span class='action'>actions</span>, tant qu’elle est <span class='status-effect'>provoquée</span>. La créature <span class='status-effect'>provoquée</span> choisit son attaque. Si la créature <span class='status-effect'>provoquée</span> est physiquement incapable d’attaquer la créature l’ayant <span class='status-effect'>provoquée</span>, elle est considéré comme non-<span class='status-effect'>provoquée</span> pendant cette <span class='action'>action</span>. Est considérée comme une attaque valable toutes les attaques que peut effectuer la créature <span class='status-effect'>provoquée</span> tant que l’attaque qui est choisie est censée infliger, dans des conditions normales et à travers des conséquences prévisibles, des dégâts à l’entité responsable de la <span class='status-effect'>provocation</span>.",
       "fear":"Cet <span class='status-effect'>effets de statut</span> force la créature à fuir, de la manière la plus efficace pour elle, un objet, un endroit ou une autre créature. Les effets de cet <span class='status-effect'>effets de statut</span> sont réduits si la créature n’est plus capable de voir l’objet, le lieu ou la créature épicentre de cet <span class='status-effect'>effets de statut</span>.",
       "overwhelmed":"Cet <span class='status-effect'>effets de statut</span> réduit la défense de la créature à 1. Aucune exception n’est capable de contrer l’effet de cet <span class='status-effect'>effets de statut</span>, et cet <span class='status-effect'>effets de statut</span> est appliqué en priorité par rapport à d’autres potentiels effets de statut.",
       "dejected":"Cet <span class='status-effect'>effets de statut</span> confère à la créature 1 point de fatigue à la fin de chacune de ses <span class='action'>actions</span>.",
       "drunk":"Cet <span class='status-effect'>effets de statut</span> réduit la défense de la créature de 1, et provoque un malus de -2d4 sur ses <span class='trait'>jets de caractéristiques</span>, et de -1d4 ses jet de statistiques.",
-      "deaddrunk":"Cet <span class='status-effect'>effets de statut</span> réduit la défense de la créature de 3, et provoque un malus de -3d4 sur ses <span class='trait'>jets de caractéristiques</span>, et de -2d4 ses jet de statistiques."
+      "deaddrunk":"Cet <span class='status-effect'>effets de statut</span> réduit la défense de la créature de 3, et provoque un malus de -3d4 sur ses <span class='trait'>jets de caractéristiques</span>, et de -2d4 ses jet de statistiques.",
+      "juggernautsburden":"Cet <span class='status-effect'>effets de statut</span> fait subir à la créature un malus sur ses <span class='stat-agility'>jets d’Agilité</span>, <span class='trait'>de Lancé</span> et <span class='trait'>de Précision</span> : le joueur ou le Maître du Jeu contrôlant cette créature ne lancera que le d20 de ces jets."
     },
     "alcoholEffects": {
       "perched":"Perché",

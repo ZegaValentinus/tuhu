@@ -15,44 +15,51 @@
   "packs": [
     {
       "name":"itemObjects",
-      "label":"Objects Compendium [TVQ!]",
+      "label":"Objects Compendium [TVQ!][FR]",
       "path":"./packs/objects.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemWeapons",
-      "label":"Weapons Compendium [TVQ!]",
+      "label":"Weapons Compendium [TVQ!][FR]",
       "path":"./packs/weapons.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemArmors",
-      "label":"Armors Compendium [TVQ!]",
+      "label":"Armors Compendium [TVQ!][FR]",
       "path":"./packs/armors.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemTalents",
-      "label":"Talents Compendium [TVQ!]",
+      "label":"Talents Compendium [TVQ!][FR]",
       "path":"./packs/talents.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemSpellcards",
-      "label":"Spellcards Compendium [TVQ!]",
+      "label":"Spellcards Compendium [TVQ!][FR]",
       "path":"./packs/spellcards.db",
       "entity":"Item",
       "private":true
     },
     {
       "name":"itemEnemies",
-      "label":"Enemies Compendium [TVQ!]",
+      "label":"Enemies Compendium [TVQ!][FR]",
       "path":"./packs/enemies.db",
       "entity":"Actor",
+      "private":true
+    },
+    {
+      "name":"itemLootTables",
+      "label":"Loot Tables Compendium [TVQ!][FR]",
+      "path":"./packs/loottables.db",
+      "entity":"RollTable",
       "private":true
     }
   ],

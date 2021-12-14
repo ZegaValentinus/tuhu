@@ -21,7 +21,7 @@ export async function BodyLoc(bodyData) {
       const html = await renderTemplate(template, templateData);
   
       const messageData = {
-          speaker: ChatMessage.getSpeaker({
+        speaker: ChatMessage.getSpeaker({
             alias:game.user.name
         }),
           content: html,
@@ -33,14 +33,17 @@ export async function BodyLoc(bodyData) {
   }
 
 export async function itemShow({
-    itemData = null } = {}) {
+    itemData = null,
+    actorID = null } = {}) {
 
     const messageTemplate = "systems/touhouvq/templates/partials/object-card.html";
     const html = await renderTemplate(messageTemplate, itemData);
 
+    const theActor = game.actors.get(actorID);
+
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: theActor
         }),
         content: html,
         rarity: itemData.rarity
@@ -52,21 +55,28 @@ export async function itemShow({
 }
 
 export async function itemShowMore({
-    itemData = null } = {}) {
+    itemData = null,
+    actorID = null } = {}) {
 
     let messageTemplate = null;
 
+    if(itemData.data.type === "object") {
+        messageTemplate = "systems/touhouvq/templates/partials/object-card-more.html";
+    }
+    if(itemData.data.type === "weapon") {
+        messageTemplate = "systems/touhouvq/templates/partials/weapon-card-more.html";
+    }
     if(itemData.data.type === "armor") {
         messageTemplate = "systems/touhouvq/templates/partials/object-card-more.html";
-    } else {
-        messageTemplate = "systems/touhouvq/templates/partials/weapon-card-more.html";
     }
     
     const html = await renderTemplate(messageTemplate, itemData);
 
+    const theActor = game.actors.get(actorID);
+
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: theActor
         }),
         content: html,
         rarity: itemData.rarity
@@ -78,25 +88,42 @@ export async function itemShowMore({
 }
 
 export async function armorBreakCheck({
-    itemData = null,
-    actorData = null } = {}) {
+    actorID = null,
+    itemID = null,
+    difficulty = difficulty,
+    sauvDestrLabel = sauvDestrLabel } = {}) {
+
+    const theActor = game.actors.get(actorID);
 
     let messageTemplate = "systems/touhouvq/templates/partials/destruction-card.html";
-    const rollFormula = "d20";
-    let rollResult = new Roll(rollFormula, actorData).roll();
+    let rollFormula = "d20";
+
+    let rollResult = new Roll(rollFormula, theActor).roll();
     let renderedRoll = await rollResult.render({ template: messageTemplate });
+
+    const theItem = theActor.items.get(itemID);
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: theActor
         }),
-        content: renderedRoll,
-        rarity: itemData.rarity
+        item: theItem,
+        rollResult: rollResult,
+        difficulty: difficulty,
+        sauvDestrLabel: sauvDestrLabel,
+        renderedRoll: renderedRoll
     }
 
-    const messageClass = getDocumentClass("ChatMessage");
+    let htmlContent = await renderTemplate(messageTemplate, messageData);
+        
+    let messageData2 = {
+        speaker: ChatMessage.getSpeaker({
+            actor: theActor
+        }),
+        content: htmlContent
+    }
 
-    rollResult.toMessage(messageData);
+    rollResult.toMessage(messageData2);
 }
 
 export async function charInfosShow({
@@ -113,7 +140,7 @@ export async function charInfosShow({
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actor
         }),
         content: html
     }
@@ -139,7 +166,7 @@ export async function talentInfo({
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actor
         }),
         content: html
     }
@@ -154,6 +181,11 @@ export async function raceInfo({
     actor = null,
     talentSkillType = null } = {}) {
 
+    if(data.race.includes("mecanical")) {
+        data.race = "mecanical";
+        data.compdesc = game.i18n.localize("touhouvq.raceskillDesc.mecanical");
+    }
+
     let data1 = {
         data: data,
         actor: actor,
@@ -165,7 +197,7 @@ export async function raceInfo({
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
+            actor: actor
         }),
         content: html
     }
@@ -194,8 +226,8 @@ export async function raceRoll({
         
         let messageData = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actor
+            }),
             rollResult: rollResult,
             data: data,
             actor: actor,
@@ -206,8 +238,8 @@ export async function raceRoll({
 
         let messageData2 = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actor
+            }),
             content: htmlContent
         }
     
@@ -229,8 +261,8 @@ export async function raceRoll({
 
         const messageData2 = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actor
+            }),
             content: html,
             user: game.user.id,
             whisper: [game.user.id]
@@ -257,15 +289,41 @@ export async function raceRoll({
 
         let fatiguePoints = data.actualFatigue;
 
+        //Check if character is under an unreal buff
+        let unrealCheck = 0;
+        let unreal = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.strength")))[0];
+        if(unreal) {
+            unrealCheck = 1;
+            d4 = "d8";
+            d8 = "d12";
+        }
+
+        //Check if character is drunk
+        let drunk = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.drunk")))[0];
+        let drunkdices = "";
+        if(drunk) {
+            drunkdices = " - 1d4";
+        }
+
+        //Check if character is deaddrunk
+        let deaddrunk = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.deaddrunk")))[0];
+        let deaddrunkdices = "";
+        if(deaddrunk) {
+            drunkdices = "";
+            deaddrunkdices = " - 2d4";
+        }
+
         if(data.regen === 1) {
-            let toRoll = `2` + d6;
+            let enduranceBonus = Math.floor(actor.data.data.stats.resilience / 10);
+            let toRoll = enduranceBonus + d6;
             
-            let rollResult = new Roll(toRoll, actor).roll();
+            rollResult = new Roll(toRoll, actor, {actorId:actor.id});
+            await rollResult.evaluate({async:true});
             
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actor
+                }),
                 rollResult: rollResult,
                 data: data
             }
@@ -274,24 +332,30 @@ export async function raceRoll({
             
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actor
+                }),
                 content: htmlContent
             }
             
             rollResult.toMessage(messageData2);
         } else {
+            const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
             if (numDivision % 2 == 0) {
-                rollResult = d20 + ` + ` + rollVar + d8;
+                rollResult = d20 + ` + ` + rollVar + d8 + drunkdices + deaddrunkdices;
             } else {
-                rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
+                rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + drunkdices + deaddrunkdices;
             }
         
             if (numDivision % 2 == 0) {
                 if (fatiguePoints != 0) {
         
-                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4;
-                    let rollResult = new Roll(rollResult1, actor).roll();
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
         
                     let rolls = [d20];
         
@@ -303,23 +367,22 @@ export async function raceRoll({
         
                     let messageData = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
                         race: data.race,
-                        rolls: rolls
+                        rolls: rolls,
+                        actor: actor
                     }
-                
-                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
-                
+
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         content: htmlContent
                     }
                 
@@ -327,8 +390,13 @@ export async function raceRoll({
         
                 } else {
         
-                    const rollResult1 = d20 + ` + ` + rollVar + d8;
-                    let rollResult = new Roll(rollResult1, actor).roll();
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
         
                     let rolls = [d20];
         
@@ -338,23 +406,22 @@ export async function raceRoll({
         
                     let messageData = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
                         race: data.race,
-                        rolls: rolls
+                        rolls: rolls,
+                        actor: actor
                     }
-                
-                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
-                
+
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         content: htmlContent
                     }
                 
@@ -364,8 +431,13 @@ export async function raceRoll({
             } else {
                 if (fatiguePoints != 0) {
         
-                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4;
-                    let rollResult = new Roll(rollResult1, actor).roll();
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
         
                     let rolls = [d20];
         
@@ -379,23 +451,22 @@ export async function raceRoll({
         
                     let messageData = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
                         race: data.race,
-                        rolls: rolls
+                        rolls: rolls,
+                        actor: actor
                     }
-                
-                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
                 
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         content: htmlContent
                     }
                 
@@ -403,8 +474,13 @@ export async function raceRoll({
         
                 } else {
         
-                    const rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4;
-                    let rollResult = new Roll(rollResult1, actor).roll();
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
         
                     let rolls = [d20];
         
@@ -416,23 +492,22 @@ export async function raceRoll({
         
                     let messageData = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         rollResult: rollResult,
                         actionValue: actionValue,
                         fatiguePoints: fatiguePoints,
                         race: data.race,
-                        rolls: rolls
+                        rolls: rolls,
+                        actor: actor
                     }
-    
-                    const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
-                
+
                     let htmlContent = await renderTemplate(messageTemplate, messageData);
                 
                     let messageData2 = {
                         speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                            actor: actor
+                        }),
                         content: htmlContent
                     }
                 
@@ -465,8 +540,8 @@ export async function raceRoll({
 
         const messageDataLR = {
             speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                actor: actor
+            }),
             content: html,
             user: game.user.id
         }
@@ -481,8 +556,8 @@ export async function raceRoll({
         
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actor
+                }),
                 rollResult: rollResult,
                 data: data,
                 choice: data.choice
@@ -492,8 +567,8 @@ export async function raceRoll({
     
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actor
+                }),
                 content: htmlContent
             }
         
@@ -506,8 +581,8 @@ export async function raceRoll({
         
                 let messageData = {
                     speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                        actor: actor
+                    }),
                     rollResult: rollResult,
                     data: data,
                     choice: data.choice
@@ -517,8 +592,8 @@ export async function raceRoll({
         
                 let messageData2 = {
                     speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                        actor: actor
+                    }),
                     content: htmlContent
                 }
             
@@ -529,8 +604,8 @@ export async function raceRoll({
         
                 const messageData = {
                     speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                        actor: actor
+                    }),
                     content: html,
                     data: data,
                     actor: actor,
@@ -543,6 +618,253 @@ export async function raceRoll({
                 messageClass.create(messageData);
             }
         }
+    }
+    if (data.race == "mecanical") {
+
+        let d8 = "d8";
+        let d6 = "d6";
+        let d4 = "d4";
+        let d20 = "d20";
+
+        console.log(data.actualStat);
+
+        let actionValue = data.actualStat;
+        
+        let numDivision = Math.floor(actionValue / 5);
+        
+        let rollVar = Math.floor(numDivision / 2);
+    
+        let rollResult;
+
+        let fatiguePoints = data.actualFatigue;
+
+        //Check if character is under an unreal buff
+        let unrealCheck = 0;
+        let unreal = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.unreal.strength")))[0];
+        if(unreal) {
+            unrealCheck = 1;
+            d4 = "d8";
+            d8 = "d12";
+        }
+
+        //Check if character is drunk
+        let drunk = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.drunk")))[0];
+        let drunkdices = "";
+        if(drunk) {
+            drunkdices = " - 1d4";
+        }
+
+        //Check if character is deaddrunk
+        let deaddrunk = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.deaddrunk")))[0];
+        let deaddrunkdices = "";
+        if(deaddrunk) {
+            drunkdices = "";
+            deaddrunkdices = " - 2d4";
+        }
+
+        if(data.crush === 1) {
+            let strengthBonus = Math.floor(actor.data.data.stats.strength / 10);
+            let toRoll = strengthBonus + `d4` + " + 2";
+            
+            rollResult = new Roll(toRoll, actor, {actorId:actor.id});
+            await rollResult.evaluate({async:true});
+            
+            let messageData = {
+                speaker: ChatMessage.getSpeaker({
+                    actor: actor
+                }),
+                rollResult: rollResult,
+                data: data
+            }
+            
+            let htmlContent = await renderTemplate(messageTemplate, messageData);
+            
+            let messageData2 = {
+                speaker: ChatMessage.getSpeaker({
+                    actor: actor
+                }),
+                content: htmlContent
+            }
+            
+            rollResult.toMessage(messageData2);
+        } else {
+            const messageTemplate = "systems/touhouvq/templates/partials/tchat-skillcard.html";
+            if (numDivision % 2 == 0) {
+                rollResult = d20 + ` + ` + rollVar + d8 + drunkdices + deaddrunkdices;
+            } else {
+                rollResult = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + drunkdices + deaddrunkdices;
+            }
+        
+            if (numDivision % 2 == 0) {
+                if (fatiguePoints != 0) {
+        
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` - ` + fatiguePoints + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d6);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls,
+                        actor: actor
+                    }
+
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                } else {
+        
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls,
+                        actor: actor
+                    }
+
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                }
+            } else {
+                if (fatiguePoints != 0) {
+        
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + ` - ` + fatiguePoints + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d4);
+        
+                    rolls.push(d6);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls,
+                        actor: actor
+                    }
+                
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+        
+                } else {
+        
+                    let rollResult1 = d20 + ` + ` + rollVar + d8 + ` + ` + d4 + drunkdices + deaddrunkdices;
+                    let blind = actor.effects.filter(effect => effect.data.label.includes(game.i18n.localize("touhouvq.statusEffectsDebuffs.blind")))[0];
+                    if(blind) {
+                        rollResult1 = d20 + ` - ` + fatiguePoints + drunkdices + deaddrunkdices;
+                    }
+                    rollResult = new Roll(rollResult1, actor, {actorId:actor.id});
+                    await rollResult.evaluate({async:true});
+        
+                    let rolls = [d20];
+        
+                    for (let a = 0; a < rollVar; a++) {
+                        rolls.push(d8);
+                    }
+        
+                    rolls.push(d4);
+        
+                    let messageData = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        rollResult: rollResult,
+                        actionValue: actionValue,
+                        fatiguePoints: fatiguePoints,
+                        race: data.race,
+                        rolls: rolls,
+                        actor: actor
+                    }
+
+                    let htmlContent = await renderTemplate(messageTemplate, messageData);
+                
+                    let messageData2 = {
+                        speaker: ChatMessage.getSpeaker({
+                            actor: actor
+                        }),
+                        content: htmlContent
+                    }
+                
+                    rollResult.toMessage(messageData2);
+                }
+            }
+        }
+
     }
 }
 
@@ -589,7 +911,10 @@ export async function applyBuff(buff, actor) {
     let theBuff = {
         label:game.i18n.localize("touhouvq.statusEffectsBuffs."+buff),
         icon: "systems/touhouvq/assets/img/effects/"+buff+".svg",
-        changes:[]
+        changes:[],
+        duration: {
+            rounds: 1
+        }
     };
 
     switch (buff) {
@@ -629,7 +954,10 @@ export async function applyDebuff(debuff, actor) {
     let effectData = {
         label:game.i18n.localize("touhouvq.statusEffectsDebuffs."+debuff),
         icon: "systems/touhouvq/assets/img/effects/"+debuff+".svg",
-        changes:[]
+        changes:[],
+        duration: {
+            rounds: 1
+        }
     };
 
     switch (debuff) {
@@ -647,10 +975,18 @@ export async function applyDebuff(debuff, actor) {
         
             break;
         case 'drunk':
-    
+            effectData.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.REMOVE,
+                value: -1
+            });
             break;
         case 'deaddrunk':
-
+            effectData.changes.push({
+                key: `data.defense.value`,
+                mode: CONST.ACTIVE_EFFECT_MODES.REMOVE,
+                value: -3
+            });
             break;
         default:
     }
@@ -667,7 +1003,10 @@ export async function applyAlcohol(alcoholEffect, actor) {
     let effectData = {
         label:game.i18n.localize("touhouvq.alcoholEffects."+alcoholEffect),
         icon: "systems/touhouvq/assets/img/effects/drunk.svg",
-        changes:[]
+        changes:[],
+        duration: {
+            rounds: 1
+        }
     };
 
     switch (alcoholEffect) {
@@ -789,8 +1128,8 @@ export async function knowledgeCheck({
 
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -805,8 +1144,8 @@ export async function knowledgeCheck({
         
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -870,8 +1209,8 @@ export async function knowledgeCheck({
 
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -886,8 +1225,8 @@ export async function knowledgeCheck({
         
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -956,8 +1295,8 @@ export async function knowledgeCheck({
 
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -972,8 +1311,8 @@ export async function knowledgeCheck({
         
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
@@ -1039,8 +1378,8 @@ export async function knowledgeCheck({
 
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 rollResult: rollResult,
                 actionValue: actionValue,
                 fatiguePoints: fatiguePoints,
@@ -1055,8 +1394,8 @@ export async function knowledgeCheck({
         
             let messageData2 = {
                 speaker: ChatMessage.getSpeaker({
-            alias:game.user.name
-        }),
+                    actor: actorData
+                }),
                 content: htmlContent
             }
         
