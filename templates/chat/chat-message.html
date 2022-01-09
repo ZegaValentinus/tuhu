@@ -15,7 +15,7 @@
         {{#if message.flavor}}
 
             {{#if message.flags.core.RollTable}}
-                <span class="flavor-text flavor-loottable">{{getTableName message.flags.core.RollTable}}</span>
+                <span class="flavor-text flavor-loottable">{{getTableName message.flavor}}</span>
             {{else}}
                 {{#unless message.flags.core.initiativeRoll}}
                     <span class="flavor-text">{{{message.flavor}}}</span>
@@ -59,7 +59,4 @@
         </div>
     {{/if}}
 
-
-
 </li>
-{{log this}}

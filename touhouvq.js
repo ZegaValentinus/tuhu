@@ -606,9 +606,15 @@ function registerHandlebarsHelpers() {
     return outStr;
   });
 
-  Handlebars.registerHelper('getTableName', function (docId) {
-    const table = game.tables.get(docId);
-    return table.data.name;
+  Handlebars.registerHelper('getTableName', function (flavor) {
+    /*
+    let table = "";
+    for (let t of game.packs.filter(p => p.documentName === "RollTable")) {
+      table = await t.getDocument(docId);
+    };
+    const tablename = table.data.name;
+    */
+    return flavor.substring(24, flavor.length - 7);
   });
 
   Handlebars.registerHelper('ifExists', function (elem) {

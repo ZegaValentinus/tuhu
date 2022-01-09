@@ -81,14 +81,10 @@
                     </div>
                 </div>
             {{/ifSuperiorOrEquals}}
-            {{#ifNotEquals manifestationofnaturebuff 0}}
-                {{#each talentvalue as |object key|}}
-                    <div class="tvq-buffing">
-                        <p>{{this}}</p>
-                        <p>{{../successDegree}} {{localize "touhouvq.gameplayParts.action(s)"}}</p>
-                    </div>
-                {{/each}}
-            {{/ifNotEquals}}
+            <div class="tvq-buffing">
+                <p>{{talentvalue}}</p>
+                <p>{{successDegree}} {{localize "touhouvq.gameplayParts.action(s)"}}</p>
+            </div>
         {{/if}}
 
         <div class="tvq-frolic-buttons tvq-hide" data-actor="{{rollResult.data.data._id}}" data-type="6" data-reinforcement="{{talentvalue}}" data-score="{{rollResult._total}}" data-bigresult="{{rollResult.terms.[0].results.[0].result}}" data-skill="{{compskillvalue}}">

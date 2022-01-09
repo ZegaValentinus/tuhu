@@ -1088,19 +1088,18 @@ _onRaceskillRoll(event) {
 
     if(race == "fairy") {
 
-      let dotheRoll = 0;
       let buffingInfo = [];
 
+      let targetherself = actor.items.some(item => (item.data.type === 'talent' && item.data.data.idname === 'insolent_macrocosm'));
+
       //Checking if at least an actor is targeted
-      if(game.user.targets.size > 0) {
+      if(game.user.targets.size == 1) {
 
         //Check if the selected actor is himself.
         let foreachvalue = 0;
         game.user.targets.forEach( async function(target) {
           //If the fairy have the talent, then she can target herself
           if(actor.data._id !== target.actor.id) {
-
-            dotheRoll = 1;
 
               if(game.user.isGM) {
                 const effectData = {
@@ -1115,27 +1114,51 @@ _onRaceskillRoll(event) {
                 });
               }
 
-              buffingInfo[foreachvalue] = target.actor.data.name;
+              buffingInfo = target.actor.data.name;
+
+              Dice.StatCheck({
+                actionValue: actor.data.data.stats.magic,
+                fatiguePoints: actor.data.data.fatigue.value,
+                statType: 6,
+                actorData: actor,
+                compskillvalue: "manifestationofnature",
+                talentvalue: buffingInfo
+              });
             
           } else {
-            return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.cantTargetSelf"));
+            if(targetherself == true) {
+              //the fairy have the insolent_macrocosm talent, so she can target herself !
+              if(game.user.isGM) {
+                const effectData = {
+                  label:game.i18n.localize("touhouvq.namesRaceSkill.manifestationofnature"),
+                  icon: "systems/touhouvq/assets/img/talentsandskills/fairy/manifestationofnature.webp"
+                };
+                const manifestationofnature = await ActiveEffect.create(effectData, {parent: target.actor});
+              } else {
+                game.socket.emit('system.touhouvq', {
+                  action: "manifestationofnature",
+                  actorId: target.actor.id
+                });
+              }
+
+              buffingInfo = target.actor.data.name;
+
+              Dice.StatCheck({
+                actionValue: actor.data.data.stats.magic,
+                fatiguePoints: actor.data.data.fatigue.value,
+                statType: 6,
+                actorData: actor,
+                compskillvalue: "manifestationofnature",
+                talentvalue: buffingInfo
+              });
+            } else {
+              return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.cantTargetSelf"));
+            }
           }
           foreachvalue++;
         });
       } else {
-        return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.noActorTargeted"));
-      }
-
-      if(dotheRoll === 1) {
-
-        Dice.StatCheck({
-          actionValue: actor.data.data.stats.magic,
-          fatiguePoints: actor.data.data.fatigue.value,
-          statType: 6,
-          actorData: actor,
-          compskillvalue: "manifestationofnature",
-          talentvalue: buffingInfo
-        });
+        return ui.notifications.warn(game.i18n.localize("touhouvq.notifications.anOnlyActor"));
       }
 
     }

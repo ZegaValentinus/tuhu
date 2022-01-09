@@ -27,7 +27,9 @@
 .img-object-sanit {
   object-fit: scale-down;
   width: fit-content;
+  width: -moz-fit-content;
   margin: 0 auto 10px auto;
+  max-height: 220px;
 }
 .flavor-boosted {
   color: rgb(0 97 134 / 100%) !important;
@@ -1088,7 +1090,7 @@ h1 {
   font-size: 11px !important;
   letter-spacing: -0.5px;
 }
-.tvq-deathcheck-roll {
+.tvq-deathcheck-roll, .tvq-funeffect1, .tvq-funeffect2 {
   cursor: pointer;
 }
 .tvq-deathcheck-roll:hover {
@@ -1290,9 +1292,12 @@ h1 {
   box-shadow: 0 0 2px #fff inset;
   word-break: break-all;
 }
+.important-max {
+  max-height: 32px !important;
+}
 .tvq-weaponcheck-img {
   width: auto;
-  height: 100px;
+  height: 110px;
   margin-left: 50%;
   transform: translateX(-50%);
   object-fit: cover;
@@ -2869,13 +2874,14 @@ select.tvq-select-rarity:focus {
   border-radius: 4px !important;
 }
 
-.div-height .sheet-perk .editor{
+.div-height .sheet-perk .editor {
   height: 206px !important;
   margin-top: 0 !important;
+  max-height: unset !important;
 }
 
 .div-height .sheet-perk div[role="application"] {
-  height: 204px !important;
+  height: 198px !important;
   margin-top: 0 !important;
 }
 
@@ -3741,4 +3747,8 @@ ol.table-results li.table-result .result-text a i {
 
 .hiding-mysteryloottable .table-results {
   display: none !important;
+}
+
+#controls .control-tools {
+  height: auto;
 }

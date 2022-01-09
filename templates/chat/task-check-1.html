@@ -1,5 +1,9 @@
 <div class="dice-roll">
     <div class="dice-flavor">
+        {{#ifNotEquals scourgebynaturebuff 0}}
+            <!-- If I am here, the character that is making this roll is a youkai -->
+            <p class="flavor-boosted">{{localize "touhouvq.startertalent.youkai"}} : +1d4</p>
+        {{/ifNotEquals}}
         {{#ifNotEquals manifestationofnaturebuff 0}}
             {{#forLoop manifestationofnaturebuff}}
                 <!-- If I am here, the character that is making this roll is under the manifestation of nature active effect -->

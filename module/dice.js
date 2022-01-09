@@ -489,6 +489,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
     //initializing buff values to 0;
     let activeFiringline = false;
     let manifestationofnaturebuff = 0;
+    let scourgebynaturebuff = 0;
 
     //Check if lunar rabbit under firing line active effect
     let actualStatLunarRabbit = Math.floor(actorData.data.stats.discipline / 10);
@@ -529,10 +530,13 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             }
         });
 
+        //scourgebynature
         if (compskillvalue === 'scourgebynature') {
+            scourgebynaturebuff++;
             rollResult1 += ` + 1` + d4;
         }
         if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
+            scourgebynaturebuff++;
             rollResult1 += ` + 1` + d4;
         }
 
@@ -578,6 +582,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             rolls: rolls,
             firinglinebuff: firinglinebuff,
             manifestationofnaturebuff: manifestationofnaturebuff,
+            scourgebynaturebuff : scourgebynaturebuff,
             frolicValue: frolicValue,
             compskillvalue: compskillvalue
         }
@@ -616,10 +621,13 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             }
         });
 
+        //scourgebynature
         if (compskillvalue === 'scourgebynature') {
+            scourgebynaturebuff++;
             rollResult1 += ` + 1` + d4;
         }
         if (actorData.data.talentStarter === 'youkai' && traitType === 1) {
+            scourgebynaturebuff++;
             rollResult1 += ` + 1` + d4;
         }
 
@@ -672,6 +680,7 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
             rolls: rolls,
             firinglinebuff: firinglinebuff,
             manifestationofnaturebuff: manifestationofnaturebuff,
+            scourgebynaturebuff: scourgebynaturebuff,
             frolicValue: frolicValue,
             compskillvalue: compskillvalue
         }
@@ -2398,7 +2407,9 @@ export async function diceStolen({
                 if(Math.floor((result-20)/2) < 1) {
                     reinf = Math.floor((finalscore-20)/2);
                 }
-                
+                if(reinf < 1) {
+                    reinf = 1;
+                }
             }
         }
     }

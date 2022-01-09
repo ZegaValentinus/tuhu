@@ -3,7 +3,6 @@ export const touhouvq = {};
 touhouvq.raceListing = {
   human: "touhouvq.race.human",
   youkai:"touhouvq.race.youkai",
-  ghost:"touhouvq.race.ghost",
   vampire:"touhouvq.race.vampire",
   fairy:"touhouvq.race.fairy",
   crowtengu:"touhouvq.race.crowtengu",
@@ -62,18 +61,6 @@ touhouvq.races = {
       {id: 'heart', crit: true, range: [9]},
       {id: 'wingsTorso', range: [8]}, 
       {id: 'torso', range: [6, 7]},
-      {id: 'object', range: [5]},
-      {id: 'rArm', range: [4]},
-      {id: 'lArm', range: [3]},
-      {id: 'rLeg', range: [2]},
-      {id: 'lLeg', range: [1]}
-    ]
-  },
-  ghost: {
-    locaList:  [
-      {id: 'head', range: [10]},
-      {id: 'heart', range: [9]},
-      {id: 'torso', range: [6, 7, 8]},
       {id: 'object', range: [5]},
       {id: 'rArm', range: [4]},
       {id: 'lArm', range: [3]},
