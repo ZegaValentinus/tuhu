@@ -52,12 +52,12 @@ A complete user guide showing how to install, configure and play the game can be
 
 ## Tables de Loot / Loot Tables
 
-[Objets / Objects](https://docs.google.com/document/d/1UkQCK11Fi-L7LwmS-9FGsCBY4cLL4nvPmBjXB4xp2l4/edit?usp=sharing)<br/>
+[Tables de Loot / Loot Tables](https://docs.google.com/document/d/1UkQCK11Fi-L7LwmS-9FGsCBY4cLL4nvPmBjXB4xp2l4/edit?usp=sharing)<br/>
 
 
 ## Fiches de Personnage / Character Sheets
 
-[Objets / Objects](https://docs.google.com/document/d/1jMtAYNsMh_w0y7fviUMZLSqaAK7yggyQGF6PKQCCS_w/edit?usp=sharing)<br/>
+[Fiches de Personnage / Character Sheets](https://docs.google.com/document/d/1jMtAYNsMh_w0y7fviUMZLSqaAK7yggyQGF6PKQCCS_w/edit?usp=sharing)<br/>
 
 
 ## Ressources / Resources
