@@ -65,7 +65,7 @@ A complete user guide showing how to install, configure and play the game can be
 * [Site Web / Website](https://touhoujdr.fr/)
 * [Serveur Discord / Discord Server](https://discord.gg/rkjcsY5fXM)
 * [Twitter](https://twitter.com/JdrTouhou)
-* [Contact](benjamin.prieur@protonmail.com)
+* Contact : benjamin.prieur@protonmail.com
 
 
 ## License
