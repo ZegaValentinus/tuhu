@@ -1,14 +1,3 @@
-# TouhouVQ-FoundryVTTGameSystem
-
-Here is the Touhou: Venturesome Quest! game system, created to be played on FoundryVTT.
-Ici, les Maîtres du Jeu sauront trouver tout ce dont ils ont besoin pour établir, sur leur client FoundryVTT, le système de jeu Touhou: Venturesome Quest!
-
-Voici le système de jeu de Touhou: Venturesome Quest! , créé pour être joué sur FoundryVTT.
-Here, Game Masters will find everything they need to build their Touhou: Venturesome Quest! gaming system on their own FoundryVTT client!
-
-
-
-
 # Touhou: Venturesome Quest!
 
 Jouez en ligne avec vos amis, récupérez tout les éléments dont vous avez besoin pour tenir une partie en ligne de *Destiny: Universe of Light* !<br/>
@@ -19,10 +8,10 @@ Play online with your friends, collect all the items you need to start an online
 
 ## Bienvenue ! / Welcome!
 Le jeu de rôle *Touhou: Venturesome Quest!* est un jeu de rôle basé sur l’univers de Touhou Project, la série japonaise à succès de shoot them ups de type Danmaku, créée par Team Shanghai Alice™. Vous trouverez ici tous les documents ainsi que toutes les informations pour récupérer et utiliser l'intégration FoundryVTT, vous permettant de facilement découvrir et jouer au jeu de rôle *Touhou: Venturesome Quest!* en ligne avec vos amis.<br/>
-L<br/>
+The tabletop role-playing game *Touhou: Venturesome Quest!* is based on the Touhou Project universe, the successful Japanese Danmaku-style shoot them ups series created by Team Shanghai Alice™. Here, you will find all the documents as well as all the information to retrieve and use the FoundryVTT integration, allowing you to easily discover and play *Touhou: Venturesome Quest!* online with your friends.<br/>
 
 Dans *Touhou: Venturesome Quest!*, les joueurs incarneront chacun un personnage, et vivront des aventures durant lesquelles ils devront se battre pour survivre dans un monde nommé “Gensokyo”, un lieu isolé du monde, ressemblant à un japon d’un âge féodal où la magie et autres phénomènes surnaturels sont une réalité.<br/>
-L<br/>
+In *Touhou: Venturesome Quest!*, the players will play a character, and have adventures in which they will have to fight to survive in a world called “Gensokyo”, a place isolated from the world, resembling a feudal age of Japan where magic and other supernatural phenomena are a reality.<br/>
 
 
 ## Installation et Configuration / Installing and Configuring the Game
@@ -81,4 +70,5 @@ A complete user guide showing how to install, configure and play the game can be
 
 ## License
 
-Ce travail, et *Touhou: Venturesome Quest!* sont sous licence Creative Commons Attribution - CC0 1.0 Universel (CC0 1.0) France (https://creativecommons.org/publicdomain/zero/1.0/deed.fr)
+Ce travail, et *Touhou: Venturesome Quest!* sont sous licence Creative Commons Attribution - CC0 1.0 Universel (CC0 1.0) France (https://creativecommons.org/publicdomain/zero/1.0/deed.fr)<br/>
+This work and *Touhou: Venturesome Quest!* are under the Creative Commons Attribution - CC0 1.0 Universel (CC0 1.0) France (https://creativecommons.org/publicdomain/zero/1.0/deed.fr)
