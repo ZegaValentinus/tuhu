@@ -54,7 +54,11 @@
                     <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/d20fumble2_2.webp">
                     <h4 class="tvq-taskcheck-resulttotal tvq-criticalfailure">{{rollResult.total}}</h4>
                 {{else}}
-                    <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_2.webp">
+                    {{#if (eq compskillvalue "unrealdodge")}}
+                        <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_2_tengu.webp">
+                    {{else}}
+                        <img class="tvq-taskcheck-img" src="systems/touhouvq/assets/img/roll_2.webp">
+                    {{/if}}
                     <h4 class="tvq-taskcheck-resulttotal">{{rollResult.total}}</h4>
                 {{/ifEquals}}
             {{/ifEquals}}
@@ -96,3 +100,4 @@
 
     </div>
 </div>
+{{log this}}
