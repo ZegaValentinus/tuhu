@@ -1,7 +1,7 @@
 # Touhou: Venturesome Quest!
 
-Jouez en ligne avec vos amis, récupérez tout les éléments dont vous avez besoin pour tenir une partie en ligne de *Destiny: Universe of Light* !<br/>
-Play online with your friends, collect all the items you need to start an online game, and play *Destiny: Universe of Light* as a game master !
+Jouez en ligne avec vos amis, récupérez tout les éléments dont vous avez besoin pour tenir une partie en ligne de *Touhou: Venturesome Quest!* !<br/>
+Play online with your friends, collect all the items you need to start an online game, and play *Touhou: Venturesome Quest!* as a game master !
 
 ![screencast](./resources/TouhouVQ_welcomegif.gif "Welcome to Touhou: Venturesome Quest!")
 
