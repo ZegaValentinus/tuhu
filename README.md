@@ -63,6 +63,7 @@ A complete user guide showing how to install, configure and play the game can be
 ## Ressources / Resources
 
 * [Site Web / Website](https://touhoujdr.fr/)
+* [Vidéo Tuto / Tutorial Video](https://www.youtube.com/watch?v=lcgOQlbLTHs&ab_channel=Touhou%3AVenturesomeQuest%21)
 * [Serveur Discord / Discord Server](https://discord.gg/rkjcsY5fXM)
 * [Twitter](https://twitter.com/JdrTouhou)
 * Contact : benjamin.prieur@protonmail.com
