@@ -96,7 +96,13 @@
       "rArm": "Bras droit",
       "lArm": "Bras gauche",
       "rLeg": "Jambe Droite",
-      "lLeg": "Jambe gauche"
+      "lLeg": "Jambe gauche",
+      "thirdeye": "Troisième Oeil",
+      "backrift": "Faille Dorsale",
+      "back": "Dos",
+      "backcover": "Quatrième de Couverture",
+      "frontcover": "Première de Couverture",
+      "bookspine": "Tranche"
     },
     "itemText": {
       "weaponTypeText": "Type d'Arme",

@@ -190,6 +190,109 @@ touhouvq.races = {
   },
   yamabiko: {
     locaList: 'useDefault'
+  },
+  jiangshi: {
+    locaList: 'useDefault'
+  },
+  satori: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'thirdeye', crit: true, range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  satoriclosedeye: {
+    locaList: [
+      {id: 'head', crit: true, range: [10]},
+      {id: 'heart', crit: true, range: [9]},
+      {id: 'thirdeye', armor: true, range: [8]},
+      {id: 'torso', range: [6, 7]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  bakedanuki: {
+    locaList: 'useDefault'
+  },
+  priestess: {
+    locaList: 'useDefault'
+  },
+  mecanical1: {
+    locaList: [
+      {id: 'backrift', crit: true, range: [10]},
+      {id: 'head', crit: true, range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  mecanical2: {
+    locaList: [
+      {id: 'backrift', crit: true, range: [10]},
+      {id: 'head', crit: true, range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  mecanical3: {
+    locaList: [
+      {id: 'backrift', crit: true, range: [10]},
+      {id: 'head', crit: true, range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  mecanical4: {
+    locaList: [
+      {id: 'backrift', crit: true, range: [10]},
+      {id: 'head', crit: true, range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  mecanical5: {
+    locaList: [
+      {id: 'backrift', crit: true, range: [10]},
+      {id: 'head', crit: true, range: [9]},
+      {id: 'torso', range: [6, 7, 8]},
+      {id: 'object', range: [5]},
+      {id: 'rArm', range: [4]},
+      {id: 'lArm', range: [3]},
+      {id: 'rLeg', range: [2]},
+      {id: 'lLeg', range: [1]}
+    ]
+  },
+  sentientgrimoire: {
+    locaList: [
+      {id: 'back', range: [9, 10]},
+      {id: 'backcover', range: [6, 7, 8]},
+      {id: 'frontcover', range: [3, 4, 5]},
+      {id: 'bookspine', crit: true, range: [1, 2]}
+    ]
   }
 }
 
