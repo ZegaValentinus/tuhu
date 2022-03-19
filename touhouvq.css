@@ -1215,7 +1215,7 @@ h1 {
   margin-left: 50%;
   transform: translateX(-50%);
   -webkit-mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99));
-  mask: radial-gradient(circle farthest-side,#0000 50%,#000);
+  mask: radial-gradient(circle farthest-side,rgba(31, 24, 24, 0.9) 1%,rgba(0,0,0,0.99))
 }
 .tvq-taskcheck-img-knowledge {
   width: auto;
