@@ -701,7 +701,8 @@ export async function TraitCheck(actor, traitRollKey, compskillvalue) {
 export async function DeathCheck(actorData) {
     const messageTemplate = "systems/touhouvq/templates/partials/death-check.html";
     const rollFormula = "d20";
-    let rollResult = new Roll(rollFormula, actorData).roll();
+    let rollResult = new Roll(rollFormula, actorData);
+    await rollResult.evaluate({async:true});
     let renderedRoll = await rollResult.render({ template: messageTemplate });
     
     let messageData = {
@@ -724,7 +725,8 @@ export async function weaponAttack({
 
     const rarityLabel = game.i18n.localize("touhouvq.generalRarity."+rollData.rarityValue);
 
-    let rollResult = new Roll(damage, actorData).roll();
+    let rollResult = new Roll(damage, actorData);
+    await rollResult.evaluate({async:true});
 
     let strengthDamage1 = actorData.data.data.stats.strength;
 
@@ -2305,7 +2307,8 @@ export async function spellcardAttack({
 
     let rollResult = 0;
 
-    rollResult = new Roll(spellcardAttackRoll, actorData).roll();
+    rollResult = new Roll(spellcardAttackRoll, actorData);
+    await rollResult.evaluate({async:true});
 
     let messageData = {
         speaker: ChatMessage.getSpeaker({

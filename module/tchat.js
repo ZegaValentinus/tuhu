@@ -98,7 +98,8 @@ export async function armorBreakCheck({
     let messageTemplate = "systems/touhouvq/templates/partials/destruction-card.html";
     let rollFormula = "d20";
 
-    let rollResult = new Roll(rollFormula, theActor).roll();
+    let rollResult = new Roll(rollFormula, theActor);
+    await rollResult.evaluate({async:true});
     let renderedRoll = await rollResult.render({ template: messageTemplate });
 
     const theItem = theActor.items.get(itemID);
@@ -222,8 +223,10 @@ export async function raceRoll({
     if(data.race === "human") {
         let d4result = Math.floor(Math.random() * 4)+1;
 
-        let rollResult = new Roll(d6, actor, {isRaceSkill:true, actorId:actor.id}).roll();
+        let rollResult = new Roll(d6, actor, {isRaceSkill:true, actorId:actor.id});
         
+        await rollResult.evaluate({async:true});
+
         let messageData = {
             speaker: ChatMessage.getSpeaker({
                 actor: actor
@@ -552,7 +555,8 @@ export async function raceRoll({
     }
     if (data.race == "tsukumogami") {
         if (data.choice === "1") {
-            let rollResult = new Roll(d4, actor).roll();
+            let rollResult = new Roll(d4, actor);
+            await rollResult.evaluate({async:true});
         
             let messageData = {
                 speaker: ChatMessage.getSpeaker({
@@ -577,7 +581,8 @@ export async function raceRoll({
             if (data.choice === "2") {
                 let toRoll = d4 + ` + 1`;
                 
-                let rollResult = new Roll(toRoll, actor).roll();
+                let rollResult = new Roll(toRoll, actor);
+                await rollResult.evaluate({async:true});
         
                 let messageData = {
                     speaker: ChatMessage.getSpeaker({
@@ -1116,7 +1121,8 @@ export async function knowledgeCheck({
                 }
             }
 
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData);
+            await rollResult.evaluate({async:true});
 
             let rolls = [d20];
 
@@ -1199,7 +1205,8 @@ export async function knowledgeCheck({
                 }
             }
 
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData);
+            await rollResult.evaluate({async:true});
 
             let rolls = [d20];
 
@@ -1281,7 +1288,8 @@ export async function knowledgeCheck({
                     }
                 }
             }
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData);
+            await rollResult.evaluate({async:true});
 
             let rolls = [d20];
 
@@ -1366,7 +1374,8 @@ export async function knowledgeCheck({
                 }
             }
 
-            let rollResult = new Roll(rollResult1, actorData).roll();
+            let rollResult = new Roll(rollResult1, actorData);
+            await rollResult.evaluate({async:true});
 
             let rolls = [d20];
 
